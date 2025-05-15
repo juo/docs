@@ -1,147 +1,140 @@
 {
-    "$schema": "https://mintlify.com/docs.json",
-    "name": "Juo Subscriptions documentation",
-    "theme": "prism",
-    "favicon": "/favicon.svg",
-    "background": {
-      "style": "gradient"
-    },
-    "colors": {
-      "primary": "#0D9373",
-      "light": "#07C983",
-      "dark": "#0D9373",
-      "anchors": {
-        "from": "#0D9373",
-        "to": "#07C983"
-      }
-    },
-    "navigation": {
-        "tabs": [
-            {
-                "tab": "Guides",
-                "groups": [
-                    {
-                        "group": "Getting Started",
-                        "pages": [
-                            "docs",
-                            "docs/about-juo",
-                            "docs/launch-subscriptions",
-                            "docs/grow-and-retain"
-                        ]
-                    },
-                    {
-                        "group": "Launch subscriptions",
-                        "pages": [
-                            {
-                                "group": "Subscription offers",
-                                "pages": [
-                                    "docs/subscribe-and-save",
-                                    "docs/build-a-box",
-                                    "docs/custom-workflows",
-                                    "docs/curated-boxes",
-                                    "docs/memberships"
-                                ]
-                            },
-                            {
-                                "group": "Emails & Settings",
-                                "pages": [
-                                    "docs/general-settings",
-                                    "docs/shipping",
-                                    "docs/notifications",
-                                    "docs/linking-customer-portal",
-                                    "docs/subscription-widget"
-                                ]
-                            },
-                            "docs/migrating-to-juo"
-                        ]
-                    },
-                    {
-                        "group": "Grow & Retain",
-                        "pages": [
-                            "docs/retention-flow",
-                            "docs/upsells",
-                            "docs/extras",
-                            "docs/subscription-intent-detection"
-                        ]
-                    },
-                    {
-                        "group": "Use Guide",
-                        "pages": [
-                            "docs/bulk-actions",
-                            "docs/customer-portal",
-                            "docs/tiered-discounts",
-                            {
-                                "group": "Integrations",
-                                "pages": [
-                                    "docs/klaviyo-integration",
-                                    "docs/gorgias-integration"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "group": "Glossary",
-                        "pages": [
-                            "docs/glossary/build-a-box",
-                            "docs/glossary/customer-portal",
-                            "docs/glossary/delivery-frequency",
-                            "docs/glossary/dunning"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "Changelog",
-                "groups": [
-                    {
-                        "group": " ",
-                        "pages": [
-                            "changelog"
-                        ]
-                    }
-                ]
-            }
-        ],
-        "global": {
-            "anchors": [
-                {
-                    "anchor": "Website",
-                    "href": "https://juo.io/",
-                    "icon": "globe"
-                },
-                {
-                    "anchor": "Community",
-                    "href": "https://juo.community/",
-                    "icon": "slack"
-                },
-                {
-                    "anchor": "Blog",
-                    "href": "https://juo.io/blog",
-                    "icon": "newspaper"
-                }
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Juo Docs",
+  "colors": {
+    "primary": "#3726f4",
+    "light": "#C320A3",
+    "dark": "#3726f4"
+  },
+  "favicon": "/favicon.png",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "docs",
+              "docs/about-juo",
+              "docs/launch-subscriptions",
+              "docs/grow-and-retain"
             ]
+          },
+          {
+            "group": "Launch subscriptions",
+            "pages": [
+              "docs/migrating-to-juo",
+              {
+                "group": "Subscription offers",
+                "pages": [
+                  "docs/subscribe-and-save",
+                  "docs/build-a-box",
+                  "docs/custom-workflows",
+                  "docs/curated-boxes",
+                  "docs/memberships"
+                ]
+              },
+              {
+                "group": "Emails & Settings",
+                "pages": [
+                  "docs/general-settings",
+                  "docs/shipping",
+                  "docs/notifications",
+                  "docs/linking-customer-portal",
+                  "docs/subscription-widget"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Grow & Retain",
+            "pages": [
+              "docs/retention-flow",
+              "docs/upsells",
+              "docs/extras",
+              "docs/subscription-intent-detection"
+            ]
+          },
+          {
+            "group": "Use Guide",
+            "pages": [
+              "docs/bulk-actions",
+              "docs/customer-portal",
+              "docs/tiered-discounts",
+              {
+                "group": "Integrations",
+                "pages": [
+                  "docs/klaviyo-integration",
+                  "docs/gorgias-integration"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Glossary",
+            "pages": [
+              "docs/glossary/build-a-box",
+              "docs/glossary/customer-portal",
+              "docs/glossary/delivery-frequency",
+              "docs/glossary/dunning"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "groups": [
+          {
+            "group": " ",
+            "pages": [
+              "changelog"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Website",
+          "href": "https://juo.io/",
+          "icon": "globe"
+        },
+        {
+          "anchor": "Community",
+          "href": "https://juo.community/",
+          "icon": "slack"
+        },
+        {
+          "anchor": "Blog",
+          "href": "https://juo.io/blog",
+          "icon": "newspaper"
         }
-    },
-    "logo": {
-        "light": "/logo/logo.svg",
-        "dark": "/logo/white.svg"
-    },
-    "navbar": {
-        "links": [
-            {
-                "label": "Contact Us",
-                "href": "mailto:hi@juo.io"
-            }
-        ],
-        "primary": {
-            "type": "button",
-            "label": "Book a demo",
-            "href": "https://juo.io/demo"
-        }
-    },
-    "footer": {
-        "socials": {
-            "linkedin": "https://www.linkedin.com/company/juo-io"
-        }
+      ]
     }
+  },
+  "logo": {
+    "light": "/logo/logo.svg",
+    "dark": "/logo/white.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Contact Us",
+        "href": "mailto:hi@juo.io"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Book a demo",
+      "href": "https://juo.io/demo"
+    }
+  },
+  "footer": {
+    "socials": {
+      "linkedin": "https://www.linkedin.com/company/juo-io"
+    }
+  }
 }

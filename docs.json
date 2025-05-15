@@ -1,13 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
+  "name": "Juo Subscriptions documentation",
   "theme": "mint",
-  "name": "Juo Docs",
-  "colors": {
-    "primary": "#3726f4",
-    "light": "#C320A3",
-    "dark": "#3726f4"
+  "favicon": "/favicon.svg",
+  "background": {
+    "style": "gradient"
   },
-  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#07C983",
+    "dark": "#0D9373"
+  },
   "navigation": {
     "tabs": [
       {
@@ -25,7 +28,6 @@
           {
             "group": "Launch subscriptions",
             "pages": [
-              "docs/migrating-to-juo",
               {
                 "group": "Subscription offers",
                 "pages": [
@@ -45,7 +47,8 @@
                   "docs/linking-customer-portal",
                   "docs/subscription-widget"
                 ]
-              }
+              },
+              "docs/migrating-to-juo"
             ]
           },
           {

@@ -1,0 +1,57 @@
+---
+title: "SID Conversion EngineSID Conversion Engine"
+---
+
+![Subscription intent detection](https://cdn.juo.io/content-uploads/subscription_intent_ebc36d1306.png)
+
+Subscription intent detection
+
+## What is subscription intent detection
+
+To help you acquire more subscribers Juo team developed an algorithm that analyses customers behaviour and finds patterns that indicate subscription intent. Juo analyses the current customer base and tags the potential subscribers. Additional properties are transferred to Klaviyo and can be used to send email campaigns with personalized susbcription offers.
+
+### Subscription Intent properties
+
+#### Information about a product that is purchased frequently
+
+Items detected by the algorithm are stored in the Items array. To access these items and their properties use a loop. for example:
+
+```
+{% for item in event.Items %}
+{{ item.ProductName }} ({{ item.VariantName }}): {{ item.Quantity }} packs.
+{% endfor %}
+```
+
+And this is how you can access only the first item in the array:
+
+```
+{{ event.Items.0.ProductName }}
+```
+
+* **ProductID** — ID of a product that is purchased frequently
+* **SKU**
+* **ProductName**
+* **VariantName**
+* **Quantity** — average quantity that a customer purchases
+* **ItemPrice**
+* **RowTotal**
+* **ProductURL**
+* **ImageURL**
+* **Orders**
+* **Categories**
+
+#### Personalized subscription offer
+
+The syntax for accessing these events is:
+
+```
+{{ event.CartUrl }}
+```
+
+* **OrderIntervalUnit** — suggested delivery time unit (e.g. month)
+* **OrderIntervalFrequency** — suggested delivery frequency based (e.g. 1)
+* **SellingPlanId** — contains ID of a selling plan for reference
+* **CartUrl** — contains a direct link to Cart with already added products with the personalized subscription offer
+* **CheckoutUrl** — contains a direct link to Checkout with added products and personalized subscription offer
+
+To see how to set up Subscription intent detection step by step and start sending emails with Klaviyo, refer to our [guide](https://juo-io.notion.site/How-to-use-Juo-Subscription-Intent-Detection-fa9372d3b5d24d3a99d6af84f9f52713).

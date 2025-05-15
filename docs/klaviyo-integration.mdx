@@ -1,0 +1,177 @@
+---
+title: "Klaviyo"
+---
+
+<Frame>
+![Juo - Klaviyo integration](https://cdn.juo.io/content-uploads/juo_klaviyo_integration_549cdbaeeb.png)
+</Frame>
+Juo provides out-of-the box email notifications for subscription purchase, renewal, upcoming payment, failed payment, cancellation, and pending renewal (items out of stock).
+
+In addition to these automatic notifications, or instead of them, merchants can also integrate Juo with Klaviyo to manage their subscription-related communication there.
+
+## Klaviyo Private API Key
+
+To integrate with Klaviyo, you first need Klaviyo’s **Private API Key**. You can find in Klaviyo, under **Settings** > **Account** > **API Keys**.
+
+Scroll down to Private API Key and copy the key to clipboard.
+<Frame caption="Copy the Private API Key to clipboard">
+![Klaviyo settings - Private API Keys](https://cdn.juo.io/content-uploads/klaviyo_private_key_31b0bf570e.png)
+</Frame>
+
+Juo needs Private API Key (not Public) to integrate with Klaviyo, so if you don’t have a Private Key, you need to create one first.
+
+To do this, click on “Create API key” in the **Private API Keys** section.
+
+Next, select **Custom Key** Access level and give **Full Access** to API Scopes **Events** and **Profiles**.
+
+Click “Create” to save your Private API Key and you’re ready to follow through with the integration.
+<Frame caption="You need full access for Events and Profiles">
+![Klaviyo settings - Create new Private API Key](https://cdn.juo.io/content-uploads/klaviyo_private_key_scopes_688547df91.png)
+</Frame>
+
+## **Juo \<> Klaviyo integration**
+
+In the Juo App, open the **Settings** tab and select **Integrations** from the top navigation bar.
+
+Next, enable Klaviyo and paste the Private API Key in the input field that appears. Hit “Save” to confirm.
+<Frame caption="Paste your Private API Key and click Save">
+![Global settings view - Klaviyo integration](https://cdn.juo.io/content-uploads/juo_klaviyo_integration_9b594c3567.png)
+</Frame>
+
+## Juo \<> Klaviyo Flow triggers
+
+Juo is currently syncing the following events with Klaviyo:
+
+* **Started Subscription** — sent when a subscription is purchased
+* **Paused Subscription** — sent when a subscription is paused
+* **Skipped Subscription** — sent when a subscription is skipped
+* **Renewed Now Subscription** — sent when subscription cycle is trigged immediately with Renew Now
+* **Canceled Subscription** — sent when a subscription is cancelled
+* **Upcoming Renewal Subscription** — sent when a subscription is about to renew (3 days before the planned renewal)
+* **Billed Subscription** — sent when a subscription is paid successfully
+* **Billing Failed Subscription** — sent when a subscription payment fails
+* **Renewal Requires Action** — sent when an additional layer of authentication is required to process the payment (e.g. 3D Secure for CC payments)
+* **Product Out Of Stock Subscription** — sent when a subscription failed to renew because one of the products was out of stock.
+
+
+<Warning>
+Note that in order to sync events between Juo and Klaviyo you need to turn on the integration first. Events that happened prior to the integration will not be visible in Klaviyo.
+</Warning>
+
+You can use the above events as triggers to send subscription notifications. For example, if you want to send an email after a subscription has been purchased in your store, select “Subscription started” as a trigger.
+<Frame caption="Subscription purchase can trigger your Klaviyo flow">
+![Klaviyo Flow editor - Trigger setup](https://cdn.juo.io/content-uploads/juo_flow_triggers_e8393e7da6.png)
+</Frame>
+
+## Customer tags as flow filters
+
+Apart from events that act as triggers, you can also use tags to limit the email flow to specific subscriber segments.
+
+Juo automatically tags subscription and membership customers with different tags, depending on the type of subscription, its status, and the number of subscription orders.
+
+#### Status tags assigned to subscription customers:
+
+* **active\_subscriber** — for customers with an active subscription
+* **paused\_subscriber** — for customers who have paused their subscription
+* **cancelled\_subscriber** — for customers who have cancelled their subscription
+* **failed\_subscriber** — for customers whose subscription payment has failed
+* **expired\_subscriber** — for customers whose subscription has expired due to repeated failed payment attempts
+
+#### Loyalty tags assigned to subscription customers:
+
+* **new\_subscriber** — for new customers who have purchased a subscription that hasn’t renewed yet
+* **recurring\_subscriber** — for customers whose subscription has renewed at least once
+* **returning\_subscriber** — for customers who have started a subscription at least twice
+
+Note: a subscriber will only have one loyalty tag assigned at any give time.
+
+#### Status tags assigned to membership customers:
+
+* **membership\_active** — for customers with an active membership
+* **membership\_inactive** — for customers with an inactive membership
+
+#### Tags assigned to potential subscribers
+
+Based on their order history, customers can also be assigned the **subscription\_intent** tag, which allows merchants to convert them to subscribers more easily with targeted messaging.
+
+[Subscription intent tagging](/docs/guides/using-global-settings#subscription-intent) is a PRO feature that can be enabled under **Settings** > **Subscription intent**.
+
+All the above tags can be used as flow filters in Klaviyo — they can be found under **Flow filter** > **Properties about someone** > **Shopify Tags**.
+<Frame caption="Subscriber tags can also be used as filters">
+![Klaviyo Flow editor - Filter setup](https://cdn.juo.io/content-uploads/juo_flow_tags_as_filters_34290292e0.png)
+</Frame>
+
+## Juo \<> Klaviyo Event properties
+
+Each of the events that is synced between Juo and Klaviyo comes with a set of properties that can be used as dynamic variables in the email and SMS notifications set up in Klaviyo.
+
+#### Subscription-related properties
+
+* **orderID** - contains the ID of the subscription
+* **DiscountCode and DiscountValue** — contain the discount code applied to a subscription and the value of the discount
+* **OrderIntervalFrequency and OrderIntervalUnit** — together, they display the delivery interval of a subscription, e.g., 1 month
+* **CurrentCycle** — represents the number of the current subscription order. 0 is the initial order, and 1 is the first renewal.
+* **NextBillingDate** — contains the date of the next scheduled renewal
+* **Saving** — shows up the total savings in subscription
+* **ShippingCost** — displays the shipping cost for a subscription
+* **\$value** — shows the total order value (without shipping)
+
+Depending on the event type, some additional properties may become available, such as:
+
+* **errorMessage** - provides more background on the reason for payment failure, e.g. “Payment method was revoked”
+* **NextActionUrl** - links to where subscribers can finish their payment validation when required
+
+#### Item-related properties
+
+* **ProductID** - allows to display the ID of the product in subscription
+* **ProductName** - shows the name of the product
+* **VariantName** - shows the name of the variant
+* **Quantity** - shows the product quantity
+* **ItemPrice** - shows the price per single item
+* **RowTotal** - shows the price of all items of the same type (Item x Quantity)
+* **ImageURL** - allows to display the product image
+* **Categories** - shows the collection or collections to which an item belongs
+
+To access the properties that are available for each event, you need to add an Email action in Klaviyo and switch from the content editor to the **preview mode** as you set up the content. You can copy the properties from the preview back into the text fields in the content.
+
+Here’s an example of how you can use properties to display additional subscription information in each email, including:
+
+* products ordered
+* product quantity
+* total price for the products
+* subscription benefits
+* total item and shipping value
+<Frame caption="Copy the variables into your Klaviyo email template">
+![Klaviyo email editor - Variables setup](https://cdn.juo.io/content-uploads/juo_flow_variables_89f2e0f088.png)
+</Frame>
+
+Properties for displaying subscription details
+
+```
+**Your subscription details**
+
+
+{{ event.Items.0.ProductName|default:'' }}
+x {{ event.Items.0.Quantity|default:'' }}
+
+
+${{ event.Items.0.RowTotal|default:'' }}
+
+
+
+
+- Shipped every: {{ event.OrderIntervalFrequency|default:'' }} {{ event.OrderIntervalUnit|lower|default:'' }}
+- Next billing date: {{ event.NextBillingDate|format_date_string|default:'' }}
+- Save ${{ event.Saving|round_down:2|default:'' }} in subscription
+
+
+Total: ${{ event|lookup:'$value'|default:'' }}
+Shipping: ${{ event.ShippingCost|default:'' }}
+```
+
+Feel free to copy them into the Klaviyo email editor as you set up the content.
+
+Switching to the preview mode next, you can check how the subscription order information is doing to be displayed in your notifications.
+<Frame>
+![Klaviyo Email editor - Email content preview](https://cdn.juo.io/content-uploads/klaviyo_email_preview_4e2d5cb0c2.png)
+</Frame>

@@ -1,0 +1,66 @@
+---
+title: "Customer Portal LinkCustomer Portal Link"
+---
+
+![Shopify theme editor - Add manage subscriptions link](https://cdn.juo.io/content-uploads/add_manage_subscriptions_link_1_d61eb1c008.png)
+
+As you launch subscriptions in your store, you need to give your subscribers a way to manage their existing subscriptions.
+
+For easier access and management, add the “Manage subscriptions” link to your **Customer login** and **Customer account** page templates in Shopify. Once added, the link will direct your subscribers to the Customer Portal — an easy-to-use panel, in which all their subscriptions will be visible and available for changes, such as: rescheduling, pausing, renewing etc.
+
+## Instructions for Shopify 2.0 themes
+
+If you’re using a 2.0 theme, you can simply add the **Manage subscriptions** link to your store theme in the Shopify Admin.
+
+Add Manage subscriptions link to the Account login page
+
+### Adding the Manage link to the Login page
+
+The Login page is where the **Manage subscriptions** link should be added first and foremost. Juo offers passwordless login, so using the link, both the customers with and without an account will be able to login and manage their subscriptions in the Customer Portal easily.
+
+1. Go to **Shopify Admin** > **Online Store** and click **Customize**
+2. Open the **Customer login** page template (under **Classic customer accounts**)
+3. Scroll to where you would like the link to be added, then click on the on the **Add section** button that appears
+4. Select **Juo Manage Subscription Link** from the dropdown menu
+5. Remember to save the template.
+
+Similarly, Manage subscriptions link can be added to your Customer account page
+
+### Adding the Manage link to the Account page
+
+If you’d like the **Manage Subscriptions** link to appear in the customer account in your store, follow similar steps for the **Customer account** page template. This will make it easier for subscribers who have are logged in to their store account to manage their subscriptions.
+
+1. Go to **Shopify Admin** > **Online Store** and click **Customize**
+2. Find the **Customer account** page template (under **Classic customer accounts**) and open it
+3. Hover under the **Account** block and click on the on the **Add section** button that appears
+4. Select **Juo Manage Subscription Link** from the Apps dropdown menu
+5. Customize the link appearance to your liking — e.g. by changing the size, font weight, text decoration and alignment
+6. Once done, save the template.
+
+## Instructions for older themes
+
+If you’re using an older theme, you can add the link by editing the liquid files. This requires some knowledge about how Shopify templates’ code works, so if you have any issues, just reach out to us.
+
+1. Go to **Shopify Admin** > **Online Store**
+2. Click the actions menu and choose **“Edit code”**
+
+![Shopify Admin - Code editing](https://cdn.juo.io/content-uploads/add_manage_link_customize_theme_e661618467.png)
+
+Click Edit code next to the theme you want to edit
+
+3. Find the **main**-**login.liquid file** under **Sections** — depending on the theme version, it can also appear under **Templates/login.liquid**.
+4. In the liquid file, **copy and paste the snippet** below where you would like the “Manage Subscriptions” link to appear.
+
+Code snippet to add to the Login page
+
+```
+<a href="{{ routes.root_url }}apps/juo">{{ "Manage Subscriptions" | t }}</a>
+```
+
+![Login.liquid file - Juo snippet](https://cdn.juo.io/content-uploads/add_manage_link_edit_code_b037fb95e1.png)
+
+Add the code snipped to the login.liquid file
+
+5. Once the snippet is added, click **Save** to apply the changes.
+
+If you want the **Manage subscriptions** link to also appear on the Customer account page, follow the steps 3-5 for the **customers/account.liquid** file.

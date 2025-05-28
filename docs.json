@@ -21,7 +21,7 @@
           {
             "group": "Getting Started",
             "pages": [
-              "docs",
+              "index",
               "docs/about-juo",
               "docs/launch-subscriptions",
               "docs/grow-and-retain"

@@ -44,7 +44,7 @@
                 "group": "Settings & notifications",
                 "pages": [
                   "docs/general-settings",
-                  "docs/shipping",
+                  "docs/shipping-setup",
                   "docs/notifications",
                   "docs/linking-customer-portal",
                   "docs/subscription-widget"

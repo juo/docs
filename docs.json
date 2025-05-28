@@ -2,15 +2,17 @@
   "$schema": "https://mintlify.com/docs.json",
   "name": "Juo Subscriptions documentation",
   "theme": "mint",
-  "favicon": "/favicon.svg",
-  "background": {
-    "style": "gradient"
+  "favicon": {
+    "light": "/favicon.png",
+    "dark": "/favicon.png"
   },
+
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
     "dark": "#0D9373"
   },
+
   "navigation": {
     "tabs": [
       {
@@ -39,7 +41,7 @@
                 ]
               },
               {
-                "group": "Emails & Settings",
+                "group": "Settings & notifications",
                 "pages": [
                   "docs/general-settings",
                   "docs/shipping",
@@ -104,24 +106,16 @@
           "anchor": "Website",
           "href": "https://juo.io/",
           "icon": "globe"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://juo.community/",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://juo.io/blog",
-          "icon": "newspaper"
         }
       ]
     }
   },
+
   "logo": {
-    "light": "/logo/logo.svg",
-    "dark": "/logo/white.svg"
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
   },
+
   "navbar": {
     "links": [
       {
@@ -135,6 +129,7 @@
       "href": "https://juo.io/demo"
     }
   },
+
   "footer": {
     "socials": {
       "linkedin": "https://www.linkedin.com/company/juo-io"

@@ -1,5 +1,5 @@
 ---
-title: "Shipping"
+title: "Shipping setup"
 ---
 
 By default, Juo uses shipping rates defined by your currently active shipping profile in Shopify. If you’d like to use different rates for subscriptions, create a dedicated shipping profile.
@@ -15,20 +15,20 @@ More advanced shipping rules are possible. You can reward your subscribers with 
 For mixed cart containing both subscription and one-time products, Shopify will use both rates. If subscription orders have free shipping, it can lead to customers paying for shipping if they add one-time products to the order. To avoid it, a mix cart setup has to be configured.
 
 Mix cart shipping rates setup requires using three delivery profiles:
+
 <Tabs>
   <Tab title="General profile">
-
-    * Used for one-time purchases
-    * It cannot have conditional prices. To set the correct rates, use automated shipping discount
+    - Used for one-time purchases
+    - It cannot have conditional prices. To set the correct rates, use automated shipping discount
   </Tab>
   <Tab title="Recurring checkout profile">
-    * Juo team will create this profile
-    * Same shipping rates as the General profile
-    * Additionally, it must have an additional free shipping rate. It must always be the first rate on the alphabetically sorted list.
+    - Juo team will create this profile
+    - Same shipping rates as the General profile
+    - Additionally, it must have an additional free shipping rate. It must always be the first rate on the alphabetically sorted list.
   </Tab>
   <Tab title="(optional) Recurring profile">
-    * Juo team will create this profile
-    * Used for subscription renewals
-    * Only needed if recurring rates should be different than the first order
+    - Juo team will create this profile
+    - Used for subscription renewals
+    - Only needed if recurring rates should be different than the first order
   </Tab>
 </Tabs>

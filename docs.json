@@ -76,15 +76,6 @@
                 ]
               }
             ]
-          },
-          {
-            "group": "Glossary",
-            "pages": [
-              "docs/glossary/build-a-box",
-              "docs/glossary/customer-portal",
-              "docs/glossary/delivery-frequency",
-              "docs/glossary/dunning"
-            ]
           }
         ]
       },

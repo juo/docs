@@ -2,43 +2,48 @@
 title: "Migrate to Juo"
 ---
 
-The following guide details the process of migrating subscribers from Recharge V1 or V2 to Juo Subscriptions. The migration is seamless and lossless, and it consists of the following steps:
+The following guide outlines how to migrate your existing subscriptions to Juo Subscriptions. The process is seamless and designed to preserve customer data, billing schedules, and product associations without requiring action from your subscribers.
 
-1. Exporting all subscriptions from your old platform.
-2. Cancelling existing subscriptions
-3. Importing and enabling subscriptions in Juo
+The migration consists of four stages:
 
-Juo team will handle the key steps of the migration process, but as a merchant, you have to follow certain steps to make sure the migration goes smoothly and is properly timed with launching Juo Subscriptions on your store.
+1. Preparing your store and setting up Juo
+2. Launching the Juo widget
+3. Migrating your existing subscriptions
+4. Finalizing and monitoring the transition
 
-Your customers will **not** be notified about the migration (unless you want to), nor they will have to take any steps like creating an account, to be able to continue to manage and receive their subscriptions.
+The Juo team will handle the technical aspects of the migration. As a merchant, you will need to coordinate timing and perform some theme-related and configuration steps to ensure a smooth handover.
+
+Your customers will **not** be notified unless you choose to inform them. They will continue to receive their subscriptions without needing to take any action, such as creating a new account.
+
+The main difference for your customers is that they will now use the Juo Customer Portal for managing their subscriptions, and receive Juo email templates if you use them. That's why you should consider notifying your subscribers. 
 
 ## Step 1 — Install and set up Juo Subscriptions
 
-In this step, you have to set up Juo on your store. Use our Getting Started guide to prepare for launching subscriptions with Juo and the migration.
+Start by setting up Juo Subscriptions on your store. Use our [Getting Started guide](https://juo.io/docs/installing-the-app) to prepare your store for launch and migration.
 
-1. First, [Install Juo Subscriptions](https://juo.io/docs/installing-the-app) from Shopify App Store.
-2. [Recreate your existing selling plans in Juo](https://juo.io/docs/guides/creating-subscription-plan), and create new ones if you like.
-3. Configure notifications, integrations, customer portal and other settings that you need to finalize the subscription experience.
-4. Schedule the migration and launch date with Juo team. This is essential for the process to go smoothly.
+1. [Install Juo Subscriptions](https://juo.io/docs/installing-the-app) from the Shopify App Store.
+2. [Recreate your subscription plans in Juo](https://juo.io/docs/guides/creating-subscription-plan), matching the structure of your current offerings.
+3. Set up notifications, integrations, and the customer portal to match your store’s needs.
+4. Contact the Juo team to schedule the migration and launch date. This coordination is essential for ensuring a smooth transition.
 
-## Step 2 — Launch Juo Subscriptions
+## Step 2 — Document product setup
 
-1. A few days before the migration, create a draft of your current theme. Refrain from making any changes on your live theme during this time, as they could be lost when it’s replaced with the new one.
-2. Remove the subscription widget of your existing provider from the draft theme.
-3. Follow the steps to [set up Juo Subscription widget](https://juo.io/docs/guides/adding-juo-subscription-widget) on desired product templates.
-4. [Add a link to Juo Customer Portal to your login page](https://juo.io/docs/guides/adding-manage-subscriptions-link) to give your customers an easy way to manage their subscriptions.
-5. On the launch day, publish the draft theme.
+If your product setup is changing, create a sheet documenting how SKUs / quantities, etc. should be updated after the migration. This is especially important if migrating from other systems, like WooCommerce. 
 
-From here on out, all subscriptions will be processed by Juo and we can move on to migrating the subscribers from your previous provider.
+## Step 3 — Migrate existing subscriptions
 
-## Step 3 — Migration
+Depending on the subscription platform or database holding the information, the subscriptions and payment methods can be retrieved by an export, or through API. Provide Juo with sufficient permissions so that we are able to retreieve the data. 
 
-In this step, create export of your existing subscriptions from your current provider or payment gateway. The step will be different depending on the provider, so contact us at [team@juo.io](mailto:team@juo.io) for assistance. If the platform doesn’t provide a way to export, contact us and our team can handle that via API.
-
-Juo team will make sure that subscription management any notifications in our old platform are disabled during the course of the migration to make sure it processes smoothly.
+During the migration, we’ll ensure that all customer notifications and billing from your previous provider are paused to prevent duplication or confusion.
 
 ## Step 4 — Finalization
 
-1. From here on out, all your subscribers will be visible in Juo Merchant Portal.
-2. The new subscription will immediately show up in Juo analytics, so you can start tracking them in one place.
-3. You are free to uninstall your previous subscription app.
+After the migration:
+
+1. All active subscribers will appear in the Juo Merchant Portal.
+2. You’ll be able to track subscription performance immediately in Juo Analytics.
+3. Once you've verified the migration is complete and successful, you can deactivate or uninstall your previous subscription app.
+
+---
+
+For questions or help planning your migration, contact [team@juo.io](mailto:team@juo.io) — we're here to ensure everything runs smoothly.

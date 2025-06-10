@@ -1,0 +1,117 @@
+---
+title: 'Quick actions'
+description: 'Quick Actions in Juo Subscriptions let merchants embed one-click links in Klaviyo email campaigns, enabling customers to add products, resume, or update their subscriptions without logging in.'
+---
+
+### Key Features
+
+- **Quick Links**: Redirect customers to specific subscription management views.
+- **Quick Actions**: Allow one-click subscription actions.
+
+### Security
+
+- Links and actions expire after 72 hours.
+- Delegated tokens ensure secure access.
+
+---
+
+## Quick Links
+
+Quick Links are used to direct customers to specific places in Juo Customer Portal. These links should be configured in Klaviyo using the keys provided below.
+
+### Available Quick Links
+
+- **View Subscription**
+- **Add Products**
+- **Edit Address**
+- **Change Payment Method**
+- **Change Billing Date**
+- **Add Discount**
+- **Change Shipping Method**
+
+### Example Usage
+
+In Klaviyo, use the following key format in your email template:
+
+```
+{{ QuickLinks.ViewSubscription }}
+```
+
+```
+{{ QuickLinks.AddProducts }}
+```
+
+This will generate a secure, temporary link for the customer to add products to their subscription or view their subscription details.
+
+---
+
+## Quick Actions
+
+Quick Actions allow customers to perform specific tasks directly from their email. These actions include pausing, skipping, or renewing a subscription.
+
+### Available Quick Actions
+
+- **Pause Subscription**
+- **Skip Renewal**
+- **Renew Now**
+- **Add Product**
+
+### Example Usage
+
+To include a "Pause Subscription" button in your email, use the following key:
+
+```
+{{ QuickActions.Pause }}
+```
+
+To include a "Skip Next Renewal" button in your email, use the following key:
+
+```
+{{ QuickActions.Skip }}
+```
+
+### Add Product
+
+The `AddProduct` action can be used by your subscribers to easily add products included in Juo Upsell campaigns to their next renewal. Merchants can display product details such as the product's image, price, and title in the email.
+
+Products are part of an array included in the `QuickActions.Products` object. Each product entry contains the following fields:
+
+- **AddProductUrl**: The URL for adding a product to cart.
+- **Title**: The name of the product.
+- **CurrentPrice**: The discounted price, if applicable.
+- **BasePrice**: The original price of the product.
+- **ImageUrl**: A URL for the product image.
+- **VariantId**: The Shopify variant ID for the product.
+- **AvailableForSale**: A boolean indicating if the product is in stock.
+
+To display the image of the first product in the array, use the following key:
+
+```
+{{ QuickActions.Produts[0].ImageUrl }}
+```
+
+---
+
+## Klaviyo synchronization
+
+Quick action parameters are sent to Klaviyo with each trigger:
+
+- Started Subscription
+- Paused Subscription
+- Skipped Subscription
+- Renewed Now Subscription
+- Canceled Subscription
+- Upcoming Renewal Subscription
+- Billed Subscription
+- Billing Failed Subscription
+- Billing Requires Action Subscription
+- Product Out Of Stock Subscription
+
+## How to Use in Klaviyo
+
+1. Access the email editor in Klaviyo.
+2. Add a button or link to your email template.
+3. Insert the desired Quick Links or Quick Actions key as the link or button target (e.g., `{{ QuickActions.Pause }}`).
+4. Save and test the email to ensure the actions work as expected.
+
+---

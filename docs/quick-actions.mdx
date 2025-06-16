@@ -13,13 +13,15 @@ description: 'Quick Actions in Juo Subscriptions let merchants embed one-click l
 - Links and actions expire after 72 hours.
 - Delegated tokens ensure secure access.
 
+To access the properties that are available for each link or action, you need to add an Email action in Klaviyo and switch from the content editor to the preview mode as you set up the content. You can copy the properties from the preview back into the text fields in the content.
+
 ---
 
-## Quick Links
+# Quick Links
 
 Quick Links are used to direct customers to specific places in Juo Customer Portal. These links should be configured in Klaviyo using the keys provided below.
 
-### Available Quick Links
+## Available Quick Links
 
 - **View Subscription**
 - **Add Products**
@@ -29,52 +31,25 @@ Quick Links are used to direct customers to specific places in Juo Customer Port
 - **Add Discount**
 - **Change Shipping Method**
 
-### Example Usage
-
-In Klaviyo, use the following key format in your email template:
-
-```
-{{ QuickLinks.ViewSubscription }}
-```
-
-```
-{{ QuickLinks.AddProducts }}
-```
-
-This will generate a secure, temporary link for the customer to add products to their subscription or view their subscription details.
 
 ---
 
-## Quick Actions
+# Quick Actions
 
 Quick Actions allow customers to perform specific tasks directly from their email. These actions include pausing, skipping, or renewing a subscription.
 
-### Available Quick Actions
+## Available Quick Actions
 
 - **Pause Subscription**
 - **Skip Renewal**
 - **Renew Now**
 - **Add Product**
 
-### Example Usage
+## Add Product
 
-To include a "Pause Subscription" button in your email, use the following key:
+The `AddProduct` feature can be used by your subscribers to easily add products included in Juo Upsell campaigns to their next renewal. Merchants can display product details such as the product's image, price, and title in the email.
 
-```
-{{ QuickActions.Pause }}
-```
-
-To include a "Skip Next Renewal" button in your email, use the following key:
-
-```
-{{ QuickActions.Skip }}
-```
-
-### Add Product
-
-The `AddProduct` action can be used by your subscribers to easily add products included in Juo Upsell campaigns to their next renewal. Merchants can display product details such as the product's image, price, and title in the email.
-
-Products are part of an array included in the `QuickActions.Products` object. Each product entry contains the following fields:
+Product properties can be found inside of the `Products` array. Each product entry contains the following fields:
 
 - **AddProductUrl**: The URL for adding a product to cart.
 - **Title**: The name of the product.
@@ -86,8 +61,45 @@ Products are part of an array included in the `QuickActions.Products` object. Ea
 
 To display the image of the first product in the array, use the following key:
 
-```
-{{ QuickActions.Produts[0].ImageUrl }}
+`{{ event.QuickActions.Products.0.AddProductUrl|default:'' }}`
+
+Example email template that displays all items in the Upsell campaign:
+
+```html
+{% if event.QuickActions.Products|length > 0 %}
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-family: sans-serif;">
+    <tr>
+      <td style="padding: 20px 0; text-align: center;">
+        <h2 style="margin-bottom: 20px;">Special Add-ons for Your Next Delivery</h2>
+        {% for product in event.QuickActions.Products %}
+          {% if product.AvailableForSale %}
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 30px; border-collapse: collapse;">
+              <tr>
+                <td style="width: 100px; padding: 10px;">
+                  <img src="{{ product.ImageUrl|default:'' }}" alt="{{ product.Title|default:'Product' }}" width="100" style="border-radius: 6px; display: block;" />
+                </td>
+                <td style="padding: 10px; text-align: left; vertical-align: top;">
+                  <p style="margin: 0; font-weight: bold;">{{ product.Title }}</p>
+                  {% if product.CurrentPrice < product.BasePrice %}
+                    <p style="margin: 4px 0;">
+                      <span style="color: #999; text-decoration: line-through;">{{ product.BasePrice }}</span>
+                      <span style="font-weight: bold;">{{ product.CurrentPrice }}</span>
+                    </p>
+                  {% else %}
+                    <p style="margin: 4px 0; font-weight: bold;">{{ product.CurrentPrice }}</p>
+                  {% endif %}
+                  <a href="{{ product.AddProductUrl }}" style="display: inline-block; margin-top: 10px; padding: 10px 16px; background-color: #3727F4; color: white; text-decoration: none; border-radius: 4px;">Add to next delivery</a>
+                </td>
+              </tr>
+            </table>
+          {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+  </table>
+{% else %}
+  <p style="text-align: center;">No add-ons available at the moment.</p>
+{% endif %}
 ```
 
 ---
@@ -107,11 +119,4 @@ Quick action parameters are sent to Klaviyo with each trigger:
 - Billing Requires Action Subscription
 - Product Out Of Stock Subscription
 
-## How to Use in Klaviyo
-
-1. Access the email editor in Klaviyo.
-2. Add a button or link to your email template.
-3. Insert the desired Quick Links or Quick Actions key as the link or button target (e.g., `{{ QuickActions.Pause }}`).
-4. Save and test the email to ensure the actions work as expected.
-
----
+For more information check our <a href="/docs/klaviyo-integration" target="_blank">Klaviyo integration guide</a>

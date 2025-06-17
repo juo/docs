@@ -1,0 +1,84 @@
+# Guide to SEPA Direct Debit
+
+Enabling local payments for subscriptions has a massive impact on conversion rate to subscription. Especially on the markets where A2A (account-to-account) methods are much more popular among customers compared to credit cards.
+
+## How SEPA DD works
+
+**What is SEPA**
+
+The Single Euro Payments Area (SEPA) is a European Union initiative enabling cashless euro payments through credit transfers and direct debits. The European banking and payments industry launched SEPA with backing from national governments, the European Commission, the Eurosystem, and other public authorities.
+
+**What is SEPA Direct Debit**
+
+SEPA Direct Debit is a payment system that allows merchants to collect euro-denominated payments directly from customer accounts in the SEPA region (consisting of 36 countries and associated territories). SEPA DD can be therefore used to collect recurring payments for subscription renewals.
+
+<aside>
+✅
+
+SEPA DD is a "pull" transaction, meaning the merchant initiates it. Juo handles these transaction initiations according to the subscription schedule.
+
+</aside>
+
+**SEPA DD mandate**
+
+To collect payments directly from a customer's account, a SEPA mandate must be created. This mandate can be set up through an A2A (account-to-account) payment using for example iDEAL or Bancontact. When making their initial purchase, customers authorize the merchant to charge their account.
+
+<aside>
+✅
+
+Juo automatically creates a SEPA mandate through the payment provider when processing the first subscription order. No additional charges or refunds are required. Once created, the mandate confirmation is emailed directly to the customer.
+
+</aside>
+
+## Recurring payments with SEPA DD
+
+**Transaction confirmation**
+
+SEPA DD, being an account-to-account and merchant-initiated payment method, handles recurring transactions differently from credit cards. Payment confirmation can take 2-5 days after transaction initiation, and transactions don't process during weekends or bank holidays.
+
+<aside>
+✅
+
+To minimize chargeback risks or sending products without an actual payment, Juo creates a recurring order only after receiving payment confirmation from the payment provider. This means there may be up to a two-business-day gap between the actual renewal date and the order creation. 
+
+</aside>
+
+<aside>
+⬇️
+
+**SEPA DD Early renewal initiation —** Juo allows you to initiate recurring transactions 2 working days before the scheduled renewal date. This ensures customers receive their products on time.
+
+To enable this feature go to Settings ▶️ Retention and acquisition ▶️ SEPA renewals
+
+</aside>
+
+![sepa-renewals.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f98958ef-b7c2-45f3-a7d0-ef07c1b939b7/d673b4aa-b033-4b01-b268-68eb12bd58d5/sepa-renewals.png)
+
+**Chargebacks**
+
+There are two types of chargebacks associated with SEPA Direct Debit:
+
+- **Triggered by customer**
+These can occur up to 90 days after the transaction, with no justification required
+- **Automated**
+These occur due to various issues with customer bank accounts or mandates. This happens after the funds are credited to the merchant's account but before the actual deduction from the buyer's account.
+
+The following scheme illustrates the timeline and chargeback reasons for a SEPA Direct Debit transaction:
+
+![sepa.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f98958ef-b7c2-45f3-a7d0-ef07c1b939b7/c2fb6646-bf38-4241-b529-92b5b39fff8e/sepa.png)
+
+---
+
+For more information about SEPA check:
+https://www.europeanpaymentscouncil.eu/
+
+---
+
+<aside>
+⬇️
+
+**SEPA chargeback reason —** In Juo, you can find the exact chargeback reason on the subscription timeline. The corresponding order will also be marked as "Refund" in Shopify.
+
+</aside>
+
+![subscription-timeline-chargeback.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f98958ef-b7c2-45f3-a7d0-ef07c1b939b7/9db8c2d9-9252-456b-9d50-0eaad9bf5c4e/subscription-timeline-chargeback.png)

@@ -1,0 +1,47 @@
+/* ─────────────  sidebar-scroll.css  ─────────────
+   Invisible scrollbar until hover / drag / scroll
+   Thumb now uses a light-grey shade (#C6C6C6, ~35 % opacity)
+   Works in Chrome / Edge / Safari + Firefox snap-reveal
+   ─────────────────────────────────────────────── */
+
+   :root {
+    --scrollbar-size: 8px;                       /* track width */
+    --scrollbar-thumb: rgba(0, 0, 0, 0.15);      /* ← lighter grey */
+    --reveal-speed: 0ms;                         /* instant reveal */
+  }
+  
+  /* 1. Target Mintlify’s scrollable node */
+  #sidebar-content {
+    /* Firefox – hide pieces but keep scrollability */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+  
+  /* 2. WebKit browsers (Chrome / Edge / Safari) */
+  #sidebar-content::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+  }
+  
+  #sidebar-content::-webkit-scrollbar-track {
+    background: transparent;                     /* track stays hidden */
+  }
+  
+  #sidebar-content::-webkit-scrollbar-thumb {
+    background-color: transparent;               /* start hidden */
+    border-radius: calc(var(--scrollbar-size) / 2);
+    transition: background-color var(--reveal-speed);
+  }
+  
+  /* 3. Reveal thumb when the user interacts */
+  #sidebar-content:hover,
+  #sidebar-content:active {
+    /* Firefox thumb pops in with lighter grey */
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+  
+  #sidebar-content:hover::-webkit-scrollbar-thumb,
+  #sidebar-content:active::-webkit-scrollbar-thumb,
+  #sidebar-content::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb);    /* lighter grey */
+  }
+  

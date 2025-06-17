@@ -1,0 +1,83 @@
+---
+title: "Build A Box"
+---
+
+<Frame>
+![Build-a-box setup - Details](https://cdn.juo.io/content-uploads/Build_a_box_1b2fff5093.png)
+</Frame>
+Juo **Build-a-box** is a dedicated page where customers can select their favorite products, claim discounts for reaching purchasing milestones, and more.
+
+<Warning>
+This guide explains how to set up the Build-a-box feature using the Shopify 2.0 theme editor. If you are using an older theme, please contact us for custom implementation support.
+</Warning>
+
+## Step 1: Create a New Template
+
+The Build-a-box feature requires a unique template to appear on your storefront.
+
+1. Navigate to **Online Store** and click **Customize** on your active theme.
+2. Select **Products** from the top bar and click **Create template.**
+3. Name the template (e.g., Build a Box or Build Your Own Bundle) and base it on your **Default product.**
+
+## Step 2. Create a Build-a-box parent product
+
+This is a virtual product to act as a container for the physical products customers will add to their boxes. Uncheck **Track quantity** and **This product requires shipping.**
+
+Save the product and change its theme template to the newly created box template.
+
+## Step 3: Set Up Build-a-box details in Juo
+
+In Juo admin panel, go to Experiences > Set up Build-a-box In the **Products boxes** view, click **Add Build-a-box.** Configure the Build-a-box settings:
+
+1. Select the newly created parent product.
+2. Optionally, give the box a unique name in the **Title** field (visible only to you).
+3. Set the **Discount status** to **Active** if you’d like to enable quantity discounts.
+4. Specify the minimum number of products required to unlock discounts.
+5. In the **Discount code** field, enter the code you want displayed at Checkout.
+6. In **Discount type** choose Percentage or Fixed amount discount.
+7. In **Tiers threshold type** decide whether discount tiers should be unlocked by number of products in the cart, or total cart value.
+8. Decide if you want to combine the box discount with other discounts within the same order.
+9. Click **Add** to create the box.
+
+## Step 4: Configure Tiered Discounts
+
+Enhance your Build-a-box feature by setting up a quantity discount that increases as customers add more items to their box.
+
+Determine the appropriate number of tiers and minimum thresholds based on typical customer behavior. Adjust these tiers over time to optimize customer engagement and Average Order Value (AOV).
+
+## Step 5: Add Boxable Products
+
+Select products from your inventory that customers can add to their boxes. You can add as many as you want. Next, add these product to a new collection. It will be needed later.
+
+## Step 6: Add Build-a-box to a Subscription Plan
+
+Enable subscription options for the Build-a-box feature:
+
+Go to the **Experiences > Set up Subscribe & Save** and click on **Add subscription plan** or edit an existing one. Add all the products available in the box and press **Save.**
+
+Note: You can use products belonging to multiple subscription plans, but Build-a-box will only display delivery frequencies that are common for all products. I.e. all products need to have at least one delivery frequency in common for the box subscription to work.
+
+## Step 7: Customize the Build-a-box template
+
+Go back to your newly created template and customize it to display your box builder.
+
+1. Remove or hide **all** Product Information blocks (Variant picker, Price, etc.)
+2. In their place add the **Juo Build-a-box** block and click on it.
+3. Scroll down to **Products** section. Here, add the collection that you created in step 5. Build-a-box products will be displayed in the same order as in the collection.
+
+## Step 8: Set up one-time add-ons (optional)
+
+You can add an extra step to build-a-box experience, where your customers can pick one-time products to compliment their box subscription.
+
+In **Juo Build a Box** block settings, select **Additional step (Addons)** option. Specify Title, Description, and pick the collection to be displayed in the additional step.
+
+After enabling, a **Next** button will show up for the customers before they can go to the checkout.
+
+Once done, your template should now properly display all the products. You can now further customize the template to your liking.
+
+1. **Theme** allows you to change colors, and radius of particular elements.
+2. **Headline** lets you add a custom title and images for desktop and mobile devices
+3. **Filters** lets you add filter button to let customers view products only from specific collections
+4. **Subscriptions option** lets you enable or disable the ability to subscribe to the box.
+
+Your Build-a-box page is now ready and functional.

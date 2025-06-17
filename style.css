@@ -1,0 +1,39 @@
+
+
+.text-white {
+  color: #3727F4 !important;
+}
+
+/* Book a demo button base styling */
+a[href="https://juo.io/demo"] {
+  border: 1px solid rgba(10, 14, 13, 0.1) !important;
+  color: #3727F4 !important;
+  background-color: white !important;
+  border-radius: 4px !important;
+  position: relative;
+  padding: 0.5rem 0.5rem !important; /* adjust padding as needed */
+}
+
+/* Remove green pill span */
+a[href="https://juo.io/demo"] > span {
+  background-color: transparent !important;
+  border-radius: 4px !important;
+}
+
+/* Fix inner spacing between text and icon */
+a[href="https://juo.io/demo"] .flex.items-center {
+  margin-right: 0 !important;
+  gap: 0.25rem !important;
+}
+
+/* Border color on hover */
+a[href="https://juo.io/demo"]:hover,
+a[href="https://juo.io/demo"]:focus {
+  border-color: #3727F4 !important;
+}
+
+a[href="https://juo.io/demo"] svg {
+  margin-left: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}

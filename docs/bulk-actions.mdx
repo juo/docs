@@ -1,0 +1,28 @@
+---
+title: "Bulk Actions"
+---
+
+Bulk actions allow merchants to modify multiple subscriptions simultaneously from the admin panel, saving time compared to managing them individually. However, bulk actions should be used with caution to prevent unintended changes.
+
+### **Performing a Bulk Action**
+
+1. Go to **Subscriptions** tab.
+2. (Optional) Use filters to find the subscriptions you want to modify.
+3. Select subscriptions using the checkbox in the **ID** column. Click **Select All** to apply the selection across all pages.
+4. Bulk action options will appear above the subscription list.
+<Frame>
+![](https://cdn.juo.io/content-uploads/Screenshot_2025_03_03_at_16_55_00_0cfef9dd54.png)
+</Frame>
+### **Available Bulk Actions**
+
+* **Add Product**\* — Add any product to the selected subscriptions.
+* **Swap Product**\* — Replace a specific product with another in the selected subscriptions. If the product to be replaced doesn’t exist in some subscriptions, those will remain unchanged.
+* **Remove Product** — Remove a product from the selected subscriptions. Will only take effect on subscriptions that contain the chosen product.
+* **Change Product Price** — Set a new fixed price for a specific product in the selected subscriptions.
+* **Retry Payment** — Attempt to process payments instantly for subscriptions with a pending payment after a failed billing attempt.
+* **Update Status** — Change the status of the selected subscriptions.
+* **Reschedule** — Set a new renewal date for all selected subscriptions. The new date will apply regardless of previous renewal dates.
+
+> **The new product does not need to be part of a subscription plan. If it is, any discount associated with that plan will not be applied. The product will inherit key properties (such as renewal date and delivery frequency) from the subscription it was added to.*
+
+After selecting a bulk action, select its details and press **Confirm**. Depending on the number of the selected subscriptions, the action can take up to a few minutes. Upon completion, a log will be displayed with detailed results for each subscription.

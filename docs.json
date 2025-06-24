@@ -18,42 +18,34 @@
   "navigation": {
     "groups": [
       {
-        "group": "Getting Started",
+        "group": "Getting started",
         "pages": [
           "index",
           "about-juo",
-          "launch-subscriptions",
-          "grow-and-retain"
+          "subscription-experiences",
+          "retention"
         ]
       },
       {
-        "group": "Launch subscriptions",
+        "group": "Subscription experiences",
         "pages": [
-          {
-            "group": "Subscription offers",
-            "pages": [
-              "subscribe-and-save",
-              "build-a-box",
-              "custom-workflows",
-              "curated-boxes",
-              "memberships"
-            ]
-          },
-          {
-            "group": "Settings & notifications",
-            "pages": [
-              "general-settings",
-              "shipping-setup",
-              "notifications",
-              "linking-customer-portal",
-              "subscription-widget"
-            ]
-          },
-          "migrating-to-juo"
+          "subscribe-and-save",
+          "build-a-box",
+          "custom-workflows",
+          "curated-boxes",
+          "memberships"
         ]
       },
       {
-        "group": "Grow & Retain",
+        "group": "Settings",
+        "pages": [
+          "general-settings",
+          "shipping-setup",
+          "notifications"
+        ]
+      },
+      {
+        "group": "Retention",
         "pages": [
           "retention-flow",
           "upsells",
@@ -62,19 +54,23 @@
         ]
       },
       {
-        "group": "Use Guide",
+        "group": "Use guide",
         "pages": [
           "bulk-actions",
           "customer-portal",
           "quick-actions",
           "tiered-discounts",
-          {
-            "group": "Integrations",
-            "pages": [
-              "klaviyo-integration",
-              "gorgias-integration"
-            ]
-          }
+          "linking-customer-portal",
+          "adding-juo-subscription-widget",
+          "subscription-widget"
+        ]
+      },
+      {
+        "group": "Integrations",
+        "pages": [
+          "klaviyo-integration",
+          "gorgias-integration",
+          "zipify-integration"
         ]
       }
     ],
@@ -96,7 +92,7 @@
   "navbar": {
     "links": [
       {
-        "label": "Contact Us",
+        "label": "Contact us",
         "href": "mailto:hi@juo.io"
       }
     ],

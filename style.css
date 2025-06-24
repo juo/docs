@@ -11,7 +11,7 @@ a[href="https://juo.io/demo"] {
   border-color: #A09FA4 !important;
   position: relative;
   padding-left: 0.5rem !important; 
-  padding-right: 0.18rem !important;
+  padding-right: 0.5rem !important;
 }
 
 /* Remove green pill span */
@@ -23,7 +23,7 @@ a[href="https://juo.io/demo"]>span {
 /* Fix inner spacing between text and icon */
 a[href="https://juo.io/demo"] .flex.items-center {
   margin-right: 0 !important;
-  gap: 0.25rem !important;
+  gap: 0 !important;
 }
 
 /* Border color on hover */
@@ -40,4 +40,12 @@ a[href="https://juo.io/demo"] svg {
 
 a[href^="https://mintlify.com"] {
   display: none;
+}
+
+.sidebar ul li, .text-primary, .text-gray-700 {
+  height: 31px;
+}
+
+.mt-12 {
+    margin-top: 24px !important;
 }

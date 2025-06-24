@@ -58,15 +58,37 @@
         ]
       },
       {
-        "group": "Use guide",
+        "group": " ",
         "pages": [
-          "bulk-actions",
-          "customer-portal",
-          "linking-customer-portal",
-          "quick-actions",
-          "tiered-discounts",
-          "adding-juo-subscription-widget",
-          "subscription-widget"
+          {
+            "group": "Glossary",
+            "pages": [
+            "glossary/build-a-box",
+            "glossary/customer-portal",
+            "glossary/delivery-frequency",
+            "glossary/dunning",
+            "glossary/dynamic-boxes",
+            "glossary/email-notifications",
+            "glossary/inventory-policy",
+            "glossary/lifetime-value",
+            "glossary/membership",
+            "glossary/merchant-portal",
+            "glossary/migration",
+            "glossary/one-time-purchase",
+            "glossary/product-swap",
+            "glossary/retention-flow",
+            "glossary/skip-renewal",
+            "glossary/stock-keeping-unit",
+            "glossary/subscriber",
+            "glossary/subscription-box",
+            "glossary/subscription-cancellation",
+            "glossary/subscription-order",
+            "glossary/subscription-pause",
+            "glossary/subscription-renewal",
+            "glossary/subscription",
+            "glossary/variable-discount"
+            ]
+          }
         ]
       }
     ],

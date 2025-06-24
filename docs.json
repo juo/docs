@@ -61,19 +61,11 @@
         "pages": [
           "bulk-actions",
           "customer-portal",
+          "linking-customer-portal",
           "quick-actions",
           "tiered-discounts",
-          "linking-customer-portal",
           "adding-juo-subscription-widget",
           "subscription-widget"
-        ]
-      },
-      {
-        "group": "Integrations",
-        "pages": [
-          "klaviyo-integration",
-          "gorgias-integration",
-          "zipify-integration"
         ]
       }
     ],

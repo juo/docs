@@ -23,6 +23,8 @@ The Build-a-box feature requires a unique template to appear on your storefront.
 
 This is a virtual product to act as a container for the physical products customers will add to their boxes. Uncheck **Track quantity** and **This product requires shipping.**
 
+Note: This products must be different from any of the products actually available to purchase in the box.
+
 Save the product and change its theme template to the newly created box template.
 
 ## Step 3: Set Up Build-a-box details in Juo
@@ -80,4 +82,13 @@ Once done, your template should now properly display all the products. You can n
 3. **Filters** lets you add filter button to let customers view products only from specific collections
 4. **Subscriptions option** lets you enable or disable the ability to subscribe to the box.
 
-Your Build-a-box page is now ready and functional.
+## Custom frontend
+If you are creating custom Build-a-box frontend experience, make sure to add box items to the cart with the following properties:
+
+```
+"properties": {
+"_box": "box-<PARENT_PRODUCT_ID>",
+"_parent_product_handle": "<PARENT_PRODUCT_HANDLE>",
+"_parent_product_id": "<PARENT_PRODUCT_ID>"
+},
+```

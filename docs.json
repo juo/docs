@@ -21,9 +21,9 @@
         "group": "Getting Started",
         "pages": [
           "index",
-          "docs/about-juo",
-          "docs/launch-subscriptions",
-          "docs/grow-and-retain"
+          "about-juo",
+          "launch-subscriptions",
+          "grow-and-retain"
         ]
       },
       {
@@ -32,47 +32,47 @@
           {
             "group": "Subscription offers",
             "pages": [
-              "docs/subscribe-and-save",
-              "docs/build-a-box",
-              "docs/custom-workflows",
-              "docs/curated-boxes",
-              "docs/memberships"
+              "subscribe-and-save",
+              "build-a-box",
+              "custom-workflows",
+              "curated-boxes",
+              "memberships"
             ]
           },
           {
             "group": "Settings & notifications",
             "pages": [
-              "docs/general-settings",
-              "docs/shipping-setup",
-              "docs/notifications",
-              "docs/linking-customer-portal",
-              "docs/subscription-widget"
+              "general-settings",
+              "shipping-setup",
+              "notifications",
+              "linking-customer-portal",
+              "subscription-widget"
             ]
           },
-          "docs/migrating-to-juo"
+          "migrating-to-juo"
         ]
       },
       {
         "group": "Grow & Retain",
         "pages": [
-          "docs/retention-flow",
-          "docs/upsells",
-          "docs/extras",
-          "docs/subscription-intent-detection"
+          "retention-flow",
+          "upsells",
+          "extras",
+          "subscription-intent-detection"
         ]
       },
       {
         "group": "Use Guide",
         "pages": [
-          "docs/bulk-actions",
-          "docs/customer-portal",
-          "docs/quick-actions",
-          "docs/tiered-discounts",
+          "bulk-actions",
+          "customer-portal",
+          "quick-actions",
+          "tiered-discounts",
           {
             "group": "Integrations",
             "pages": [
-              "docs/klaviyo-integration",
-              "docs/gorgias-integration"
+              "klaviyo-integration",
+              "gorgias-integration"
             ]
           }
         ]

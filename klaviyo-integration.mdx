@@ -3,40 +3,46 @@ title: "Klaviyo"
 ---
 
 <Frame>
-![Juo - Klaviyo integration](https://cdn.juo.io/content-uploads/juo_klaviyo_integration_549cdbaeeb.png)
+  ![Juo - Klaviyo
+  integration](https://cdn.juo.io/content-uploads/juo_klaviyo_integration_549cdbaeeb.png)
 </Frame>
-Juo provides out-of-the box email notifications for subscription purchase, renewal, upcoming payment, failed payment, cancellation, and pending renewal (items out of stock).
+Juo provides out-of-the box email notifications for subscription purchase, renewal,
+upcoming payment, failed payment, cancellation, and pending renewal (items out of
+stock).
 
 In addition to these automatic notifications, or instead of them, merchants can also integrate Juo with Klaviyo to manage their subscription-related communication there.
 
-Before using Klaviyo integration, [enable it in the Juo settings](/docs/enable-klaviyo-integration).
+Before using Klaviyo integration, [enable it in the Juo settings](/enable-klaviyo-integration).
 
 ## Juo \<> Klaviyo Flow triggers
 
 Juo is currently syncing the following events with Klaviyo:
 
-| Event name                         | Sent when                                                                           |
-|:----------------------------------|:-------------------------------------------------------------------------------------|
-| **Started Subscription**          | Subscription is purchased                                                            |
-| **Paused Subscription**           | Subscription is paused                                                               |
-| **Skipped Subscription**          | Subscription is skipped                                                              |
-| **Renewed Now Subscription**      | Subscription is triggered using the Renew Now option                                 |
-| **Canceled Subscription**         | Subscription is cancelled                                                            |
-| **Upcoming Renewal Subscription** | 3 days before a subscription is scheduled to renew                                   |
-| **Billed Subscription**           | Subscription is successfully paid                                                    |
-| **Billing Failed Subscription**   | Subscription payment fails                                                           |
-| **Renewal Requires Action**       | Payment requires additional authentication (e.g. 3D Secure for credit card payments) |
-| **Product Out Of Stock Subscription** | Subscription renewal fails due to one or more products being out of stock        |
-| **Chargeback Subscription**       | Chargeback request is initiated by the customer                                      |
-
+| Event name                            | Sent when                                                                            |
+| :------------------------------------ | :----------------------------------------------------------------------------------- |
+| **Started Subscription**              | Subscription is purchased                                                            |
+| **Paused Subscription**               | Subscription is paused                                                               |
+| **Skipped Subscription**              | Subscription is skipped                                                              |
+| **Renewed Now Subscription**          | Subscription is triggered using the Renew Now option                                 |
+| **Canceled Subscription**             | Subscription is cancelled                                                            |
+| **Upcoming Renewal Subscription**     | 3 days before a subscription is scheduled to renew                                   |
+| **Billed Subscription**               | Subscription is successfully paid                                                    |
+| **Billing Failed Subscription**       | Subscription payment fails                                                           |
+| **Renewal Requires Action**           | Payment requires additional authentication (e.g. 3D Secure for credit card payments) |
+| **Product Out Of Stock Subscription** | Subscription renewal fails due to one or more products being out of stock            |
+| **Chargeback Subscription**           | Chargeback request is initiated by the customer                                      |
 
 <Warning>
-Note that in order to sync events between Juo and Klaviyo you need to turn on the integration first. Events that happened prior to the integration will not be visible in Klaviyo.
+  Note that in order to sync events between Juo and Klaviyo you need to turn on
+  the integration first. Events that happened prior to the integration will not
+  be visible in Klaviyo.
 </Warning>
 
 You can use the above events as triggers to send subscription notifications. For example, if you want to send an email after a subscription has been purchased in your store, select “Subscription started” as a trigger.
+
 <Frame caption="Subscription purchase can trigger your Klaviyo flow">
-![Klaviyo Flow editor - Trigger setup](https://cdn.juo.io/content-uploads/juo_flow_triggers_e8393e7da6.png)
+  ![Klaviyo Flow editor - Trigger
+  setup](https://cdn.juo.io/content-uploads/juo_flow_triggers_e8393e7da6.png)
 </Frame>
 
 ## Customer tags as flow filters
@@ -46,45 +52,50 @@ Apart from events that act as triggers, you can also use tags to limit the email
 Juo automatically tags subscription and membership customers with different tags, depending on the type of subscription, its status, and the number of subscription orders.
 
 #### Tags assigned to subscription customers:
+
 <Warning>
-Note that these tags are configurable in the Juo admin panel's [general settings](https://admin.shopify.com/apps/juo-subscriptions/settings/general), so always refer to your current setup.
+  Note that these tags are configurable in the Juo admin panel's [general
+  settings](https://admin.shopify.com/apps/juo-subscriptions/settings/general),
+  so always refer to your current setup.
 </Warning>
 
 **Status tags:**
 
-| Tag name                | Description                                                  |
-|:------------------------|:-------------------------------------------------------------|
-| **active_subscriber**   | Customer with active subscription                            |
-| **paused_subscriber**   | Customer with paused subscription                            |
-| **cancelled_subscriber**| Customer with cancelled subscription                         |
-| **failed_subscriber**   | Customer with failed subscription payment                    |
-| **expired_subscriber**  | Customer whose subscription auto-expired due to its schedule |
+| Tag name                 | Description                                                  |
+| :----------------------- | :----------------------------------------------------------- |
+| **active_subscriber**    | Customer with active subscription                            |
+| **paused_subscriber**    | Customer with paused subscription                            |
+| **cancelled_subscriber** | Customer with cancelled subscription                         |
+| **failed_subscriber**    | Customer with failed subscription payment                    |
+| **expired_subscriber**   | Customer whose subscription auto-expired due to its schedule |
 
 **Loyalty tags:**
 
-| Tag name                | Description                                                  |
-|:------------------------|:-------------------------------------------------------------|
-| **new_subscriber**      | Customer with only first subscription order                  |
-| **recurring_subscriber**| Customer with renewed subscription                           |
-| **returning_subscriber**| Customer with at least two separate subscriptions            |
+| Tag name                 | Description                                       |
+| :----------------------- | :------------------------------------------------ |
+| **new_subscriber**       | Customer with only first subscription order       |
+| **recurring_subscriber** | Customer with renewed subscription                |
+| **returning_subscriber** | Customer with at least two separate subscriptions |
 
 **Membership tags:**
-| Tag name                | Description                                                  |
+| Tag name | Description |
 |:------------------------|:-------------------------------------------------------------|
-| **membership\_active**  | Customers with an active membership                          |
-| **membership\_inactive**| Customers with an inactive membership                        |
+| **membership_active** | Customers with an active membership |
+| **membership_inactive**| Customers with an inactive membership |
 
 A subscriber will only have one tag per tag group assigned at any give time.
 
 #### Tags assigned to potential subscribers
 
-Based on their order history, customers can also be assigned the **subscription\_intent** tag, which allows merchants to convert them to subscribers more easily with targeted messaging.
+Based on their order history, customers can also be assigned the **subscription_intent** tag, which allows merchants to convert them to subscribers more easily with targeted messaging.
 
-[Subscription intent tagging](/docs/guides/using-global-settings#subscription-intent) is a PRO feature that can be enabled under **Settings** > **Subscription intent**.
+[Subscription intent tagging](/guides/using-global-settings#subscription-intent) is a PRO feature that can be enabled under **Settings** > **Subscription intent**.
 
 All the above tags can be used as flow filters in Klaviyo — they can be found under **Flow filter** > **Properties about someone** > **Shopify Tags**.
+
 <Frame caption="Subscriber tags can also be used as filters">
-![Klaviyo Flow editor - Filter setup](https://cdn.juo.io/content-uploads/juo_flow_tags_as_filters_34290292e0.png)
+  ![Klaviyo Flow editor - Filter
+  setup](https://cdn.juo.io/content-uploads/juo_flow_tags_as_filters_34290292e0.png)
 </Frame>
 
 ## Juo \<> Klaviyo Event properties
@@ -95,66 +106,66 @@ To access the properties that are available for each event, you need to add an E
 
 ### Subscription-related properties
 
-| Property name              | Description                                                                 | Type   |
-| :------------------------- | :-------------------------------------------------------------------------- | :----- |
-| **orderID**                | ID of the subscription                                                      | number |
-| **Items**                  | List of products in the subscription                                        | array  |
-| **DiscountCode**           | Discount code applied to the subscription                                   | string |
-| **DiscountValue**          | Numeric value of the discount                                               | number |
-| **OrderIntervalFrequency** | Numeric value of the frequency index, e.g. `1` for every 1 month            | number |
-| **OrderIntervalUnit**      | Type of interval unit, e.g. `week` or `month`                               | string |
-| **CurrentCycle**           | Index number of the current subscription order. 0 is the initial order.     | number |
-| **NextBillingDate**        | Date of the next scheduled renewal, e.g. `"2025-04-28T11:07:23.000Z"`       | string |
-| **Saving**                 | Total savings in subscription                                               | number |
-| **ShippingCost**           | Shipping cost of the next subscription renewal                              | number |
-| **\$value**                | Total order value (without shipping)                                        | number |
+| Property name              | Description                                                             | Type   |
+| :------------------------- | :---------------------------------------------------------------------- | :----- |
+| **orderID**                | ID of the subscription                                                  | number |
+| **Items**                  | List of products in the subscription                                    | array  |
+| **DiscountCode**           | Discount code applied to the subscription                               | string |
+| **DiscountValue**          | Numeric value of the discount                                           | number |
+| **OrderIntervalFrequency** | Numeric value of the frequency index, e.g. `1` for every 1 month        | number |
+| **OrderIntervalUnit**      | Type of interval unit, e.g. `week` or `month`                           | string |
+| **CurrentCycle**           | Index number of the current subscription order. 0 is the initial order. | number |
+| **NextBillingDate**        | Date of the next scheduled renewal, e.g. `"2025-04-28T11:07:23.000Z"`   | string |
+| **Saving**                 | Total savings in subscription                                           | number |
+| **ShippingCost**           | Shipping cost of the next subscription renewal                          | number |
+| **\$value**                | Total order value (without shipping)                                    | number |
 
 Depending on the event type, some additional properties may become available, such as:
 
-| Property name           | Description                                                                 | Type   |
-| :---------------------- | :-------------------------------------------------------------------------- | :----- |
-| **errorMessage**        | Provides more background on the reason for payment failure, e.g. "Payment method was revoked" | string |
-| **NextActionUrl**       | Link to where subscribers can finish their payment validation when required | string |
-| **CancellationReason**  | Reason for cancelling the subscription provided by the customer             | string |
-| **reasonCode**          | Chargeback reason code, e.g. `"MS02"`                                       | string |
-| **reasonMessage**       | Chargeback reason, e.g. `"Refusal by the Debtor"`                           | string |
+| Property name          | Description                                                                                   | Type   |
+| :--------------------- | :-------------------------------------------------------------------------------------------- | :----- |
+| **errorMessage**       | Provides more background on the reason for payment failure, e.g. "Payment method was revoked" | string |
+| **NextActionUrl**      | Link to where subscribers can finish their payment validation when required                   | string |
+| **CancellationReason** | Reason for cancelling the subscription provided by the customer                               | string |
+| **reasonCode**         | Chargeback reason code, e.g. `"MS02"`                                                         | string |
+| **reasonMessage**      | Chargeback reason, e.g. `"Refusal by the Debtor"`                                             | string |
 
 ### Customer-related properties
-| Property name                  | Description                                                                                 | Type      |
-|:-------------------------------|:--------------------------------------------------------------------------------------------|:----------|
-| **ActiveSubscriber**           | Indicates whether the customer has at least one active subscription                         | boolean |
-| **ActiveSubscriptionIDs**      | List of IDs of the customer's active Juo subscriptions                                      | array |
-| **ActiveSubscriptionVariantIDs** | List of Shopify variant IDs included in the customer's subscriptions                      | array |
-| **NextReplenishmentDate**      | Date of the next scheduled billing for any active subscription                              | string|
-| **ShopifyTags**                | List of tags assigned to the customer in Shopify                                            | array |
-| **TotalRecurringOrders**       | Total number of subscription-based orders placed by the customer                            | number  |
-| **TotalRecurringRevenue**      | Total revenue generated from all of the customer's subscriptions                            | number  |
 
-
+| Property name                    | Description                                                          | Type    |
+| :------------------------------- | :------------------------------------------------------------------- | :------ |
+| **ActiveSubscriber**             | Indicates whether the customer has at least one active subscription  | boolean |
+| **ActiveSubscriptionIDs**        | List of IDs of the customer's active Juo subscriptions               | array   |
+| **ActiveSubscriptionVariantIDs** | List of Shopify variant IDs included in the customer's subscriptions | array   |
+| **NextReplenishmentDate**        | Date of the next scheduled billing for any active subscription       | string  |
+| **ShopifyTags**                  | List of tags assigned to the customer in Shopify                     | array   |
+| **TotalRecurringOrders**         | Total number of subscription-based orders placed by the customer     | number  |
+| **TotalRecurringRevenue**        | Total revenue generated from all of the customer's subscriptions     | number  |
 
 ### Item-related properties
 
-| Property name   | Description                                                             | Type    |
-|:----------------|:------------------------------------------------------------------------|:--------|
-| **ProductID**   | Allows to display the ID of the product in subscription                 | string  |
-| **ProductName** | Shows the name of the product                                           | string  |
-| **VariantName** | Shows the name of the variant                                           | string  |
-| **Quantity**    | Shows the product quantity                                              | number  |
-| **ItemPrice**   | Shows the price per single item                                         | number  |
-| **RowTotal**    | Shows the price of all items of the same type (Item x Quantity)         | number  |
-| **ImageURL**    | Allows to display the product image                                     | string  |
-| **Categories**  | Shows the collection or collections to which an item belongs            | array   |
+| Property name   | Description                                                     | Type   |
+| :-------------- | :-------------------------------------------------------------- | :----- |
+| **ProductID**   | Allows to display the ID of the product in subscription         | string |
+| **ProductName** | Shows the name of the product                                   | string |
+| **VariantName** | Shows the name of the variant                                   | string |
+| **Quantity**    | Shows the product quantity                                      | number |
+| **ItemPrice**   | Shows the price per single item                                 | number |
+| **RowTotal**    | Shows the price of all items of the same type (Item x Quantity) | number |
+| **ImageURL**    | Allows to display the product image                             | string |
+| **Categories**  | Shows the collection or collections to which an item belongs    | array  |
 
 Here’s an example of how you can use properties to display additional subscription information in each email, including:
 
-* products ordered
-* product quantity
-* total price for the products
-* subscription benefits
-* total item and shipping value
-<Frame caption="Copy the variables into your Klaviyo email template">
-![Klaviyo email editor - Variables setup](https://cdn.juo.io/content-uploads/juo_flow_variables_89f2e0f088.png)
-</Frame>
+- products ordered
+- product quantity
+- total price for the products
+- subscription benefits
+- total item and shipping value
+  <Frame caption="Copy the variables into your Klaviyo email template">
+    ![Klaviyo email editor - Variables
+    setup](https://cdn.juo.io/content-uploads/juo_flow_variables_89f2e0f088.png)
+  </Frame>
 
 Properties for displaying subscription details
 
@@ -183,6 +194,8 @@ Shipping: ${{ event.ShippingCost|default:'' }}
 Feel free to copy them into the Klaviyo email editor as you set up the content.
 
 Switching to the preview mode next, you can check how the subscription order information is doing to be displayed in your notifications.
+
 <Frame>
-![Klaviyo Email editor - Email content preview](https://cdn.juo.io/content-uploads/klaviyo_email_preview_4e2d5cb0c2.png)
+  ![Klaviyo Email editor - Email content
+  preview](https://cdn.juo.io/content-uploads/klaviyo_email_preview_4e2d5cb0c2.png)
 </Frame>

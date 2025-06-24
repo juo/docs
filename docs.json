@@ -58,6 +58,18 @@
         ]
       },
       {
+        "group": "Use guide",
+        "pages": [
+          "bulk-actions",
+          "customer-portal",
+          "linking-customer-portal",
+          "quick-actions",
+          "tiered-discounts",
+          "adding-juo-subscription-widget",
+          "subscription-widget"
+        ]
+      },
+      {
         "group": " ",
         "pages": [
           {

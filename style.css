@@ -6,11 +6,11 @@
 a[href="https://juo.io/demo"] {
   border: 1px solid rgba(10, 14, 13, 0.1) !important;
   color: #3727F4 !important;
-  background-color: white !important;
+  background-color: transparent !important;
   border-radius: 4px !important;
   position: relative;
-  padding: 0.5rem 0.5rem !important;
-  /* adjust padding as needed */
+  padding-left: 0.5rem !important; 
+  padding-right: 0.18rem !important;
 }
 
 /* Remove green pill span */

@@ -65,7 +65,9 @@
           "quick-actions",
           "tiered-discounts",
           "adding-juo-subscription-widget",
-          "subscription-widget"
+          "subscription-widget",
+          "sepa-direct-debit",
+          "sepa-chargebacks"
         ]
       }
     ],

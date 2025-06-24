@@ -31,6 +31,8 @@
         "pages": [
           "subscribe-and-save",
           "build-a-box",
+          "upsells",
+          "extras",
           "custom-workflows",
           "curated-boxes",
           "memberships"
@@ -41,16 +43,17 @@
         "pages": [
           "general-settings",
           "shipping-setup",
-          "notifications"
+          "notifications",
+          "retention-flow",
+          "subscription-intent-detection"
         ]
       },
       {
-        "group": "Retention",
+        "group": "Integrations",
         "pages": [
-          "retention-flow",
-          "upsells",
-          "extras",
-          "subscription-intent-detection"
+          "klaviyo-integration",
+          "gorgias-integration",
+          "zipify-integration"
         ]
       },
       {

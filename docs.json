@@ -2,7 +2,6 @@
   "$schema": "https://mintlify.com/docs.json",
   "name": "Juo Subscriptions documentation",
   "theme": "mint",
-
   "favicon": {
     "light": "/favicon.png",
     "dark": "/favicon.png"
@@ -13,10 +12,10 @@
   },
   "colors": {
     "primary": "#3727F4",
-    "light":   "#3727F4",
-    "dark":    "#3727F4"
+    "light": "#3727F4",
+    "dark": "#3727F4"
   },
-"navigation": {
+  "navigation": {
     "groups": [
       {
         "group": "Getting Started",
@@ -81,22 +80,33 @@
     ],
     "global": {
       "anchors": [
-        { "anchor": "API",       "href": "https://juo.dev/",          "icon": "code"       },
-        { "anchor": "Changelog", "href": "https://juo.app/changelog", "icon": "newspaper" }
+        {
+          "anchor": "API",
+          "href": "https://juo.dev/",
+          "icon": "code"
+        },
+        {
+          "anchor": "Changelog",
+          "href": "https://juo.app/changelog",
+          "icon": "newspaper"
+        }
       ]
     }
   },
-"navbar": {
+  "navbar": {
     "links": [
-      { "label": "Contact Us", "href": "mailto:hi@juo.io" }
+      {
+        "label": "Contact Us",
+        "href": "mailto:hi@juo.io"
+      }
     ],
     "primary": {
-      "type":  "button",
+      "type": "button",
       "label": "Book a demo",
-      "href":  "https://juo.io/demo"
+      "href": "https://juo.io/demo"
     }
   },
-"footer": {
+  "footer": {
     "socials": {
       "linkedin": "https://www.linkedin.com/company/juo-io"
     }

@@ -1,5 +1,3 @@
-
-
 .text-white {
   color: #3727F4 !important;
 }
@@ -11,11 +9,12 @@ a[href="https://juo.io/demo"] {
   background-color: white !important;
   border-radius: 4px !important;
   position: relative;
-  padding: 0.5rem 0.5rem !important; /* adjust padding as needed */
+  padding: 0.5rem 0.5rem !important;
+  /* adjust padding as needed */
 }
 
 /* Remove green pill span */
-a[href="https://juo.io/demo"] > span {
+a[href="https://juo.io/demo"]>span {
   background-color: transparent !important;
   border-radius: 4px !important;
 }
@@ -36,4 +35,8 @@ a[href="https://juo.io/demo"] svg {
   margin-left: 0 !important;
   width: 0 !important;
   height: 0 !important;
+}
+
+a[href^="https://mintlify.com"] {
+  display: none;
 }

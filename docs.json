@@ -139,7 +139,7 @@
   },
   "redirects": [
   {
-    "source": "docs/adding-build-a-box",
+    "source": "https://juo.io/docs/adding-build-a-box",
     "destination": "/docs/build-a-box"
   }
 ]

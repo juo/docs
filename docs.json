@@ -141,6 +141,10 @@
   {
     "source": "/adding-build-a-box",
     "destination": "/build-a-box"
+  },
+  {
+    "source": "/docs/adding-build-a-box",
+    "destination": "/docs/build-a-box"
   }
 ]
 }

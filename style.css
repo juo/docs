@@ -44,8 +44,43 @@ a[href^="https://mintlify.com"] {
 
 .sidebar ul li, .text-primary, .text-gray-700 {
   height: 31px;
+  border-radius: 3px;
 }
 
 .mt-12 {
     margin-top: 24px !important;
+}
+
+.card {
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  color: #CECECE !important;
+}
+
+.card:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+  border-color: #eeeeee !important;
+}
+.group mt-2 {
+  outline-color: #eeeeee !important;
+}
+.text-primary {
+  color: #3727F4 !important;
+}
+
+.bg-primary {
+  color: #111111 !important;
+  background-color: #111111 !important;
+}
+
+.text-gray-400 {
+  color: #888888 !important;
+}
+
+.text-gray-400:hover {
+  color: #111111 !important;
+}
+
+.ring-gray-400\/20 {
+  border-radius: 4px !important;
 }

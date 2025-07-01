@@ -185,6 +185,14 @@
   {
     "source": "/guides/:slug*",
     "destination": "/:slug*"
+  },
+  {
+    "source": "/grow-and-retain",
+    "destination": "/retention"
+  },
+  {
+    "source": "/launch-subscriptions",
+    "destination": "/subscription-experiences"
   }
 
 ]

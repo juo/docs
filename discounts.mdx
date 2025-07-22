@@ -1,0 +1,68 @@
+**There are multiple ways to apply discounts to subscriptions. This guide will help you choose the right method based on your goals.**
+
+## Built-in Juo discounts
+
+Juo offers several built-in discount types designed to improve conversion and reward subscriber loyalty.
+
+1. **Selling plan discounts**
+
+Selling plan discounts let you offer lower prices for subscription products compared to one-time purchases. These discounts stay active for the entire duration of a subscription. However, changes to them won’t affect existing subscribers.
+
+As part of the **Subscribe & save** experience, these discounts are set individually per selling plan (e.g. each delivery frequency). You can choose from three discount types:
+
+1. Percentage
+2. Fixed amount (in store currency)
+3. Set price (manually define the product price for subscribers)
+
+You can also configure a **Variable discount** that changes after a defined number of cycles. This is useful for offering an introductory price or rewarding long-term subscribers.
+<div align="center">
+<img src="https://cdn.juo.io/content-uploads/discounts1_64430f780b.png" alt="image.png" width="500"  />
+</div>
+2. **Extras**
+
+Like selling plan discounts, Extras are part of the **Subscribe & save** experience but are configured at the **Subscription plan** level (affecting all selling plans within that plan).
+
+Extras let you define different discount values depending on the subscription cycle. This is useful for building progressive or tiered discounts.
+
+<div align="center">
+<img src="https://cdn.juo.io/content-uploads/discounts2_a1e67f23ab.png" alt="image.png" width="500"  />
+</div>
+
+3. **Build-a-Box** and **Custom Workflows**
+
+These subscription experiences include their own dedicated discount logic. For setup details, refer to their respective guides:
+[Build-a-Box](https://juo.io/docs/build-a-box) and
+[Custom Workflows](https://juo.io/docs/custom-workflows)
+
+## Using Shopify discounts with subscriptions
+
+Shopify’s discount codes and automatic discounts natively support subscriptions. To enable this, select **Subscription** or **Both** in the **Purchase type** field. This allows discounts to be used at checkout and in the Juo Customer Portal.
+
+<div align="center">
+<img src="https://cdn.juo.io/content-uploads/discounts3_720bda1fd7.png" alt="image.png" width="500"  />
+</div>
+
+You can choose whether the discount applies only to the first payment or to a defined number of recurring charges.
+
+Important: if a discount code is used in the Juo Customer Portal, Shopify still counts the initial checkout order toward the usage limit.
+Example: if you want the discount to apply only to the next renewal, set **Limit discount to multiple recurring payments** to **2**.
+
+<div align="center">
+<img src="https://cdn.juo.io/content-uploads/discounts4_513adfef3a.png" alt="image.png" width="400"  />
+</div>
+
+<Note>
+
+To allow customers to enter discount codes in the Juo Customer Portal, make sure this feature is enabled in the [Customer Portal settings](https://admin.shopify.com/apps/juo-subscriptions/settings/general). It’s disabled by default.
+
+</Note>
+
+## Combining discounts
+
+**Selling plan discounts** and **Extras** always stack with Shopify discount codes.
+
+The **Build-a-box** discount is a product-level discount. If you want your discount codes to work with it, configure them to combine with product discounts. Also check Build-a-box settings to allow discount stacking.
+
+## Third-party discount apps
+
+Juo supports discount apps that are compatible with Shopify selling plans. Check with the app developer to confirm compatibility and setup instructions.

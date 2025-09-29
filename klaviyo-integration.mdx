@@ -117,6 +117,7 @@ To access the properties that are available for each event, you need to add an E
 | :------------------------- | :---------------------------------------------------------------------- | :----- |
 | **orderID**                | ID of the subscription                                                  | number |
 | **Items**                  | List of products in the subscription                                    | array  |
+| **ItemNames**              | List of product names in the subscription                               | array  |
 | **DiscountCode**           | Discount code applied to the subscription                               | string |
 | **DiscountValue**          | Numeric value of the discount                                           | number |
 | **OrderIntervalFrequency** | Numeric value of the frequency index, e.g. `1` for every 1 month        | number |
@@ -136,6 +137,7 @@ Depending on the event type, some additional properties may become available, su
 | **CancellationReason** | Reason for cancelling the subscription provided by the customer                               | string |
 | **reasonCode**         | Chargeback reason code, e.g. `"MS02"`                                                         | string |
 | **reasonMessage**      | Chargeback reason, e.g. `"Refusal by the Debtor"`                                             | string |
+| **attempt**            | Contains the number of the failed billing attempt                                             | number |
 
 ### Customer-related properties
 

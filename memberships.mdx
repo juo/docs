@@ -12,9 +12,10 @@ In order to offer Memberships, you need a membership parent product first. The p
 
 When adding the new product to your inventory, make it a virtual product. Uncheck “Track product quantity” and “This product requires shipping” in the Shopify settings. Once done, Save the new product.
 
-![Membership setup - Add parent product](https://cdn.juo.io/content-uploads/membership_add_parent_10994305ee.png)
-
-Add a virtual parent product for your Membership
+<Frame caption="Add a virtual parent product for your Membership">
+  ![Membership setup - Add parent
+  product](https://cdn.juo.io/content-uploads/membership_add_parent_10994305ee.png)
+</Frame>
 
 ## Add the product to a selling plan
 
@@ -22,11 +23,12 @@ Next, you need to add the membership parent product to a suitable selling plan i
 
 You can find out more on how to set up a selling plan [here](/docs/creating-subscription-plan).
 
-![Membership setup - Add new](https://cdn.juo.io/content-uploads/membership_plan_b2115c13f0.png)
+<Frame caption="Add your Membership product to a subscription plan">
+  ![Membership setup - Add
+  new](https://cdn.juo.io/content-uploads/membership_plan_b2115c13f0.png)
+</Frame>
 
 Add your Membership product to a subscription plan
-
-![](https://cdn.juo.io/content-uploads/pin_icon_cbcc60c31b.png)
 
 Remember that the membership product also needs to be added to a product page template (default or custom) so that your clients can find and purchase it from you.
 
@@ -42,15 +44,21 @@ To offer Memberships with a few plans or tiers, you need to create product varia
 
 So, if you want to create a prepaid option for your Membership program, alongside the regular month-by-month payments, create the corresponding two variants under the membership parent product first.
 
-![Membership setup - Parent product variants](https://cdn.juo.io/content-uploads/membership_variants_f697619bf7.png)
+<Frame>
+  ![Membership setup - Parent product
+  variants](https://cdn.juo.io/content-uploads/membership_variants_f697619bf7.png)
+</Frame>
 
 ### Add more subscription plans
 
-The next step is to set up a separate subscription plan for each of the option.
+The next step is to set up a separate subscription plan for each of the options.
 
 So, if your Membership can be paid for on a monthly basis or in advance for 12 months with a discount, as in the example above, you need to [set-up a subscription plan](https://juo.io/guides/creating-subscription-plan) separately for the monthly and prepaid variant. When the plan is set up, assign the corresponding product variant to it.
 
-![Subscription plan setup - Membership tiers](https://cdn.juo.io/content-uploads/membership_variants_selling_plan_3b85b7b6ea.png)
+<Frame>
+  ![Subscription plan setup - Membership
+  tiers](https://cdn.juo.io/content-uploads/membership_variants_selling_plan_3b85b7b6ea.png)
+</Frame>
 
 Once the variants and their corresponding subscription plans are properly added and assigned, they are going to show up under the membership parent product in your inventory.
 
@@ -60,21 +68,25 @@ Once the variants and their corresponding subscription plans are properly added 
 
 In order for the customers to select Membership plans or tiers, the product variants need to be visible on the Membership page template. Before you enable Memberships, make sure that the **Variant picker** block is displayed and that the variants are showing up correctly on your Membership page.
 
-![Membership page - Product variants](https://cdn.juo.io/content-uploads/membership_variants_product_ba1a89e4b9.png)
+<Frame>
+  ![Membership page - Product
+  variants](https://cdn.juo.io/content-uploads/membership_variants_product_ba1a89e4b9.png)
+</Frame>
 
 ## Set a Membership customer segment
 
-The benefits that come with a Membership are restricted to just the customers who own a Membership with you. That’s why you need to create a customer segment for Membership owners first. You can do this in Shopify, under **Customers** > **Customer segments**.
+The benefits that come with a Membership are restricted to just the customers who have an active Membership. That’s why you need to create a customer segment for Membership owners first. You can do this in Shopify, under **Customers** > **Customer segments**.
 
 Name your segment “Membership” and use filter: **customer_tags CONTAINS ‘membership_active’**
 
-![Membership setup - Segment creation](https://cdn.juo.io/content-uploads/membership_segment_b8093fcfa9.png)
-
-Use membership_active tag to set up the segment
+<Frame caption="Use membership_active tag to set up the segment">
+  ![Membership setup - Segment
+  creation](https://cdn.juo.io/content-uploads/membership_segment_b8093fcfa9.png)
+</Frame>
 
 ## Set up the benefits
 
-Memberships in Juo lets you offer various additional benefits, such as free shipping or discounts on selected products. You can set up the benefits under Discounts in Shopify.
+Memberships in Juo let you offer various additional benefits, such as free shipping or discounts on selected products. You can set up the benefits under Discounts in Shopify.
 
 ### Choose discount type
 
@@ -82,35 +94,37 @@ To add a discount, click on “Create discount” and select the type of discoun
 
 Make sure to select “Discount code” as the method and select a suitable name for your discount. The name will be visible to your customers on checkout.
 
-![Membership setup - Discount code](https://cdn.juo.io/content-uploads/membership_discount_1e3361f6f9.png)
-
-Specify the details of your Membership benefit
+<Frame caption="Specify the details of your Membership benefit">
+  ![Membership setup - Discount
+  code](https://cdn.juo.io/content-uploads/membership_discount_1e3361f6f9.png)
+</Frame>
 
 ### Add Customer segment
 
-Also, you need to limit the discount application to just the customers who have a membership with you. Select “Specific customer segments” and Search for the “Memberships” segment you created earlier.
+Also, you need to limit the discount application to just the customers who have a membership with you. Select “Specific customer segments” and search for the “Memberships” segment you created earlier.
 
-Now’s also the time to adjust the other details of the discount, such as the Purchase type (one-time, subscription, or both), minimum price threshold, Combinations with other discounts — all depending on your specific Membership offering.
+Now’s the time to adjust the other details of the discount, such as the Purchase type (one-time, subscription, or both), minimum price threshold, Combinations with other discounts — all depending on your specific Membership offering.
 
-![Membership setup - Apply discount to Membership segment](https://cdn.juo.io/content-uploads/membership_discount_segment_211aec41e9.png)
-
-Apply the discount to your Members only
+<Frame caption="Apply the discount to your Members only">
+  ![Membership setup - Apply discount to Membership
+  segment](https://cdn.juo.io/content-uploads/membership_discount_segment_211aec41e9.png)
+</Frame>
 
 ## Add the Membership script to your theme
 
 This step may require some knowledge of how Shopify template code works or the help of a developer. If you have any trouble with this step, feel free to reach out to us directly or visit our Community.
 
-Place the following code in theme.liquid template: (Remember that you need to adjust the script to match the coupon code settings you’ve specified earlier)
+Place the following code in theme.liquid template (Remember that you need to adjust the script to match the coupon code settings you’ve specified earlier):
 
 Membership script to add to your theme
 
+<Frame caption:"Membership script to add to your theme">
 ```
 {%  if customer.tags contains "membership_active" %}
 <script type="text/javascript">
   (function () {
     var MIN_CART_AMOUNT = 50;
     var COUPON_NAME = "COUPON";
-
 
     fetch("/cart.json").then((response) => response.json()).then(function (cart) {
       if (cart.total_price >= MIN_CART_AMOUNT * 100) {
@@ -133,10 +147,13 @@ Membership script to add to your theme
         });
       }
     });
-  })();
+
+})();
+
 </script>
 {% endif %}
 ```
+</Frame>
 
 ## Enable Memberships in Juo
 

@@ -60,7 +60,10 @@ So, if your Membership can be paid for on a monthly basis or in advance for 12 m
 
 Once the variants and their corresponding subscription plans are properly added and assigned, they are going to show up under the membership parent product in your inventory.
 
-![Shopify inventory - Membership plans](https://cdn.juo.io/content-uploads/membership_variants_purchase_options_85f1620795.png)
+<Frame>
+  ![Shopify inventory - Membership
+  plans](https://cdn.juo.io/content-uploads/membership_variants_purchase_options_85f1620795.png)
+</Frame>
 
 ### Display Membership options
 
@@ -112,9 +115,8 @@ Now’s the time to adjust the other details of the discount, such as the Purcha
 
 This step may require some knowledge of how Shopify template code works or the help of a developer. If you have any trouble with this step, feel free to reach out to us directly or visit our Community.
 
-Place the following code in theme.liquid template (Remember that you need to adjust the script to match the coupon code settings you’ve specified earlier):
-
-Membership script to add to your theme
+Below you'll find the code you need to place in your theme.liquid template (Remember that you need to adjust the script to match the coupon code settings you’ve specified earlier).
+Membership script to add to your theme:
 
 ```
 {%  if customer.tags contains "membership_active" %}

@@ -19,12 +19,7 @@
     "groups": [
       {
         "group": "Getting started",
-        "pages": [
-          "index",
-          "about-juo",
-          "subscription-experiences",
-          "retention"
-        ]
+        "pages": ["index", "about-juo", "subscription-experiences", "retention"]
       },
       {
         "group": "Subscription experiences",
@@ -76,30 +71,30 @@
           {
             "group": "Glossary",
             "pages": [
-            "glossary/build-a-box",
-            "glossary/customer-portal",
-            "glossary/delivery-frequency",
-            "glossary/dunning",
-            "glossary/dynamic-boxes",
-            "glossary/email-notifications",
-            "glossary/inventory-policy",
-            "glossary/lifetime-value",
-            "glossary/membership",
-            "glossary/merchant-portal",
-            "glossary/migration",
-            "glossary/one-time-purchase",
-            "glossary/product-swap",
-            "glossary/retention-flow",
-            "glossary/skip-renewal",
-            "glossary/stock-keeping-unit",
-            "glossary/subscriber",
-            "glossary/subscription-box",
-            "glossary/subscription-cancellation",
-            "glossary/subscription-order",
-            "glossary/subscription-pause",
-            "glossary/subscription-renewal",
-            "glossary/subscription",
-            "glossary/variable-discount"
+              "glossary/build-a-box",
+              "glossary/customer-portal",
+              "glossary/delivery-frequency",
+              "glossary/dunning",
+              "glossary/dynamic-boxes",
+              "glossary/email-notifications",
+              "glossary/inventory-policy",
+              "glossary/lifetime-value",
+              "glossary/membership",
+              "glossary/merchant-portal",
+              "glossary/migration",
+              "glossary/one-time-purchase",
+              "glossary/product-swap",
+              "glossary/retention-flow",
+              "glossary/skip-renewal",
+              "glossary/stock-keeping-unit",
+              "glossary/subscriber",
+              "glossary/subscription-box",
+              "glossary/subscription-cancellation",
+              "glossary/subscription-order",
+              "glossary/subscription-pause",
+              "glossary/subscription-renewal",
+              "glossary/subscription",
+              "glossary/variable-discount"
             ]
           }
         ]
@@ -139,62 +134,61 @@
     }
   },
   "redirects": [
-  {
-    "source": "/adding-build-a-box",
-    "destination": "/build-a-box"
-  },
-  {
-    "source": "/adding-manage-subscriptions-link",
-    "destination": "/linking-customer-portal"
-  },
-  {
-    "source": "/creating-subscription-plan",
-    "destination": "subscribe-and-save"
-  },
-  {
-    "source": "customizing-juo-subscription-widget",
-    "destination": "/subscription-widget"
-  },
-  {
-    "source": "/managing-subscriptions-customer-portal",
-    "destination": "customer-portal"
-  },
-  {
-  "source": "/setting-subscription-notifications",
-  "destination": "/notifications"
-  },
-  {
-    "source": "/setting-up-curated-boxes",
-    "destination": "/curated-boxes"
-  },
-  {
-    "source": "/setting-up-memberships",
-    "destination": "/memberships"
-  },
-  {
-    "source": "/shipping",
-    "destination": "/shipping-setup"
-  },
-  {
-    "source": "/using-global-settings",
-    "destination": "/general-settings"
-  },
-  {
-    "source": "/using-tiered-discounts",
-    "destination": "/tiered-discounts"
-  },
-  {
-    "source": "/guides/:slug*",
-    "destination": "/:slug*"
-  },
-  {
-    "source": "/grow-and-retain",
-    "destination": "/retention"
-  },
-  {
-    "source": "/launch-subscriptions",
-    "destination": "/subscription-experiences"
-  }
-
-]
+    {
+      "source": "/adding-build-a-box",
+      "destination": "/build-a-box"
+    },
+    {
+      "source": "/adding-manage-subscriptions-link",
+      "destination": "/linking-customer-portal"
+    },
+    {
+      "source": "/creating-subscription-plan",
+      "destination": "subscribe-and-save"
+    },
+    {
+      "source": "customizing-juo-subscription-widget",
+      "destination": "/subscription-widget"
+    },
+    {
+      "source": "/managing-subscriptions-customer-portal",
+      "destination": "customer-portal"
+    },
+    {
+      "source": "/setting-subscription-notifications",
+      "destination": "/notifications"
+    },
+    {
+      "source": "/setting-up-curated-boxes",
+      "destination": "/curated-boxes"
+    },
+    {
+      "source": "/setting-up-memberships",
+      "destination": "/memberships"
+    },
+    {
+      "source": "/shipping",
+      "destination": "/shipping-setup"
+    },
+    {
+      "source": "/using-global-settings",
+      "destination": "/general-settings"
+    },
+    {
+      "source": "/using-tiered-discounts",
+      "destination": "/tiered-discounts"
+    },
+    {
+      "source": "/guides/:slug*",
+      "destination": "/:slug*"
+    },
+    {
+      "source": "/grow-and-retain",
+      "destination": "/retention"
+    },
+    {
+      "source": "/launch-subscriptions",
+      "destination": "/subscription-experiences"
+    }
+  ]
 }

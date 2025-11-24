@@ -23,7 +23,7 @@ a[href="https://juo.io/demo"] {
   border: 1px solid !important;
   color: #3727F4 !important;
   background-color: transparent !important;
-  border-radius: 4px !important;
+  border-radius: 0 !important;
   border-color: #A09FA4 !important;
   position: relative;
   padding-left: 0.5rem !important; 
@@ -49,7 +49,7 @@ body.dark a[href="https://juo.io/demo"],
 /* Remove green pill span */
 a[href="https://juo.io/demo"]>span {
   background-color: transparent !important;
-  border-radius: 4px !important;
+  border-radius: 0 !important;
 }
 
 /* Fix inner spacing between text and icon */
@@ -99,7 +99,7 @@ a[href^="https://mintlify.com"] {
 
 .sidebar ul li, .text-primary, .text-gray-700 {
   height: 31px;
-  border-radius: 3px;
+  border-radius: 0 !important;
 }
 
 .mt-12 {
@@ -107,7 +107,7 @@ a[href^="https://mintlify.com"] {
 }
 
 .card {
-  border-radius: 4px !important;
+  border-radius: 0 !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
   color: #CECECE !important;
 }
@@ -153,7 +153,7 @@ body.dark .text-primary,
 }
 
 .ring-gray-400\/20 {
-  border-radius: 4px !important;
+  border-radius: 0 !important;
 }
 
 /* Override inline styles with #3727F4 background-color in dark mode */
@@ -1092,4 +1092,37 @@ body.dark [class*="group"]:hover [style*="#3727F4"],
   [class*="group"]:hover svg {
     fill: #d9d9d9 !important;
   }
+}
+
+/* Remove all rounded corners from all elements */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+/* Remove rounded corners from Tailwind rounded classes */
+[class*="rounded"],
+.rounded,
+.rounded-sm,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl,
+.rounded-full,
+[class*="rounded-sm"],
+[class*="rounded-md"],
+[class*="rounded-lg"],
+[class*="rounded-xl"],
+[class*="rounded-2xl"],
+[class*="rounded-3xl"],
+[class*="rounded-full"] {
+  border-radius: 0 !important;
+}
+
+/* Override inline styles with border-radius */
+[style*="border-radius"],
+[style*="borderRadius"] {
+  border-radius: 0 !important;
 }

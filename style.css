@@ -652,36 +652,47 @@ body.dark svg:not(.card svg):not([class*="card"] svg),
   border-bottom-color: transparent !important;
 }
 
-/* Restore border-bottom for card elements - override any link rules */
-html[data-theme="dark"] .card,
-html[data-theme="dark"] [class*="card"],
-html[data-theme="dark"] [class*="px-6"][class*="py-5"],
-html[data-theme="dark"] div[class*="px-6"][class*="py-5"],
-html.dark .card,
-html.dark [class*="card"],
-html.dark [class*="px-6"][class*="py-5"],
-html.dark div[class*="px-6"][class*="py-5"],
-body[data-theme="dark"] .card,
-body[data-theme="dark"] [class*="card"],
-body[data-theme="dark"] [class*="px-6"][class*="py-5"],
-body[data-theme="dark"] div[class*="px-6"][class*="py-5"],
-body.dark .card,
-body.dark [class*="card"],
-body.dark [class*="px-6"][class*="py-5"],
-body.dark div[class*="px-6"][class*="py-5"],
-[data-theme="dark"] .card,
-[data-theme="dark"] [class*="card"],
-[data-theme="dark"] [class*="px-6"][class*="py-5"],
-[data-theme="dark"] div[class*="px-6"][class*="py-5"],
-.dark .card,
-.dark [class*="card"],
-.dark [class*="px-6"][class*="py-5"],
-.dark div[class*="px-6"][class*="py-5"] {
+/* Remove border from card links in dark mode */
+html[data-theme="dark"] a.card,
+html[data-theme="dark"] a[class*="card"],
+html.dark a.card,
+html.dark a[class*="card"],
+body[data-theme="dark"] a.card,
+body[data-theme="dark"] a[class*="card"],
+body.dark a.card,
+body.dark a[class*="card"],
+[data-theme="dark"] a.card,
+[data-theme="dark"] a[class*="card"],
+.dark a.card,
+.dark a[class*="card"] {
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+}
+
+/* Restore border-bottom only for non-link card elements (divs with px-6 py-5) */
+html[data-theme="dark"] div[class*="px-6"][class*="py-5"]:not(a),
+html.dark div[class*="px-6"][class*="py-5"]:not(a),
+body[data-theme="dark"] div[class*="px-6"][class*="py-5"]:not(a),
+body.dark div[class*="px-6"][class*="py-5"]:not(a),
+[data-theme="dark"] div[class*="px-6"][class*="py-5"]:not(a),
+.dark div[class*="px-6"][class*="py-5"]:not(a) {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-bottom-width: 1px !important;
   border-bottom-style: solid !important;
   border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  a.card,
+  a[class*="card"] {
+    border: none !important;
+    border-width: 0 !important;
+    border-style: none !important;
+    border-color: transparent !important;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

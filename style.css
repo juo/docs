@@ -336,23 +336,73 @@ body.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([cla
 /* Remove underline from h2 headings and their spans in dark mode */
 /* Only target h2 elements, not buttons or other elements */
 html[data-theme="dark"] h2,
+html[data-theme="dark"] h2 *,
 html[data-theme="dark"] h2 span,
 html[data-theme="dark"] h2 span.cursor-pointer,
+html[data-theme="dark"] h2::before,
+html[data-theme="dark"] h2::after,
 html.dark h2,
+html.dark h2 *,
 html.dark h2 span,
 html.dark h2 span.cursor-pointer,
+html.dark h2::before,
+html.dark h2::after,
 body[data-theme="dark"] h2,
+body[data-theme="dark"] h2 *,
 body[data-theme="dark"] h2 span,
 body[data-theme="dark"] h2 span.cursor-pointer,
+body[data-theme="dark"] h2::before,
+body[data-theme="dark"] h2::after,
 body.dark h2,
+body.dark h2 *,
 body.dark h2 span,
 body.dark h2 span.cursor-pointer,
+body.dark h2::before,
+body.dark h2::after,
 [data-theme="dark"] h2,
+[data-theme="dark"] h2 *,
 [data-theme="dark"] h2 span,
 [data-theme="dark"] h2 span.cursor-pointer,
+[data-theme="dark"] h2::before,
+[data-theme="dark"] h2::after,
 .dark h2,
+.dark h2 *,
 .dark h2 span,
-.dark h2 span.cursor-pointer {
+.dark h2 span.cursor-pointer,
+.dark h2::before,
+.dark h2::after {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  text-decoration-line: none !important;
+  text-underline-offset: unset !important;
+  text-decoration-thickness: unset !important;
+}
+
+/* Remove underlines from CardGroup and card-group containers */
+html[data-theme="dark"] [class*="card-group"],
+html[data-theme="dark"] [class*="CardGroup"],
+html[data-theme="dark"] [class*="card-group"] *,
+html[data-theme="dark"] [class*="CardGroup"] *,
+html.dark [class*="card-group"],
+html.dark [class*="CardGroup"],
+html.dark [class*="card-group"] *,
+html.dark [class*="CardGroup"] *,
+body[data-theme="dark"] [class*="card-group"],
+body[data-theme="dark"] [class*="CardGroup"],
+body[data-theme="dark"] [class*="card-group"] *,
+body[data-theme="dark"] [class*="CardGroup"] *,
+body.dark [class*="card-group"],
+body.dark [class*="CardGroup"],
+body.dark [class*="card-group"] *,
+body.dark [class*="CardGroup"] *,
+[data-theme="dark"] [class*="card-group"],
+[data-theme="dark"] [class*="CardGroup"],
+[data-theme="dark"] [class*="card-group"] *,
+[data-theme="dark"] [class*="CardGroup"] *,
+.dark [class*="card-group"],
+.dark [class*="CardGroup"],
+.dark [class*="card-group"] *,
+.dark [class*="CardGroup"] * {
   text-decoration: none !important;
   border-bottom: none !important;
   text-decoration-line: none !important;
@@ -360,8 +410,22 @@ body.dark h2 span.cursor-pointer,
 
 @media (prefers-color-scheme: dark) {
   h2,
+  h2 *,
   h2 span,
-  h2 span.cursor-pointer {
+  h2 span.cursor-pointer,
+  h2::before,
+  h2::after {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    text-decoration-line: none !important;
+    text-underline-offset: unset !important;
+    text-decoration-thickness: unset !important;
+  }
+  
+  [class*="card-group"],
+  [class*="CardGroup"],
+  [class*="card-group"] *,
+  [class*="CardGroup"] * {
     text-decoration: none !important;
     border-bottom: none !important;
     text-decoration-line: none !important;

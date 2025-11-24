@@ -716,6 +716,29 @@ body.dark div[class*="px-6"][class*="py-5"]:not(a),
   border-bottom-color: rgba(255, 255, 255, 0.1) !important;
 }
 
+/* Make border lighter on hover for px-6 py-5 elements */
+html[data-theme="dark"] div[class*="px-6"][class*="py-5"]:not(a):hover,
+html[data-theme="dark"] a.card:hover div[class*="px-6"][class*="py-5"],
+html[data-theme="dark"] a[class*="card"]:hover div[class*="px-6"][class*="py-5"],
+html.dark div[class*="px-6"][class*="py-5"]:not(a):hover,
+html.dark a.card:hover div[class*="px-6"][class*="py-5"],
+html.dark a[class*="card"]:hover div[class*="px-6"][class*="py-5"],
+body[data-theme="dark"] div[class*="px-6"][class*="py-5"]:not(a):hover,
+body[data-theme="dark"] a.card:hover div[class*="px-6"][class*="py-5"],
+body[data-theme="dark"] a[class*="card"]:hover div[class*="px-6"][class*="py-5"],
+body.dark div[class*="px-6"][class*="py-5"]:not(a):hover,
+body.dark a.card:hover div[class*="px-6"][class*="py-5"],
+body.dark a[class*="card"]:hover div[class*="px-6"][class*="py-5"],
+[data-theme="dark"] div[class*="px-6"][class*="py-5"]:not(a):hover,
+[data-theme="dark"] a.card:hover div[class*="px-6"][class*="py-5"],
+[data-theme="dark"] a[class*="card"]:hover div[class*="px-6"][class*="py-5"],
+.dark div[class*="px-6"][class*="py-5"]:not(a):hover,
+.dark a.card:hover div[class*="px-6"][class*="py-5"],
+.dark a[class*="card"]:hover div[class*="px-6"][class*="py-5"] {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.2) !important;
+}
+
 @media (prefers-color-scheme: dark) {
   a.card,
   a[class*="card"] {

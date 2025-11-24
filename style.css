@@ -429,17 +429,44 @@ body.dark .dark\:group-hover\:text-primary-light,
 }
 
 html[data-theme="dark"] .group:hover .group-hover\:text-primary,
+html[data-theme="dark"] a.card.group:hover .group-hover\:text-primary,
+html[data-theme="dark"] a[class*="card"].group:hover .group-hover\:text-primary,
 html.dark .group:hover .group-hover\:text-primary,
+html.dark a.card.group:hover .group-hover\:text-primary,
+html.dark a[class*="card"].group:hover .group-hover\:text-primary,
 body[data-theme="dark"] .group:hover .group-hover\:text-primary,
+body[data-theme="dark"] a.card.group:hover .group-hover\:text-primary,
+body[data-theme="dark"] a[class*="card"].group:hover .group-hover\:text-primary,
 body.dark .group:hover .group-hover\:text-primary,
+body.dark a.card.group:hover .group-hover\:text-primary,
+body.dark a[class*="card"].group:hover .group-hover\:text-primary,
 [data-theme="dark"] .group:hover .group-hover\:text-primary,
+[data-theme="dark"] a.card.group:hover .group-hover\:text-primary,
+[data-theme="dark"] a[class*="card"].group:hover .group-hover\:text-primary,
 .dark .group:hover .group-hover\:text-primary,
+.dark a.card.group:hover .group-hover\:text-primary,
+.dark a[class*="card"].group:hover .group-hover\:text-primary {
+  color: #d9d9d9 !important;
+}
+
 html[data-theme="dark"] .group:hover .dark\:group-hover\:text-primary-light,
+html[data-theme="dark"] a.card.group:hover .dark\:group-hover\:text-primary-light,
+html[data-theme="dark"] a[class*="card"].group:hover .dark\:group-hover\:text-primary-light,
 html.dark .group:hover .dark\:group-hover\:text-primary-light,
+html.dark a.card.group:hover .dark\:group-hover\:text-primary-light,
+html.dark a[class*="card"].group:hover .dark\:group-hover\:text-primary-light,
 body[data-theme="dark"] .group:hover .dark\:group-hover\:text-primary-light,
+body[data-theme="dark"] a.card.group:hover .dark\:group-hover\:text-primary-light,
+body[data-theme="dark"] a[class*="card"].group:hover .dark\:group-hover\:text-primary-light,
 body.dark .group:hover .dark\:group-hover\:text-primary-light,
+body.dark a.card.group:hover .dark\:group-hover\:text-primary-light,
+body.dark a[class*="card"].group:hover .dark\:group-hover\:text-primary-light,
 [data-theme="dark"] .group:hover .dark\:group-hover\:text-primary-light,
-.dark .group:hover .dark\:group-hover\:text-primary-light {
+[data-theme="dark"] a.card.group:hover .dark\:group-hover\:text-primary-light,
+[data-theme="dark"] a[class*="card"].group:hover .dark\:group-hover\:text-primary-light,
+.dark .group:hover .dark\:group-hover\:text-primary-light,
+.dark a.card.group:hover .dark\:group-hover\:text-primary-light,
+.dark a[class*="card"].group:hover .dark\:group-hover\:text-primary-light {
   color: #d9d9d9 !important;
 }
 
@@ -652,7 +679,7 @@ body.dark svg:not(.card svg):not([class*="card"] svg),
   border-bottom-color: transparent !important;
 }
 
-/* Remove border from card links in dark mode */
+/* Remove all borders including bottom border from card links in dark mode */
 html[data-theme="dark"] a.card,
 html[data-theme="dark"] a[class*="card"],
 html.dark a.card,
@@ -669,6 +696,10 @@ body.dark a[class*="card"],
   border-width: 0 !important;
   border-style: none !important;
   border-color: transparent !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
 }
 
 /* Restore border-bottom only for non-link card elements (divs with px-6 py-5) */

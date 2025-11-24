@@ -2,6 +2,22 @@
   color: #3727F4 !important;
 }
 
+/* Dark mode overrides - multiple selectors for compatibility */
+html[data-theme="dark"] .text-white,
+html.dark .text-white,
+body[data-theme="dark"] .text-white,
+body.dark .text-white,
+[data-theme="dark"] .text-white,
+.dark .text-white {
+  color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-white {
+    color: #d9d9d9 !important;
+  }
+}
+
 /* Book a demo button base styling */
 a[href="https://juo.io/demo"] {
   border: 1px solid !important;
@@ -12,6 +28,22 @@ a[href="https://juo.io/demo"] {
   position: relative;
   padding-left: 0.5rem !important; 
   padding-right: 0.5rem !important;
+}
+
+/* Dark mode overrides for demo button */
+html[data-theme="dark"] a[href="https://juo.io/demo"],
+html.dark a[href="https://juo.io/demo"],
+body[data-theme="dark"] a[href="https://juo.io/demo"],
+body.dark a[href="https://juo.io/demo"],
+[data-theme="dark"] a[href="https://juo.io/demo"],
+.dark a[href="https://juo.io/demo"] {
+  color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  a[href="https://juo.io/demo"] {
+    color: #d9d9d9 !important;
+  }
 }
 
 /* Remove green pill span */
@@ -30,6 +62,29 @@ a[href="https://juo.io/demo"] .flex.items-center {
 a[href="https://juo.io/demo"]:hover,
 a[href="https://juo.io/demo"]:focus {
   border-color: #3727F4 !important;
+}
+
+/* Dark mode hover/focus for demo button */
+html[data-theme="dark"] a[href="https://juo.io/demo"]:hover,
+html[data-theme="dark"] a[href="https://juo.io/demo"]:focus,
+html.dark a[href="https://juo.io/demo"]:hover,
+html.dark a[href="https://juo.io/demo"]:focus,
+body[data-theme="dark"] a[href="https://juo.io/demo"]:hover,
+body[data-theme="dark"] a[href="https://juo.io/demo"]:focus,
+body.dark a[href="https://juo.io/demo"]:hover,
+body.dark a[href="https://juo.io/demo"]:focus,
+[data-theme="dark"] a[href="https://juo.io/demo"]:hover,
+[data-theme="dark"] a[href="https://juo.io/demo"]:focus,
+.dark a[href="https://juo.io/demo"]:hover,
+.dark a[href="https://juo.io/demo"]:focus {
+  border-color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  a[href="https://juo.io/demo"]:hover,
+  a[href="https://juo.io/demo"]:focus {
+    border-color: #d9d9d9 !important;
+  }
 }
 
 a[href="https://juo.io/demo"] svg {
@@ -68,6 +123,22 @@ a[href^="https://mintlify.com"] {
   color: #3727F4 !important;
 }
 
+/* Dark mode override for text-primary */
+html[data-theme="dark"] .text-primary,
+html.dark .text-primary,
+body[data-theme="dark"] .text-primary,
+body.dark .text-primary,
+[data-theme="dark"] .text-primary,
+.dark .text-primary {
+  color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-primary {
+    color: #d9d9d9 !important;
+  }
+}
+
 .bg-primary {
   color: #111111 !important;
   background-color: #111111 !important;
@@ -83,4 +154,813 @@ a[href^="https://mintlify.com"] {
 
 .ring-gray-400\/20 {
   border-radius: 4px !important;
+}
+
+/* Override inline styles with #3727F4 background-color in dark mode */
+html[data-theme="dark"] a[style*="background-color: #3727F4"],
+html[data-theme="dark"] a[style*="background-color:#3727F4"],
+[data-theme="dark"] a[style*="background-color: #3727F4"],
+[data-theme="dark"] a[style*="background-color:#3727F4"],
+.dark a[style*="background-color: #3727F4"],
+.dark a[style*="background-color:#3727F4"] {
+  background-color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  a[style*="background-color: #3727F4"],
+  a[style*="background-color:#3727F4"] {
+    background-color: #d9d9d9 !important;
+  }
+}
+
+/* Override Mintlify CSS variables in dark mode */
+:root[data-theme="dark"],
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark,
+[data-theme="dark"],
+.dark {
+  --mint-primary: #d9d9d9 !important;
+  --primary: #d9d9d9 !important;
+  --color-primary: #d9d9d9 !important;
+}
+
+/* Comprehensive override for any inline style containing #3727F4 in dark mode */
+html[data-theme="dark"] [style*="#3727F4"],
+html[data-theme="dark"] [style*="color:#3727F4"],
+html[data-theme="dark"] [style*="color: #3727F4"],
+html[data-theme="dark"] [style*="border-color:#3727F4"],
+html[data-theme="dark"] [style*="border-color: #3727F4"],
+[data-theme="dark"] [style*="#3727F4"],
+[data-theme="dark"] [style*="color:#3727F4"],
+[data-theme="dark"] [style*="color: #3727F4"],
+[data-theme="dark"] [style*="border-color:#3727F4"],
+[data-theme="dark"] [style*="border-color: #3727F4"],
+.dark [style*="#3727F4"],
+.dark [style*="color:#3727F4"],
+.dark [style*="color: #3727F4"],
+.dark [style*="border-color:#3727F4"],
+.dark [style*="border-color: #3727F4"] {
+  color: #d9d9d9 !important;
+  border-color: #d9d9d9 !important;
+  background-color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  [style*="#3727F4"],
+  [style*="color:#3727F4"],
+  [style*="color: #3727F4"],
+  [style*="border-color:#3727F4"],
+  [style*="border-color: #3727F4"] {
+    color: #d9d9d9 !important;
+    border-color: #d9d9d9 !important;
+    background-color: #d9d9d9 !important;
+  }
+}
+
+/* Override text-primary-light in dark mode */
+html[data-theme="dark"] .text-primary-light,
+html.dark .text-primary-light,
+body[data-theme="dark"] .text-primary-light,
+body.dark .text-primary-light,
+[data-theme="dark"] .text-primary-light,
+.dark .text-primary-light,
+html[data-theme="dark"] .dark\:text-primary-light,
+html.dark .dark\:text-primary-light,
+body[data-theme="dark"] .dark\:text-primary-light,
+body.dark .dark\:text-primary-light,
+[data-theme="dark"] .dark\:text-primary-light,
+.dark .dark\:text-primary-light {
+  color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-primary-light,
+  .dark\:text-primary-light {
+    color: #d9d9d9 !important;
+  }
+}
+
+/* Override bg-primary and bg-primary-light in dark mode */
+html[data-theme="dark"] .bg-primary,
+html.dark .bg-primary,
+body[data-theme="dark"] .bg-primary,
+body.dark .bg-primary,
+[data-theme="dark"] .bg-primary,
+.dark .bg-primary {
+  background-color: #d9d9d9 !important;
+}
+
+html[data-theme="dark"] .bg-primary-light,
+html.dark .bg-primary-light,
+body[data-theme="dark"] .bg-primary-light,
+body.dark .bg-primary-light,
+[data-theme="dark"] .bg-primary-light,
+.dark .bg-primary-light,
+html[data-theme="dark"] .dark\:bg-primary-light,
+html.dark .dark\:bg-primary-light,
+body[data-theme="dark"] .dark\:bg-primary-light,
+body.dark .dark\:bg-primary-light,
+[data-theme="dark"] .dark\:bg-primary-light,
+.dark .dark\:bg-primary-light {
+  background-color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-primary,
+  .bg-primary-light,
+  .dark\:bg-primary-light {
+    background-color: #d9d9d9 !important;
+  }
+}
+
+/* Override link underlines in dark mode - ensure they're gray, not blue */
+/* Exclude card elements and their children */
+html[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]) {
+  text-decoration-color: #d9d9d9 !important;
+  border-bottom-color: #d9d9d9 !important;
+}
+
+html[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+html.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+body.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]) {
+  text-decoration-color: #d9d9d9 !important;
+  border-bottom-color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+  a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+  a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+  a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+  a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
+  a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]) {
+    text-decoration-color: #d9d9d9 !important;
+    border-bottom-color: #d9d9d9 !important;
+  }
+}
+
+/* Remove underline from h2 headings and their spans in dark mode */
+/* Only target h2 elements, not buttons or other elements */
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h2 span,
+html[data-theme="dark"] h2 span.cursor-pointer,
+html.dark h2,
+html.dark h2 span,
+html.dark h2 span.cursor-pointer,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] h2 span,
+body[data-theme="dark"] h2 span.cursor-pointer,
+body.dark h2,
+body.dark h2 span,
+body.dark h2 span.cursor-pointer,
+[data-theme="dark"] h2,
+[data-theme="dark"] h2 span,
+[data-theme="dark"] h2 span.cursor-pointer,
+.dark h2,
+.dark h2 span,
+.dark h2 span.cursor-pointer {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  text-decoration-line: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  h2,
+  h2 span,
+  h2 span.cursor-pointer {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    text-decoration-line: none !important;
+  }
+}
+
+/* Only apply border-bottom-color to links that explicitly have border-bottom styles */
+html[data-theme="dark"] a[style*="border-bottom"],
+html.dark a[style*="border-bottom"],
+body[data-theme="dark"] a[style*="border-bottom"],
+body.dark a[style*="border-bottom"],
+[data-theme="dark"] a[style*="border-bottom"],
+.dark a[style*="border-bottom"] {
+  border-bottom-color: #d9d9d9 !important;
+}
+
+/* Ensure card and container borders are consistent on all sides in dark mode */
+/* Remove any specific border-bottom-color and let border-color apply uniformly to all sides */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] [class*="card"]:not(a),
+html[data-theme="dark"] .group:not(a),
+html[data-theme="dark"] [class*="group"]:not(a),
+html.dark .card,
+html.dark [class*="card"]:not(a),
+html.dark .group:not(a),
+html.dark [class*="group"]:not(a),
+body[data-theme="dark"] .card,
+body[data-theme="dark"] [class*="card"]:not(a),
+body[data-theme="dark"] .group:not(a),
+body[data-theme="dark"] [class*="group"]:not(a),
+body.dark .card,
+body.dark [class*="card"]:not(a),
+body.dark .group:not(a),
+body.dark [class*="group"]:not(a),
+[data-theme="dark"] .card,
+[data-theme="dark"] [class*="card"]:not(a),
+[data-theme="dark"] .group:not(a),
+[data-theme="dark"] [class*="group"]:not(a),
+.dark .card,
+.dark [class*="card"]:not(a),
+.dark .group:not(a),
+.dark [class*="group"]:not(a) {
+  /* Unset any specific border-bottom-color so it uses the unified border-color */
+  border-bottom-color: unset !important;
+  /* Ensure border-bottom-width matches other sides */
+  border-bottom-width: 1px !important;
+  /* Use border-color to set all sides uniformly - this will override border-bottom-color */
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Override border hover effects on cards and other elements */
+html[data-theme="dark"] .group-hover\:text-primary,
+html.dark .group-hover\:text-primary,
+body[data-theme="dark"] .group-hover\:text-primary,
+body.dark .group-hover\:text-primary,
+[data-theme="dark"] .group-hover\:text-primary,
+.dark .group-hover\:text-primary,
+html[data-theme="dark"] .dark\:group-hover\:text-primary-light,
+html.dark .dark\:group-hover\:text-primary-light,
+body[data-theme="dark"] .dark\:group-hover\:text-primary-light,
+body.dark .dark\:group-hover\:text-primary-light,
+[data-theme="dark"] .dark\:group-hover\:text-primary-light,
+.dark .dark\:group-hover\:text-primary-light {
+  color: #d9d9d9 !important;
+}
+
+html[data-theme="dark"] .group:hover .group-hover\:text-primary,
+html.dark .group:hover .group-hover\:text-primary,
+body[data-theme="dark"] .group:hover .group-hover\:text-primary,
+body.dark .group:hover .group-hover\:text-primary,
+[data-theme="dark"] .group:hover .group-hover\:text-primary,
+.dark .group:hover .group-hover\:text-primary,
+html[data-theme="dark"] .group:hover .dark\:group-hover\:text-primary-light,
+html.dark .group:hover .dark\:group-hover\:text-primary-light,
+body[data-theme="dark"] .group:hover .dark\:group-hover\:text-primary-light,
+body.dark .group:hover .dark\:group-hover\:text-primary-light,
+[data-theme="dark"] .group:hover .dark\:group-hover\:text-primary-light,
+.dark .group:hover .dark\:group-hover\:text-primary-light {
+  color: #d9d9d9 !important;
+}
+
+/* Override border colors on hover for cards and interactive elements */
+html[data-theme="dark"] .card:hover,
+html[data-theme="dark"] [class*="card"]:hover,
+html[data-theme="dark"] .group:hover,
+html.dark .card:hover,
+html.dark [class*="card"]:hover,
+html.dark .group:hover,
+body[data-theme="dark"] .card:hover,
+body[data-theme="dark"] [class*="card"]:hover,
+body[data-theme="dark"] .group:hover,
+body.dark .card:hover,
+body.dark [class*="card"]:hover,
+body.dark .group:hover,
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] [class*="card"]:hover,
+[data-theme="dark"] .group:hover,
+.dark .card:hover,
+.dark [class*="card"]:hover,
+.dark .group:hover {
+  border-color: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card:hover,
+  [class*="card"]:hover,
+  .group:hover {
+    border-color: #d9d9d9 !important;
+  }
+}
+
+/* Override icon hover states in dark mode */
+html[data-theme="dark"] svg:hover,
+html[data-theme="dark"] [class*="icon"]:hover,
+html[data-theme="dark"] svg[class*="hover"]:hover,
+html.dark svg:hover,
+html.dark [class*="icon"]:hover,
+html.dark svg[class*="hover"]:hover,
+body[data-theme="dark"] svg:hover,
+body[data-theme="dark"] [class*="icon"]:hover,
+body[data-theme="dark"] svg[class*="hover"]:hover,
+body.dark svg:hover,
+body.dark [class*="icon"]:hover,
+body.dark svg[class*="hover"]:hover,
+[data-theme="dark"] svg:hover,
+[data-theme="dark"] [class*="icon"]:hover,
+[data-theme="dark"] svg[class*="hover"]:hover,
+.dark svg:hover,
+.dark [class*="icon"]:hover,
+.dark svg[class*="hover"]:hover {
+  color: #d9d9d9 !important;
+  fill: #d9d9d9 !important;
+  stroke: #d9d9d9 !important;
+}
+
+html[data-theme="dark"] a:hover svg,
+html[data-theme="dark"] a:hover [class*="icon"],
+html.dark a:hover svg,
+html.dark a:hover [class*="icon"],
+body[data-theme="dark"] a:hover svg,
+body[data-theme="dark"] a:hover [class*="icon"],
+body.dark a:hover svg,
+body.dark a:hover [class*="icon"],
+[data-theme="dark"] a:hover svg,
+[data-theme="dark"] a:hover [class*="icon"],
+.dark a:hover svg,
+.dark a:hover [class*="icon"] {
+  color: #d9d9d9 !important;
+  fill: #d9d9d9 !important;
+  stroke: #d9d9d9 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  svg:hover,
+  [class*="icon"]:hover,
+  a:hover svg,
+  a:hover [class*="icon"] {
+    color: #d9d9d9 !important;
+    fill: #d9d9d9 !important;
+    stroke: #d9d9d9 !important;
+  }
+}
+
+/* Override sidebar active menu item background in dark mode */
+/* Target bg-primary/10 and dark:bg-primary-light/10 classes using attribute selectors */
+html[data-theme="dark"] [class*="bg-primary/10"],
+html[data-theme="dark"] [class*="bg-primary-light/10"],
+html[data-theme="dark"] [class*="dark:bg-primary-light/10"],
+html.dark [class*="bg-primary/10"],
+html.dark [class*="bg-primary-light/10"],
+html.dark [class*="dark:bg-primary-light/10"],
+body[data-theme="dark"] [class*="bg-primary/10"],
+body[data-theme="dark"] [class*="bg-primary-light/10"],
+body[data-theme="dark"] [class*="dark:bg-primary-light/10"],
+body.dark [class*="bg-primary/10"],
+body.dark [class*="bg-primary-light/10"],
+body.dark [class*="dark:bg-primary-light/10"],
+[data-theme="dark"] [class*="bg-primary/10"],
+[data-theme="dark"] [class*="bg-primary-light/10"],
+[data-theme="dark"] [class*="dark:bg-primary-light/10"],
+.dark [class*="bg-primary/10"],
+.dark [class*="bg-primary-light/10"],
+.dark [class*="dark:bg-primary-light/10"] {
+  background-color: rgba(217, 217, 217, 0.1) !important;
+}
+
+html[data-theme="dark"] .sidebar a[aria-current="page"],
+html[data-theme="dark"] .sidebar a.active,
+html[data-theme="dark"] .sidebar li.active,
+html[data-theme="dark"] .sidebar [class*="active"],
+html[data-theme="dark"] [class*="sidebar"] a[aria-current="page"],
+html[data-theme="dark"] [class*="sidebar"] a.active,
+html[data-theme="dark"] [class*="sidebar"] li.active,
+html[data-theme="dark"] [class*="sidebar"] [class*="active"],
+html.dark .sidebar a[aria-current="page"],
+html.dark .sidebar a.active,
+html.dark .sidebar li.active,
+html.dark .sidebar [class*="active"],
+html.dark [class*="sidebar"] a[aria-current="page"],
+html.dark [class*="sidebar"] a.active,
+html.dark [class*="sidebar"] li.active,
+html.dark [class*="sidebar"] [class*="active"],
+body[data-theme="dark"] .sidebar a[aria-current="page"],
+body[data-theme="dark"] .sidebar a.active,
+body[data-theme="dark"] .sidebar li.active,
+body[data-theme="dark"] .sidebar [class*="active"],
+body[data-theme="dark"] [class*="sidebar"] a[aria-current="page"],
+body[data-theme="dark"] [class*="sidebar"] a.active,
+body[data-theme="dark"] [class*="sidebar"] li.active,
+body[data-theme="dark"] [class*="sidebar"] [class*="active"],
+body.dark .sidebar a[aria-current="page"],
+body.dark .sidebar a.active,
+body.dark .sidebar li.active,
+body.dark .sidebar [class*="active"],
+body.dark [class*="sidebar"] a[aria-current="page"],
+body.dark [class*="sidebar"] a.active,
+body.dark [class*="sidebar"] li.active,
+body.dark [class*="sidebar"] [class*="active"],
+[data-theme="dark"] .sidebar a[aria-current="page"],
+[data-theme="dark"] .sidebar a.active,
+[data-theme="dark"] .sidebar li.active,
+[data-theme="dark"] .sidebar [class*="active"],
+[data-theme="dark"] [class*="sidebar"] a[aria-current="page"],
+[data-theme="dark"] [class*="sidebar"] a.active,
+[data-theme="dark"] [class*="sidebar"] li.active,
+[data-theme="dark"] [class*="sidebar"] [class*="active"],
+.dark .sidebar a[aria-current="page"],
+.dark .sidebar a.active,
+.dark .sidebar li.active,
+.dark .sidebar [class*="active"],
+.dark [class*="sidebar"] a[aria-current="page"],
+.dark [class*="sidebar"] a.active,
+.dark [class*="sidebar"] li.active,
+.dark [class*="sidebar"] [class*="active"] {
+  background-color: rgba(217, 217, 217, 0.1) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-primary\/10,
+  [class*="bg-primary/10"],
+  .dark\:bg-primary-light\/10,
+  [class*="bg-primary-light/10"],
+  .sidebar a[aria-current="page"],
+  .sidebar a.active,
+  .sidebar li.active,
+  .sidebar [class*="active"],
+  [class*="sidebar"] a[aria-current="page"],
+  [class*="sidebar"] a.active,
+  [class*="sidebar"] li.active,
+  [class*="sidebar"] [class*="active"] {
+    background-color: rgba(217, 217, 217, 0.1) !important;
+  }
+}
+
+/* Remove underlines only from h2 headings and their spans - be very specific */
+/* Don't apply to buttons or any other elements */
+
+/* Remove bottom border from buttons in dark mode */
+html[data-theme="dark"] button,
+html.dark button,
+body[data-theme="dark"] button,
+body.dark button,
+[data-theme="dark"] button,
+.dark button {
+  border-bottom: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-style: none !important;
+  border-bottom-color: transparent !important;
+}
+
+/* Remove bottom border from navigation items and SVGs in dark mode */
+/* But exclude card elements and their children */
+html[data-theme="dark"] [class*="group"][class*="cursor-pointer"]:not(.card):not([class*="card"]):not([class*="px-6"]),
+html[data-theme="dark"] svg:not(.card svg):not([class*="card"] svg),
+html.dark [class*="group"][class*="cursor-pointer"]:not(.card):not([class*="card"]):not([class*="px-6"]),
+html.dark svg:not(.card svg):not([class*="card"] svg),
+body[data-theme="dark"] [class*="group"][class*="cursor-pointer"]:not(.card):not([class*="card"]):not([class*="px-6"]),
+body[data-theme="dark"] svg:not(.card svg):not([class*="card"] svg),
+body.dark [class*="group"][class*="cursor-pointer"]:not(.card):not([class*="card"]):not([class*="px-6"]),
+body.dark svg:not(.card svg):not([class*="card"] svg),
+[data-theme="dark"] [class*="group"][class*="cursor-pointer"]:not(.card):not([class*="card"]):not([class*="px-6"]),
+[data-theme="dark"] svg:not(.card svg):not([class*="card"] svg),
+.dark [class*="group"][class*="cursor-pointer"]:not(.card):not([class*="card"]):not([class*="px-6"]),
+.dark svg:not(.card svg):not([class*="card"] svg) {
+  border-bottom: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-style: none !important;
+  border-bottom-color: transparent !important;
+}
+
+/* Restore border-bottom for card elements - override any link rules */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] [class*="card"],
+html[data-theme="dark"] [class*="px-6"][class*="py-5"],
+html[data-theme="dark"] div[class*="px-6"][class*="py-5"],
+html.dark .card,
+html.dark [class*="card"],
+html.dark [class*="px-6"][class*="py-5"],
+html.dark div[class*="px-6"][class*="py-5"],
+body[data-theme="dark"] .card,
+body[data-theme="dark"] [class*="card"],
+body[data-theme="dark"] [class*="px-6"][class*="py-5"],
+body[data-theme="dark"] div[class*="px-6"][class*="py-5"],
+body.dark .card,
+body.dark [class*="card"],
+body.dark [class*="px-6"][class*="py-5"],
+body.dark div[class*="px-6"][class*="py-5"],
+[data-theme="dark"] .card,
+[data-theme="dark"] [class*="card"],
+[data-theme="dark"] [class*="px-6"][class*="py-5"],
+[data-theme="dark"] div[class*="px-6"][class*="py-5"],
+.dark .card,
+.dark [class*="card"],
+.dark [class*="px-6"][class*="py-5"],
+.dark div[class*="px-6"][class*="py-5"] {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-bottom-width: 1px !important;
+  border-bottom-style: solid !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  button,
+  [class*="group"][class*="cursor-pointer"],
+  svg {
+    border-bottom: none !important;
+    border-bottom-width: 0 !important;
+    border-bottom-style: none !important;
+    border-bottom-color: transparent !important;
+  }
+}
+
+/* Only target h2 headings and their spans for pseudo-elements */
+html[data-theme="dark"] h2 span::after,
+html[data-theme="dark"] h2 span::before,
+html[data-theme="dark"] h2 span.cursor-pointer::after,
+html[data-theme="dark"] h2 span.cursor-pointer::before,
+html.dark h2 span::after,
+html.dark h2 span::before,
+html.dark h2 span.cursor-pointer::after,
+html.dark h2 span.cursor-pointer::before,
+body[data-theme="dark"] h2 span::after,
+body[data-theme="dark"] h2 span::before,
+body[data-theme="dark"] h2 span.cursor-pointer::after,
+body[data-theme="dark"] h2 span.cursor-pointer::before,
+body.dark h2 span::after,
+body.dark h2 span::before,
+body.dark h2 span.cursor-pointer::after,
+body.dark h2 span.cursor-pointer::before,
+[data-theme="dark"] h2 span::after,
+[data-theme="dark"] h2 span::before,
+[data-theme="dark"] h2 span.cursor-pointer::after,
+[data-theme="dark"] h2 span.cursor-pointer::before,
+.dark h2 span::after,
+.dark h2 span::before,
+.dark h2 span.cursor-pointer::after,
+.dark h2 span.cursor-pointer::before {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+/* Also remove underlines from headings that contain spans */
+html[data-theme="dark"] h2 span,
+html[data-theme="dark"] h2 span.cursor-pointer,
+html[data-theme="dark"] h3 span,
+html[data-theme="dark"] h3 span.cursor-pointer,
+html[data-theme="dark"] [class*="heading"] span,
+html.dark h2 span,
+html.dark h2 span.cursor-pointer,
+html.dark h3 span,
+html.dark h3 span.cursor-pointer,
+html.dark [class*="heading"] span,
+body[data-theme="dark"] h2 span,
+body[data-theme="dark"] h2 span.cursor-pointer,
+body[data-theme="dark"] h3 span,
+body[data-theme="dark"] h3 span.cursor-pointer,
+body[data-theme="dark"] [class*="heading"] span,
+body.dark h2 span,
+body.dark h2 span.cursor-pointer,
+body.dark h3 span,
+body.dark h3 span.cursor-pointer,
+body.dark [class*="heading"] span,
+[data-theme="dark"] h2 span,
+[data-theme="dark"] h2 span.cursor-pointer,
+[data-theme="dark"] h3 span,
+[data-theme="dark"] h3 span.cursor-pointer,
+[data-theme="dark"] [class*="heading"] span,
+.dark h2 span,
+.dark h2 span.cursor-pointer,
+.dark h3 span,
+.dark h3 span.cursor-pointer,
+.dark [class*="heading"] span {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Only target h2 headings, not buttons or other elements */
+  h2,
+  h2 span,
+  h2 span.cursor-pointer {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    text-decoration-line: none !important;
+  }
+}
+
+/* Make search bar text and border brighter on hover in dark mode */
+html[data-theme="dark"] button[id="search-bar-entry"]:hover,
+html[data-theme="dark"] button[id="search-bar-entry"]:focus,
+html.dark button[id="search-bar-entry"]:hover,
+html.dark button[id="search-bar-entry"]:focus,
+body[data-theme="dark"] button[id="search-bar-entry"]:hover,
+body[data-theme="dark"] button[id="search-bar-entry"]:focus,
+body.dark button[id="search-bar-entry"]:hover,
+body.dark button[id="search-bar-entry"]:focus,
+[data-theme="dark"] button[id="search-bar-entry"]:hover,
+[data-theme="dark"] button[id="search-bar-entry"]:focus,
+.dark button[id="search-bar-entry"]:hover,
+.dark button[id="search-bar-entry"]:focus {
+  color: rgba(255, 255, 255, 0.8) !important;
+  --tw-ring-color: rgba(255, 255, 255, 0.4) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+}
+
+html[data-theme="dark"] button[id="search-bar-entry"]:hover *,
+html[data-theme="dark"] button[id="search-bar-entry"]:hover div,
+html[data-theme="dark"] button[id="search-bar-entry"]:hover svg,
+html.dark button[id="search-bar-entry"]:hover *,
+html.dark button[id="search-bar-entry"]:hover div,
+html.dark button[id="search-bar-entry"]:hover svg,
+body[data-theme="dark"] button[id="search-bar-entry"]:hover *,
+body[data-theme="dark"] button[id="search-bar-entry"]:hover div,
+body[data-theme="dark"] button[id="search-bar-entry"]:hover svg,
+body.dark button[id="search-bar-entry"]:hover *,
+body.dark button[id="search-bar-entry"]:hover div,
+body.dark button[id="search-bar-entry"]:hover svg,
+[data-theme="dark"] button[id="search-bar-entry"]:hover *,
+[data-theme="dark"] button[id="search-bar-entry"]:hover div,
+[data-theme="dark"] button[id="search-bar-entry"]:hover svg,
+.dark button[id="search-bar-entry"]:hover *,
+.dark button[id="search-bar-entry"]:hover div,
+.dark button[id="search-bar-entry"]:hover svg {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  button[id="search-bar-entry"]:hover,
+  button[id="search-bar-entry"]:focus {
+    color: rgba(255, 255, 255, 0.8) !important;
+    --tw-ring-color: rgba(255, 255, 255, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+  }
+  
+  button[id="search-bar-entry"]:hover *,
+  button[id="search-bar-entry"]:hover div,
+  button[id="search-bar-entry"]:hover svg {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+}
+
+/* Override group-hover:fill-primary-dark in dark mode */
+html[data-theme="dark"] .group:hover .group-hover\:fill-primary-dark,
+html[data-theme="dark"] .group:hover [class*="group-hover:fill-primary-dark"],
+html[data-theme="dark"] [class*="group"]:hover .group-hover\:fill-primary-dark,
+html[data-theme="dark"] [class*="group"]:hover [class*="group-hover:fill-primary-dark"],
+html.dark .group:hover .group-hover\:fill-primary-dark,
+html.dark .group:hover [class*="group-hover:fill-primary-dark"],
+html.dark [class*="group"]:hover .group-hover\:fill-primary-dark,
+html.dark [class*="group"]:hover [class*="group-hover:fill-primary-dark"],
+body[data-theme="dark"] .group:hover .group-hover\:fill-primary-dark,
+body[data-theme="dark"] .group:hover [class*="group-hover:fill-primary-dark"],
+body[data-theme="dark"] [class*="group"]:hover .group-hover\:fill-primary-dark,
+body[data-theme="dark"] [class*="group"]:hover [class*="group-hover:fill-primary-dark"],
+body.dark .group:hover .group-hover\:fill-primary-dark,
+body.dark .group:hover [class*="group-hover:fill-primary-dark"],
+body.dark [class*="group"]:hover .group-hover\:fill-primary-dark,
+body.dark [class*="group"]:hover [class*="group-hover:fill-primary-dark"],
+[data-theme="dark"] .group:hover .group-hover\:fill-primary-dark,
+[data-theme="dark"] .group:hover [class*="group-hover:fill-primary-dark"],
+[data-theme="dark"] [class*="group"]:hover .group-hover\:fill-primary-dark,
+[data-theme="dark"] [class*="group"]:hover [class*="group-hover:fill-primary-dark"],
+.dark .group:hover .group-hover\:fill-primary-dark,
+.dark .group:hover [class*="group-hover:fill-primary-dark"],
+.dark [class*="group"]:hover .group-hover\:fill-primary-dark,
+.dark [class*="group"]:hover [class*="group-hover:fill-primary-dark"] {
+  fill: #d9d9d9 !important;
+}
+
+/* Only override fill color for group-hover:fill-primary-dark, not all SVGs */
+/* Allow SVGs to become whiter on hover, just prevent blue */
+
+/* Only override blue background for specific zinc-box elements, not all elements */
+/* Removed empty ruleset - zinc-box hover is handled by other rules */
+
+/* Make icon borders whiter on hover in dark mode */
+/* Override group-hover:ring-0 and ensure border/ring becomes whiter */
+html[data-theme="dark"] .group:hover [class*="zinc-box"],
+html[data-theme="dark"] [class*="group"]:hover [class*="zinc-box"],
+html.dark .group:hover [class*="zinc-box"],
+html.dark [class*="group"]:hover [class*="zinc-box"],
+body[data-theme="dark"] .group:hover [class*="zinc-box"],
+body[data-theme="dark"] [class*="group"]:hover [class*="zinc-box"],
+body.dark .group:hover [class*="zinc-box"],
+body.dark [class*="group"]:hover [class*="zinc-box"],
+[data-theme="dark"] .group:hover [class*="zinc-box"],
+[data-theme="dark"] [class*="group"]:hover [class*="zinc-box"],
+.dark .group:hover [class*="zinc-box"],
+.dark [class*="group"]:hover [class*="zinc-box"] {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  --tw-ring-color: rgba(255, 255, 255, 0.4) !important;
+  --tw-ring-opacity: 1 !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Override group-hover:ring-0 class */
+html[data-theme="dark"] .group:hover .group-hover\:ring-0,
+html[data-theme="dark"] .group:hover [class*="group-hover:ring-0"],
+html[data-theme="dark"] [class*="group"]:hover .group-hover\:ring-0,
+html[data-theme="dark"] [class*="group"]:hover [class*="group-hover:ring-0"],
+html.dark .group:hover .group-hover\:ring-0,
+html.dark .group:hover [class*="group-hover:ring-0"],
+html.dark [class*="group"]:hover .group-hover\:ring-0,
+html.dark [class*="group"]:hover [class*="group-hover:ring-0"],
+body[data-theme="dark"] .group:hover .group-hover\:ring-0,
+body[data-theme="dark"] .group:hover [class*="group-hover:ring-0"],
+body[data-theme="dark"] [class*="group"]:hover .group-hover\:ring-0,
+body[data-theme="dark"] [class*="group"]:hover [class*="group-hover:ring-0"],
+body.dark .group:hover .group-hover\:ring-0,
+body.dark .group:hover [class*="group-hover:ring-0"],
+body.dark [class*="group"]:hover .group-hover\:ring-0,
+body.dark [class*="group"]:hover [class*="group-hover:ring-0"],
+[data-theme="dark"] .group:hover .group-hover\:ring-0,
+[data-theme="dark"] .group:hover [class*="group-hover:ring-0"],
+[data-theme="dark"] [class*="group"]:hover .group-hover\:ring-0,
+[data-theme="dark"] [class*="group"]:hover [class*="group-hover:ring-0"],
+.dark .group:hover .group-hover\:ring-0,
+.dark .group:hover [class*="group-hover:ring-0"],
+.dark [class*="group"]:hover .group-hover\:ring-0,
+.dark [class*="group"]:hover [class*="group-hover:ring-0"] {
+  --tw-ring-width: 1px !important;
+  --tw-ring-color: rgba(255, 255, 255, 0.4) !important;
+  --tw-ring-opacity: 1 !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .group:hover [class*="zinc-box"],
+  [class*="group"]:hover [class*="zinc-box"],
+  .group:hover .group-hover\:ring-0,
+  .group:hover [class*="group-hover:ring-0"],
+  [class*="group"]:hover .group-hover\:ring-0,
+  [class*="group"]:hover [class*="group-hover:ring-0"] {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    --tw-ring-color: rgba(255, 255, 255, 0.4) !important;
+    --tw-ring-opacity: 1 !important;
+    --tw-ring-width: 1px !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+  }
+}
+
+/* Only override inline styles that specifically contain the blue color */
+html[data-theme="dark"] .group:hover [style*="rgb(55, 39, 244)"],
+html[data-theme="dark"] .group:hover [style*="#3727F4"],
+html[data-theme="dark"] [class*="group"]:hover [style*="rgb(55, 39, 244)"],
+html[data-theme="dark"] [class*="group"]:hover [style*="#3727F4"],
+html.dark .group:hover [style*="rgb(55, 39, 244)"],
+html.dark .group:hover [style*="#3727F4"],
+html.dark [class*="group"]:hover [style*="rgb(55, 39, 244)"],
+html.dark [class*="group"]:hover [style*="#3727F4"],
+body[data-theme="dark"] .group:hover [style*="rgb(55, 39, 244)"],
+body[data-theme="dark"] .group:hover [style*="#3727F4"],
+body[data-theme="dark"] [class*="group"]:hover [style*="rgb(55, 39, 244)"],
+body[data-theme="dark"] [class*="group"]:hover [style*="#3727F4"],
+body.dark .group:hover [style*="rgb(55, 39, 244)"],
+body.dark .group:hover [style*="#3727F4"],
+body.dark [class*="group"]:hover [style*="rgb(55, 39, 244)"],
+body.dark [class*="group"]:hover [style*="#3727F4"],
+[data-theme="dark"] .group:hover [style*="rgb(55, 39, 244)"],
+[data-theme="dark"] .group:hover [style*="#3727F4"],
+[data-theme="dark"] [class*="group"]:hover [style*="rgb(55, 39, 244)"],
+[data-theme="dark"] [class*="group"]:hover [style*="#3727F4"],
+.dark .group:hover [style*="rgb(55, 39, 244)"],
+.dark .group:hover [style*="#3727F4"],
+.dark [class*="group"]:hover [style*="rgb(55, 39, 244)"],
+.dark [class*="group"]:hover [style*="#3727F4"] {
+  background-color: transparent !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .group:hover .group-hover\:fill-primary-dark,
+  .group:hover [class*="group-hover:fill-primary-dark"],
+  [class*="group"]:hover .group-hover\:fill-primary-dark,
+  [class*="group"]:hover [class*="group-hover:fill-primary-dark"],
+  .group:hover svg,
+  [class*="group"]:hover svg {
+    fill: #d9d9d9 !important;
+  }
 }

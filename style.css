@@ -9,8 +9,12 @@ body.dark,
 }
 
 @media (prefers-color-scheme: dark) {
-  html,
-  body {
+  html[data-theme="dark"],
+  html.dark,
+  body[data-theme="dark"],
+  body.dark,
+  [data-theme="dark"],
+  .dark {
     background-color: #040404 !important;
   }
 }
@@ -1223,48 +1227,61 @@ body.dark [class*="group"]:hover [style*="#3727F4"],
 }
 
 /* CRITICAL: Force paragraph link underlines in dark mode - highest specificity to override production CSS */
+/* Target both regular links and .link class links within paragraphs */
 html[data-theme="dark"] p a,
+html[data-theme="dark"] p a.link,
 html[data-theme="dark"] p a:link,
 html[data-theme="dark"] p a:visited,
 html[data-theme="dark"] p a:hover,
 html[data-theme="dark"] p a:focus,
 html[data-theme="dark"] p a:active,
 html.dark p a,
+html.dark p a.link,
 html.dark p a:link,
 html.dark p a:visited,
 html.dark p a:hover,
 html.dark p a:focus,
 html.dark p a:active,
 body[data-theme="dark"] p a,
+body[data-theme="dark"] p a.link,
 body[data-theme="dark"] p a:link,
 body[data-theme="dark"] p a:visited,
 body[data-theme="dark"] p a:hover,
 body[data-theme="dark"] p a:focus,
 body[data-theme="dark"] p a:active,
 body.dark p a,
+body.dark p a.link,
 body.dark p a:link,
 body.dark p a:visited,
 body.dark p a:hover,
 body.dark p a:focus,
 body.dark p a:active,
 [data-theme="dark"] p a,
+[data-theme="dark"] p a.link,
 [data-theme="dark"] p a:link,
 [data-theme="dark"] p a:visited,
 [data-theme="dark"] p a:hover,
 [data-theme="dark"] p a:focus,
 [data-theme="dark"] p a:active,
 .dark p a,
+.dark p a.link,
 .dark p a:link,
 .dark p a:visited,
 .dark p a:hover,
 .dark p a:focus,
 .dark p a:active,
 html[data-theme="dark"] p a[href],
+html[data-theme="dark"] p a.link[href],
 html.dark p a[href],
+html.dark p a.link[href],
 body[data-theme="dark"] p a[href],
+body[data-theme="dark"] p a.link[href],
 body.dark p a[href],
+body.dark p a.link[href],
 [data-theme="dark"] p a[href],
-.dark p a[href] {
+[data-theme="dark"] p a.link[href],
+.dark p a[href],
+.dark p a.link[href] {
   text-decoration: underline !important;
   text-decoration-line: underline !important;
   text-decoration-color: #d9d9d9 !important;
@@ -1275,12 +1292,14 @@ body.dark p a[href],
 
 @media (prefers-color-scheme: dark) {
   p a,
+  p a.link,
   p a:link,
   p a:visited,
   p a:hover,
   p a:focus,
   p a:active,
-  p a[href] {
+  p a[href],
+  p a.link[href] {
     text-decoration: underline !important;
     text-decoration-line: underline !important;
     text-decoration-color: #d9d9d9 !important;

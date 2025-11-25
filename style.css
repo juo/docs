@@ -297,58 +297,58 @@ body.dark .dark\:bg-primary-light,
 }
 
 /* Override link underlines in dark mode - ensure they're gray, not blue */
-/* Exclude card elements, their children, and paragraph links (which use text-decoration only) */
-html[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a) {
+/* Exclude card elements and their children - paragraph links are handled separately below */
+html[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link) {
   text-decoration-color: #d9d9d9 !important;
   border-bottom-color: #d9d9d9 !important;
 }
 
-html[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-html.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-body.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a) {
+html[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+html.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+body.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link) {
   text-decoration-color: #d9d9d9 !important;
   border-bottom-color: #d9d9d9 !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-  a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-  a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-  a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-  a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
-  a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a) {
+  a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+  a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+  a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+  a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+  a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link),
+  a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a):not(p .link) {
     text-decoration-color: #d9d9d9 !important;
     border-bottom-color: #d9d9d9 !important;
   }
@@ -1348,4 +1348,37 @@ body.dark p .link,
     border-bottom-style: none !important;
     border-bottom-color: transparent !important;
   }
+}
+
+/* FINAL OVERRIDE: Since :not(p a) doesn't work in CSS, the general rules above match paragraph links.
+   This rule must override them by being more specific and coming last. */
+html[data-theme="dark"] p a.link,
+html.dark p a.link,
+body[data-theme="dark"] p a.link,
+body.dark p a.link,
+[data-theme="dark"] p a.link,
+.dark p a.link,
+html[data-theme="dark"] p a.link[href],
+html.dark p a.link[href],
+body[data-theme="dark"] p a.link[href],
+body.dark p a.link[href],
+[data-theme="dark"] p a.link[href],
+.dark p a.link[href],
+html[data-theme="dark"] p .link,
+html.dark p .link,
+body[data-theme="dark"] p .link,
+body.dark p .link,
+[data-theme="dark"] p .link,
+.dark p .link {
+  /* Override the general rule that sets text-decoration-color but not text-decoration-line */
+  text-decoration: underline #d9d9d9 solid !important;
+  text-decoration-line: underline !important;
+  text-decoration-color: #d9d9d9 !important;
+  text-decoration-style: solid !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: auto !important;
+  border-bottom: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-style: none !important;
+  border-bottom-color: transparent !important;
 }

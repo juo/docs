@@ -333,6 +333,63 @@ body.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([cla
   }
 }
 
+/* Additional override for paragraph links in dark mode - ensure underlines are visible in production */
+/* This targets links inside paragraphs more specifically to override any production CSS */
+html[data-theme="dark"] p a,
+html[data-theme="dark"] p a:link,
+html[data-theme="dark"] p a:visited,
+html[data-theme="dark"] p a:hover,
+html[data-theme="dark"] p a:focus,
+html[data-theme="dark"] p a:active,
+html.dark p a,
+html.dark p a:link,
+html.dark p a:visited,
+html.dark p a:hover,
+html.dark p a:focus,
+html.dark p a:active,
+body[data-theme="dark"] p a,
+body[data-theme="dark"] p a:link,
+body[data-theme="dark"] p a:visited,
+body[data-theme="dark"] p a:hover,
+body[data-theme="dark"] p a:focus,
+body[data-theme="dark"] p a:active,
+body.dark p a,
+body.dark p a:link,
+body.dark p a:visited,
+body.dark p a:hover,
+body.dark p a:focus,
+body.dark p a:active,
+[data-theme="dark"] p a,
+[data-theme="dark"] p a:link,
+[data-theme="dark"] p a:visited,
+[data-theme="dark"] p a:hover,
+[data-theme="dark"] p a:focus,
+[data-theme="dark"] p a:active,
+.dark p a,
+.dark p a:link,
+.dark p a:visited,
+.dark p a:hover,
+.dark p a:focus,
+.dark p a:active {
+  text-decoration-color: #d9d9d9 !important;
+  border-bottom-color: #d9d9d9 !important;
+  /* Override any currentColor or inherit values that might be set in production */
+  text-decoration: underline !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  p a,
+  p a:link,
+  p a:visited,
+  p a:hover,
+  p a:focus,
+  p a:active {
+    text-decoration-color: #d9d9d9 !important;
+    border-bottom-color: #d9d9d9 !important;
+    text-decoration: underline !important;
+  }
+}
+
 /* Remove underline from h2 headings and their spans in dark mode */
 /* Only target h2 elements, not buttons or other elements */
 html[data-theme="dark"] h2,

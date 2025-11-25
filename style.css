@@ -388,8 +388,10 @@ body.dark p a:active,
 .dark p a:hover,
 .dark p a:focus,
 .dark p a:active {
+  text-decoration: underline !important;
   text-decoration-line: underline !important;
   text-decoration-color: #d9d9d9 !important;
+  text-decoration-style: solid !important;
   border-bottom: none !important;
   border-bottom-color: transparent !important;
   /* Override any currentColor or inherit values that might be set in production */
@@ -403,8 +405,10 @@ body.dark p a:active,
   p a:hover,
   p a:focus,
   p a:active {
+    text-decoration: underline !important;
     text-decoration-line: underline !important;
     text-decoration-color: #d9d9d9 !important;
+    text-decoration-style: solid !important;
     border-bottom: none !important;
     border-bottom-color: transparent !important;
     /* Remove border-bottom to avoid double underlines */
@@ -1216,4 +1220,72 @@ body.dark [class*="group"]:hover [style*="#3727F4"],
 [style*="border-radius"],
 [style*="borderRadius"] {
   border-radius: 0 !important;
+}
+
+/* CRITICAL: Force paragraph link underlines in dark mode - highest specificity to override production CSS */
+html[data-theme="dark"] p a,
+html[data-theme="dark"] p a:link,
+html[data-theme="dark"] p a:visited,
+html[data-theme="dark"] p a:hover,
+html[data-theme="dark"] p a:focus,
+html[data-theme="dark"] p a:active,
+html.dark p a,
+html.dark p a:link,
+html.dark p a:visited,
+html.dark p a:hover,
+html.dark p a:focus,
+html.dark p a:active,
+body[data-theme="dark"] p a,
+body[data-theme="dark"] p a:link,
+body[data-theme="dark"] p a:visited,
+body[data-theme="dark"] p a:hover,
+body[data-theme="dark"] p a:focus,
+body[data-theme="dark"] p a:active,
+body.dark p a,
+body.dark p a:link,
+body.dark p a:visited,
+body.dark p a:hover,
+body.dark p a:focus,
+body.dark p a:active,
+[data-theme="dark"] p a,
+[data-theme="dark"] p a:link,
+[data-theme="dark"] p a:visited,
+[data-theme="dark"] p a:hover,
+[data-theme="dark"] p a:focus,
+[data-theme="dark"] p a:active,
+.dark p a,
+.dark p a:link,
+.dark p a:visited,
+.dark p a:hover,
+.dark p a:focus,
+.dark p a:active,
+html[data-theme="dark"] p a[href],
+html.dark p a[href],
+body[data-theme="dark"] p a[href],
+body.dark p a[href],
+[data-theme="dark"] p a[href],
+.dark p a[href] {
+  text-decoration: underline !important;
+  text-decoration-line: underline !important;
+  text-decoration-color: #d9d9d9 !important;
+  text-decoration-style: solid !important;
+  text-decoration-thickness: auto !important;
+  text-underline-offset: auto !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  p a,
+  p a:link,
+  p a:visited,
+  p a:hover,
+  p a:focus,
+  p a:active,
+  p a[href] {
+    text-decoration: underline !important;
+    text-decoration-line: underline !important;
+    text-decoration-color: #d9d9d9 !important;
+    text-decoration-style: solid !important;
+    text-decoration-thickness: auto !important;
+    text-underline-offset: auto !important;
+  }
 }

@@ -1351,26 +1351,52 @@ body.dark p .link,
 }
 
 /* FINAL OVERRIDE: Since :not(p a) doesn't work in CSS, the general rules above match paragraph links.
-   This rule must override them by being more specific and coming last. */
+   This rule must override them by being more specific and coming last.
+   Also override -webkit-any-link which sets underline in light mode but gets removed in dark mode. */
 html[data-theme="dark"] p a.link,
+html[data-theme="dark"] p a.link:-webkit-any-link,
 html.dark p a.link,
+html.dark p a.link:-webkit-any-link,
 body[data-theme="dark"] p a.link,
+body[data-theme="dark"] p a.link:-webkit-any-link,
 body.dark p a.link,
+body.dark p a.link:-webkit-any-link,
 [data-theme="dark"] p a.link,
+[data-theme="dark"] p a.link:-webkit-any-link,
 .dark p a.link,
+.dark p a.link:-webkit-any-link,
 html[data-theme="dark"] p a.link[href],
+html[data-theme="dark"] p a.link[href]:-webkit-any-link,
 html.dark p a.link[href],
+html.dark p a.link[href]:-webkit-any-link,
 body[data-theme="dark"] p a.link[href],
+body[data-theme="dark"] p a.link[href]:-webkit-any-link,
 body.dark p a.link[href],
+body.dark p a.link[href]:-webkit-any-link,
 [data-theme="dark"] p a.link[href],
+[data-theme="dark"] p a.link[href]:-webkit-any-link,
 .dark p a.link[href],
+.dark p a.link[href]:-webkit-any-link,
 html[data-theme="dark"] p .link,
+html[data-theme="dark"] p .link:-webkit-any-link,
 html.dark p .link,
+html.dark p .link:-webkit-any-link,
 body[data-theme="dark"] p .link,
+body[data-theme="dark"] p .link:-webkit-any-link,
 body.dark p .link,
+body.dark p .link:-webkit-any-link,
 [data-theme="dark"] p .link,
-.dark p .link {
+[data-theme="dark"] p .link:-webkit-any-link,
+.dark p .link,
+.dark p .link:-webkit-any-link,
+html[data-theme="dark"] p a:-webkit-any-link,
+html.dark p a:-webkit-any-link,
+body[data-theme="dark"] p a:-webkit-any-link,
+body.dark p a:-webkit-any-link,
+[data-theme="dark"] p a:-webkit-any-link,
+.dark p a:-webkit-any-link {
   /* Override the general rule that sets text-decoration-color but not text-decoration-line */
+  /* Also restore the underline that -webkit-any-link provides in light mode */
   text-decoration: underline #d9d9d9 solid !important;
   text-decoration-line: underline !important;
   text-decoration-color: #d9d9d9 !important;

@@ -1,7 +1,18 @@
-/* Set website background color */
-html,
-body {
+/* Set website background color - dark mode only */
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark,
+[data-theme="dark"],
+.dark {
   background-color: #040404 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: #040404 !important;
+  }
 }
 
 .text-white {

@@ -1,3 +1,9 @@
+/* Set website background color */
+html,
+body {
+  background-color: #040404 !important;
+}
+
 .text-white {
   color: #3727F4 !important;
 }
@@ -276,58 +282,58 @@ body.dark .dark\:bg-primary-light,
 }
 
 /* Override link underlines in dark mode - ensure they're gray, not blue */
-/* Exclude card elements and their children */
-html[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]) {
+/* Exclude card elements, their children, and paragraph links (which use text-decoration only) */
+html[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+[data-theme="dark"] a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+[data-theme="dark"] a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+[data-theme="dark"] a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+.dark a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+.dark a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+.dark a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a) {
   text-decoration-color: #d9d9d9 !important;
   border-bottom-color: #d9d9d9 !important;
 }
 
-html[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-html.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-body.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]) {
+html[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+html.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+body.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+[data-theme="dark"] a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+[data-theme="dark"] a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+[data-theme="dark"] a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+.dark a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+.dark a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+.dark a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a) {
   text-decoration-color: #d9d9d9 !important;
   border-bottom-color: #d9d9d9 !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-  a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-  a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-  a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-  a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]),
-  a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]) {
+  a:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+  a:link:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+  a:visited:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+  a:hover:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+  a:focus:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a),
+  a:active:not(.card):not([class*="card"]):not([class*="px-6"]):not([class*="py-5"]):not(p a) {
     text-decoration-color: #d9d9d9 !important;
     border-bottom-color: #d9d9d9 !important;
   }
@@ -373,8 +379,10 @@ body.dark p a:active,
 .dark p a:active {
   text-decoration-line: underline !important;
   text-decoration-color: #d9d9d9 !important;
+  border-bottom: none !important;
+  border-bottom-color: transparent !important;
   /* Override any currentColor or inherit values that might be set in production */
-  /* Don't set border-bottom-color here to avoid double underlines */
+  /* Remove border-bottom to avoid double underlines */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -386,8 +394,23 @@ body.dark p a:active,
   p a:active {
     text-decoration-line: underline !important;
     text-decoration-color: #d9d9d9 !important;
-    /* Don't set border-bottom-color here to avoid double underlines */
+    border-bottom: none !important;
+    border-bottom-color: transparent !important;
+    /* Remove border-bottom to avoid double underlines */
   }
+}
+
+/* Remove horizontal line/border from H1 headings */
+h1,
+h1 *,
+h1::before,
+h1::after {
+  border-bottom: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-style: none !important;
+  border-bottom-color: transparent !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
 }
 
 /* Remove underline from h2 headings and their spans in dark mode */

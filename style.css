@@ -1308,3 +1308,44 @@ body.dark p a.link[href],
     text-underline-offset: auto !important;
   }
 }
+
+/* ULTIMATE OVERRIDE: Target .link class specifically in paragraphs - must be last to override everything */
+html[data-theme="dark"] p a.link,
+html.dark p a.link,
+body[data-theme="dark"] p a.link,
+body.dark p a.link,
+[data-theme="dark"] p a.link,
+.dark p a.link,
+html[data-theme="dark"] p .link,
+html.dark p .link,
+body[data-theme="dark"] p .link,
+body.dark p .link,
+[data-theme="dark"] p .link,
+.dark p .link {
+  text-decoration: underline !important;
+  text-decoration-line: underline !important;
+  text-decoration-color: #d9d9d9 !important;
+  text-decoration-style: solid !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: auto !important;
+  border-bottom: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-style: none !important;
+  border-bottom-color: transparent !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  p a.link,
+  p .link {
+    text-decoration: underline !important;
+    text-decoration-line: underline !important;
+    text-decoration-color: #d9d9d9 !important;
+    text-decoration-style: solid !important;
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: auto !important;
+    border-bottom: none !important;
+    border-bottom-width: 0 !important;
+    border-bottom-style: none !important;
+    border-bottom-color: transparent !important;
+  }
+}

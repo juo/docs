@@ -5,7 +5,7 @@ body[data-theme="dark"],
 body.dark,
 [data-theme="dark"],
 .dark {
-  background-color: #040404 !important;
+  background-color: #000000 !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,7 +15,7 @@ body.dark,
   body.dark,
   [data-theme="dark"],
   .dark {
-    background-color: #040404 !important;
+    background-color: #000000 !important;
   }
 }
 

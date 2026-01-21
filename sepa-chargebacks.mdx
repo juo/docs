@@ -32,11 +32,11 @@ See the **[Klaviyo integration guide](https://juo.io/docs/klaviyo-integration)**
 
 ## Auto-Retry for Insufficient Funds (AM04)
 
-For chargebacks caused by **insufficient funds (AM04)**, Juo supports an optional **auto-retry** mechanism that attempts to recover the payment before triggering Klaviyo dunning.
+For chargebacks caused by **insufficient funds (AM04)**, Juo has an **auto-retry** mechanism that attempts to recover the payment before triggering Klaviyo dunning and failing the subscription.
 
 When auto-retry is enabled, Juo will:
 
-1. Attempt to **re-charge the customer’s existing SEPA mandate** after a fixed delay.
+1. Re-attempt to **charge the customer’s existing SEPA mandate** after a fixed delay.
 2. Retry the charge multiple times before marking the subscription as failed.
 3. Only fall back to the Klaviyo dunning flow if all retry attempts are exhausted.
 
@@ -59,21 +59,4 @@ This helps recover payments automatically without customer involvement, especial
    * The payment method is revoked.
    * The **Chargeback Subscription** event is sent to Klaviyo to trigger the dunning flow.
 
----
-
-### Configuration
-
-* **Retry interval:** Fixed at 3 days
-* **Maximum retries:** Configurable per shop (1–10, default: 3)
-* **Supported reason:** AM04 (insufficient funds) only
-* **Other chargeback reasons:** Follow the standard Klaviyo dunning flow
-
-Auto-retry can be enabled from the **Retention settings**, where you can toggle the feature and define the maximum number of retry attempts.
-
----
-
-If you want, next good steps would be:
-
-* adding a **small “When should I use auto-retry?” callout** for merchants, or
-* tightening language around **which chargeback reasons are recoverable** vs final, to reduce support questions.
 

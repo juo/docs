@@ -2,70 +2,78 @@
 title: "SEPA chargebacks recovery"
 ---
 
-<Tip>
-Juo has a built-in chargeback dunning flow to help recover lost revenue from failed SEPA Direct Debit payments. If you use SEPA payment methods enabled for subscriptions, you can enable it in Juo **Experiences** > **Retention**.
+Juo includes built-in **chargeback recovery features** to help recover lost revenue from failed SEPA Direct Debit subscription payments. To better understand how SEPA payments and chargebacks work, see our SEPA guide.
 
-For more information about SEPA DD chargebacks, check our [Guide to SEPA Direct Debit](/sepa-direct-debit)
+You can enable and configure chargeback recovery in the **[Retention tab](https://admin.juo.io/experiences/retention)** of your Juo admin.
 
-</Tip>
+Regardless of whether a dunning flow is enabled, **any SEPA chargeback** triggers the following actions:
 
-This flow helps recover lost revenue while minimizing failed transactions. Payment providers and banks may charge additional fees for failed SEPA payment transactions (read more in [**Mollie Support**)](https://help.mollie.com/hc/en-us/articles/115000796469-What-is-a-SEPA-Direct-Debit-chargeback).
-
-When a chargeback occurs on a subscription payment, Juo triggers a recovery flow to help merchants receive their renewal payment. Please see the description below to learn how this flow works for recoverable<sup>\*</sup> chargeback reasons.
-
-### What happens after a chargeback?
-
-**Subscription**
-
-- Status is set to `Failed`
-
-**Order**
-
-- Automatically refunded
-- Tagged with `chargeback`
-- Duplicated as a new order with a pending payment
-
-**→ Klaviyo receives**
-
-- Chargeback event with reason code and message
-- Link to Shopify checkout for the duplicated pending order
-
-<Note>
-  **Action required:** based on the information sent to Klaviyo set up the
-  custom notification that will be sent to customers after chargebacks. See our{" "}
-  [Klaviyo integration guide](/klaviyo-integration).for details
-</Note>
-
-**Customer pays for the duplicated order**
-
-- Subscription gets reactivated
-
-<Note>
-
-To view **orders** with chargebacks use Tag filtering in Shopify: `chargeback`
-
-To view **subscriptions** with chargebacks use Status filtering in Juo: `Failed`
-
-</Note>
-<sup>*</sup>Juo retries payments only for recoverable chargeback reasons (e.g., **AM04 – Insufficient funds**). For non-recoverable chargebacks, Juo still sends the chargeback reason to Klaviyo, but then **revokes the payment method**. The customer must start a new subscription with a valid payment method.
+1. The order is refunded and tagged with `chargeback`.
+2. The subscription status is changed to **Failed**.
+3. A **Chargeback Subscription** event is sent to Klaviyo, including the chargeback reason.
 
 ---
 
-Juo chargeback dunning flow:
+## Chargeback Dunning Flow
 
-```mermaid
-sequenceDiagram
-  Payment provider-->>Juo: Chargeback notification
-  alt Chargeback reason is not recoverable
-    Juo->>Juo: Revoke payment method
-  end
-  Juo->>Juo: Mark subscription as failed
-  Juo->>Shopify: Refund order
-  Juo->>Shopify: Tag order with "chargeback"
-  Juo->>Shopify: Create duplicate order with pending payment
-  Juo->>Klaviyo: Send metric "Chargeback Subscription"
-  alt Duplicate order paid
-    Shopify-->>Juo: Order paid notification
-    Juo->>Juo: Reactivate subscription
-  end
-```
+For certain **recoverable chargeback reasons**, Juo can initiate a recovery (dunning) flow via Klaviyo.
+
+When chargeback dunning is enabled, Juo will:
+
+1. Create a **duplicate draft order** for the failed payment.
+2. Include a **Shopify checkout link** in the **Chargeback Subscription** event sent to Klaviyo.
+3. Automatically **reactivate the subscription** if the customer successfully pays the duplicated order.
+
+**Action required:**
+Use this event in Klaviyo to build an automated recovery flow that asks customers to complete payment for the pending order.
+See the **[Klaviyo integration guide](https://juo.io/docs/klaviyo-integration)** for implementation details.
+
+---
+
+## Auto-Retry for Insufficient Funds (AM04)
+
+For chargebacks caused by **insufficient funds (AM04)**, Juo supports an optional **auto-retry** mechanism that attempts to recover the payment before triggering Klaviyo dunning.
+
+When auto-retry is enabled, Juo will:
+
+1. Attempt to **re-charge the customer’s existing SEPA mandate** after a fixed delay.
+2. Retry the charge multiple times before marking the subscription as failed.
+3. Only fall back to the Klaviyo dunning flow if all retry attempts are exhausted.
+
+This helps recover payments automatically without customer involvement, especially for temporary balance issues.
+
+### How Auto-Retry Works
+
+1. An AM04 chargeback occurs.
+2. The original order is refunded and a draft replacement order is created.
+3. Juo schedules a retry using the existing SEPA mandate.
+4. If the retry succeeds:
+
+   * The draft order is completed.
+   * The subscription continues without interruption.
+5. If the retry fails with AM04:
+
+   * The next retry is scheduled.
+6. If all retries fail:
+
+   * The payment method is revoked.
+   * The **Chargeback Subscription** event is sent to Klaviyo to trigger the dunning flow.
+
+---
+
+### Configuration
+
+* **Retry interval:** Fixed at 3 days
+* **Maximum retries:** Configurable per shop (1–10, default: 3)
+* **Supported reason:** AM04 (insufficient funds) only
+* **Other chargeback reasons:** Follow the standard Klaviyo dunning flow
+
+Auto-retry can be enabled from the **Retention settings**, where you can toggle the feature and define the maximum number of retry attempts.
+
+---
+
+If you want, next good steps would be:
+
+* adding a **small “When should I use auto-retry?” callout** for merchants, or
+* tightening language around **which chargeback reasons are recoverable** vs final, to reduce support questions.
+

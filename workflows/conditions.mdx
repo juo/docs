@@ -1,0 +1,36 @@
+---
+title: Conditions
+description: Rules that decide whether a workflow continues and which path a customer takes.
+---
+
+Conditions define **when the workflow should continue**.
+
+If conditions are not met, the workflow stops.
+
+This page intentionally keeps the structure **simple** and avoids listing condition “entities” unless they’re explicitly marked as launched in the source of truth.
+
+## What conditions do
+
+- **Filter**: only continue the workflow when criteria are met
+- **Branch**: route customers/subscriptions into different paths
+- **Protect**: stop paths that would be irrelevant or unsafe
+
+## Where conditions are used
+
+Conditions are typically placed:
+
+- Right after the **trigger** (to qualify who should enter)
+- Before a specific **action** (to decide which offer/content is shown)
+- After an **interaction** (to branch based on customer response)
+
+## Practical examples
+
+- Route first-time subscribers vs. loyal subscribers (e.g. by cycle count / age)
+- Route VIP vs. non‑VIP subscribers (e.g. by lifetime value or tags)
+- Route based on what the customer chose in a previous step (e.g. accepted vs. declined)
+
+## Best practices
+
+- **Keep conditions close to the decision**: add them right before the step they control.
+- **Prefer lifecycle signals**: `subscription.cycle_count`, age, value, tags.
+- **Avoid over-segmentation** until you have enough traffic to validate impact.

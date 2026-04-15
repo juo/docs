@@ -1,0 +1,34 @@
+---
+title: VIP rewards
+description: Reward high-value subscribers with gifts or persistent perks based on value or loyalty.
+---
+
+High-AOV subscriptions bring the biggest value—but also hurt the most when they cancel. VIP rewards workflows create special moments that make loyal subscribers feel appreciated.
+
+## Goal
+
+Reward highest-paying or long-time subscribers.
+
+## Recommended setup
+
+- **Trigger**: Subscription renewed *(coming soon as a system event trigger)*
+
+### Key actions
+
+- **Offer Free Product**: add a free gift (e.g. every \(N\) renewals, or on milestone cycles)
+- **Offer Discount**: apply a persistent perk (e.g. permanent discount for VIP tier)
+
+### Conditions to consider
+
+- `subscription.total_value` for high-grossing subscriptions
+- `subscription.cycle_count` for most loyal subscribers
+
+Examples:
+
+- VIP tier if `total_value > $X`
+- Loyalty milestone if `cycle_count ≥ 6`
+
+## Best practices
+
+- **Keep rewards simple**: one strong perk is easier to understand than many small perks.
+- **Make VIP visible**: tag VIP subscribers so support and marketing can recognize them.

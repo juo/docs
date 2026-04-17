@@ -34,24 +34,6 @@
         ]
       },
       {
-        "group": "Workflows",
-        "pages": [
-          "using-workflows",
-          {
-            "group": "Use cases",
-            "pages": [
-              "workflows/guides/cancellation-flow",
-              "workflows/guides/new-subscriber-welcome",
-              "workflows/guides/vip-rewards"
-            ]
-          },
-          {
-            "group": "Technical reference",
-            "pages": ["workflows/triggers", "workflows/conditions", "workflows/actions"]
-          }
-        ]
-      },
-      {
         "group": "Settings",
         "pages": [
           "general-settings",

@@ -1,0 +1,61 @@
+---
+title: Experiments (A/B tests)
+sidebarTitle: A/B Tests
+---
+
+Experiments (A/B tests) let you **compare two or more versions of a workflow path** and see which one performs better for your business goal (e.g. reduce cancellations, increase renewals, recover failed payments).
+
+An experiment is a **split step**: it routes each customer into exactly one branch (**Variant A**, **Variant B**, …) based on your chosen traffic split.
+
+![Experiment split example](https://cdn.juo.io/content-uploads/experiments_1_15b28fb826.png)
+
+## How to create an A/B test 
+
+In **Admin Panel → Workflows**:
+
+1. Create or open a workflow (start from a trigger).
+2. Add an **Experiment (A/B test)** step where you want the split to happen.
+3. Create **2+ variants** (A/B/C…) and name them clearly (e.g. “Discount 10%”, “Offer pause”).
+4. Set a **traffic split** (typically 50/50 for A/B).
+5. Connect each variant branch to the actions/conditions you want that variant to run.
+6. Save and publish.
+
+<Tip>
+  Make sure each variant branch ends up doing something meaningfully different (offer, copy, timing, channel, etc.). 
+</Tip>
+
+## Variants persistence
+
+- **Within a single customer session / run**: once a customer is assigned a variant, they stay in that variant while they move through the workflow (even if the run pauses and resumes later).
+- **Across separate runs** (e.g. the same customer enters the workflow on another day): variant assignment may not be guaranteed to stay the same.
+
+## Reading results
+
+In the Experiment panel you will see:
+
+- **Enrollments**: how many customers entered the experiment step per variant
+- **Conversion rate** (if shown for your workflow): success rate per variant
+
+
+## Choosing a good traffic split
+
+- **50/50** is the default for A/B tests and gives the fastest learning.
+- Use **90/10** only when you’re rolling out a risky change and want a smaller exposure.
+- The editor will automatically adjust variant traffic so it sums to **100%**.
+
+![Traffic split example](https://cdn.juo.io/content-uploads/experiments_2_671544e97b.png)
+
+## When to use an experiment
+
+Use experiments when you have a clear question like:
+
+- Does offering **10% off** retain more subscribers than offering **skip**?
+- Is it better to show **free product** vs **discount** at step 1?
+- Does changing the copy or button labels increase acceptance?
+
+Avoid experiments when:
+
+- You’re still unsure what problem you’re solving (start with a single workflow and iterate).
+- You can’t measure success (no clear outcome / metric).
+- You’re planning many changes at once (hard to interpret results).
+

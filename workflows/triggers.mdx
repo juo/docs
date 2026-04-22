@@ -1,22 +1,40 @@
 ---
 title: Triggers
-description: Events that start a workflow (customer-initiated, system events, admin-initiated, and time-based).
 ---
 
-Triggers are events that **start a workflow**.
+Triggers are events that **start a workflow**. A trigger is always the starting block of each flow. 
 
-This page lists **only triggers that are launched**.
+Triggers can be followed with a condition, action, or A/B test split. Depending on the type, different actions and conditions may be available for certain triggers.
 
-## Customer portal triggers
+There can only be one trigger in a single flow, and each trigger can be used in only one active workflow.
 
-- **Customer portal entered**: customer logs into the subscription portal
-- **Skip clicked**: customer chooses to skip an upcoming order
-- **Pause clicked**: customer pauses their subscription
-- **Cancellation clicked**: customer starts the cancellation process
-- **Renew now clicked**: customer initiates a “renew now” action
-- **Product subscription cancellation**: customer initiates cancellation for a specific subscription product
 
-## System triggers
 
-- **Schedule order**: system schedules an order
-- **Payment failed**: a billing attempt fails
+
+## Customer initiated
+**Started by the subscriber in the Customer Portal**
+
+| Trigger | Description |
+|---|---|
+| `Subscription cancellation requested` | Triggered when a customer clicks 'Cancel' |
+| `Next renewal skip requested` | Triggered when a customer chooses to skip an upcoming order |
+| `Subscription pause requested` | Triggered when a customer pauses their subscription |
+| `Customer portal opened` | Triggered when a customer logs into the Customer Portal |
+| `Subscription item removal requested` | Triggered when a customer attempts to remove a product from their subscription |
+
+## System initiated
+**Started by a background process or event without direct human input**
+
+| Trigger                               | Description |
+|---------------------------------------|-------------|
+| `Payment failed`                      | Triggered when a billing attempt fails |
+| `Upcoming Order Generated`            | Triggered when a scheduled order is generated, then it is validated upon renewal* |
+
+\* *Upcoming Order Generated* fires whenever a subscription is interacted with in any way, changing the state of the subscription ahead of the upcoming renewal. The flow is also validated just before every subscription order. Effectively, it lets you add special rules to the subscription that always apply as long as the conditions are met.
+
+Example use cases:
+* Always add a product or discount to the next renewal as long as conditions are met (Subscribed to a specific product or total upcoming order value, etc.).
+* Prevent subscription from renewing until conditions are met (at least one paid product in a subscription, customer tag removed, etc.). 
+
+## Admin initiated
+**Started manually in the Admin Panel** (*Coming soon*)

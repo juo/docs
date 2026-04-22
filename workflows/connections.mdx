@@ -1,0 +1,67 @@
+# Workflow Builder lines (connecting nodes)
+
+This doc explains how to use **lines** (connections) between nodes when building workflows in the admin panel.
+
+Lines decide **what happens next** in your workflow by connecting one triggers to conditions and actions.
+
+## Quick mental model
+
+- Every node has an **input** (left side) and one or more **outputs** (right side).
+- A line always connects:
+  - an **output handle** on the source node → the **input handle** on the target node
+- If a node has multiple outputs, **each output is a different path** (branch).
+
+## How to create a line
+
+- **Drag** from an output handle (right side) to the next node’s input handle (left side).
+- Or **click the “+”** on an output handle to start adding a connection.
+- You can also hover a line and click the small **“+”** bubble to insert/connect from that line.
+
+## Insert a step on an existing line
+
+- Hover a line and click the **“+”** bubble to insert a new step between two connected nodes.
+- Use this to quickly add a condition, offer, or follow-up step without re-drawing the workflow.
+
+## Move / reroute a line
+
+When you change your mind about the next step:
+
+- Drag the line’s endpoint to a different node input to reroute the path.
+- If you’re branching, make sure you reroute the correct output handle (each output represents a different path).
+
+## Delete a line
+
+- Click the line to select it, then delete it.
+- After deleting, check for any now-unconnected outputs and reconnect them.
+
+## Branching and merging
+
+### Branching (one node → multiple paths)
+
+Some nodes expose multiple output handles. Each output is a separate path you can connect to a different next step.
+
+Good patterns:
+
+- Connect **every output** so the workflow is complete.
+- Label / name branches where possible so it’s easy to understand later.
+
+### Merging (multiple paths → one step)
+
+Multiple different paths can connect into the **same** next step (many lines into one node input). This is useful when different branches should eventually converge to a shared follow-up.
+
+Tip: merging is simplest when the branches are “equivalent” at that point (same message, same next execution, same end).
+
+## Common line-related validation issues
+
+These are the most common errors that are caused by missing or incorrect connections:
+
+- **“Node … is not reachable from the trigger”**: there’s no chain of lines from the Trigger to that node. Connect it or delete it.
+- **“Node … does not lead to an end node”**: follow that path and connect it forward until it reaches an End node.
+- **“Branch … is not connected”**: a multi-output node has an output with no line attached. Connect each output path you want to support.
+
+## Tips for clean, maintainable workflows
+
+- **Avoid dangling lines** when refactoring: after you delete or replace a node, re-check each output.
+- **Keep branches readable**: spread branches out and merge back when the paths become the same again.
+- **Sanity-check the happy path**: follow the main line from Trigger to End and confirm each step is connected.
+

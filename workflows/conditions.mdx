@@ -7,30 +7,108 @@ Conditions define **when the workflow should continue**.
 
 If conditions are not met, the workflow stops.
 
-This page intentionally keeps the structure **simple** and avoids listing condition “entities” unless they’re explicitly marked as launched in the source of truth.
-
 ## What conditions do
 
 - **Filter**: only continue the workflow when criteria are met
 - **Branch**: route customers/subscriptions into different paths
 - **Protect**: stop paths that would be irrelevant or unsafe
 
-## Where conditions are used
+<div style={{ textAlign: "center" }}>
+  <img
+    src="https://cdn.juo.io/content-uploads/conditions_1_0b560d34ff.png"
+    alt="Conditions block example"
+    style={{ width: "70%" }}
+  />
+</div>
 
-Conditions are typically placed:
-
-- Right after the **trigger** (to qualify who should enter)
-- Before a specific **action** (to decide which offer/content is shown)
-- After an **interaction** (to branch based on customer response)
+The Condition block uses a  sentence-based rule builder to help you construct workflow logic. As you build your condition, smart autocomplete provides context-aware field suggestions.
 
 ## Practical examples
 
 - Route first-time subscribers vs. loyal subscribers (e.g. by cycle count / age)
 - Route VIP vs. non‑VIP subscribers (e.g. by lifetime value or tags)
-- Route based on what the customer chose in a previous step (e.g. accepted vs. declined)
+- Route based on the product the customer is subscribed to
 
-## Best practices
+## Conditions reference
 
-- **Keep conditions close to the decision**: add them right before the step they control.
-- **Prefer lifecycle signals**: `subscription.cycle_count`, age, value, tags.
-- **Avoid over-segmentation** until you have enough traffic to validate impact.
+### `customer.*`
+
+| Condition | Description |
+|---|---|
+| `customer.revenue` | Total revenue from the customer |
+| `customer.order_count` | Total number of orders from the customer |
+| `customer.tags` | Tags associated with the customer |
+| `customer.created_at` | Date when customer account was created |
+| `customer.last_payment_status` | Status of the most recent billing attempt across all customer subscriptions |
+
+### `subscription.*`
+
+| Condition | Description |
+|---|---|
+| `subscription.status` | Current status of the subscription |
+| `subscription.cycle_count` | Number of completed billing cycles |
+| `subscription.tags` | Tags associated with the subscription |
+| `subscription.item_count` | Number of items in the subscription |
+| `subscription.total_value` | Total monetary value of the subscription |
+| `subscription.age_days` | Number of days since subscription was created |
+| `subscription.items` | Line items in the subscription (array items include `productId`, `variantId`, `tags`) |
+| `subscription.active_discounts` | Active discounts applied to the subscription (array items include `type`, `value`) |
+
+### `subscription_item.*`
+
+| Condition | Description |
+|---|---|
+| `subscription_item.productId` | Shopify product ID of the item |
+| `subscription_item.variantId` | Shopify variant ID of the item |
+| `subscription_item.title` | Product title of the item |
+| `subscription_item.quantity` | Quantity of the item in the subscription |
+| `subscription_item.tags` | Tags associated with the product |
+
+### `upcoming_order.*`
+These conditions can be only used with the **Next order updated** trigger. They check the state of the next upcoming order. They are not directly associated with a subscription (if there are multiple delivery dates per subscription), but the subscription can be accessed via `upcoming_order.subscriptions` field.
+
+| Condition | Description |
+|---|---|
+| `upcoming_order.item_count` | Total number of line items in the order |
+| `upcoming_order.total_quantity` | Sum of quantities across all line items in the order |
+| `upcoming_order.unique_item_count` | Number of distinct products in the order |
+| `upcoming_order.subtotal` | Order subtotal before shipping and discounts |
+| `upcoming_order.delivery_price` | Delivery/shipping price |
+| `upcoming_order.currency_code` | Currency code of the order (e.g. USD, EUR) |
+| `upcoming_order.cycle_index` | Billing cycle index for this order |
+| `upcoming_order.skipped` | Whether the order was skipped |
+| `upcoming_order.items` | Line items in the order (array items include `productId`, `variantId`, `title`, `quantity`, `price`, `subscriptionId`) |
+| `upcoming_order.discounts` | Discounts applied to the order (array items include `type`, `value`) |
+| `upcoming_order.subscriptions` | Subscriptions included in this order, with per-subscription cycle count, item count, and value (array items include `id`, `cycleCount`, `itemCount`, `totalValue`) |
+
+### `time.*`
+
+| Condition | Description |
+|---|---|
+| `time.hour` | Current hour of the day (0-23) |
+| `time.day_of_week` | Current day of the week (0=Sunday, 6=Saturday) |
+| `time.date` | Current date/time as ISO string |
+
+### `shop.*`
+
+| Condition | Description |
+|---|---|
+| `shop.setting` | A configuration value from shop settings (uses params `key?: string`, `default?: unknown`) |
+
+### `response.*`
+
+| Condition | Description |
+|---|---|
+| `response.step` | Response from a specific workflow step (uses params `stepId: string`, optional `field: "type" \| "data"`, optional `dataPath: string`) |
+
+### `usage_limit` (no `.*` path)
+
+| Condition | Description |
+|---|---|
+| `usage_limit` | Count of usage-entry records for the given bucket and scope (params: `key`, `scope`, optional `window`) |
+
+### `display_limit` (no `.*` path)
+
+| Condition | Description |
+|---|---|
+| `display_limit` | Count of display-entry records for the given bucket and scope (params: `key`, `scope`) |

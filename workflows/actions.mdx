@@ -16,29 +16,66 @@ This page lists **only actions that are launched**.
 
 ## Interactions
 
-Interactions are commonly used in the **Customer Portal** and can branch based on what the customer selects.
+Interactions require customer input to proceed. By default, they display a popup prompting them to confirm or make a choice. In cancellation flows, accepting an offer results in a saved subscription. 
 
-- **Custom offer** 
-- **Offer skip order**
-- **Offer free product**
-- **Offer discount**
-- **Offer selection**
-- **Offer swap product**
-- **Poll**
-- **Offer renew**
-- **Offer change frequency**
-- **Show content**
-- **Show confirmation**
+Interactions can only be used with customer-initiated triggers.
+
+| Action | Description |
+|---|---|
+| `Poll` | Ask a question - customer selects from available options |
+| `Offer Discount` | Present a discount offer to the customer |
+| `Offer Skip` | Offer to skip the next order |
+| `Offer Renew` | Offer to renew the subscription immediately |
+| `Offer Free Product` | Offer a free product to the customer |
+| `Offer Selection` | Present multiple offer options for customer to choose |
+| `Offer Change Frequency` | Offer to change subscription frequency |
+| `Offer Swap Product` | Offer to swap subscription product |
+| `Show Content` | Display custom content with a Next button |
+| `Custom Offer` | Display any content with accept and decline options |
+| `Show Confirmation` | Display a confirmation message (optional final step) |
 
 ## Executions
 
-Execution actions run automatically, typically to update the subscription or record state.
+Executions happen instantly without the need of confirmation. 
 
-- **Skip order**
-- **Apply discount**
-- **Change frequency**
-- **Remove all discounts**
-- **Cancel subscription**
-- **Add product**
-- **Swap product**
+| Action | Description |
+|---|---|
+| `Apply Discount` | Apply a discount to the subscription |
+| `Pause Subscription` | Pause the subscription |
+| `Cancel Subscription` | Cancel the subscription |
+| `Skip Order` | Skip the next scheduled order |
+| `Add Product` | Add a product to the subscription |
+| `Swap Product` | Swap a product in the subscription |
+| `Change Frequency` | Change the subscription frequency |
+| `Apply Free Shipping` | Apply free shipping to the subscription |
+| `Replace Subscription Products` | Replace all subscription products with a new set of variants |
+| `Renew Now` | Trigger an immediate renewal of the subscription |
+| `Remove Subscription Item` | Remove a product from the subscription |
+| `Dunning Charge` | Retry payment after a delay |
+| `Dunning Default` | Use standard dunning retry schedule |
+| `Dunning Fail` | Expire dunning and fail subscription |
+| `Update Custom Field` | Update a custom field value |
+
+## Scheduled order actions
+
+These actions are only available with the **Next order updated** trigger. These actions have two functions:
+1. Modify the upcoming order: Automatically adjust the scheduled order when specific conditions are met (e.g., adding a free gift, applying a discount, or delaying the date).
+2. Validate the renewal: Act as a final check to either approve the scheduled order or block it from processing.
+
+These rules are re-evaluated automatically every time the subscription is updated or interacted with. This ensures the upcoming scheduled order is always synced with your current workflow conditions.
+
+| Action | Description |
+|---|---|
+| `Approve` | Approve the scheduled order and proceed with renewal |
+| `Add Item` | Add a product variant to the scheduled order |
+| `Remove Item` | Remove items matching a product variant from the scheduled order |
+| `Update Item` | Update quantity or price of items in the scheduled order |
+| `Apply Discount` | Apply a discount to the scheduled order |
+| `Delay` | Delay the scheduled order by a number of days |
+| `Reschedule` | Change the scheduled order date |
+| `Add Attribute` | Add a custom attribute to the scheduled order |
+| `Remove Attribute` | Remove a custom attribute from the scheduled order |
+| `Add Note` | Add a note to the scheduled order |
+| `Remove All Discounts` | Remove all discounts from the scheduled order |
+| `Block` | Block the scheduled order with validation errors |
 

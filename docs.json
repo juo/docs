@@ -40,7 +40,15 @@
           "workflows/triggers",
           "workflows/conditions",
           "workflows/actions",
-          "workflows/experiments"
+          "workflows/experiments",
+          {
+            "group": "Use cases",
+            "pages": [
+              "workflows/guides/cancellation-flow",
+              "workflows/guides/new-subscriber-welcome",
+              "workflows/guides/vip-rewards"
+            ]
+          }
         ]
       },
       {

@@ -135,6 +135,7 @@ Depending on the event type, some additional properties may become available, su
 | :--------------------- | :-------------------------------------------------------------------------------------------- | :----- |
 | **errorMessage**       | Provides more background on the reason for payment failure, e.g. "Payment method was revoked" | string |
 | **NextActionUrl**      | Link to where subscribers can finish their payment validation when required                   | string |
+| **PaymentMethodType**  | Payment method type for upcoming renewal notifications (`recurring` or `intentional`)         | string |
 | **CancellationReason** | Reason for cancelling the subscription provided by the customer                               | string |
 | **reasonCode**         | Chargeback reason code, e.g. `"MS02"`                                                         | string |
 | **reasonMessage**      | Chargeback reason, e.g. `"Refusal by the Debtor"`                                             | string |

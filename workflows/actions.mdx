@@ -12,13 +12,13 @@ After a trigger fires and conditions are evaluated, actions determine what happe
 - **Interactions**: show something to the customer and **wait for a response**
 - **Executions**: run automatically without requiring customer input
 
-This page lists **only actions that are launched**.
-
 ## Interactions
 
-Interactions require customer input to proceed. By default, they display a popup prompting them to confirm or make a choice. In cancellation flows, accepting an offer results in a saved subscription. 
+Interactions require customer input to proceed. By default, they display a popup prompting them to confirm or make a choice. In cancellation flows, accepting an offer results in a saved subscription.
 
-Interactions can only be used with customer-initiated triggers.
+Customers will see configurable `Accept` / `Decline` buttons. Choosing `Accept` is enough to apply the related action. In other words, **you don't have to follow the `Offer Skip` interaction with a `Skip Order` execution**.
+
+Interactions require the customer to be present in the Customer Portal to see the offer, so they can only be used with customer-initiated triggers.
 
 | Action | Description |
 |---|---|

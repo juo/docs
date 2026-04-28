@@ -783,30 +783,26 @@ body.dark a[class*="card"].group:hover .dark\:group-hover\:text-primary-light,
 /* Override border colors on hover for cards and interactive elements */
 html[data-theme="dark"] .card:hover,
 html[data-theme="dark"] [class*="card"]:hover,
-html[data-theme="dark"] .group:hover,
 html.dark .card:hover,
 html.dark [class*="card"]:hover,
-html.dark .group:hover,
 body[data-theme="dark"] .card:hover,
 body[data-theme="dark"] [class*="card"]:hover,
-body[data-theme="dark"] .group:hover,
 body.dark .card:hover,
 body.dark [class*="card"]:hover,
-body.dark .group:hover,
 [data-theme="dark"] .card:hover,
 [data-theme="dark"] [class*="card"]:hover,
-[data-theme="dark"] .group:hover,
 .dark .card:hover,
-.dark [class*="card"]:hover,
-.dark .group:hover {
-  border-color: #d9d9d9 !important;
+.dark [class*="card"]:hover {
+  /* Keep hover subtle on 3 sides; emphasize bottom border only */
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-bottom-color: rgba(217, 217, 217, 0.9) !important;
 }
 
 @media (prefers-color-scheme: dark) {
   .card:hover,
-  [class*="card"]:hover,
-  .group:hover {
-    border-color: #d9d9d9 !important;
+  [class*="card"]:hover {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    border-bottom-color: rgba(217, 217, 217, 0.9) !important;
   }
 }
 

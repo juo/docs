@@ -101,6 +101,13 @@ body.dark a[href="https://juo.io/demo"]:focus,
   border-color: #d9d9d9 !important;
 }
 
+/* Ensure the navbar primary button keeps a full border in dark mode */
+:where(html[data-theme="dark"], html.dark, body[data-theme="dark"], body.dark, [data-theme="dark"], .dark)
+  a[href="https://juo.io/demo"] {
+  border-bottom-width: 1px !important;
+  border-bottom-style: solid !important;
+}
+
 @media (prefers-color-scheme: dark) {
   a[href="https://juo.io/demo"]:hover,
   a[href="https://juo.io/demo"]:focus {
@@ -118,7 +125,9 @@ a[href^="https://mintlify.com"] {
   display: none;
 }
 
-.sidebar ul li, .text-primary, .text-gray-700 {
+/* Only fix row height in the left sidebar nav.
+   Setting a fixed height on generic text classes breaks wrapping in the right-side TOC. */
+.sidebar ul li {
   height: 31px;
   border-radius: 0 !important;
 }
@@ -402,6 +411,40 @@ body.dark p a:active,
   /* Remove border-bottom to avoid double underlines */
 }
 
+/* Dark mode: underline links in main content (including lists), but not navigation */
+:where(html[data-theme="dark"], body[data-theme="dark"], [data-theme="dark"], .dark)
+  :where(main p a, main li a, main td a, main th a, main blockquote a) {
+  text-decoration: underline !important;
+  text-decoration-line: underline !important;
+  text-decoration-color: #d9d9d9 !important;
+  text-decoration-style: solid !important;
+  border-bottom: none !important;
+  border-bottom-color: transparent !important;
+}
+
+/* Dark mode: remove underlines from navigation links (left sidebar, top nav, right TOC) */
+:where(html[data-theme="dark"], body[data-theme="dark"], [data-theme="dark"], .dark)
+  :where(
+    .sidebar,
+    [class*="sidebar"],
+    #sidebar-content,
+    nav[aria-label="On this page"],
+    nav[aria-label="Table of contents"],
+    #table-of-contents,
+    #toc,
+    [id*="table-of-contents"],
+    [id*="toc"],
+    [class*="table-of-contents"],
+    [class*="toc"],
+    header,
+    nav,
+    [role="navigation"]
+  )
+  a {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+
 @media (prefers-color-scheme: dark) {
   p a,
   p a:link,
@@ -416,6 +459,38 @@ body.dark p a:active,
     border-bottom: none !important;
     border-bottom-color: transparent !important;
     /* Remove border-bottom to avoid double underlines */
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :where(main p a, main li a, main td a, main th a, main blockquote a) {
+    text-decoration: underline !important;
+    text-decoration-line: underline !important;
+    text-decoration-color: #d9d9d9 !important;
+    text-decoration-style: solid !important;
+    border-bottom: none !important;
+    border-bottom-color: transparent !important;
+  }
+
+  :where(
+    .sidebar,
+    [class*="sidebar"],
+    #sidebar-content,
+    nav[aria-label="On this page"],
+    nav[aria-label="Table of contents"],
+    #table-of-contents,
+    #toc,
+    [id*="table-of-contents"],
+    [id*="toc"],
+    [class*="table-of-contents"],
+    [class*="toc"],
+    header,
+    nav,
+    [role="navigation"]
+  )
+  a {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
   }
 }
 

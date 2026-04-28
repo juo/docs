@@ -454,12 +454,28 @@ body.dark p a:active,
   opacity: 0 !important;
 }
 
-/* Also neutralize Tailwind divide-y/border-t separators inside sidebar */
+/* Also neutralize Tailwind divide-y + any border separators inside sidebar */
 :where(html[data-theme="dark"], body[data-theme="dark"], [data-theme="dark"], .dark)
   :where(.sidebar, [class*="sidebar"], #sidebar-content)
   :where([class*="divide-y"] > :not([hidden]) ~ :not([hidden])) {
   border-top-width: 0 !important;
   border-top-style: none !important;
+}
+
+:where(html[data-theme="dark"], body[data-theme="dark"], [data-theme="dark"], .dark)
+  :where(.sidebar, [class*="sidebar"], #sidebar-content)
+  :where([class*="border-t"], [class*="border-b"]) {
+  border-top-width: 0 !important;
+  border-bottom-width: 0 !important;
+  border-top-style: none !important;
+  border-bottom-style: none !important;
+}
+
+:where(html[data-theme="dark"], body[data-theme="dark"], [data-theme="dark"], .dark)
+  :where(.sidebar, [class*="sidebar"], #sidebar-content)
+  :where([style*="border-top"], [style*="border-bottom"]) {
+  border-top: none !important;
+  border-bottom: none !important;
 }
 
 @media (prefers-color-scheme: dark) {

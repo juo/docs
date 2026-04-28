@@ -445,6 +445,23 @@ body.dark p a:active,
   text-decoration-line: none !important;
 }
 
+/* Live-only artifact: remove sidebar divider lines in dark mode */
+:where(html[data-theme="dark"], body[data-theme="dark"], [data-theme="dark"], .dark)
+  :where(.sidebar, [class*="sidebar"], #sidebar-content)
+  :where(hr, [role="separator"], [aria-orientation="horizontal"]) {
+  border-color: transparent !important;
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Also neutralize Tailwind divide-y/border-t separators inside sidebar */
+:where(html[data-theme="dark"], body[data-theme="dark"], [data-theme="dark"], .dark)
+  :where(.sidebar, [class*="sidebar"], #sidebar-content)
+  :where([class*="divide-y"] > :not([hidden]) ~ :not([hidden])) {
+  border-top-width: 0 !important;
+  border-top-style: none !important;
+}
+
 @media (prefers-color-scheme: dark) {
   p a,
   p a:link,

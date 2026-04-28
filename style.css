@@ -478,6 +478,15 @@ body.dark p a:active,
   border-bottom: none !important;
 }
 
+/* Catch-all: some live separators are `border` (full) not `border-t/b` */
+:where(html[data-theme="dark"], body[data-theme="dark"], [data-theme="dark"], .dark)
+  :where(.sidebar, [class*="sidebar"], #sidebar-content)
+  :where([class~="border"], [class*=" border "], [class^="border "], [class$=" border"], [class*="border-"]) {
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+}
+
 @media (prefers-color-scheme: dark) {
   p a,
   p a:link,

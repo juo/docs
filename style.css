@@ -712,6 +712,16 @@ body.dark [class*="group"]:not(a),
   border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
+/* Sidebar (live): prevent generic `.group` border rule from creating divider lines */
+:where(html[data-theme="dark"], html.dark, body[data-theme="dark"], body.dark, [data-theme="dark"], .dark)
+  :where(.sidebar, [class*="sidebar"], #sidebar-content)
+  :where(.group, [class*="group"]) {
+  border-bottom-width: 0 !important;
+  border-top-width: 0 !important;
+  border-bottom-style: none !important;
+  border-top-style: none !important;
+}
+
 /* Override border hover effects on cards and other elements */
 html[data-theme="dark"] .group-hover\:text-primary,
 html.dark .group-hover\:text-primary,

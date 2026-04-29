@@ -1551,3 +1551,17 @@ body.dark p a:-webkit-any-link,
   border-bottom-style: none !important;
   border-bottom-color: transparent !important;
 }
+
+/* FINAL SAFETY NET (live parity):
+   enforce underlines for body-content links even if production CSS order differs. */
+:where(html[data-theme="dark"], html.dark, body[data-theme="dark"], body.dark, [data-theme="dark"], .dark)
+  :where(main, article, [class*="prose"], [data-content])
+  :where(p a, li a, td a, th a, blockquote a, p a:-webkit-any-link, li a:-webkit-any-link, td a:-webkit-any-link, th a:-webkit-any-link, blockquote a:-webkit-any-link) {
+  text-decoration: underline #d9d9d9 solid !important;
+  text-decoration-line: underline !important;
+  text-decoration-color: #d9d9d9 !important;
+  text-decoration-style: solid !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: auto !important;
+  border-bottom: none !important;
+}

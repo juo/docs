@@ -1567,3 +1567,16 @@ body.dark p a:-webkit-any-link,
   text-underline-offset: auto !important;
   border-bottom: none !important;
 }
+
+/* ULTRA FINAL (live dark mode):
+   If production CSS still kills `text-decoration`, render the underline via border-bottom for main content links.
+   Excludes cards to avoid double-underlines on card components. */
+:where(html[data-theme="dark"], html.dark, body[data-theme="dark"], body.dark, [data-theme="dark"], .dark)
+  :where(main, article, [class*="prose"], [data-content])
+  :where(p a, li a, td a, th a, blockquote a)
+  :not(.card):not([class*="card"]) {
+  border-bottom: 1px solid rgba(217, 217, 217, 0.9) !important;
+  border-bottom-color: rgba(217, 217, 217, 0.9) !important;
+  border-bottom-style: solid !important;
+  border-bottom-width: 1px !important;
+}

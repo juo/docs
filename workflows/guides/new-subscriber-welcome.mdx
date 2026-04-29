@@ -1,37 +1,49 @@
 ---
-title: New subscriber welcome
-description: Reduce early churn by showing value-first content and offering a choice of incentives.
+title: Fight new subscriber churn
+description: Reduce early churn by showing value-first content and offering subscribers a choice of incentives.
 ---
 
-New subscribers are in the **highest churn risk** window. A strong onboarding workflow helps them understand the value of your product and builds the habit that drives long-term retention.
+New subscribers are in the **highest churn-risk window**. Some of them are already loyal returning buyers, some are only trying out your product, and others may have subscribed by accident. A strong onboarding workflow helps them understand the value of your product and builds the habit that drives long-term retention.
 
-## Goal
+These are just some of the reasons why churn tends to be highest in this segment. But that also means that if you get subscribers past the threshold of the first recurring order, you are much more likely to keep them for the months to come.
 
-Decrease churn for fresh subscribers.
+## Welcome message for new subscribers
 
-## Recommended setup
+A workflow using the **Customer portal opened** trigger lets you display a pop-up with optional text, image, or video for subscribers in their first cycle. It is a perfect opportunity to personally thank them, explain the value of your product, and show them why being a subscriber is worth it.
 
-- **Trigger**: Customer Portal Entered
+![New subscriber welcome](https://cdn.juo.io/content-uploads/Screenshot_2026_04_29_at_17_17_44_68f625fbc2.png)
 
-### Key actions
+A well-crafted message is often enough to convert hesitation into loyalty.
 
-- **Show Content**: explain value with images/video (what to expect, how to use, results timeline)
-- **Offer Selection** *(optional)*: let customers choose between a discount or a free product for the next order
+**Trigger:** Customer portal opened  
+**Condition:** `subscription.cycle_count` is lower than `2`  
+ **Action:** Show content
 
-### Conditions to consider
+## Welcome gift
 
-Use lifecycle conditions to target the right cohort:
+You can accompany the welcome message with a free product or a discount for the next few renewals. Making subscribers feel special and giving them something to look forward to can drastically decrease early drop-off.
 
-- `subscription.cycle_count`
-- `subscription.age.days`
+**Action:** Add product / Apply discount
 
-Examples:
+```mermaid
+flowchart LR
+    A["TRIGGER<br/>Customer portal opened"] --> B["CONDITION<br/>subscription.cycle_count is lower than 2"]
+    B -->|Yes| C["ACTION<br/>Show welcome content"]
+    C --> D["ACTION<br/>Add gift or discount"]
+```
 
-- Show onboarding content only if `cycle_count = 1` or `age.days < 7`
-- Offer incentives only after the customer has seen value content
+<video
+  controls
+  playsInline
+  preload="metadata"
+  style={{ width: "100%", borderRadius: 12 }}
+>
+  <source src="https://cdn.juo.io/content-uploads/New_subscriber_welcome_Workflows_Juo_Showroom_Juo_29_April_2026_bf0a1a95c5.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
-## Best practices
+## Cancellation flow
 
-- **Lead with value**: incentives work best after the customer understands the benefit.
-- **Keep it short**: one strong piece of content beats a long sequence.
-- **Record outcomes**: tag customers who accepted an offer for later analysis.
+New subscribers often have different reasons for cancelling than long-time subscribers. Address them with a personalized flow and offer actions that can convince them to stay.
+
+Read more about Cancellation flows.

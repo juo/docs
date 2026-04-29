@@ -1568,6 +1568,27 @@ body.dark p a:-webkit-any-link,
   border-bottom: none !important;
 }
 
+/* LIVE DARK MODE FIX:
+   Mintlify often renders paragraphs as `span[data-as="p"]` (not a real <p>), so `p a` rules won’t match.
+   Force an underline via border-bottom for main content links inside those paragraph spans.
+   Then explicitly keep borders disabled in nav/sidebar/TOC (handled by the existing nav rules). */
+:where(html[data-theme="dark"], html.dark, body[data-theme="dark"], body.dark, [data-theme="dark"], .dark)
+  :where(main, article, [class*="prose"], [data-content])
+  :where([data-as="p"] a, [data-as="p"] a:-webkit-any-link) {
+  border-bottom-width: 1px !important;
+  border-bottom-style: solid !important;
+  border-bottom-color: rgba(217, 217, 217, 0.9) !important;
+}
+
+:where(html[data-theme="dark"], html.dark, body[data-theme="dark"], body.dark, [data-theme="dark"], .dark)
+  :where(.sidebar, [class*="sidebar"], #sidebar-content, header, header nav, header [role="navigation"], nav[aria-label="On this page"], nav[aria-label="Table of contents"], #table-of-contents, #toc, [class*="toc"], [class*="table-of-contents"])
+  :where([data-as="p"] a, [data-as="p"] a:-webkit-any-link) {
+  border-bottom: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-style: none !important;
+  border-bottom-color: transparent !important;
+}
+
 /* ULTRA FINAL (live dark mode):
    If production CSS still kills `text-decoration`, render the underline via border-bottom for main content links.
    Excludes cards to avoid double-underlines on card components. */

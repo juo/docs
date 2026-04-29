@@ -45,7 +45,7 @@
             "group": "Use cases",
             "pages": [
               "workflows/guides/cancellation-flow",
-              "workflows/guides/new-subscriber-welcome",
+              "workflows/guides/fight-new-subscriber-churn",
               "workflows/guides/vip-rewards"
             ]
           }

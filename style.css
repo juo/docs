@@ -428,6 +428,7 @@ body.dark p a:active,
     .sidebar,
     [class*="sidebar"],
     #sidebar-content,
+    /* Right-side TOC */
     nav[aria-label="On this page"],
     nav[aria-label="Table of contents"],
     #table-of-contents,
@@ -436,9 +437,10 @@ body.dark p a:active,
     [id*="toc"],
     [class*="table-of-contents"],
     [class*="toc"],
+    /* Top navbar only (avoid matching arbitrary <nav> in content) */
     header,
-    nav,
-    [role="navigation"]
+    header nav,
+    header [role="navigation"]
   )
   a {
   text-decoration: none !important;

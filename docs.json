@@ -73,6 +73,7 @@
       {
         "group": "Use guide",
         "pages": [
+          "editor",
           "bulk-actions",
           "customer-portal",
           "linking-customer-portal",

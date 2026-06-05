@@ -187,26 +187,4 @@ Built-in product features (renewal, upsell, login, workflows) should stay on **J
 3. The project is **built** and **published** to Juo's block registry for your shop.
 4. The Customer Portal loads the registry alongside built-in blocks; the Editor discovers new blocks automatically.
 
-### Developer toolchain
-
-| Tool                              | Purpose                                                                         |
-| --------------------------------- | ------------------------------------------------------------------------------- |
-| `npx create-juo` or `juo create`  | Scaffold a new block theme project                                              |
-| `juo generate --name "My Widget"` | Add a new block to the project                                                  |
-| `juo blocks dev`                  | Local dev server; opens the Admin Editor with your blocks loaded from localhost |
-| `juo publish`                     | Upload built assets to the registry (requires API credentials)                  |
-
-Configure API access via `juo publish --reconfigure`. For API documentation, see [juo.dev](https://juo.dev/).
-
-### Publishing workflow
-
-```bash
-# In your juo theme project
-juo generate --name "Promo Banner"
-# Implement component + schema (group: "theme")
-juo blocks dev          # iterate in Editor against localhost
-vite build              # produce dist/index.js
-juo publish             # deploy to shop registry
-```
-
-After publish, merchants **Add block** → **My blocks** in the Editor. Subscribers load the updated registry on their next portal visit.
+To learn more about the implementation of custom blocks, please consult our detailed developer documentation here: [Blocks](https://juo.dev/docs/blocks/overview)

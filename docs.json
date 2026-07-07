@@ -66,6 +66,7 @@
         "group": "Integrations",
         "pages": [
           "klaviyo-integration",
+          "customer-io-integration",
           "gorgias-integration",
           "zipify-integration"
         ]
@@ -78,6 +79,7 @@
           "customer-portal",
           "linking-customer-portal",
           "quick-actions",
+          "quick-actions-cio",
           "discounts",
           "tiered-discounts",
           "adding-juo-subscription-widget",

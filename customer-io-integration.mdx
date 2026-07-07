@@ -1,0 +1,148 @@
+---
+title: "Customer.io"
+---
+
+<Frame>
+  ![Juo - Customer.io
+  integration](https://cdn.juo.io/content-uploads/juo_klaviyo_integration_549cdbaeeb.png)
+</Frame>
+Juo provides out-of-the box email notifications for subscription purchase, renewal,
+upcoming payment, failed payment, cancellation, and pending renewal (items out of
+stock).
+
+In addition to these automatic notifications, or instead of them, merchants can also integrate Juo with Customer.io to manage their subscription-related communication there.
+
+Before using Customer.io integration, enable it in the Juo admin panel under **Settings** > **Integrations**.
+
+## Juo \<> Customer.io campaign triggers
+
+Juo is currently syncing the following events with Customer.io:
+
+| Event name                            | Sent when                                                                            |
+| :------------------------------------ | :----------------------------------------------------------------------------------- |
+| **Started Subscription**              | Subscription is purchased                                                            |
+| **Paused Subscription**               | Subscription is paused                                                               |
+| **Skipped Subscription**              | Subscription is skipped                                                              |
+| **Renewed Now Subscription**          | Subscription is triggered using the Renew Now option                                 |
+| **Reactivated Subscription**          | Subscription is reactivated from the Canceled status                                 |
+| **Replaced Line Subscription**        | A product is swapped                                                                 |
+| **Line Added Subscription**           | A product is added to subscription, as recurring or as one-time                      |
+| **Line Removed Subscription**         | A product is removed from subscription                                               |
+| **Next Billing Date Updated Subscription** | Next billing date is changed                                                    |
+| **Plan Changed Subscription**         | Subscription delivery frequency is changed                                           |
+| **Plan Changed Subscription Line**    | Product delivery frequency is changed                                                |
+| **Cancelled Subscription**            | Subscription is cancelled                                                            |
+| **Failed Subscription**            | Subscription has failed e.g. because of too many failed payment attempts                                                            |
+| **Upcoming Renewal Subscription**     | 3 days before a subscription is scheduled to renew                                   |
+| **Billed Subscription**               | Subscription is successfully paid                                                    |
+| **Billing Failed Subscription**       | Subscription payment fails                                                           |
+| **Renewal Requires Action**           | Payment requires additional authentication (e.g. 3D Secure for credit card payments) |
+| **Product Out Of Stock Subscription** | Subscription renewal fails due to one or more products being out of stock            |
+| **Chargeback Subscription**           | Chargeback request is initiated by the customer                                      |
+
+<Warning>
+  Note that in order to sync events between Juo and Customer.io you need to turn on
+  the integration first. Events that happened prior to the integration will not
+  be visible in Customer.io.
+</Warning>
+
+You can use the above events as triggers to send subscription notifications. For example, if you want to send an email after a subscription has been purchased in your store, select **Started Subscription** as a trigger in your Customer.io campaign or workflow.
+
+## Juo \<> Customer.io event properties
+
+Each of the events that is synced between Juo and Customer.io comes with a set of properties that can be used as dynamic variables in the email and SMS notifications set up in Customer.io.
+
+To access the properties that are available for each event, open the event payload in Customer.io's data explorer or preview your campaign content using a recent event from the integration.
+
+### Subscription-related properties
+
+| Property name              | Description                                                             | Type   |
+| :------------------------- | :---------------------------------------------------------------------- | :----- |
+| **OrderID**                | ID of the subscription                                                  | number |
+| **Items**                  | List of products in the subscription                                    | array  |
+| **ItemNames**              | List of product names in the subscription                               | array  |
+| **DiscountCode**           | Discount code applied to the subscription                               | string |
+| **DiscountValue**          | Numeric value of the discount                                           | number |
+| **OrderIntervalFrequency** | Numeric value of the frequency index, e.g. `1` for every 1 month        | number |
+| **OrderIntervalUnit**      | Type of interval unit, e.g. `week` or `month`                           | string |
+| **CurrentCycle**           | Index number of the current subscription order. 0 is the initial order. | number |
+| **NextBillingDate**        | Date of the next scheduled renewal, e.g. `"2025-04-28T11:07:23.000Z"`   | string |
+| **Saving**                 | Total savings in subscription                                           | number |
+| **ShippingCost**           | Shipping cost of the next subscription renewal                          | number |
+| **value**                  | Total order value (without shipping), mapped from `linesTotal`          | number |
+| **QuickLinks**             | URLs that redirect customers to specific subscription management views  | object |
+| **QuickActions**           | One-click subscription action URLs and upsell product details         | object |
+
+Depending on the event type, some additional properties may become available, such as:
+
+| Property name          | Description                                                                                   | Type   |
+| :--------------------- | :-------------------------------------------------------------------------------------------- | :----- |
+| **errorMessage**       | Provides more background on the reason for payment failure, e.g. "Payment method was revoked" | string |
+| **NextActionUrl**      | Link to where subscribers can finish their payment validation when required                   | string |
+| **PaymentMethodType**  | Payment method type for upcoming renewal notifications (`recurring` or `intentional`)         | string |
+| **CancellationReason** | Reason for cancelling the subscription provided by the customer                               | string |
+| **reasonCode**         | Chargeback reason code, e.g. `"MS02"`                                                         | string |
+| **reasonMessage**      | Chargeback reason, e.g. `"Refusal by the Debtor"`                                             | string |
+| **attempt**            | Contains the number of the failed billing attempt                                             | number |
+
+For details on using **QuickLinks** and **QuickActions** in your campaigns, see the [Quick actions for Customer.io](/quick-actions-cio) guide.
+
+### Customer-related properties
+
+| Property name                    | Description                                                          | Type    |
+| :------------------------------- | :------------------------------------------------------------------- | :------ |
+| **ActiveSubscriber**             | Indicates whether the customer has at least one active subscription  | boolean |
+| **ActiveSubscriptionIDs**        | List of IDs of the customer's active Juo subscriptions               | array   |
+| **ActiveSubscriptionVariantIDs** | List of Shopify variant IDs included in the customer's subscriptions | array   |
+| **NextReplenishmentDate**        | Date of the next scheduled billing for any active subscription       | string  |
+| **UpcomingRenewalPaymentUrl**    | URL where the customer can complete payment for an upcoming renewal    | string  |
+| **TotalRecurringOrders**         | Total number of subscription-based orders placed by the customer     | number  |
+| **TotalRecurringRevenue**        | Total revenue generated from all of the customer's subscriptions     | number  |
+
+### Item-related properties
+
+| Property name   | Description                                                     | Type   |
+| :-------------- | :-------------------------------------------------------------- | :----- |
+| **ProductID**   | Allows to display the ID of the product in subscription         | string |
+| **ProductName** | Shows the name of the product                                   | string |
+| **VariantName** | Shows the name of the variant                                   | string |
+| **Quantity**    | Shows the product quantity                                      | number |
+| **ItemPrice**   | Shows the price per single item                                 | number |
+| **RowTotal**    | Shows the price of all items of the same type (Item x Quantity) | number |
+| **ImageURL**    | Allows to display the product image                             | string |
+| **Categories**  | Shows the collection or collections to which an item belongs    | array  |
+| **ProductURL**  | URL of the product page in your store                           | string |
+
+Here's an example of how you can use properties to display additional subscription information in each email, including:
+
+- products ordered
+- product quantity
+- total price for the products
+- subscription benefits
+- total item and shipping value
+
+Properties for displaying subscription details
+
+```
+**Your subscription details**
+
+
+{{ trigger.Items[0].ProductName }}
+x {{ trigger.Items[0].Quantity }}
+
+
+${{ trigger.Items[0].RowTotal }}
+
+
+
+
+- Shipped every: {{ trigger.OrderIntervalFrequency }} {{ trigger.OrderIntervalUnit }}
+- Next billing date: {{ trigger.NextBillingDate | date: "%B %d, %Y" }}
+- Save ${{ trigger.Saving }} in subscription
+
+
+Total: ${{ trigger.value }}
+Shipping: ${{ trigger.ShippingCost }}
+```
+
+Feel free to copy them into your Customer.io email editor as you set up the content. Use campaign preview with a recent event to verify how subscription order information will be displayed in your notifications.

@@ -1,0 +1,165 @@
+---
+title: "Quick actions for Customer.io"
+description: "Quick Actions in Juo Subscriptions let merchants embed one-click links in Customer.io email campaigns, enabling customers to add products, resume, or update their subscriptions without logging in."
+---
+
+### Key Features
+
+- **Quick Links**: Redirect customers to specific subscription management views.
+- **Quick Actions**: Allow one-click subscription actions.
+
+### Security
+
+- Links and actions expire after 72 hours.
+- Delegated tokens ensure secure access.
+
+To access the properties that are available for each link or action, preview your Customer.io campaign using a recent event from the Juo integration. You can copy the property keys from the event payload into your email content.
+
+---
+
+# Quick Links
+
+Quick Links are used to direct customers to specific places in Juo Customer Portal. These links are sent as properties inside the **QuickLinks** object on each synced event.
+
+## Available Quick Links
+
+| Property key             | Description                              |
+| :----------------------- | :--------------------------------------- |
+| **ViewSubscription**     | Opens the subscription details view      |
+| **AddProducts**          | Opens the add products view              |
+| **EditAddress**          | Opens the address editing view           |
+| **ChangePaymentMethod**  | Opens the payment method update view     |
+| **ChangeBillingDate**    | Opens the billing date change view       |
+| **AddDiscount**          | Opens the discount code entry view       |
+| **ChangeShippingMethod** | Opens the shipping method selection view |
+
+Example usage in a Customer.io email:
+
+```html
+<a href="{{ trigger.QuickLinks.ViewSubscription }}">View your subscription</a>
+```
+
+---
+
+# Quick Actions
+
+Quick Actions allow customers to perform specific tasks directly from their email. These actions are sent as properties inside the **QuickActions** object on each synced event.
+
+## Available Quick Actions
+
+| Property key  | Description                              |
+| :------------ | :--------------------------------------- |
+| **Pause**     | Pauses the subscription                  |
+| **Skip**      | Skips the next renewal                   |
+| **RenewNow**  | Triggers an immediate renewal            |
+| **Reactivate**| Reactivates a cancelled subscription     |
+| **Resume**    | Resumes a paused subscription            |
+
+Example usage in a Customer.io email:
+
+```html
+<a href="{{ trigger.QuickActions.Pause }}">Pause subscription</a>
+<a href="{{ trigger.QuickActions.Skip }}">Skip next delivery</a>
+```
+
+## Add Product
+
+The **Products** array inside **QuickActions** can be used by your subscribers to easily add products included in Juo Upsell campaigns to their next renewal. Merchants can display product details such as the product's image, price, and title in the email.
+
+Each product entry in `QuickActions.Products` contains the following fields:
+
+- **AddProductUrl**: The URL for adding a product to cart.
+- **Title**: The name of the product.
+- **CurrentPrice**: The discounted price, if applicable.
+- **BasePrice**: The original price of the product.
+- **ImageUrl**: A URL for the product image.
+- **VariantId**: The Shopify variant ID for the product.
+- **AvailableForSale**: A boolean indicating if the product is in stock.
+
+To link to the first product in the array, use:
+
+`{{ trigger.QuickActions.Products[0].AddProductUrl }}`
+
+Example email template that displays all items in the Upsell campaign:
+
+```html
+{% if trigger.QuickActions.Products.size > 0 %}
+  <table
+    role="presentation"
+    cellspacing="0"
+    cellpadding="0"
+    border="0"
+    width="100%"
+    style="font-family: sans-serif;"
+  >
+    <tr>
+      <td style="padding: 20px 0; text-align: center;">
+        <h2 style="margin-bottom: 20px;">Special Add-ons for Your Next Delivery</h2>
+        {% for product in trigger.QuickActions.Products %}
+          {% if product.AvailableForSale %}
+            <table
+              role="presentation"
+              cellspacing="0"
+              cellpadding="0"
+              border="0"
+              width="100%"
+              style="margin-bottom: 30px; border-collapse: collapse;"
+            >
+              <tr>
+                <td style="width: 100px; padding: 10px;">
+                  <img
+                    src="{{ product.ImageUrl }}"
+                    alt="{{ product.Title }}"
+                    width="100"
+                    style="border-radius: 6px; display: block;"
+                  >
+                </td>
+                <td style="padding: 10px; text-align: left; vertical-align: top;">
+                  <p style="margin: 0; font-weight: bold;">{{ product.Title }}</p>
+                  {% if product.CurrentPrice < product.BasePrice %}
+                    <p style="margin: 4px 0;">
+                      <span style="color: #999; text-decoration: line-through;">{{ product.BasePrice }}</span>
+                      <span style="font-weight: bold;">{{ product.CurrentPrice }}</span>
+                    </p>
+                  {% else %}
+                    <p style="margin: 4px 0; font-weight: bold;">
+                      {{ product.CurrentPrice }}
+                    </p>
+                  {% endif %}
+                  <a
+                    href="{{ product.AddProductUrl }}"
+                    style="display: inline-block; margin-top: 10px; padding: 10px 16px; background-color: #3727F4; color: white; text-decoration: none; border-radius: 4px;"
+                  >
+                    Add to next delivery
+                  </a>
+                </td>
+              </tr>
+            </table>
+          {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+  </table>
+{% else %}
+  <p style="text-align: center;">No add-ons available at the moment.</p>
+{% endif %}
+```
+
+---
+
+## Customer.io synchronization
+
+Quick action parameters are sent to Customer.io with each trigger:
+
+- Started Subscription
+- Paused Subscription
+- Skipped Subscription
+- Renewed Now Subscription
+- Cancelled Subscription
+- Upcoming Renewal Subscription
+- Billed Subscription
+- Billing Failed Subscription
+- Renewal Requires Action
+- Product Out Of Stock Subscription
+
+For more information, see the [Customer.io integration guide](/customer-io-integration).

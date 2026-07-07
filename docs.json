@@ -66,7 +66,7 @@
         "group": "Integrations",
         "pages": [
           "klaviyo-integration",
-          "customer-io-integration",
+          "customerio-integration",
           "gorgias-integration",
           "zipify-integration"
         ]
@@ -205,6 +205,10 @@
     {
       "source": "/grow-and-retain",
       "destination": "/retention"
+    },
+    {
+      "source": "/customer-io-integration",
+      "destination": "/customerio-integration"
     },
     {
       "source": "/launch-subscriptions",

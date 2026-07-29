@@ -7,6 +7,8 @@ Actions define **what the workflow does once it starts**.
 
 After a trigger fires and conditions are evaluated, actions determine what happens next. A workflow can contain multiple actions and can branch based on customer responses.
 
+Not every action is available for every trigger. The builder hides incompatible actions and blocks publishing if an incompatible action remains on the canvas.
+
 ## Action categories
 
 - **Interactions**: show something to the customer and **wait for a response**
@@ -14,68 +16,79 @@ After a trigger fires and conditions are evaluated, actions determine what happe
 
 ## Interactions
 
-Interactions require customer input to proceed. By default, they display a popup prompting them to confirm or make a choice. In cancellation flows, accepting an offer results in a saved subscription.
+Interactions require customer input to proceed. By default, they display a popup prompting the customer to confirm or make a choice. In cancellation (and similar) flows, accepting an offer typically keeps the subscription from the trigger’s default outcome (for example, cancellation).
 
-Customers will see configurable `Accept` / `Decline` buttons. Choosing `Accept` is enough to apply the related action. In other words, **you don't have to follow the `Offer Skip` interaction with a `Skip Order` execution**.
+Customers see configurable Accept / Decline (or similar) buttons. Choosing **Accept** is enough to apply the related effect. In other words, **you don’t have to follow an `Offer Delay Order` interaction with a separate `Delay Order` execution**.
 
-Interactions require the customer to be present in the Customer Portal to see the offer, so they can only be used with customer-initiated triggers.
+Interactions require the customer to be present in the Customer Portal, so they can only be used with **customer-initiated** triggers.
 
 | Action | Description |
 |---|---|
-| `Poll` | Ask a question - customer selects from available options |
+| `Poll` | Ask a question — the customer selects from available options |
+| `Collect Feedback` | Ask for open-ended written feedback (optional skip unless marked required) |
 | `Offer Discount` | Present a discount offer to the customer |
-| `Offer Skip` | Offer to skip the next order |
+| `Offer Delay Order` | Offer to delay the next order by one billing cycle, or let the customer pick a custom delay (days/weeks/months) |
 | `Offer Renew` | Offer to renew the subscription immediately |
 | `Offer Free Product` | Offer a free product to the customer |
-| `Offer Selection` | Present multiple offer options for customer to choose |
+| `Offer Selection` | Present multiple offer options (discounts and/or free products) for the customer to choose |
 | `Offer Change Frequency` | Offer to change subscription frequency |
-| `Offer Swap Product` | Offer to swap subscription product |
-| `Show Content` | Display custom content with a Next button |
-| `Custom Offer` | Display any content with accept and decline options |
-| `Show Confirmation` | Display a confirmation message (optional final step) |
+| `Offer Swap Product` | Offer to swap a subscription product |
+| `Show Content` | Display custom content with a Continue button. Supports a display limit so it does not show too often |
+| `Custom Offer` | Display any content with accept and decline options (accepting prevents the trigger’s default outcome without applying a specific system action) |
+| `Show Confirmation` | Display a confirmation message (often used as a final step) |
 
 ## Executions
 
-Executions happen instantly without the need of confirmation. 
+Executions run without waiting for confirmation.
+
+### Subscription & messaging
 
 | Action | Description |
 |---|---|
-| `Apply Discount` | Apply a discount to the subscription |
-| `Pause Subscription` | Pause the subscription |
+| `Apply Discount` | Apply a percentage or fixed discount to the subscription (optional recurring cycle limit) |
 | `Cancel Subscription` | Cancel the subscription |
-| `Skip Order` | Skip the next scheduled order |
-| `Add Product` | Add a product to the subscription |
-| `Swap Product` | Swap a product in the subscription |
-| `Change Frequency` | Change the subscription frequency |
-| `Apply Free Shipping` | Apply free shipping to the subscription |
-| `Replace Subscription Products` | Replace all subscription products with a new set of variants |
-| `Renew Now` | Trigger an immediate renewal of the subscription |
+| `Delay Order` | Delay the next scheduled order by one billing cycle, or by a custom number of days/weeks/months |
+| `Add Product` | Add a product variant to the subscription (optional custom price, quantity, and recurring cycle limit) |
+| `Swap Product` | Swap one product variant for another in the subscription |
+| `Change Frequency` | Change the subscription delivery/billing frequency |
 | `Remove Subscription Item` | Remove a product from the subscription |
-| `Dunning Charge` | Retry payment after a delay |
-| `Dunning Default` | Use standard dunning retry schedule |
-| `Dunning Fail` | Expire dunning and fail subscription |
-| `Update Custom Field` | Update a custom field value |
+| `Add Tag` | Add a tag to the customer |
+| `Remove Tag` | Remove a tag from the customer |
+| `Send SMS` | Send an SMS to the customer (single segment; requires SMS access in notification settings). Not available on **Next order updated** |
+| `Send event to Klaviyo` | Send a custom Klaviyo event for the customer (requires Klaviyo integration). Event name plus optional properties |
+| `Send event to Customer.io` | Send a custom Customer.io event for the customer (requires Customer.io integration). Event name plus optional properties |
+
+### Payment failed (dunning)
+
+These actions are only available with the **Payment failed** trigger.
+
+| Action | Description |
+|---|---|
+| `Schedule Charge` | Retry the payment after a configurable delay (for example `24h`) |
+| `Default Dunning` | Fall back to the standard dunning retry schedule (exponential backoff and notifications) |
+| `Fail Subscription` | Expire the dunning period and fail the subscription |
 
 ## Scheduled order actions
 
-These actions are only available with the **Next order updated** trigger. These actions have two functions:
-1. Modify the upcoming order: Automatically adjust the scheduled order when specific conditions are met (e.g., adding a free gift, applying a discount, or delaying the date).
-2. Validate the renewal: Act as a final check to either approve the scheduled order or block it from processing.
+These actions are only available with the **Next order updated** trigger. They:
 
-These rules are re-evaluated automatically every time the subscription is updated or interacted with. This ensures the upcoming scheduled order is always synced with your current workflow conditions.
+1. **Modify the upcoming order** — adjust the scheduled order when conditions are met (for example add a gift, apply a discount, or change the date).
+2. **Validate the renewal** — approve the order or block it from processing.
+
+Rules are re-evaluated whenever the subscription is updated or interacted with, so the upcoming order stays in sync with your workflow conditions.
 
 | Action | Description |
 |---|---|
-| `Approve` | Approve the scheduled order and proceed with renewal |
-| `Add Item` | Add a product variant to the scheduled order |
+| `Approve Order` | Approve the scheduled order and proceed with renewal |
+| `Add Item` | Add a product variant to the scheduled order (price and quantity; fields unlock after a variant is selected; price can autofill from the variant) |
 | `Remove Item` | Remove items matching a product variant from the scheduled order |
-| `Update Item` | Update quantity or price of items in the scheduled order |
-| `Apply Discount` | Apply a discount to the scheduled order |
-| `Delay` | Delay the scheduled order by a number of days |
-| `Reschedule` | Change the scheduled order date |
-| `Add Attribute` | Add a custom attribute to the scheduled order |
-| `Remove Attribute` | Remove a custom attribute from the scheduled order |
-| `Add Note` | Add a note to the scheduled order |
+| `Update Item` | Update quantity or price of items matching a product variant |
+| `Apply Discount` | Apply a discount to the scheduled order. Types: **percentage**, **fixed amount**, or **fixed price** (sets the products total to a target value; always applies to all products, never shipping; supersedes other discounts on the order and recalculates on each upcoming order) |
+| `Reschedule Order` | Change the scheduled order date |
+| `Add Custom Attribute` | Add a custom attribute to the scheduled order |
+| `Remove Custom Attribute` | Remove a custom attribute from the scheduled order |
+| `Add Note` | Add a note to the upcoming order; it is carried through to the resulting Shopify order |
 | `Remove All Discounts` | Remove all discounts from the scheduled order |
-| `Block` | Block the scheduled order with validation errors |
+| `Block Order` | Block the scheduled order with validation errors that must be resolved before renewal |
 
+Messaging actions (`Send SMS`, and similar) are not offered on **Next order updated**, so customers are not messaged on every order regeneration.

@@ -1,63 +1,62 @@
 ---
-title: "Retention flow"
+title: "Retention and acquisition settings"
+sidebarTitle: "Retention settings"
+description: "Freeze renewals, dunning, renewal timing, cancellation recovery, and related retention settings."
 ---
 
-<Frame>
-  ![](https://cdn.juo.io/content-uploads/retention_flow_9f5f7b0078.png)
-</Frame>
-Retention flow is a set of mechanisms designed to help merchants reduce churn by
-setting up a customizable cancellation poll with various recovery steps. Integrated
-with Juo analytics, it enables merchants to understand why customers cancel their
-subscriptions, and to develop effective strategies to retain them.
+These options live under **Settings → Retention and acquisition**.
 
-<Warning>Retention flow can be found in Experiences > Retention</Warning>
+For workflow-based cancellation and save offers, see [Workflows](/workflows/workflows-overview) and [Cancellation flow](/workflows/guides/cancellation-flow). The older Experiences retention poll (below) may still be used depending on your setup.
 
-## Cancellation poll
+## Freeze renewals
 
-The Cancellation poll is the core component of the Retention flow. It allows merchants to ask subscribers who are about to cancel for their reason and present tailored options based on their responses.
+**Freeze all renewals** pauses subscription operations shop-wide:
 
-Merchants can customize the displayed message and the possible answers. There is no limit to the number of options, and subscribers can also provide their own answers.
+- No renewal charges
+- No draft / renewal orders created
+- Customers cannot edit subscriptions in the Customer Portal
 
-The poll is activated when a subscriber clicks the “Cancel” button in the Customer Portal.
+Scheduled renewal jobs keep rescheduling (about every 24 hours) until you turn freeze off. When disabled, renewals resume automatically.
 
-### Recovery steps
+Use this for planned outages, catalogue cutovers, or emergency stops — not as a substitute for pausing individual subscriptions.
 
-Merchants can present different recovery steps based on the subscriber’s response to address their specific concerns:
+## Dunning flow
 
-- **Show Confirmation:** Asks the subscriber if they are sure they want to cancel their subscription.
-- **Offer Discount:** Offers a discount to encourage the subscriber to stay.
-- **Ask for a Reason:** Allows the subscriber to write their own answer if none of the provided options fit.
-- **Change Delivery Interval:** Suggests changing the delivery frequency if the subscriber receives too much or too little.
-- **Offer Skip:** Offers the option to skip the next delivery instead of canceling.
-- **Offer Pause:** Suggests pausing the subscription until the subscriber is ready to resume.
-- **Offer Renew Now:** Allows the subscriber to renew their subscription immediately.
-- **Offer Swap Product:** Suggests trying a different product instead of canceling.
+Set how long Juo retries failed payments before the subscription moves to **failed**. The period starts from the first failed billing attempt. Duration is configured in days, weeks, or months.
 
-### Offer discount
+For payment-failure automation with custom retry logic, use a [Payment failed](/workflows/triggers) workflow with dunning actions.
 
-In this section, merchants can set the discount offered to subscribers as an incentive to continue their subscription. The available options include:
+## Renewal time
 
-- Discount size
-- Duration of the discount (permanent or limited number of times)
-- A custom message to the customer
-- Discount type (percentage or fixed amount - coming soon)
+Choose when renewals run:
 
-## Retention Flow performance
+- **Renew on the initial purchase time** — Each subscription renews at the hour it was originally purchased.
+- **Renew all at the same time** — All renewals run at a single hour you select (0–23).
 
-<Frame>
-  ![](https://cdn.juo.io/content-uploads/retention_flow_performance_aa810df437.png)
-</Frame>
-The responses and effectiveness of each recovery step can be tracked and analyzed
-in Analytics > Retention Flow. The available metrics include:
+## Upcoming renewal events
 
-- Number of cancellation flows triggered
-- Number of recovered subscriptions
-- Number of canceled subscriptions
-- Flow effectiveness per cancellation reason
-- Flow effectiveness per recovery step
+Configure one or more “trigger before renewal” windows (interval + optional label). These drive upcoming-renewal notifications and sync to Klaviyo / Customer.io when those integrations are enabled.
+
+## Cancellation poll (legacy retention flow)
+
+If you still use the classic cancellation poll (instead of or alongside Workflows):
+
+- Customize the message and answer options when a customer clicks **Cancel**.
+- Attach recovery steps per answer: confirmation, discount, free-text reason, change frequency, delay order, pause, renew now, swap product.
+- Optionally offer a cancel-path discount (size, duration, message).
+
+Performance for this flow appears under **Analytics → Retention flow**.
+
+## Quick actions
+
+Configure how long authenticated quick-action / quick-link tokens remain valid. Prefer short expiries (for example ≤ 30 days) when embedding links in email.
+
+See [Quick actions](/quick-actions) and [Quick actions for Customer.io](/quick-actions-cio).
 
 ## Subscription intent
 
-Subscription intent detection is a PRO feature that analyzes returning customers’ buying behaviors to identify potential subscribers. When enabled, it scans your order base and automatically tags customers who have purchased the same product variant at least twice. You can then use this tag to create targeted customer segments.
+When enabled, Juo tags customers who look like potential subscribers (based on repeat purchase patterns). Tagging can take up to 24 hours. Details: [Subscription intent detection](/subscription-intent-detection).
 
-![Global settings view - Subscription intent detection](https://cdn.juo.io/content-uploads/settings_subscription_intent_e7ddcf650d.png)
+## SEPA renewals and chargebacks
+
+If your shop uses SEPA Direct Debit, additional controls appear here for payment timing and [chargeback recovery](/sepa-chargebacks).

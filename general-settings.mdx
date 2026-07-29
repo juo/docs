@@ -1,50 +1,47 @@
 ---
 title: "General settings"
-description: "The Settings page lets you change a range of global settings to further customize your customers’ subscription experience."
+description: "Configure inventory, pricing, shipping rates, tags, and order attribute copying for subscriptions."
 ---
 
-![Global settings view - Inventory and pricing](https://cdn.juo.io/content-uploads/global_settings_5ce4cb9b42.png)
+Global settings live under **Settings** in the Admin Panel. This page covers the **General** tab. Related options also appear under **Customer Portal**, **Retention and acquisition**, **Notifications**, and **Integrations**.
 
 ## Out of stock items
 
-This section lets you manage what should happen when there is an out-of-stock item in a subscription. It can either be suspended until all items are back in stock, or it can renew normally without interruption.
+Choose what happens when a subscription renews with an out-of-stock item:
 
-![Global settings view - Out of stock items](https://cdn.juo.io/content-uploads/settings_out_of_stock_6ee659eed4.png)
+- **Renew when back in stock** — Hold renewals until stock returns (duration follows your dunning period).
+- **Renew when out of stock** — Renew and bill without interruption.
 
 ## Price changes
 
-This section lets you choose whether the products in existing subscriptions should be affected by price changes in your inventory.
+When product prices change in Shopify:
 
-![Global settings view - Price changes](https://cdn.juo.io/content-uploads/settings_price_changes_ab43431639.png)
+- **Update to the new price** — Upcoming renewals use the new catalog price.
+- **Keep the initial price** — Existing subscription lines keep the price from when they were added.
+
+Changes apply to upcoming orders only.
 
 ## One-time products price
 
-This section lets you set up the pricing policy of one-time products added to the subscriptions. You can decide whether the one-time products should have their respective base price, or should the subscription discount be applied to them.
+Control whether selling-plan discounts apply when a customer adds a product as a **one-time** line in the Customer Portal. Enable this if one-time add-ons should receive the same subscription discount as recurring lines.
 
 ## Shipping rates
 
-This section allows you to decide how active subscriptions should behave when you change the shipping prices. By default, Juo retains shipping prices for subscribers until they update their subscription (i.e. adding, removing, swapping products) - at that point they are asked to accept the new rate.
+By default, Juo **retains** the shipping rate on a subscription until the customer updates it (for example by changing products or address).
 
-Once you enable Dynamic Shipping Rates, all subscriptions will be updated immediately after you change your shipping rates. However, note that the upcoming renewal will not yet be affected by this change, the new rates will be applied after the next renewal cycle.
+Enable **Dynamic Shipping Rates** to pull rates from your Shopify shipping profile whenever rates change. Already-scheduled upcoming renewals keep their current rate; the new rates apply from the following cycle.
+
+For profile setup details, see [Shipping setup](/shipping-setup).
 
 ## Tags
 
-This section allows you to define the tags that will automatically be added to the Shopify orders created by Juo and customers who purchased a subscription.
+Define tags Juo writes to Shopify **orders** and **customers** (for example first order vs recurring, active vs cancelled). Changes apply to upcoming orders only. Cycle and reference prefixes get an automatic index suffix.
 
-## Cancellation flow
+## Copy initial order attributes
 
-This section lets you set up a cancellation flow, including the cancellation message and suggested reasons. You can also offer an extra discount to customers who decide to cancel—the discount can be applied to selected upcoming renewals or permanently.
+Enable this to copy selected custom attributes from the customer’s **first order** onto the subscription — useful when a shipping app adds pickup-point codes after checkout.
 
-![Global settings view - Cancellation flow](https://cdn.juo.io/content-uploads/settings_cancellation_flow_7666876ec5.png)
+- Add the attribute **keys** to whitelist (only those keys are copied).
+- Existing subscription attributes are **never overwritten**.
 
-## Integrations
-
-Here you can integrate Juo with other apps in your stack using your Private API Key.
-
-![Global settings view - Integrations](https://cdn.juo.io/content-uploads/settings_integrations_5dd9770d91.png)
-
-## Manage billing plan
-
-After choosing your pricing plan during the initial Juo setup, you can view and manage your active plan, including its price and features. You can also upgrade or downgrade the plan as needed.
-
-![Global settings view - Manage billing plan](https://cdn.juo.io/content-uploads/settings_manage_billing_plan_0bf08ee3eb.png)
+Pair this with pickup-point integrations when attributes must persist onto renewals. See [Shipping setup](/shipping-setup#pickup-points).

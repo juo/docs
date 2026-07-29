@@ -1,28 +1,68 @@
 ---
 title: "Bulk actions"
+description: "Update many subscriptions at once from the Admin Panel."
 ---
 
-Bulk actions allow merchants to modify multiple subscriptions simultaneously from the admin panel, saving time compared to managing them individually. However, bulk actions should be used with caution to prevent unintended changes.
+Bulk actions let you change many subscriptions in one go from the Admin Panel. Use them carefully — changes apply immediately and can be hard to reverse.
 
-### **Performing a Bulk action**
+## How to run a bulk action
 
-1. Go to **Subscriptions** tab.
-2. (Optional) Use filters to find the subscriptions you want to modify.
-3. Select subscriptions using the checkbox in the **ID** column. Click **Select All** to apply the selection across all pages.
-4. Bulk action options will appear above the subscription list.
+1. Go to **Subscriptions**.
+2. (Optional) Use search and filters to narrow the list.
+3. Select subscriptions with the checkboxes, or use **Select all** to include every subscription that matches the current filters (across pages).
+4. Choose a bulk action from the bar above the table.
+5. Configure the action in the sidebar, then **Confirm**.
+
+While the job runs, a progress bar and live log appear in the sidebar. When it finishes, you can **Download log** to review what succeeded, was skipped, or failed.
+
+Large selections can take several minutes. You can close the sidebar and reopen the job later from the **Activity log** if needed.
+
 <Frame>
 ![](https://cdn.juo.io/content-uploads/Screenshot_2025_03_03_at_16_55_00_0cfef9dd54.png)
 </Frame>
-### **Available Bulk actions**
 
-* **Add Product**\* — Add any product to the selected subscriptions.
-* **Swap Product**\* — Replace a specific product with another in the selected subscriptions. If the product to be replaced doesn’t exist in some subscriptions, those will remain unchanged.
-* **Remove Product** — Remove a product from the selected subscriptions. Will only take effect on subscriptions that contain the chosen product.
-* **Change Product Price** — Set a new fixed price for a specific product in the selected subscriptions.
-* **Retry Payment** — Attempt to process payments instantly for subscriptions with a pending payment after a failed billing attempt.
-* **Update Status** — Change the status of the selected subscriptions.
-* **Reschedule** — Set a new renewal date for all selected subscriptions. The new date will apply regardless of previous renewal dates.
+## Available actions
 
-> **The new product does not need to be part of a subscription plan. If it is, any discount associated with that plan will not be applied. The product will inherit key properties (such as renewal date and delivery frequency) from the subscription it was added to.*
+### Products
 
-After selecting a bulk action, select its details and press **Confirm**. Depending on the number of the selected subscriptions, the action can take up to a few minutes. Upon completion, a log will be displayed with detailed results for each subscription.
+| Action | What it does |
+|---|---|
+| **Add product** | Adds a product variant to each selected subscription. Optionally set a **custom price**, or mark it as a **one-time** line (added for a single renewal only). The product does not need to be on a subscription plan; plan discounts are not applied to the new line. |
+| **Swap product** | Replaces one variant with another. Subscriptions that do not contain the “from” product are skipped. Optionally **retain the original price** after the swap. |
+| **Remove product** | Removes a product variant. Only subscriptions that contain it are updated; others are skipped. |
+| **Change product price** | Sets a fixed price for a specific variant on matching subscriptions. Subscriptions without that variant are skipped. |
+
+### Discounts
+
+| Action | What it does |
+|---|---|
+| **Add discount** | Applies a discount to selected subscriptions. Choose **Amount off subscription** or **Amount off products** (pick variants), then percent or flat amount. Apply for a set **number of renewals**, or **permanently**. |
+
+### Billing & schedule
+
+| Action | What it does |
+|---|---|
+| **Retry payment** | Immediately retries charging subscriptions that are waiting after a failed billing attempt. Subscriptions that are not in a retryable state are skipped. |
+| **Reschedule** | Sets a new next renewal date for all selected subscriptions (today or later). Optionally limit the change to **specific product variants**. |
+| **Update status** | Sets status to Active, Cancelled, Expired, Failed, or Paused. |
+
+### Cycles & automation
+
+| Action | What it does |
+|---|---|
+| **Change cycle** | Sets the current billing cycle number on selected subscriptions (for example to align cycle-based Extras or workflow logic). |
+| **Refresh cycle** | Re-applies the current cycle configuration (for example after changing Extras or Custom Workflows) to selected subscriptions without changing the cycle number. |
+| **Run workflow** | Runs the published **Admin initiated** workflow on selected subscriptions. The workflow must use only automatic (execution) steps — no customer-facing offers or polls. See [Triggers → Admin initiated](/workflows/triggers#admin-initiated). |
+
+## On a customer’s page
+
+From a customer’s detail page you can also bulk-edit that customer’s subscriptions or product lines:
+
+- **Subscriptions:** Add discount, Change status, Change frequency
+- **Products:** Change frequency, Reschedule
+
+## Results and activity log
+
+Each run produces a per-subscription log (Done / Skipped / Error). Skipped usually means the subscription did not match the action (for example, the product to swap was not on that subscription).
+
+Completed bulk actions also appear in the **Activity log**, where you can open a past job and review or download its log.

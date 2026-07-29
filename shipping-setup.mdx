@@ -8,7 +8,23 @@ Don’t add any products to this shipping profile. Once the rates are configured
 
 In the Merchant Portal, you can edit shipping rates for individual subscriptions. ![Screenshot 2025-03-06 at 16.59.53.png](https://cdn.juo.io/content-uploads/Screenshot_2025_03_06_at_16_59_53_d72fd02f4b.png)
 
-More advanced shipping rules are possible. You can reward your subscribers with free shipping after X order using [Extras](https://juo.io/docs/extras). Subscription experiences like [Build-a-Box](https://juo.io/docs/build-a-box) or [Custom Workflows](https://juo.io/docs/custom-workflows) also have their own Shipping settings.
+## Pickup points
+
+Juo supports **carrier pickup points** (parcel lockers / PUDO) as a recurring delivery method when enabled for your shop — for example InPost via Atlas Pickup Points, BOX NOW, or Skroutz Point.
+
+**Merchant setup**
+
+- **Settings → Integrations → Atlas Pickup Points** — Enable the integration and set the InPost attribute name used at checkout (default often `InPost Code`).
+- **Settings → General → Copy initial order attributes** — Whitelist pickup-related attribute keys so codes from the first order are copied onto the subscription. See [General settings](/general-settings#copy-initial-order-attributes).
+- BOX NOW / Skroutz Point are enabled per shop (contact Juo if you need them turned on).
+
+**Customer experience**
+
+In the Customer Portal, subscribers can choose or change a pickup point when the selected shipping method supports it. Switching between pickup point and home delivery may need an admin update on the subscription.
+
+In-store retail pickup is not supported. See the [FAQ](/FAQ).
+
+More advanced shipping rules are possible. You can reward your subscribers with free shipping after X order using [Extras](/extras). Subscription experiences like [Build-a-Box](/build-a-box) or [Custom Workflows](/custom-workflows) also have their own Shipping settings.
 
 ## Mixed cart shipping rates setup
 

@@ -5,7 +5,7 @@ description: Rules that decide whether a workflow continues and which path a cus
 
 Conditions define **when the workflow should continue**.
 
-If conditions are not met, the workflow stops.
+If conditions are not met, the workflow stops (or takes the fallback / “otherwise” branch, when configured).
 
 ## What conditions do
 
@@ -21,13 +21,15 @@ If conditions are not met, the workflow stops.
   />
 </div>
 
-The Condition block uses a  sentence-based rule builder to help you construct workflow logic. As you build your condition, smart autocomplete provides context-aware field suggestions.
+The Condition block uses a sentence-based rule builder. As you build a condition, smart autocomplete provides context-aware field suggestions. Available fields depend on the trigger (for example, UTM fields only appear on customer-initiated triggers).
 
 ## Practical examples
 
-- Route first-time subscribers vs. loyal subscribers (e.g. by cycle count / age)
-- Route VIP vs. non‑VIP subscribers (e.g. by lifetime value or tags)
+- Route first-time subscribers vs. loyal subscribers (for example by cycle count or age)
+- Route VIP vs. non‑VIP subscribers (for example by lifetime value or tags)
 - Route based on the product the customer is subscribed to
+- Branch portal flows by UTM source (Customer Portal vs. a tagged email link)
+- Enforce weight limits on the upcoming order before renewal
 
 ## Conditions reference
 
@@ -38,23 +40,25 @@ The Condition block uses a  sentence-based rule builder to help you construct wo
 | `customer.revenue` | Total revenue from the customer |
 | `customer.order_count` | Total number of orders from the customer |
 | `customer.tags` | Tags associated with the customer |
-| `customer.created_at` | Date when customer account was created |
-| `customer.last_payment_status` | Status of the most recent billing attempt across all customer subscriptions |
+| `customer.created_at` | Date when the customer account was created |
+| `customer.last_payment_status` | Status of the most recent billing attempt across all customer subscriptions (`new`, `pending`, `failed`, `completed`) |
 
 ### `subscription.*`
 
 | Condition | Description |
 |---|---|
-| `subscription.status` | Current status of the subscription |
+| `subscription.status` | Current status of the subscription (`active`, `paused`, `canceled`, `expired`, `failed`, `merged`) |
 | `subscription.cycle_count` | Number of completed billing cycles |
 | `subscription.tags` | Tags associated with the subscription |
 | `subscription.item_count` | Number of items in the subscription |
 | `subscription.total_value` | Total monetary value of the subscription |
-| `subscription.age_days` | Number of days since subscription was created |
+| `subscription.age_days` | Number of days since the subscription was created |
 | `subscription.items` | Line items in the subscription (array items include `productId`, `variantId`, `tags`) |
-| `subscription.active_discounts` | Active discounts applied to the subscription (array items include `type`, `value`) |
+| `subscription.active_discounts` | Active discounts on the subscription (array items include `type`: `percentage` / `fixed` / `free_shipping`, and `value`) |
 
 ### `subscription_item.*`
+
+Available when the trigger provides a subscription item (for example **Subscription item removal requested**).
 
 | Condition | Description |
 |---|---|
@@ -65,41 +69,61 @@ The Condition block uses a  sentence-based rule builder to help you construct wo
 | `subscription_item.tags` | Tags associated with the product |
 
 ### `upcoming_order.*`
-These conditions can be only used with the **Next order updated** trigger. They check the state of the next upcoming order. They are not directly associated with a subscription (if there are multiple delivery dates per subscription), but the subscription can be accessed via `upcoming_order.subscriptions` field.
+
+These conditions are used with the **Next order updated** trigger. They check the state of the next upcoming order. They are not tied to a single subscription when multiple delivery dates exist; per-subscription data is available via `upcoming_order.subscriptions`.
 
 | Condition | Description |
 |---|---|
+| `upcoming_order.date` | Scheduled date of the upcoming order |
 | `upcoming_order.item_count` | Total number of line items in the order |
-| `upcoming_order.total_quantity` | Sum of quantities across all line items in the order |
+| `upcoming_order.total_quantity` | Sum of quantities across all line items |
 | `upcoming_order.unique_item_count` | Number of distinct products in the order |
 | `upcoming_order.subtotal` | Order subtotal before shipping and discounts |
 | `upcoming_order.delivery_price` | Delivery/shipping price |
-| `upcoming_order.currency_code` | Currency code of the order (e.g. USD, EUR) |
+| `upcoming_order.currency_code` | Currency code of the order (for example USD, EUR) |
 | `upcoming_order.cycle_index` | Billing cycle index for this order |
 | `upcoming_order.skipped` | Whether the order was skipped |
-| `upcoming_order.items` | Line items in the order (array items include `productId`, `variantId`, `title`, `quantity`, `price`, `subscriptionId`) |
-| `upcoming_order.discounts` | Discounts applied to the order (array items include `type`, `value`) |
-| `upcoming_order.subscriptions` | Subscriptions included in this order, with per-subscription cycle count, item count, and value (array items include `id`, `cycleCount`, `itemCount`, `totalValue`) |
+| `upcoming_order.total_weight` | Total weight of all items in grams (unit weight × quantity). Returns null if any item’s weight is missing from the product index |
+| `upcoming_order.items` | Line items (include `productId`, `variantId`, `title`, `quantity`, `price`, `line_weight_grams`, `subscriptionId`) |
+| `upcoming_order.discounts` | Discounts applied to the order (include `type`, `value`) |
+| `upcoming_order.subscriptions` | Subscriptions on this order (include `id`, `cycleCount`, `itemCount`, `totalValue`) |
+
+### `subscription_upcoming_weight`
+
+Standalone condition (not an `upcoming_order.*` path). Total weight in grams of all items in the subscription’s upcoming order. Useful on triggers that do not carry full order data — especially **Customer portal opened** — for weight-based rules.
+
+### `trigger.*`
+
+Available on **customer-initiated** triggers. Values come from the UTM parameters on the link that started the flow (for example a tagged link in an email or ad). Empty when the customer opened the portal without UTM parameters.
+
+| Condition | Description |
+|---|---|
+| `trigger.utm.source` | UTM source |
+| `trigger.utm.medium` | UTM medium |
+| `trigger.utm.campaign` | UTM campaign |
+| `trigger.utm.term` | UTM term |
+| `trigger.utm.content` | UTM content |
 
 ### `time.*`
 
 | Condition | Description |
 |---|---|
-| `time.hour` | Current hour of the day (0-23) |
-| `time.day_of_week` | Current day of the week (0=Sunday, 6=Saturday) |
-| `time.date` | Current date/time as ISO string |
+| `time.hour` | Current hour of the day (0–23, UTC) |
+| `time.day_of_week` | Current day of the week (0 = Sunday, 6 = Saturday, UTC) |
+| `time.date` | Current date/time as an ISO string |
 
 ### `shop.*`
 
 | Condition | Description |
 |---|---|
-| `shop.setting` | A configuration value from shop settings (uses params `key?: string`, `default?: unknown`) |
+| `shop.setting` | A configuration value from shop settings (params: `key?`, `default?`) |
 
 ### `response.*`
 
 | Condition | Description |
 |---|---|
-| `response.step` | Response from a specific workflow step (uses params `stepId: string`, optional `field: "type" \| "data"`, optional `dataPath: string`) |
+| `response.feedback` | Free-text answer from the first **Collect Feedback** step submitted in the run (no step id required) |
+| `response.step` | Response from a specific workflow step (params: `stepId`, optional `field`: `type` \| `data`, optional `dataPath`) |
 
 ### `usage_limit` (no `.*` path)
 

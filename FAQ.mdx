@@ -99,17 +99,15 @@ flex-direction: column-reverse;
 
 3. **How can a customer change their delivery address?**
 
-   Customers can update their address in the Customer Portal.
+   Customers can update their address in the Customer Portal when home delivery is selected.
 
-   Note: If they previously selected a pickup point instead of providing a home address, they cannot edit the delivery method. Change the delivery method on the merchant side and add the home address.
+   If the subscription uses a **carrier pickup point** (for example InPost, BOX NOW, or Skroutz Point), customers change the pickup point in the portal instead of editing a street address. To switch a pickup-point subscription to home delivery (or the reverse), update the delivery method in the Admin Panel.
 
 4. **Can two Shopify customer accounts be merged if one has an active subscription?**
 
-   No.
+   Shopify often blocks merging accounts that still have an **active** subscription. Cancel or move the subscription first if Shopify rejects the merge.
 
-   Shopify does not allow **merging accounts with an active subscription**.
-
-   The workaround is to cancel the subscription on the incorrect account and re-create it on the correct account.
+   When Shopify does merge two customers, Juo **re-links** subscriptions, orders, and payment methods to the surviving customer automatically.
 
 5. **How can I send customers a link to purchase a new subscription?**
 
@@ -339,11 +337,11 @@ For multiple products, use:
 
    Unpublish the product on the online store and hide the purchase button on the product page.
 
-5. **Is in-store pickup supported for subscriptions?**
+5. **Is in-store pickup or pickup points supported for subscriptions?**
 
-   Not yet.
+   **In-store pickup** (buy online, pick up in your retail location) is not supported as a recurring shipping method.
 
-   Juo doesn’t currently support **in-store pickup** as a recurring shipping method.
+   **Carrier pickup points** (parcel lockers / PUDO such as InPost, BOX NOW, Skroutz Point) can be used when enabled for your shop. Customers select or change the pickup point in the Customer Portal. See [Shipping setup → Pickup points](/shipping-setup#pickup-points).
 
 6. **How does Juo handle multiple fulfilment locations?**
 

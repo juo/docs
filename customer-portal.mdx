@@ -64,7 +64,7 @@ A paused subscription can be resumed by clicking a **Resume** button next to the
 
 #### Cancel
 
-Subscribers have the ability to cancel their subscription via the Customer Portal by clicking the **Cancel** button. A cancelled subscription will no longer be active and subscribers will not be able to reactivate it.
+Subscribers have the ability to cancel their subscription via the Customer Portal by clicking the **Cancel** button. Depending on your settings and workflows, they may be offered save options first. Cancelled subscriptions can be reactivated when **Reactivate cancelled** is enabled in Customer Portal settings.
 
 ### Rescheduling subscriptions
 
@@ -76,6 +76,10 @@ If subscribers want to skip the upcoming delivery, they can click on **Skip next
   ![Customer Portal - Skip next
   order](https://cdn.juo.io/content-uploads/CP_manangement_skip_e8feedae20.png)
 </Frame>
+
+#### Skip a product in the next order
+
+When product editing is allowed, customers can **Skip in next order** on an individual line. That product is left out of the upcoming renewal only; other products still renew. Whole-order skip and per-product skip are both controlled by the **Skip next order** setting in Customer Portal management options.
 #### Change renewal date
 
 If subscribers want their order delivered at a later or earlier date, they can use **Change renewal date** to pick a different date from the date picker. Any future date can be picked as the next delivery date.
@@ -148,6 +152,8 @@ Under the Delivery address section, subscribers can change the address to which 
 
 As with the delivery address, subscribers can also change how their subscription orders are delivered by choosing from alternative delivery methods available for the products in their subscription.
 
+When **pickup points** are enabled, customers can choose or change a parcel locker / PUDO location instead of a home address. See [Shipping setup → Pickup points](/shipping-setup#pickup-points).
+
 The changes will be applied starting from the next delivery.
 
 <Frame>
@@ -166,9 +172,18 @@ A link to update the payment method will be sent to the email address that was u
 </Frame>
 ## Available management options
 
-The extent to which a subscription can be edited, depends on the [Customer Portal settings](/guides/using-global-settings#management-options). As a result, some management options, like editing or removing products, may not be available for a given subscription.
+Control what subscribers can do under **Settings → Customer Portal**:
 
-Similarly, some subscriptions will not be editable before a minimum number of renewals is reached. If this is the case, there will be a notification informing about how many renewals are still required before editing becomes possible.
+- Enable the **block-based Customer Portal** (required for the [Editor](/editor))
+- Toggle management actions: cancel, pause, skip next order, change renewal date, reactivate cancelled / failed, change delivery method and address, redeem discount codes, edit delivery frequency (including custom frequency), add any product as a one-time purchase
+- Control product-line editing: add, remove, swap, quantity, variant, hide descriptions
+- Exclude specific products from the portal, and optionally **auto-exclude new products**
+
+Cancel, pause, and skip are unavailable while a subscription is still under its **minimum required renewals**. Change renewal date may be unavailable for fixed fulfillment-day plans.
+
+Redeem discount codes should only be enabled if you share subscription-eligible codes with customers. See [Discounts](/discounts).
+
+Some subscriptions will not be editable before a minimum number of renewals is reached. If this is the case, there will be a notification informing about how many renewals are still required before editing becomes possible.
 
 <Frame>
   ![Customer Portal - Required

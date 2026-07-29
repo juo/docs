@@ -55,9 +55,9 @@
         "group": "Settings",
         "pages": [
           "general-settings",
+          "retention-flow",
           "shipping-setup",
           "notifications",
-          "retention-flow",
           "subscription-intent-detection",
           "sepa-chargebacks"
         ]
@@ -68,13 +68,15 @@
           "klaviyo-integration",
           "customerio-integration",
           "gorgias-integration",
-          "zipify-integration"
+          "zipify-integration",
+          "webhooks"
         ]
       },
       {
         "group": "Use guide",
         "pages": [
           "editor",
+          "create-subscription",
           "bulk-actions",
           "customer-portal",
           "linking-customer-portal",

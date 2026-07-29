@@ -1,40 +1,62 @@
 ---
 title: Triggers
+description: Events that start a workflow.
 ---
 
-Triggers are events that **start a workflow**. A trigger is always the starting block of each flow. 
+Triggers are events that **start a workflow**. A trigger is always the starting block of each flow.
 
 Triggers can be followed with a condition, action, or A/B test split. Depending on the type, different actions and conditions may be available for certain triggers.
 
-There can only be one trigger in a single flow, and each trigger can be used in only one active workflow.
-
-
-
+There can only be one trigger in a single flow, and each trigger can be used in only one active (published) workflow.
 
 ## Customer initiated
+
 **Started by the subscriber in the Customer Portal**
+
+These triggers do **not** run when the same action is performed in the Admin Panel.
 
 | Trigger | Description |
 |---|---|
-| `Subscription cancellation requested` | Triggered when a customer clicks 'Cancel' |
-| `Next renewal skip requested` | Triggered when a customer chooses to skip an upcoming order |
-| `Subscription pause requested` | Triggered when a customer pauses their subscription |
-| `Customer portal opened` | Triggered when a customer logs into the Customer Portal |
-| `Subscription item removal requested` | Triggered when a customer attempts to remove a product from their subscription |
+| `Subscription cancellation requested` | Triggered when a customer clicks **Cancel**. Default outcome: cancel the subscription unless an offer is accepted (or a Custom offer is accepted). |
+| `Next renewal skip requested` | Triggered when a customer chooses to skip an upcoming order. Default outcome: skip the order unless an offer is accepted. |
+| `Subscription pause requested` | Triggered when a customer clicks **Pause**. Default outcome: pause the subscription unless an offer is accepted. |
+| `Customer portal opened` | Triggered when a customer logs into the Customer Portal. No default outcome — only configured actions run. Use display limits on pop-ups so they do not show on every visit. |
+| `Subscription item removal requested` | Triggered when a customer attempts to remove a product from their subscription. Default outcome: remove that item unless an offer is accepted. |
+| `Subscription reactivation requested` | Triggered when a customer clicks **Reactivate** on a cancelled or failed subscription. Reactivation proceeds independently (no default outcome). Use it for welcome-back offers, surveys, or confirmation messages. |
+
+Customer-initiated triggers can carry **UTM parameters** from the link that opened the portal (for example from a Klaviyo or Customer.io email). Use `trigger.utm.*` conditions to branch on how the customer arrived. See [Conditions](/workflows/conditions).
 
 ## System initiated
-**Started by a background process or event without direct human input**
 
-| Trigger                               | Description |
-|---------------------------------------|-------------|
-| `Payment failed`                      | Triggered when a billing attempt fails |
-| `Upcoming Order Generated`            | Triggered when a scheduled order is generated, then it is validated upon renewal* |
+**Started by a background process or event without direct customer input in the portal**
 
-\* *Upcoming Order Generated* fires whenever a subscription is interacted with in any way, changing the state of the subscription ahead of the upcoming renewal. The flow is also validated just before every subscription order. Effectively, it lets you add special rules to the subscription that always apply as long as the conditions are met.
+| Trigger | Description |
+|---|---|
+| `Payment failed` | Triggered when a billing attempt fails on a recurring order. Use dunning actions (`Schedule Charge`, `Default Dunning`, `Fail Subscription`) to control retries. |
+| `Next order updated` | Triggered whenever the subscription is changed or interacted with, and validated again just before renewal. Defines and updates the upcoming renewal order. Use schedule-order actions to modify or block it. |
+| `Chargeback initiated` | Triggered when a chargeback is initiated on a subscription order. |
+
+### Next order updated
+
+*Next order updated* fires whenever a subscription is interacted with in a way that changes the state ahead of the upcoming renewal. The flow is also validated just before every subscription order. Effectively, it lets you add rules that always apply as long as the conditions are met.
 
 Example use cases:
-* Always add a product or discount to the next renewal as long as conditions are met (Subscribed to a specific product or total upcoming order value, etc.).
-* Prevent subscription from renewing until conditions are met (at least one paid product in a subscription, customer tag removed, etc.). 
+
+- Always add a product or discount to the next renewal when conditions are met (subscribed to a specific product, upcoming order value above a threshold, weight limits, and so on).
+- Prevent a subscription from renewing until conditions are met (at least one paid product, customer tag removed, and so on) using **Block Order**.
 
 ## Admin initiated
-**Started manually in the Admin Panel** (*Coming soon*)
+
+**Started manually from the Admin Panel**
+
+| Trigger | Description |
+|---|---|
+| `Admin initiated` | Started when an admin runs the workflow for selected subscriptions via the **Run workflow** bulk action on the Subscriptions list. |
+
+To use it:
+
+1. Create and publish a workflow with the **Admin initiated** trigger.
+2. Use only **execution** actions (no customer-facing interactions such as Poll or Offer Discount) — interactive steps cannot run from a bulk action.
+3. On **Subscriptions**, select subscriptions → **Run workflow**. Optionally add a reason (for example, “Win-back campaign”).
+
+Only one published workflow can use this trigger at a time.

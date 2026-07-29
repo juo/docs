@@ -1,0 +1,34 @@
+---
+title: "Webhooks"
+description: "Register endpoints to receive subscription, customer, order, and product events from Juo."
+---
+
+Use webhooks to push Juo events to your own systems (ERP, custom apps, data warehouse, and so on).
+
+## Enable webhooks
+
+1. Go to **Settings → Integrations → Webhooks**.
+2. Turn on webhook delivery for the store.
+3. Use the embedded portal to add endpoints, inspect deliveries, and manage signing secrets.
+
+Endpoint registration and secrets are managed in that portal (powered by Svix), not as separate fields in Juo settings.
+
+For the technical event payloads and API reference, see the [Admin webhooks reference](https://juo.dev/api-reference/admin/webhooks).
+
+## Event types
+
+Juo can deliver events such as:
+
+| Area | Events |
+|---|---|
+| Customers | `customer.created`, `customer.updated` |
+| Payment methods | `customer-payment-method.created`, `updated`, `revoked` |
+| Subscriptions | `subscription.created`, `updated`, `renewed` |
+| Subscription items | `subscription-item.created`, `updated`, `deleted` |
+| Discounts | `subscription-discount.created`, `updated`, `deleted` |
+| Schedule adjustments | `schedule-adjustment.created`, `updated`, `deleted` |
+| Products | `product.created`, `updated`, `deleted` |
+| Variants | `product-variant.created`, `updated`, `deleted` |
+| Orders | `order.created`, `updated`, `deleted` |
+
+Subscribe only to the events your integration needs.

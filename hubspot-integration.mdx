@@ -1,0 +1,107 @@
+---
+title: "Hubspot"
+---
+
+<Frame>
+  <img
+    src="/images/Juo+Hubspot.png"
+    alt="Juo - HubSpot
+integration"
+    lightAlt="Juo - HubSpot
+integration"
+    darkAlt="Juo - HubSpot
+integration"
+  />
+</Frame>
+
+Juo provides out-of-the box email notifications for subscription purchase, renewal, upcoming payment, failed payment, cancellation, and pending renewal (items out of stock).
+
+In addition to these automatic notifications, or instead of them, merchants can also integrate Juo with HubSpot to manage their subscription-related communication there.
+
+Before using the HubSpot integration, enable it in the Juo admin panel under **Settings → Integrations → HubSpot**. You will need a HubSpot **private app access token**.
+
+## **Requirements**
+
+| Requirement | Details |
+| :-- | :-- |
+| **HubSpot plan** | The integration uses HubSpot's Custom Events API, available on Marketing Hub or Sales Hub **Enterprise** |
+| **Service key token** | Created in HubSpot under **Development → Keys → Service Keys → Create service key** |
+| **Service key scopes** | `crm.objects.contacts.read` `crm.objects.contacts.write` `crm.schemas.contacts.write` `behavioral_events.event_definitions.read_write` `analytics.behavioral_events.send` |
+
+After you save the token and enable the integration, Juo automatically creates the required event definitions and contact properties in your HubSpot portal — no manual setup in HubSpot is needed.
+
+## **Juo \<\> HubSpot workflow triggers**
+
+Juo is currently syncing the following events with HubSpot:
+
+| Event name | Sent when |
+| :-- | :-- |
+| **Started Subscription** | Subscription is purchased |
+| **Billed Subscription** | Subscription is successfully paid |
+| **Billing Failed Subscription** | Subscription payment fails |
+| **Upcoming Renewal Subscription** | Before a subscription is scheduled to renew, per your reminder schedule |
+| **Renewed Now Subscription** | Subscription is triggered using the Renew Now option |
+| **Renewal Requires Action** | Payment requires additional authentication (e.g. 3D Secure for credit card payments) |
+| **Paused Subscription** | Subscription is paused |
+| **Reactivated Subscription** | Subscription is reactivated from the Canceled status |
+| **Canceled Subscription** | Subscription is cancelled |
+| **Next Billing Date Updated Subscription** | Next billing date is changed |
+| **Chargeback Subscription** | Chargeback request is initiated by the customer |
+
+Note that in order to sync events between Juo and HubSpot you need to turn on the integration first. Events that happened prior to the integration will not be visible in HubSpot.
+
+You can use the above events as enrollment triggers in HubSpot workflows. For example, if you want to send an email after a subscription payment has failed in your store, select **Billing Failed Subscription** as the enrollment trigger.
+
+## **Juo \<\> HubSpot event properties**
+
+Each of the events that is synced between Juo and HubSpot comes with a set of properties that can be used in HubSpot workflows, for example in enrollment filters and if/then branches.
+
+HubSpot event properties only support simple values — no nested lists or objects. Because of that, products are represented by their joined names and a count, and monetary amounts are sent as text with two decimal places (e.g. `49.99`) to preserve exact values.
+
+### **Subscription-related properties**
+
+Available on all events except **Renewal Requires Action**:
+
+| Property name | Description | Type |
+| :-- | :-- | :-- |
+| **order\_id** | ID of the subscription | text |
+| **item\_names** | Names of the products in the subscription, joined into a single text (up to 256 characters) | text |
+| **item\_count** | Number of products in the subscription | number |
+| **discount\_code** | Discount code applied to the subscription | text |
+| **discount\_value** | Value of the discount, e.g. `10.00` | text |
+| **order\_interval\_frequency** | Numeric value of the frequency index, e.g. `1` for every 1 month | number |
+| **order\_interval\_unit** | Type of interval unit, e.g. `WEEK` or `MONTH` | text |
+| **current\_cycle** | Index number of the current subscription order. 0 is the initial order. | number |
+| **next\_billing\_date** | Date of the next scheduled renewal, e.g. `2026-04-28T11:07:23.000Z` | datetime |
+| **order\_total** | Total order value without shipping, e.g. `49.99` | text |
+| **saving** | Total savings in subscription | text |
+| **shipping\_cost** | Shipping cost of the subscription renewal | text |
+
+Depending on the event type, some additional properties may become available:
+
+| Property name | Description | Type |
+| :-- | :-- | :-- |
+| **error\_message** | Provides more background on the reason for payment failure, e.g. "Payment method was revoked" | text |
+| **attempt** | Contains the number of the failed billing attempt | number |
+| **cancellation\_reason** | Reason for cancelling the subscription provided by the customer | text |
+| **send\_email** | Whether a cancellation email was sent to the customer | boolean |
+| **payment\_method\_type** | Payment method type for upcoming renewal notifications (`recurring` or `intentional`) | text |
+| **payment\_method** | Payment method of the upcoming renewal | text |
+| **days\_to\_renewal** | Number of days until the scheduled renewal | number |
+
+The **Renewal Requires Action** event carries its own minimal set of properties instead of the subscription-related ones:
+
+| Property name | Description | Type |
+| :-- | :-- | :-- |
+| **next\_action\_url** | Link to where subscribers can finish their payment validation when required | text |
+| **lines\_total** | Total value of the renewal, e.g. `49.99` | text |
+
+### **Customer-related properties**
+
+Juo also keeps a set of subscription properties up to date on each HubSpot contact. They are updated automatically whenever a customer's subscription changes, and can be used in HubSpot lists, workflow enrollment filters, and if/then branches.
+
+| Property name | Description | Type |
+| :-- | :-- | :-- |
+| **active\_subscriber** | Indicates whether the customer has at least one active subscription | boolean |
+| **next\_replenishment\_date** | Date of the next scheduled billing for any active subscription (empty when there is none) | datetime |
+| **total\_recurring\_revenue** | Total revenue generated from all of the customer's subscriptions, e.g. `1234.56` | text |

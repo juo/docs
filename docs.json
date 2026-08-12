@@ -66,6 +66,7 @@
         "group": "Integrations",
         "pages": [
           "klaviyo-integration",
+          "hubspot-integration",
           "customerio-integration",
           "gorgias-integration",
           "zipify-integration",

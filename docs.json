@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "Juo Subscriptions documentation",
-  "theme": "mint",
+  "theme": "maple",
   "favicon": {
     "light": "/favicon.png",
     "dark": "/favicon.png"
@@ -12,85 +12,134 @@
   },
   "colors": {
     "primary": "#3727F4",
-    "light": "#3727F4",
-    "dark": "#d9d9d9"
+    "light": "#8B85FF",
+    "dark": "#3727F4"
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#08090A"
+    }
+  },
+  "fonts": {
+    "family": "Inter"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": false
+  },
+  "styling": {
+    "eyebrows": "section",
+    "codeblocks": "system"
   },
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Getting started",
-        "pages": ["index", "about-juo", "subscription-experiences", "retention"]
-      },
-      {
-        "group": "Subscription experiences",
-        "pages": [
-          "subscribe-and-save",
-          "build-a-box",
-          "upsells",
-          "extras",
-          "custom-workflows",
-          "curated-boxes",
-          "memberships"
-        ]
-      },
-      {
-        "group": "Workflows",
-        "pages": [
-          "workflows/workflows-overview",
-          "workflows/triggers",
-          "workflows/conditions",
-          "workflows/actions",
-          "workflows/experiments",
+        "tab": "Docs",
+        "groups": [
           {
-            "group": "Use cases",
+            "group": "Get started",
             "pages": [
-              "workflows/guides/cancellation-flow",
-              "workflows/guides/fight-new-subscriber-churn",
-              "workflows/guides/vip-rewards"
+              "index",
+              "about-juo",
+              "migrating-to-juo"
+            ]
+          },
+          {
+            "group": "Subscription experiences",
+            "pages": [
+              "subscribe-and-save",
+              "build-a-box",
+              "curated-boxes",
+              "custom-workflows",
+              "memberships",
+              "upsells",
+              "extras"
+            ]
+          },
+          {
+            "group": "Workflows",
+            "pages": [
+              "workflows/workflows-overview",
+              "workflows/triggers",
+              "workflows/conditions",
+              "workflows/actions",
+              "workflows/connections",
+              "workflows/experiments"
+            ]
+          },
+          {
+            "group": "Storefront and portal",
+            "pages": [
+              "adding-juo-subscription-widget",
+              "subscription-widget",
+              "customer-portal",
+              "linking-customer-portal",
+              "editor"
+            ]
+          },
+          {
+            "group": "Managing subscriptions",
+            "pages": [
+              "create-subscription",
+              "bulk-actions",
+              "quick-actions",
+              "discounts",
+              "tiered-discounts",
+              "analytics"
+            ]
+          },
+          {
+            "group": "Settings",
+            "pages": [
+              "general-settings",
+              "retention-flow",
+              "shipping-setup",
+              "notifications",
+              "subscription-intent-detection",
+              "sepa-chargebacks"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "klaviyo-integration",
+              "hubspot-integration",
+              {
+                "group": "Customer.io",
+                "pages": [
+                  "customerio-integration",
+                  "quick-actions-cio"
+                ]
+              },
+              "gorgias-integration",
+              "zipify-integration",
+              "webhooks"
             ]
           }
         ]
       },
       {
-        "group": "Settings",
-        "pages": [
-          "general-settings",
-          "retention-flow",
-          "shipping-setup",
-          "notifications",
-          "subscription-intent-detection",
-          "sepa-chargebacks"
-        ]
-      },
-      {
-        "group": "Integrations",
-        "pages": [
-          "klaviyo-integration",
-          "hubspot-integration",
-          "customerio-integration",
-          "gorgias-integration",
-          "zipify-integration",
-          "webhooks"
-        ]
-      },
-      {
-        "group": "Use guide",
-        "pages": [
-          "editor",
-          "create-subscription",
-          "bulk-actions",
-          "customer-portal",
-          "linking-customer-portal",
-          "quick-actions",
-          "discounts",
-          "tiered-discounts",
-          "adding-juo-subscription-widget",
-          "subscription-widget"
-        ]
-      },
-      {
-        "group": " ",
-        "pages": [
+        "tab": "Learn",
+        "groups": [
+          {
+            "group": "Foundations",
+            "pages": [
+              "subscription-experiences",
+              "retention",
+              "sepa-direct-debit"
+            ]
+          },
+          {
+            "group": "Workflow playbooks",
+            "pages": [
+              "workflows/guides",
+              "workflows/guides/use-cases",
+              "workflows/guides/cancellation-flow",
+              "workflows/guides/fight-new-subscriber-churn",
+              "workflows/guides/vip-rewards"
+            ]
+          },
           {
             "group": "Glossary",
             "pages": [
@@ -118,6 +167,12 @@
               "glossary/subscription-renewal",
               "glossary/subscription",
               "glossary/variable-discount"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "FAQ"
             ]
           }
         ]

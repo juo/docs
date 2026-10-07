@@ -70,3 +70,95 @@ html[data-theme="dark"] {
 a[href^="https://mintlify.com"] {
   display: none;
 }
+
+/* ── Tiles (index.mdx, learn.mdx) — modelled on linear.app/learn ── */
+.juo-tiles-section {
+  margin: 2.5rem 0 0;
+}
+
+.juo-tiles-heading {
+  font-size: 1.25rem;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem;
+}
+
+.juo-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .juo-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .juo-tiles { grid-template-columns: minmax(0, 1fr); }
+}
+
+.juo-tile {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--juo-border);
+  border-radius: 10px;
+  background: var(--juo-surface);
+  overflow: hidden;
+  text-decoration: none !important;
+  border-bottom-width: 1px !important;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.juo-tile:hover {
+  border-color: color-mix(in srgb, var(--juo-border) 30%, var(--juo-muted) 70%);
+}
+
+.juo-tile-visual {
+  height: 140px;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--juo-border);
+}
+
+.juo-tile-icon {
+  display: inline-flex;
+  color: var(--juo-muted);
+  opacity: 0.9;
+}
+
+.juo-tile-icon svg {
+  width: 18px;
+  height: 18px;
+  background-color: var(--juo-muted) !important;
+}
+
+.juo-tile-body {
+  padding: 18px 22px 22px;
+}
+
+.juo-tile-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #0f1011;
+  margin-bottom: 6px;
+}
+
+.juo-tiles-heading {
+  color: #0f1011;
+}
+
+.dark .juo-tile-title,
+.dark .juo-tiles-heading,
+html[data-theme="dark"] .juo-tile-title,
+html[data-theme="dark"] .juo-tiles-heading {
+  color: #f7f8f8;
+}
+
+.juo-tile-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--juo-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -125,6 +125,7 @@
           {
             "group": "Foundations",
             "pages": [
+              "learn",
               "subscription-experiences",
               "retention",
               "sepa-direct-debit"

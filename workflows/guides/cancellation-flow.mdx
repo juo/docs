@@ -1,55 +1,111 @@
 ---
-title: Cancellation flow
-description: Learn why customers cancel and retain subscriptions with personalized alternatives.
+title: "Cancellation flow"
+description: "Learn why subscribers cancel and keep the ones you can serve better with an alternative that fits their reason."
 ---
 
-A cancellation flow triggers when a subscriber **attempts to cancel their subscription**. Building this in Juo helps you achieve two primary goals:
+| | |
+|---|---|
+| **Goal** | Understand cancellation reasons and save subscriptions that can continue on better-fitting terms |
+| **Primary metric** | Save rate: share of cancellation attempts that end with the subscription kept |
+| **Supporting metrics** | Cancellation reasons, retention of saved subscriptions 2–3 cycles later, discount cost per save |
+| **Trigger** | Subscription cancellation requested (`cancellation_clicked`) |
+| **Audience** | Every subscriber who clicks **Cancel** in the Customer Portal |
+| **Default outcome** | The subscription is cancelled unless the subscriber accepts an offer |
 
-- Understand cancellation reasons.
-- Retain subscribers by:
-  - Explaining the value of your product.
-  - Highlighting the benefits of being a subscriber.
-  - Addressing their specific needs.
+## Why it works
 
-Workflows let you create a multi-step, branching flow to target different subscriber cohorts, address cancel reasons, and test different approaches. 
+Many cancellations are not a rejection of the product. Subscribers leave because they have too much stock, the price feels high this month, the timing is wrong, or they never built the habit. Each of these has a better answer than cancelling: a delay, a different frequency, a different product, or a one-off incentive.
 
-## Workflow setup
+A cancellation flow matches the answer to the reason. It also records the reason for every attempt, which shows where the product, pricing, or delivery cadence is losing subscribers.
+
+The revenue effect is direct. Each saved subscription adds at least one more paid cycle, and subscribers who move to a frequency or product that fits them tend to stay longer than those who are kept with a discount alone.
+
+## Flow
 
 ![Cancellation flow example](https://cdn.juo.io/content-uploads/cancellation_flow_1_e2373e3403.png)
-**Trigger:** Subscription cancellation requested
 
-The default outcome of a workflow started by this trigger is **subscription cancellation**. This means the customer must accept some offer; otherwise, the flow will result in their subscription being canceled. Most offers have a specific effect, such as adding a discount or free product, skipping an order, swapping a product, etc. 
+1. **Remind them of the value.** Show content about what the subscription gives them: savings, convenience, results. Keep it short.
+2. **Ask for the reason.** A poll with four to six options. Each option becomes a branch.
+3. **Offer the alternative that fits the reason:**
+   - *Too much product* → offer to delay the next order, then to change frequency.
+   - *Too expensive* → offer a limited discount if they have not had one before, otherwise offer a pause.
+   - *Not seeing results / not using it* → show usage guidance, then offer a product swap.
+   - *Other* → collect open feedback.
+4. **Confirm the outcome.** A confirmation for saved subscriptions. If every offer is declined, the subscription is cancelled.
 
-Use the `Custom offer` action to present content and encourage subscribers to stay without applying a specific system action.  
+## Blueprint
 
-Useful actions:
+```yaml
+# Summary for people and agents, not an import format.
+# Take exact config fields and response ids from the workflows catalog.
+trigger: cancellation_clicked
+default_outcome: cancellation
+steps:
+  value_reminder:
+    action: show_content
+    next: reason
+  reason:
+    action: poll
+    options: [too_expensive, too_much_product, not_seeing_results, other]
+    on:
+      too_expensive: price_branch
+      too_much_product: delay
+      not_seeing_results: usage_tips
+      other: feedback
+  price_branch:                 # routing step, auto transitions, first match wins
+    next:
+      - if: usage_limit(key: retention_discount, scope: customer, window: all_time) less_than 1
+        to: discount
+      - to: pause
+  discount:
+    action: offer_discount      # e.g. percentage 20, recurringCycleLimit 2, usageLimitId: retention_discount
+    on: { accepted: saved, declined: cancelled }
+  pause:
+    action: offer_pause
+    on: { accepted: saved, declined: cancelled }
+  delay:
+    action: offer_delay         # delayMode: custom, e.g. 2 weeks, 1 month
+    on: { accepted: saved, declined: frequency }
+  frequency:
+    action: offer_change_frequency
+    on: { accepted: saved, declined: cancelled }
+  usage_tips:
+    action: show_content
+    next: swap
+  swap:
+    action: offer_swap_product
+    on: { accepted: saved, declined: cancelled }
+  feedback:
+    action: collect_feedback
+    next: cancelled
+  saved:
+    action: show_confirmation
+    final: true
+  cancelled:
+    final: true                 # default outcome applies: subscription is cancelled
+```
 
-- **Show content:** Explain the value of your brand, product, and subscription. This can contain an image or a video.
-- **Poll:** Learn the exact reason for canceling.
-- **Offer alternatives:** Depending on the poll response, offer a discount, free product, product swap, frequency change, delayed order, etc., as an alternative to canceling.
-- **Custom offer:** Show content and provide an option to stay without accepting a specific offer.
+## Configuration choices
 
-## Best practices
+- **Reasons.** Use the reasons your support team hears most. Keep the list short; long polls lower completion. Review the "Other" feedback monthly and promote recurring answers to their own option.
+- **Offer size.** Start with a modest discount limited to one or two cycles. A permanent discount saves the subscription but lowers the value of every future order.
+- **New vs. long-term subscribers.** Branch on `subscription.cycle_count` or `subscription.age_days` before the poll. New subscribers usually need guidance on using the product; long-term subscribers more often need a cadence change.
+- **Product-specific routes.** Branch on `subscription.items contains_where variantId equals …` to give a flagship or newly launched product its own content and feedback questions.
 
-### Explain the value of your product and subscription
+## Guardrails
 
-Before offering subscribers discounts and free products, make sure they understand the value of your subscription and the benefits of consistent use. Emphasizing product value often encourages long-term retention more effectively than immediate incentives. Consider discounts as a secondary measure rather than the core of your retention strategy.
+- **One discount per customer.** Gate discount offers with a usage limit so subscribers cannot cancel repeatedly to collect them.
+- **Don't stack offers on one reason.** Two offers in a row is the practical maximum. More feels like an obstacle and drives complaints and chargebacks.
+- **Always allow cancellation.** Every path must end in a way out. Hiding it hurts trust and may conflict with consumer protection rules in your markets.
 
-### Personalize for new vs. long-term subscribers
+## Measure results
 
-Long-term subscribers typically have different reasons for canceling compared to recent subscribers.
+- **Save rate**, overall and per reason. A reason with a low save rate needs a different offer.
+- **Retention of saved subscriptions** two to three cycles later. If most saved subscriptions cancel at the next renewal, the offer is delaying churn, not preventing it.
+- **Cost per save**: discount value and free products given, compared with the revenue of the extra cycles.
+- Compare offers with an [experiment](/workflows/experiments) before rolling one out to all subscribers.
 
-Asking a new subscriber if they have stocked on too much product is likely irrelevant. Instead, present them with educational content on how to use the product or reiterate its long-term value—information that would be less necessary for someone who has already been subscribed for a year.
+## Related
 
-Useful conditions:
-
-- `subscription.cycle_count`
-- `subscription.age_days`
-
-### Personalize by subscribed product
-
-You can create tailored routes for people subscribed to a specific product. Maybe it’s your flagship subscription-first product, or maybe it’s a brand-new release that you’d like to get feedback on.
-
-Use the condition below in the workflow to check for a specific product variant:
-
-- `subscription.items contains item where variantId is equal to`
+- [Fight new subscriber churn](/workflows/guides/fight-new-subscriber-churn)
+- [Triggers](/workflows/triggers) · [Conditions](/workflows/conditions) · [Actions](/workflows/actions)

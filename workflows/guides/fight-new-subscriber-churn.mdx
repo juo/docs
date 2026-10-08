@@ -1,36 +1,34 @@
 ---
-title: Fight new subscriber churn
-description: Reduce early churn by showing value-first content and offering subscribers a choice of incentives.
+title: "Fight new subscriber churn"
+description: "Get new subscribers past their first renewal with a welcome, a reason to stay, and a reminder before the first charge."
 ---
 
-New subscribers are in the **highest churn-risk window**. Some of them are already loyal returning buyers, some are only trying out your product, and others may have subscribed by accident. A strong onboarding workflow helps them understand the value of your product and builds the habit that drives long-term retention.
+| | |
+|---|---|
+| **Goal** | Get new subscribers to their second and third orders |
+| **Primary metric** | Second-order retention: share of new subscriptions that complete their first renewal |
+| **Supporting metrics** | Cancellations and refund requests before the first renewal, incentive acceptance rate |
+| **Triggers** | Customer portal opened (`customer_portal_entered`), Days before renewal (`days_before_renewal`) |
+| **Audience** | Subscriptions that have not renewed yet |
+| **Default outcome** | None. Only the configured actions run |
 
-These are just some of the reasons why churn tends to be highest in this segment. But that also means that if you get subscribers past the threshold of the first recurring order, you are much more likely to keep them for the months to come.
+## Why it works
 
-## Welcome message for new subscribers
+Churn is highest before the first renewal. Some new subscribers are loyal customers trying the subscription, some are testing the product, and some subscribed without fully registering it. The first renewal charge is the moment all of them decide.
 
-A workflow using the **Customer portal opened** trigger lets you display a pop-up with optional text, image, or video for subscribers in their first cycle. It is a perfect opportunity to personally thank them, explain the value of your product, and show them why being a subscriber is worth it.
+Subscribers who pass that point are much more likely to stay for several more cycles, so effort spent here has a multiplied effect on lifetime value. Two things help most: making the value of the subscription clear early, and making sure the first renewal is expected rather than a surprise. A surprise charge leads to cancellations, refund requests, and chargebacks.
+
+## Flow
+
+The playbook uses two workflows, because each trigger can have one published workflow.
+
+**1. Welcome in the Customer Portal**
+
+1. A subscriber who has not renewed yet opens the Customer Portal.
+2. Show welcome content once: a thank-you, how to get the most from the product, and what being a subscriber includes.
+3. Optionally, offer a choice of welcome incentive for the next order, such as a free sample or a small discount.
 
 ![New subscriber welcome](https://cdn.juo.io/content-uploads/Screenshot_2026_04_29_at_17_17_44_68f625fbc2.png)
-
-A well-crafted message is often enough to convert hesitation into loyalty.
-
-**Trigger:** Customer portal opened  
-**Condition:** `subscription.cycle_count` is lower than `2`  
- **Action:** Show content
-
-## Welcome gift
-
-You can accompany the welcome message with a free product or a discount for the next few renewals. Making subscribers feel special and giving them something to look forward to can drastically decrease early drop-off.
-
-**Action:** Add product / Apply discount
-
-```mermaid
-flowchart LR
-    A["TRIGGER<br/>Customer portal opened"] --> B["CONDITION<br/>subscription.cycle_count is lower than 2"]
-    B -->|Yes| C["ACTION<br/>Show welcome content"]
-    C --> D["ACTION<br/>Add gift or discount"]
-```
 
 <video
   controls
@@ -42,8 +40,68 @@ flowchart LR
   Your browser does not support the video tag.
 </video>
 
-## Cancellation flow
+**2. Reminder before the first renewal**
 
-New subscribers often have different reasons for cancelling than long-time subscribers. Address them with a personalized flow and offer actions that can convince them to stay.
+1. A few days before the first renewal, send an event to your email or SMS platform.
+2. The platform sends a message that confirms the upcoming order and date, repeats the value, and links to the Customer Portal to skip, delay, or change it.
 
-Read more about [Cancellation flows](/workflows/guides/cancellation-flow).
+## Blueprint
+
+```yaml
+# Summary for people and agents, not an import format.
+# Take exact config fields and response ids from the workflows catalog.
+
+# Workflow 1: welcome
+trigger: customer_portal_entered
+steps:
+  is_new:
+    next:
+      - if: subscription.cycle_count less_than 2
+        to: welcome
+      # no match: run ends, nothing is shown
+  welcome:
+    action: show_content        # displayLimitId: once per subscription
+    next: incentive
+  incentive:
+    action: offer_selection     # options: free_product (sample), discount (e.g. 10%, recurringCycleLimit 1)
+                                # usageLimitId: welcome_incentive
+    on: { declined: done }      # accepting an option applies it
+  done:
+    final: true
+
+# Workflow 2: first renewal reminder
+trigger: days_before_renewal    # e.g. 3 days before renewal
+steps:
+  is_first_renewal:
+    next:
+      - if: subscription.cycle_count less_than 2
+        to: notify
+  notify:
+    action: send_event_to_klaviyo   # or send_event_to_customerio / send_email / send_sms
+                                    # metric: "First renewal upcoming"
+    final: true
+```
+
+## Configuration choices
+
+- **Welcome content.** Focus on how to use the product and what results to expect, not on promotions. A short video works well for products with a learning curve.
+- **Incentive.** A free sample of another product builds range awareness and raises the chance of a later add-on. A discount on the second order is simpler but trains price sensitivity.
+- **Reminder timing.** Send it early enough for the subscriber to act: two to five days before renewal, depending on your cadence and shipping time.
+- **Combine with the cancellation flow.** Give new subscribers their own branch in the [Cancellation flow](/workflows/guides/cancellation-flow), with usage guidance before any offer.
+
+## Guardrails
+
+- **Show the welcome once.** Use a display limit; a pop-up on every portal visit becomes noise.
+- **One welcome incentive per customer.** Use a usage limit, so customers with several subscriptions do not collect it several times.
+- **Don't hide the renewal.** The reminder should make it easy to delay or skip. A subscriber who delays is still a subscriber; one who is charged by surprise often is not.
+
+## Measure results
+
+- **Second-order retention** for subscriptions created after launch, compared with the months before.
+- **Cancellations and refund requests in the first cycle.** Both should fall if the reminder works.
+- **Incentive acceptance** and the retention of subscribers who accepted against those who did not. Test incentives with an [experiment](/workflows/experiments).
+
+## Related
+
+- [Cancellation flow](/workflows/guides/cancellation-flow)
+- [Klaviyo integration](/klaviyo-integration) · [Customer.io integration](/customerio-integration)

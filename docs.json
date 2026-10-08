@@ -141,10 +141,10 @@
             "group": "Workflow playbooks",
             "pages": [
               "workflows/guides",
-              "workflows/guides/use-cases",
               "workflows/guides/cancellation-flow",
               "workflows/guides/fight-new-subscriber-churn",
-              "workflows/guides/vip-rewards"
+              "workflows/guides/vip-rewards",
+              "workflows/guides/churned-subs-winback"
             ]
           },
           {
@@ -278,6 +278,10 @@
     {
       "source": "/launch-subscriptions",
       "destination": "/subscription-experiences"
+    },
+    {
+      "source": "/workflows/guides/use-cases",
+      "destination": "/workflows/guides"
     }
   ]
 }

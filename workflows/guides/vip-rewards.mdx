@@ -1,34 +1,92 @@
 ---
-title: VIP rewards
-description: Reward high-value subscribers with gifts or persistent perks based on value or loyalty.
+title: "VIP rewards"
+description: "Keep your highest-value subscribers longer with milestone gifts and a visible VIP status."
 ---
 
-High-AOV subscriptions bring the biggest value—but also hurt the most when they cancel. VIP rewards workflows create special moments that make loyal subscribers feel appreciated.
+| | |
+|---|---|
+| **Goal** | Increase the tenure of the subscribers who bring the most revenue |
+| **Primary metric** | Retention of the top-value cohort, for example the top 10–20% of subscribers by revenue |
+| **Supporting metrics** | Share of subscribers reaching each milestone, reward cost as a share of cohort revenue |
+| **Triggers** | Next order updated (`upcoming_order_generated`), Subscription anniversary (`subscription_anniversary`) |
+| **Audience** | Long-tenure or high-revenue subscribers |
+| **Default outcome** | Next order updated: the order is approved unless a rule blocks it |
 
-## Goal
+## Why it works
 
-Reward highest-paying or long-time subscribers.
+Revenue in a subscription business is concentrated. A minority of subscribers, those with larger orders or longer tenure, usually accounts for a large share of recurring revenue. Losing one of them costs as much as losing several average subscribers.
 
-## Recommended setup
+These subscribers rarely need a discount to stay. What keeps them is recognition and a reason to reach the next point: a gift on a known milestone, a perk that comes with a status, a thank-you on their anniversary. Predictable milestones work better than random surprises, because a subscriber who knows a reward is two orders away has a reason not to cancel before then.
 
-- **Trigger**: Subscription renewed *(coming soon as a system event trigger)*
+## Flow
 
-### Key actions
+The rules run in your store's **Next order updated** workflow, which shapes every upcoming renewal order. If the store already has one, add these steps as branches of it.
 
-- **Offer Free Product**: add a free gift (e.g. every \(N\) renewals, or on milestone cycles)
-- **Offer Discount**: apply a persistent perk (e.g. permanent discount for VIP tier)
+1. **Milestone gift.** When the upcoming order is the subscriber's 6th (or 12th, 24th…), add a free product to it.
+2. **VIP status.** When a customer's total revenue passes your threshold, tag them as VIP and apply a VIP perk to their orders, such as a small discount or free shipping.
+3. **Anniversary.** On the subscription's anniversary, send an event to your email platform for a thank-you message that mentions their milestone and perks.
 
-### Conditions to consider
+## Blueprint
 
-- `subscription.total_value` for high-grossing subscriptions
-- `subscription.cycle_count` for most loyal subscribers
+```yaml
+# Summary for people and agents, not an import format.
+# Take exact config fields from the workflows catalog.
 
-Examples:
+# Branches inside the store's Next order updated workflow
+trigger: upcoming_order_generated
+default_outcome: order_approved
+steps:
+  milestone_check:
+    next:
+      - if: upcoming_order.cycle_index equals 6
+        to: milestone_gift
+      - to: vip_check
+  milestone_gift:
+    action: schedule_order_add_item   # variantId: gift, price 0, quantity 1
+    next: vip_check
+  vip_check:
+    next:
+      - if: customer.revenue greater_than 500    # your VIP threshold, store currency
+        to: vip_tag
+      - to: done
+  vip_tag:
+    action: add_tag                   # tag: vip
+    next: vip_perk
+  vip_perk:
+    action: schedule_order_apply_discount   # e.g. type percentage, value 10, target line, title "VIP"
+    next: done
+  done:
+    final: true
 
-- VIP tier if `total_value > $X`
-- Loyalty milestone if `cycle_count ≥ 6`
+# Separate workflow: anniversary thank-you
+trigger: subscription_anniversary
+steps:
+  thank_you:
+    action: send_event_to_klaviyo     # metric: "Subscription anniversary"
+    final: true
+```
 
-## Best practices
+## Configuration choices
 
-- **Keep rewards simple**: one strong perk is easier to understand than many small perks.
-- **Make VIP visible**: tag VIP subscribers so support and marketing can recognize them.
+- **Milestones.** Pick points just beyond where your retention curve drops, so the reward lands where subscribers would otherwise leave. Check your [cohort retention](/analytics) report.
+- **Gift choice.** A product the subscriber does not already receive works best: it costs you product cost, not full price, and introduces another item they may add later.
+- **VIP threshold.** Base it on customer revenue or subscription tenure (`subscription.cycle_count`). Set it so the VIP group stays small enough to feel exclusive.
+- **Perk type.** Free shipping and early access cost less than a permanent discount and are easier to explain.
+
+## Guardrails
+
+- **One Next order updated workflow.** Add VIP logic to the existing workflow rather than replacing it, or other order rules stop applying.
+- **Check the milestone in a test run.** Confirm on a test subscription that the gift lands on the intended order before publishing.
+- **Keep rewards simple.** One clear perk is easier to understand and communicate than several small ones.
+- **Make VIP visible to your team.** The tag lets support and marketing recognise VIP customers in Shopify and your email platform.
+
+## Measure results
+
+- **Retention of the VIP and milestone cohorts** before and after launch.
+- **Share of subscribers passing each milestone.** It should rise around the rewarded orders.
+- **Reward cost** as a share of the cohort's revenue. If cost grows faster than retained revenue, raise the threshold or change the perk.
+
+## Related
+
+- [Win back cancelled subscribers](/workflows/guides/churned-subs-winback)
+- [Triggers](/workflows/triggers) · [Next order updated](/workflows/triggers#next-order-updated)

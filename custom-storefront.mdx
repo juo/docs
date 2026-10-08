@@ -291,32 +291,22 @@ Add quantity and selling plan together, in one request. Plan for the places wher
 If the goal is "the more you buy, the more you save" rather than fixed bundles, use [Tiered discounts](/tiered-discounts) on top of a standard plan instead of multiplying selling plans.
 
 <Note>
-A selling plan group holds at most 31 plans. With local payment methods enabled, Juo needs a fixed twin for every recurring plan, which limits each subscription plan to 15 frequencies or offers.
+A selling plan group holds at most 31 plans. With local payment methods enabled, Juo's hidden fixed plans count toward that limit, so each subscription plan supports up to 15 frequencies or offers.
 </Note>
 
 ## Local payment methods
 
-When a cart contains a line with a **recurring** selling plan, Shopify checkout only offers payment methods that can be stored and charged again, such as cards, Shop Pay, and PayPal. Local methods like iDEAL, Bancontact, BLIK, and MB WAY are hidden.
+When a cart contains a recurring selling plan, Shopify checkout only offers payment methods that can be charged again later, such as cards, Shop Pay, and PayPal. To support local methods like iDEAL, Bancontact, BLIK, and MB WAY for subscriptions, Juo adds hidden **fixed** selling plans to your subscription plans and handles checkout routing through its theme app embeds.
 
-Juo supports these methods by routing the first order through a **fixed** selling plan:
+In a standard setup, a custom storefront needs to:
 
-1. For every recurring plan, Juo creates a hidden fixed plan in the same group, with the same name and `recurring_deliveries: false`.
-2. When a recurring line enters the cart, Juo's theme app embed (**Local Payments Default**) switches the line to the fixed twin. It records the original recurring plan in a `_selling_plan_id` line property.
-3. Because the cart no longer has a recurring plan, checkout shows local payment methods.
-4. After the order is placed, Juo reads `_selling_plan_id` and creates the subscription on the recurring plan.
+- **Filter out fixed selling plans.** Show and add to cart only plans with `recurring_deliveries: true`, as in [step 1](#1-expose-selling-plan-data). Fixed plans share their names with the recurring ones and are not meant to be selected directly.
+- **Keep Juo's app embeds enabled** under **Online Store → Themes → Customize → App embeds** in Shopify.
+- **Route subscription purchases through the cart.** Dynamic checkout buttons ("Buy it now", express wallets) skip the cart. Hide them while a subscription option is selected.
 
-What this means for a custom storefront:
-
-- **Add lines with the recurring plan.** Show and send only recurring plans, as in [step 1](#1-expose-selling-plan-data). The app embed handles the switch.
-- **Keep the app embed enabled.** Check **Online Store → Themes → Customize → App embeds** in Shopify. The embed watches cart requests made with `fetch` or `XMLHttpRequest` and re-checks the cart on page load, so it works with forms, Ajax, and custom code.
-- **Don't remove `_selling_plan_id`.** If your cart code rewrites line properties, carry this one over. Without it, the order is a one-time purchase and no subscription is created.
-- **Avoid paths that skip the cart.** Dynamic checkout buttons ("Buy it now", express wallets) and cart permalinks that go straight to checkout bypass the theme, so the switch never happens. Hide dynamic checkout buttons while a subscription option is selected.
-- **Expect two checkout buttons on non-Plus stores.** Juo routes customers to the checkout that matches their payment method. See the [FAQ](/FAQ).
-- **Use Juo discounts for subscription offers.** Standard Shopify subscription discounts may not apply when the line is on a fixed plan. See [Discounts](/discounts).
-
-<Warning>
-**Headless storefronts** don't run theme app embeds, so you have to make the switch yourself: add the line with the fixed twin's `sellingPlanId` (same group, same name, `recurringDeliveries: false`) and a `_selling_plan_id` attribute set to the numeric ID of the recurring plan. Contact Juo support to review the setup before launch.
-</Warning>
+<Note>
+For headless storefronts or other non-standard setups with local payment methods, contact Juo support before launch.
+</Note>
 
 ## Other common cases
 

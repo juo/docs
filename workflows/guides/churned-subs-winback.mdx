@@ -1,14 +1,85 @@
 ---
-title: Churned subs winback (coming soon)
-description: Reactivate churned subscribers with targeted content and time-based offers.
+title: "Win back cancelled subscribers"
+sidebarTitle: "Win back cancelled subscribers"
+description: "Bring cancelled subscribers back with a timed message and an offer honoured when they reactivate."
 ---
 
-This guide is **coming soon**.
+| | |
+|---|---|
+| **Goal** | Reactivate subscribers after they cancel |
+| **Primary metric** | Reactivation rate: share of cancelled subscriptions reactivated within 90 days |
+| **Supporting metrics** | Revenue per reactivated subscription, share that cancel again within two cycles |
+| **Triggers** | Subscription reactivation requested (`subscription_reactivate_requested`), Subscription reactivated (`subscription_reactivated`) |
+| **Audience** | Customers with a cancelled subscription who receive a win-back message |
+| **Default outcome** | None. Reactivation proceeds on its own; the workflow adds the offer and messages |
+| **Requires** | An email or SMS platform connected to Juo, such as [Klaviyo](/klaviyo-integration) or [Customer.io](/customerio-integration) |
 
-In the meantime, here’s the intended shape of a winback workflow:
+## Why it works
 
-- **Trigger**: Subscription cancelled / churned *(system event)*
-- **Delay**: wait \(X\) days
-- **Show Content**: remind the customer of value + what’s new
-- **Offer Selection**: choose a winback incentive (discount vs free product)
-- **Confirmation**: success vs no action
+A cancelled subscriber already knows your product, has a saved address, and has shown what they buy. Bringing them back costs a message and an offer, with no acquisition spend. Many cancellations are also temporary: the subscriber had too much stock, was travelling, or wanted a break.
+
+Timing matters. Asking straight after cancellation repeats the cancellation flow. Waiting until their stock is likely running out, or until you have something new to show, meets them when the need returns.
+
+## Flow
+
+The playbook combines your email platform with a Juo workflow:
+
+1. **Email platform.** A flow starts on the *Cancelled Subscription* event, waits two to six weeks, and sends a win-back message with an offer. The message links to the Customer Portal with a UTM campaign, for example `utm_campaign=winback`.
+2. **Juo workflow.** When the customer clicks **Reactivate** from that link, the workflow checks the campaign and that the offer has not been used before, applies the promised discount, and shows a welcome-back confirmation.
+3. **Exit the flow.** When the subscription is reactivated, Juo sends an event so the email platform stops the remaining win-back messages.
+
+Use the *CancellationReason* property of the event to tailor or exclude messages. A subscriber who left over product quality needs a different message from one who had too much stock.
+
+## Blueprint
+
+```yaml
+# Summary for people and agents, not an import format.
+# Take exact config fields from the workflows catalog.
+
+# Workflow 1: honour the win-back offer
+trigger: subscription_reactivate_requested
+steps:
+  from_winback:
+    next:
+      - if: trigger.utm.campaign is "winback"
+            AND usage_limit(key: winback_offer, scope: customer, window: all_time) less_than 1
+        to: apply_offer
+      - to: welcome_back
+  apply_offer:
+    action: apply_discount      # e.g. percentage 20, recurringCycleLimit 1, title "Welcome back"
+    next: welcome_back
+  welcome_back:
+    action: show_confirmation
+    final: true
+
+# Workflow 2: stop the win-back sequence
+trigger: subscription_reactivated
+steps:
+  notify:
+    action: send_event_to_klaviyo   # metric: "Subscription reactivated (win-back)"
+    final: true
+```
+
+## Configuration choices
+
+- **Wait time.** Base it on the delivery frequency: roughly one cycle after cancellation is when stock runs low.
+- **Offer.** State it in the message, so the customer knows what they get by reactivating. A single-cycle discount or a free product with the next order keeps the cost to one order.
+- **Content.** New products, flavours, or improvements give a reason to return that does not depend on price.
+- **Exclusions.** Skip customers who cancelled over a complaint until support has resolved it, and customers with an open chargeback.
+
+## Guardrails
+
+- **Gate the offer on the campaign.** Without the UTM check, every reactivation receives the discount, including customers who would have returned anyway.
+- **One win-back offer per customer.** Use a usage limit so a customer cannot cancel and reactivate repeatedly for the discount.
+- **Keep the sequence short.** Two or three messages. After that, move the customer to your regular marketing.
+
+## Measure results
+
+- **Reactivation rate** of cancelled subscriptions, compared with the period before launch.
+- **Repeat cancellation**: the share of reactivated subscriptions that cancel again within two cycles. A high rate means the offer brings customers back for one discounted order only.
+- **Revenue per reactivated subscription** against the offer cost.
+
+## Related
+
+- [Cancellation flow](/workflows/guides/cancellation-flow)
+- [Customer Portal link](/linking-customer-portal) · [Klaviyo integration](/klaviyo-integration)

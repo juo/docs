@@ -1,34 +1,56 @@
 ---
-title: Guides
-description: Learn how to build workflows and apply them to common subscription journeys.
+title: "Workflow playbooks"
+sidebarTitle: "Overview"
+description: "Proven workflow patterns, the subscription KPI each one moves, and how to build and measure it."
 ---
 
-Workflows lets you **automate subscription experiences and customer journeys**.
+A playbook is a workflow pattern with the business reasoning behind it: which metric it moves, why it works, how the flow is built, and how to tell whether it is working. Use playbooks as a starting point in the workflow builder, as a brief for an AI agent connected to Juo, or to adapt a blueprint to your store.
 
-Create automated flows that respond to customer actions and subscription events. Use them to reduce churn, recover failed payments, upsell products, reward loyal customers, and more.
+## How workflows move subscription revenue
 
-## Getting started with workflows
+Subscription revenue comes from a small set of levers:
 
-Workflows are built using a simple logic structure:
+- **Recurring revenue** = active subscribers × average order value (AOV) × orders per subscriber per period
+- **Lifetime value (LTV)** ≈ AOV × gross margin × number of paid cycles before a subscriber leaves
+- **Number of paid cycles** grows when fewer subscribers cancel, skip, pause, or fail payment in each cycle
 
-**Trigger →** (optional) **Conditions → Actions**
+Every playbook targets one of these levers. Small changes compound: a subscriber kept for one more cycle adds a full order of revenue, and a subscriber kept past an early drop-off point is likely to stay for several more.
 
-- **Triggers** are events that start a workflow
-- **Conditions** define when the workflow should continue
-- **Actions** define what the workflow does
+| Lever | What changes | Example playbooks |
+|---|---|---|
+| Fewer cancellations | Subscribers who try to leave stay on better-fitting terms | [Cancellation flow](/workflows/guides/cancellation-flow) |
+| Fewer early drop-offs | New subscribers reach their second and third orders | [Fight new subscriber churn](/workflows/guides/fight-new-subscriber-churn) |
+| Longer high-value tenure | Top subscribers have a reason to stay to the next milestone | [VIP rewards](/workflows/guides/vip-rewards) |
+| Reactivated subscribers | Cancelled subscribers return without new acquisition cost | [Win back cancelled subscribers](/workflows/guides/churned-subs-winback) |
 
-## How to build a workflow
+## Playbooks
 
-To build a workflow, go to **Admin Panel → Workflows**.
+| Playbook | Goal | Primary metric | Trigger |
+|---|---|---|---|
+| [Cancellation flow](/workflows/guides/cancellation-flow) | Learn why subscribers cancel and save the ones you can serve better | Save rate | Subscription cancellation requested |
+| [Fight new subscriber churn](/workflows/guides/fight-new-subscriber-churn) | Get new subscribers past their first renewal | Second-order retention | Customer portal opened, Days before renewal |
+| [VIP rewards](/workflows/guides/vip-rewards) | Keep the highest-value subscribers longer | Retention of top-value cohort | Next order updated, Subscription anniversary |
+| [Win back cancelled subscribers](/workflows/guides/churned-subs-winback) | Reactivate subscribers after they cancel | Reactivation rate | Subscription reactivation requested |
 
-- Create a new workflow and add a starting **trigger**
-- Add an **action** or a **condition**
-- Branch the flow with more **actions** and **conditions** according to your needs
-- Finalize each path by adding an **End** node
+## How a playbook is structured
 
-Use the sidebar to customize each element. Interactions can be further customized visually by clicking [**Preview in Editor**](/editor).
+Each playbook follows the same sections so people and agents can find the same information in the same place:
 
-## Next
+- **At a glance**: goal, primary metric, trigger, and audience.
+- **Why it works**: the subscriber behaviour behind the problem and how the flow changes it.
+- **Flow**: the steps and branches in plain language.
+- **Blueprint**: a compact summary of the workflow using the identifiers from the workflows catalog: trigger type, action types, condition fields, and operators.
+- **Configuration choices**: the decisions to make for your store, such as offer size or timing.
+- **Guardrails**: limits that keep the flow from giving away margin or showing up too often.
+- **Measure results**: what to track, and how to tell a real improvement from a shifted problem.
 
-- Start with [Use cases](/workflows/guides/use-cases) to copy proven starter workflows.
-- If you need the building blocks, see the technical reference for [Triggers](/workflows/triggers), [Conditions](/workflows/conditions), and [Actions](/workflows/actions).
+<Note>
+Blueprints summarise a workflow. They are not an import format. The exact configuration fields for each trigger and action come from the workflows catalog in the Admin API, or from the builder. For the building blocks, see [Triggers](/workflows/triggers), [Conditions](/workflows/conditions), and [Actions](/workflows/actions).
+</Note>
+
+## Rules that apply to every playbook
+
+- **One published workflow per trigger.** If a playbook uses a trigger your store already uses, add its logic as a branch of the existing workflow instead of creating a second one.
+- **Lead with value, then offer.** Content that reminds subscribers why they subscribed costs nothing. Incentives cost margin and train subscribers to ask for them.
+- **Limit every incentive.** Use usage limits on offers and display limits on content, so a subscriber cannot collect the same offer repeatedly.
+- **Test before you scale.** Use an [experiment](/workflows/experiments) to compare offers or messages on real traffic before you settle on one.

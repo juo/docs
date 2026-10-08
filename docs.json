@@ -73,7 +73,6 @@
             "pages": [
               "adding-juo-subscription-widget",
               "subscription-widget",
-              "customer-portal",
               "linking-customer-portal",
               "editor"
             ]
@@ -84,7 +83,6 @@
               "create-subscription",
               "bulk-actions",
               "quick-actions",
-              "discounts",
               "tiered-discounts",
               "analytics"
             ]
@@ -128,6 +126,14 @@
               "learn",
               "subscription-experiences",
               "retention",
+              "discounts"
+            ]
+          },
+          {
+            "group": "Storefront and payments",
+            "pages": [
+              "custom-storefront",
+              "customer-portal",
               "sepa-direct-debit"
             ]
           },

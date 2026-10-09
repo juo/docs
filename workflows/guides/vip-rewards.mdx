@@ -26,46 +26,6 @@ The rules run in your store's **Next order updated** workflow, which shapes ever
 2. **VIP status.** When a customer's total revenue passes your threshold, tag them as VIP and apply a VIP perk to their orders, such as a small discount or free shipping.
 3. **Anniversary.** On the subscription's anniversary, send an event to your email platform for a thank-you message that mentions their milestone and perks.
 
-## Blueprint
-
-```yaml
-# Summary for people and agents, not an import format.
-# Take exact config fields from the workflows catalog.
-
-# Branches inside the store's Next order updated workflow
-trigger: upcoming_order_generated
-default_outcome: order_approved
-steps:
-  milestone_check:
-    next:
-      - if: upcoming_order.cycle_index equals 6
-        to: milestone_gift
-      - to: vip_check
-  milestone_gift:
-    action: schedule_order_add_item   # variantId: gift, price 0, quantity 1
-    next: vip_check
-  vip_check:
-    next:
-      - if: customer.revenue greater_than 500    # your VIP threshold, store currency
-        to: vip_tag
-      - to: done
-  vip_tag:
-    action: add_tag                   # tag: vip
-    next: vip_perk
-  vip_perk:
-    action: schedule_order_apply_discount   # e.g. type percentage, value 10, target line, title "VIP"
-    next: done
-  done:
-    final: true
-
-# Separate workflow: anniversary thank-you
-trigger: subscription_anniversary
-steps:
-  thank_you:
-    action: send_event_to_klaviyo     # metric: "Subscription anniversary"
-    final: true
-```
-
 ## Configuration choices
 
 - **Milestones.** Pick points just beyond where your retention curve drops, so the reward lands where subscribers would otherwise leave. Check your [cohort retention](/analytics) report.

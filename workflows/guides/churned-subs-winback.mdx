@@ -30,36 +30,6 @@ The playbook combines your email platform with a Juo workflow:
 
 Use the *CancellationReason* property of the event to tailor or exclude messages. A subscriber who left over product quality needs a different message from one who had too much stock.
 
-## Blueprint
-
-```yaml
-# Summary for people and agents, not an import format.
-# Take exact config fields from the workflows catalog.
-
-# Workflow 1: honour the win-back offer
-trigger: subscription_reactivate_requested
-steps:
-  from_winback:
-    next:
-      - if: trigger.utm.campaign is "winback"
-            AND usage_limit(key: winback_offer, scope: customer, window: all_time) less_than 1
-        to: apply_offer
-      - to: welcome_back
-  apply_offer:
-    action: apply_discount      # e.g. percentage 20, recurringCycleLimit 1, title "Welcome back"
-    next: welcome_back
-  welcome_back:
-    action: show_confirmation
-    final: true
-
-# Workflow 2: stop the win-back sequence
-trigger: subscription_reactivated
-steps:
-  notify:
-    action: send_event_to_klaviyo   # metric: "Subscription reactivated (win-back)"
-    final: true
-```
-
 ## Configuration choices
 
 - **Wait time.** Base it on the delivery frequency: roughly one cycle after cancellation is when stock runs low.

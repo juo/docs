@@ -45,43 +45,6 @@ The playbook uses two workflows, because each trigger can have one published wor
 1. A few days before the first renewal, send an event to your email or SMS platform.
 2. The platform sends a message that confirms the upcoming order and date, repeats the value, and links to the Customer Portal to skip, delay, or change it.
 
-## Blueprint
-
-```yaml
-# Summary for people and agents, not an import format.
-# Take exact config fields and response ids from the workflows catalog.
-
-# Workflow 1: welcome
-trigger: customer_portal_entered
-steps:
-  is_new:
-    next:
-      - if: subscription.cycle_count less_than 2
-        to: welcome
-      # no match: run ends, nothing is shown
-  welcome:
-    action: show_content        # displayLimitId: once per subscription
-    next: incentive
-  incentive:
-    action: offer_selection     # options: free_product (sample), discount (e.g. 10%, recurringCycleLimit 1)
-                                # usageLimitId: welcome_incentive
-    on: { declined: done }      # accepting an option applies it
-  done:
-    final: true
-
-# Workflow 2: first renewal reminder
-trigger: days_before_renewal    # e.g. 3 days before renewal
-steps:
-  is_first_renewal:
-    next:
-      - if: subscription.cycle_count less_than 2
-        to: notify
-  notify:
-    action: send_event_to_klaviyo   # or send_event_to_customerio / send_email / send_sms
-                                    # metric: "First renewal upcoming"
-    final: true
-```
-
 ## Configuration choices
 
 - **Welcome content.** Focus on how to use the product and what results to expect, not on promotions. A short video works well for products with a learning curve.

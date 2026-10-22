@@ -70,13 +70,15 @@
           "customerio-integration",
           "gorgias-integration",
           "zipify-integration",
-          "webhooks"
+          "webhooks",
+          "leat-integration"
         ]
       },
       {
         "group": "Use guide",
         "pages": [
           "editor",
+          "managing-subscriptions",
           "create-subscription",
           "bulk-actions",
           "customer-portal",

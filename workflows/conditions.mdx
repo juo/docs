@@ -30,6 +30,7 @@ The Condition block uses a sentence-based rule builder. As you build a condition
 - Route based on the product the customer is subscribed to
 - Branch portal flows by UTM source (Customer Portal vs. a tagged email link)
 - Enforce weight limits on the upcoming order before renewal
+- Route customers by payment method, or by why their last renewal or payment failed
 
 ## Conditions reference
 
@@ -55,6 +56,10 @@ The Condition block uses a sentence-based rule builder. As you build a condition
 | `subscription.age_days` | Number of days since the subscription was created |
 | `subscription.items` | Line items in the subscription (array items include `productId`, `variantId`, `tags`) |
 | `subscription.active_discounts` | Active discounts on the subscription (array items include `type`: `percentage` / `fixed` / `free_shipping`, and `value`) |
+| `subscription.payment_method` | Type of payment method on the subscription: `credit-card`, `paypal`, `shop-pay`, `sepa-direct-debit`, `blik`, `blik-recurring`, `mbway`, `bacs`. `blik-recurring` is a BLIK method with an active recurring mandate |
+| `subscription.last_renewal_failed` | Whether the last renewal attempt failed |
+| `subscription.last_renewal_fail_reason` | Why the last renewal attempt failed: `out-of-stock`, `missing-product`, `billing-attempt-failed`, `no-delivery-method`, `invalid-email-domain`, `draft-order-creation-failed`, `missing-delivery-price` |
+| `subscription.last_payment_error_code` | Error code the payment provider returned for the last billing attempt: `PAYMENT_METHOD_DECLINED`, `INSUFFICIENT_FUNDS`, `EXPIRED_PAYMENT_METHOD`, `CARD_NUMBER_INCORRECT`, `INVALID_PAYMENT_METHOD`, `PAYMENT_METHOD_NOT_FOUND`, `FRAUD_SUSPECTED`, `BUYER_CANCELED_PAYMENT_METHOD` |
 
 ### `subscription_item.*`
 
@@ -87,6 +92,22 @@ These conditions are used with the **Next order updated** trigger. They check th
 | `upcoming_order.items` | Line items (include `productId`, `variantId`, `title`, `quantity`, `price`, `line_weight_grams`, `subscriptionId`) |
 | `upcoming_order.discounts` | Discounts applied to the order (include `type`, `value`) |
 | `upcoming_order.subscriptions` | Subscriptions on this order (include `id`, `cycleCount`, `itemCount`, `totalValue`) |
+| `upcoming_order.payment_method` | Type of payment method the order will be charged to (same values as `subscription.payment_method`) |
+
+### `created_order.*`
+
+Available on the **Subscription order created** trigger. These conditions read the order that was just placed, while `upcoming_order.*` reads an order that has not been placed yet.
+
+| Condition | Description |
+| --- | --- |
+| `created_order.currency_code` | Currency code of the order (for example USD, EUR) |
+| `created_order.subtotal` | Order subtotal before shipping and discounts |
+| `created_order.total_price` | Order total, including shipping and discounts |
+| `created_order.delivery_price` | Delivery/shipping price |
+| `created_order.item_count` | Total number of line items in the order |
+| `created_order.total_quantity` | Sum of quantities across all line items |
+| `created_order.unique_item_count` | Number of distinct products in the order |
+| `created_order.items` | Line items (include `productId`, `variantId`, `title`, `variantTitle`, `sku`, `quantity`, `unitPrice`, `totalPrice`) |
 
 ### `subscription_upcoming_weight`
 

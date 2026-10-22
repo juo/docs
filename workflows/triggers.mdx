@@ -35,6 +35,7 @@ Customer-initiated triggers can carry **UTM parameters** from the link that open
 | `Payment failed` | Triggered when a billing attempt fails on a recurring order. Use dunning actions (`Schedule Charge`, `Default Dunning`, `Fail Subscription`) to control retries. |
 | `Next order updated` | Triggered whenever the subscription is changed or interacted with, and validated again just before renewal. Defines and updates the upcoming renewal order. Use schedule-order actions to modify or block it. |
 | `Chargeback initiated` | Triggered when a chargeback is initiated on a subscription order. |
+| `Subscription order created` | Triggered after an order has been placed for a subscription, for the first purchase and for every renewal. No default outcome — only configured actions run. |
 
 ### Next order updated
 
@@ -44,6 +45,20 @@ Example use cases:
 
 - Always add a product or discount to the next renewal when conditions are met (subscribed to a specific product, upcoming order value above a threshold, weight limits, and so on).
 - Prevent a subscription from renewing until conditions are met (at least one paid product, customer tag removed, and so on) using **Block Order**.
+
+### Subscription order created
+
+_Subscription order created_ fires once the order exists — after the first purchase, and after each renewal order is placed. Use it to react to an order that has actually been placed, for example to remove a tag, add or swap a product for the following cycles, or apply a discount after a specific renewal.
+
+Use **Next order updated** to change the order before it is placed. It can run many times before a renewal, while _Subscription order created_ runs once per placed order.
+
+This trigger supports executions only, as the customer is not in the Customer Portal when it fires:
+
+- `Add Product`, `Swap Product`, `Remove Subscription Item`, `Update Subscription Item`
+- `Apply Discount`, `Change Frequency`, `Delay Order`, `Cancel Subscription`
+- `Add Tag`, `Remove Tag`, `Send SMS`, `Send event to Klaviyo`, `Send event to Customer.io`
+
+To branch on the placed order (for example its total or the products in it), use the `created_order.*` conditions. See [Conditions](/workflows/conditions#created_order).
 
 ## Admin initiated
 

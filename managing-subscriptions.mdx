@@ -1,0 +1,67 @@
+---
+title: "Managing subscriptions"
+description: "Find subscriptions, skip upcoming orders, change delivery methods, and review failed renewals in the Admin Panel."
+---
+
+This page covers the day-to-day subscription tasks in the Admin Panel: finding the subscriptions you need, adjusting an upcoming order, changing how a subscription is delivered, and reviewing renewals that did not go through. To change many subscriptions at once, see [Bulk actions](/bulk-actions).
+
+## Find subscriptions
+
+Use the filters on the **Subscriptions** list to narrow it down. Filters combine, so you can, for example, list active subscriptions containing a specific product that are paid by SEPA Direct Debit.
+
+| Filter | What it matches |
+| --- | --- |
+| **Status** | Active, Paused, Cancelled, Failed, or Expired |
+| **Next renewal date**, **Created at**, **Cancelled on** | Exact or relative date ranges |
+| **Delivery frequency** | The subscription's delivery frequency |
+| **Payment method** | Credit card, PayPal, ShopPay, SEPA Direct Debit, BLIK (recurring), BLIK (intentional), MB WAY, Bacs Direct Debit, or Other. Select several to match any of them |
+| **Product**, **Product Variant** | Subscriptions containing any of the selected products or variants |
+| **Purchase option** | Subscriptions with a product on any of the selected purchase options. Deleted subscription offers and purchase options are hidden by default; turn on **Show deleted** in the picker to select them |
+| **Cycle** | The current billing cycle |
+| **Renewal status** | Why the last renewal failed, for example **Payment failed**, **Out of stock**, **Blocked by workflow**, or **Not placed after payment**. See [Failed renewals](#failed-renewals) |
+| **Stock** | **Has out-of-stock items**: subscriptions with a product that is out of stock now. Use it to find subscriptions that will fail to renew before the renewal runs |
+
+The **Stock** filter checks current inventory. **Renewal status: Out of stock** lists subscriptions whose last renewal already failed because of stock.
+
+With the filters set, you can select subscriptions and run a [bulk action](/bulk-actions) on them.
+
+## Skip an upcoming order or product
+
+You can skip a whole upcoming order, or only some products in it, without changing the subscription itself.
+
+- **Skip a product:** in the products table on the subscription page or the customer page, click **Skip** next to the product. It is left out of the next order only and returns in the following one.
+- **Skip the whole order:** on the customer page, in **Upcoming renewal**, click **Skip order**. The customer is not billed for that order, and the subscription renews again on the following billing date.
+
+Skipped products and orders stay visible in the upcoming renewal, marked as skipped, so you can see what the customer will be billed for next. Click **Unskip** or **Unskip order** to undo the skip.
+
+Some skips cannot be undone from the Admin Panel:
+
+- products skipped together in one action can only be unskipped together
+- an order skipped by a date-based rule that also covers other orders on the same day
+
+In these cases the Admin Panel explains why the **Unskip** action is not available. Skip actions are also unavailable while a renewal payment is being processed.
+
+## Change the delivery method
+
+Open the subscription and go to the **Delivery method** section.
+
+- **From shipping to local pickup:** click **Change delivery method** and select a location under **Pick up in store**. This option appears when your store has local pickup locations set up in Shopify.
+- **From pickup to shipping:** for a subscription with local pickup, click **Add delivery method**, enter the shipping address, click **Next step**, and select a shipping method.
+
+For carrier pickup points such as parcel lockers, see [Shipping setup](/shipping-setup#pickup-points).
+
+## Failed renewals
+
+When a renewal does not go through, the subscription page shows a banner with the reason and, where Juo will retry, the time of the next attempt. For a failed payment, you can retry right away with **Retry now**.
+
+### Not placed after payment
+
+This status means the customer was charged, but Shopify refused to create the order — for example because a rule or app in your store rejected it. The subscription page shows **Order could not be placed — payment was taken**, with the message your store returned, and Juo keeps retrying to place the order.
+
+Review the message, fix the cause in your store (for example the rule that rejected the order), and check that the order is placed on the next attempt. Each rejection is also recorded in the **Activity log** with your store's message.
+
+To find all subscriptions in this state, filter the **Subscriptions** list by **Renewal status: Not placed after payment**.
+
+## Export subscribers
+
+On the **Subscribers** list, select customers with the checkboxes and click **Export selected** to export only them, or click **Export all** to export the whole list.

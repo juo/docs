@@ -117,7 +117,7 @@ query ProductSellingPlans($handle: String!) {
 }
 ```
 
-Filter groups to those created by Juo with `appName`, and plans with `recurringDeliveries: true`. Storefront API IDs are global IDs, for example `gid://shopify/SellingPlan/123`.
+Filter groups to those created by Juo with `appName` (the app's display name; check the value on your store), and plans with `recurringDeliveries: true`. Storefront API IDs are global IDs, for example `gid://shopify/SellingPlan/123`.
 </Accordion>
 
 ## 2. Build the purchase options
@@ -329,7 +329,7 @@ Before launch, place test orders that cover:
 - A subscription-only product, from the product page and from quick add.
 - Changing quantity and frequency in the cart.
 - Each combination, if you map selections to plans.
-- A local payment method, if enabled: confirm the line switches to the fixed plan in the cart and a subscription appears in Juo after the order.
+- A local payment method, if enabled: confirm it is offered at checkout and a subscription appears in Juo after the order.
 - A cart with both one-time and subscription lines.
 
 After each subscription order, open the subscription in the Juo Admin Panel and check the product, quantity, frequency, and price.

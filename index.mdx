@@ -11,10 +11,10 @@ keywords:
 hidden: true
 ---
 
-<div className="not-prose" style={{ maxWidth: 760, margin: "0 auto", padding: "72px 16px 96px" }}>
+<div className="not-prose" style={{ maxWidth: 960, margin: "0 auto", padding: "96px 24px 96px" }}>
   <AskJuo />
 
-  <div className="juo-tiles" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
+  <div className="juo-tiles">
     <a className="juo-tile" href="/subscription-experiences">
       <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
         <span className="juo-tile-icon">
@@ -53,9 +53,33 @@ hidden: true
         <div className="juo-tile-text">Solve a business problem, step by step.</div>
       </div>
     </a>
-  </div>
 
-  <div className="juo-tiles" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", maxWidth: 504, margin: "16px auto 0" }}>
+    <a className="juo-tile" href="/workflows/blueprints">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
+        <span className="juo-tile-icon">
+          <Icon icon="layer-group" iconType="regular" />
+        </span>
+      </div>
+
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
+        <div className="juo-tile-title">Start from a blueprint</div>
+        <div className="juo-tile-text">Launch a ready-made workflow.</div>
+      </div>
+    </a>
+
+    <a className="juo-tile" href="/migrating-to-juo">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
+        <span className="juo-tile-icon">
+          <Icon icon="arrow-right-arrow-left" iconType="regular" />
+        </span>
+      </div>
+
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
+        <div className="juo-tile-title">Migrate to Juo</div>
+        <div className="juo-tile-text">Move subscriptions from another app.</div>
+      </div>
+    </a>
+
     <a className="juo-tile" href="/FAQ">
       <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
         <span className="juo-tile-icon">
@@ -68,27 +92,14 @@ hidden: true
         <div className="juo-tile-text">Fix common problems.</div>
       </div>
     </a>
-
-    <a className="juo-tile" href="mailto:hi@juo.io">
-      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
-        <span className="juo-tile-icon">
-          <Icon icon="envelope" iconType="regular" />
-        </span>
-      </div>
-
-      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
-        <div className="juo-tile-title">Contact us</div>
-        <div className="juo-tile-text">Email our team.</div>
-      </div>
-    </a>
   </div>
 </div>
 
 export const AskJuo = () => {
   const examples = [
-    "How do I set up a cancellation flow?",
-    "How do I move subscriptions from another app?",
-    "How do I add the subscription widget?",
+    "Set up a cancellation flow",
+    "Migrate from another app",
+    "Add the subscription widget",
   ];
   const [question, setQuestion] = useState("");
   const ask = (text) => {
@@ -97,8 +108,13 @@ export const AskJuo = () => {
     window.location.href = window.location.pathname + "?assistant=" + encodeURIComponent(q);
   };
   return (
-    <div className="not-prose" style={{ maxWidth: 560, margin: "0 auto 48px", display: "grid", gap: 14, textAlign: "center" }}>
-      <h1 style={{ fontSize: 28, fontWeight: 560, letterSpacing: "-0.015em", margin: 0 }}>Ask a question about Juo</h1>
+    <div className="not-prose" style={{ maxWidth: 640, margin: "0 auto 56px", display: "grid", gap: 12 }}>
+      <style>{`html[data-current-path="/"] #navigation-items > div:has(> .sidebar-group-header),
+html[data-current-path="/docs"] #navigation-items > div:has(> .sidebar-group-header),
+html[data-current-path="/"] #sidebar-content div:has(> div > #search-bar-entry),
+html[data-current-path="/docs"] #sidebar-content div:has(> div > #search-bar-entry) {
+  display: none !important;
+}`}</style>
       <form
         onSubmit={(e) => { e.preventDefault(); ask(question); }}
         style={{ display: "flex", gap: 8 }}
@@ -108,7 +124,7 @@ export const AskJuo = () => {
           aria-label="Ask a question about Juo"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
-          placeholder="How do I offer a delay instead of a cancellation?"
+          placeholder="Ask a question about Juo"
           style={{ flex: 1, minWidth: 0, padding: "12px 14px", borderRadius: 10, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit", font: "inherit" }}
         />
         <button
@@ -124,7 +140,7 @@ export const AskJuo = () => {
             key={ex}
             type="button"
             onClick={() => ask(ex)}
-            style={{ padding: "6px 10px", borderRadius: 999, border: "1px solid rgba(127,127,127,.3)", background: "transparent", color: "inherit", font: "inherit", cursor: "pointer", opacity: 0.85 }}
+            style={{ padding: "5px 10px", borderRadius: 999, border: "1px solid rgba(127,127,127,.3)", background: "transparent", color: "inherit", font: "inherit", cursor: "pointer", opacity: 0.85, whiteSpace: "nowrap" }}
           >
             {ex}
           </button>

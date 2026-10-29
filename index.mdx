@@ -220,8 +220,21 @@ export const AskJuo = () => {
   return (
     <div className="not-prose" style={{ maxWidth: 640, margin: "0 auto 56px", display: "grid", gap: 12 }}>
       <style>{`html[data-current-path="/"] #navigation-items > div:has(> .sidebar-group-header),
-html[data-current-path="/docs"] #navigation-items > div:has(> .sidebar-group-header) {
+html[data-current-path="/docs"] #navigation-items > div:has(> .sidebar-group-header),
+html[data-current-path="/"] #navigation-items > ul:not(:first-child),
+html[data-current-path="/docs"] #navigation-items > ul:not(:first-child),
+html[data-current-path="/"] .nav-tabs-item[data-active] > div.absolute,
+html[data-current-path="/docs"] .nav-tabs-item[data-active] > div.absolute {
   display: none !important;
+}
+html[data-current-path="/"] .nav-tabs-item[data-active],
+html[data-current-path="/docs"] .nav-tabs-item[data-active] {
+  color: rgb(81, 81, 87) !important;
+  text-shadow: none !important;
+}
+html.dark[data-current-path="/"] .nav-tabs-item[data-active],
+html.dark[data-current-path="/docs"] .nav-tabs-item[data-active] {
+  color: rgb(160, 159, 165) !important;
 }`}</style>
       <form
         onSubmit={(e) => { e.preventDefault(); ask(question); }}

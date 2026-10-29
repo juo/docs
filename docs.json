@@ -35,7 +35,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Docs",
+        "tab": "Get started",
         "groups": [
           {
             "group": "Get started",
@@ -115,7 +115,8 @@
               "webhooks"
             ]
           }
-        ]
+        ],
+        "icon": "rocket"
       },
       {
         "tab": "Learn",

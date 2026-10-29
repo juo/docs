@@ -35,13 +35,24 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "Home",
+        "hidden": true,
+        "groups": [
+          {
+            "group": "Home",
+            "pages": [
+              "index"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Get started",
         "icon": "rocket",
         "groups": [
           {
             "group": "Get started with Juo",
             "pages": [
-              "index",
               "about-juo",
               "migrating-to-juo"
             ]
@@ -69,7 +80,7 @@
             ]
           },
           {
-            "group": "Subscription experiences",
+            "group": "Business",
             "pages": [
               "subscribe-and-save",
               "build-a-box",
@@ -79,7 +90,18 @@
               "upsells",
               "extras",
               "discounts",
-              "tiered-discounts"
+              "tiered-discounts",
+              "subscription-widget",
+              "subscription-intent-detection",
+              "analytics"
+            ]
+          },
+          {
+            "group": "Operations",
+            "pages": [
+              "create-subscription",
+              "bulk-actions",
+              "quick-actions"
             ]
           },
           {
@@ -96,20 +118,9 @@
             ]
           },
           {
-            "group": "Storefront and portal",
+            "group": "Customer Portal",
             "pages": [
-              "subscription-widget",
-              "customer-portal",
-              "subscription-intent-detection",
-              "quick-actions"
-            ]
-          },
-          {
-            "group": "Managing subscriptions",
-            "pages": [
-              "create-subscription",
-              "bulk-actions",
-              "analytics"
+              "customer-portal"
             ]
           },
           {

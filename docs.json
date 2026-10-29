@@ -53,6 +53,7 @@
           {
             "group": "Get started with Juo",
             "pages": [
+              "get-started",
               "about-juo",
               "migrating-to-juo"
             ]
@@ -192,6 +193,7 @@
           {
             "group": "Troubleshooting and FAQ",
             "pages": [
+              "help",
               "FAQ"
             ]
           },

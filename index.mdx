@@ -2,7 +2,7 @@
 title: "Juo documentation"
 description: "Ask a question, or choose a path: set up Juo, explore features, or follow a playbook."
 sidebarTitle: "Documentation home"
-mode: "wide"
+mode: "custom"
 keywords:
   - "juo"
   - "documentation"
@@ -11,98 +11,84 @@ keywords:
 hidden: true
 ---
 
-Ask a question and the assistant answers from these docs, with links to the pages it used. You can also [open the assistant](/?assistant) at any time from the search bar.
+<div className="not-prose" style={{ maxWidth: 760, margin: "0 auto", padding: "72px 16px 96px" }}>
+  <AskJuo />
 
-<AskJuo />
-
-Prefer to look around yourself? Start with one of these paths.
-
-<div className="juo-tiles-section not-prose">
-  <h2 className="juo-tiles-heading">Choose a path</h2>
-
-  <div className="juo-tiles">
+  <div className="juo-tiles" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
     <a className="juo-tile" href="/subscription-experiences">
-      <div className="juo-tile-visual">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
         <span className="juo-tile-icon">
           <Icon icon="rocket" iconType="regular" />
         </span>
       </div>
 
-      <div className="juo-tile-body">
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
         <div className="juo-tile-title">Get started with Juo</div>
-        <div className="juo-tile-text">Set up your store: subscription plans, widget, Customer Portal and shipping.</div>
+        <div className="juo-tile-text">Set up subscriptions on your store.</div>
       </div>
     </a>
 
     <a className="juo-tile" href="/features">
-      <div className="juo-tile-visual">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
         <span className="juo-tile-icon">
           <Icon icon="puzzle-piece" iconType="regular" />
         </span>
       </div>
 
-      <div className="juo-tile-body">
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
         <div className="juo-tile-title">Explore features</div>
-        <div className="juo-tile-text">What each part of Juo does, its settings and its limits.</div>
+        <div className="juo-tile-text">What each feature does and how to set it up.</div>
       </div>
     </a>
 
     <a className="juo-tile" href="/learn">
-      <div className="juo-tile-visual">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
         <span className="juo-tile-icon">
           <Icon icon="compass" iconType="regular" />
         </span>
       </div>
 
-      <div className="juo-tile-body">
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
         <div className="juo-tile-title">Follow a playbook</div>
-        <div className="juo-tile-text">How to solve a business problem, and how to build it in Juo.</div>
+        <div className="juo-tile-text">Solve a business problem, step by step.</div>
       </div>
     </a>
   </div>
-</div>
 
-<div className="juo-tiles-section not-prose">
-  <h2 className="juo-tiles-heading">Something not working?</h2>
-
-  <div className="juo-tiles">
+  <div className="juo-tiles" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", maxWidth: 504, margin: "16px auto 0" }}>
     <a className="juo-tile" href="/FAQ">
-      <div className="juo-tile-visual">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
         <span className="juo-tile-icon">
           <Icon icon="life-ring" iconType="regular" />
         </span>
       </div>
 
-      <div className="juo-tile-body">
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
         <div className="juo-tile-title">Troubleshooting and FAQ</div>
-        <div className="juo-tile-text">Answers to common questions about configuring and running subscriptions.</div>
+        <div className="juo-tile-text">Fix common problems.</div>
       </div>
     </a>
 
     <a className="juo-tile" href="mailto:hi@juo.io">
-      <div className="juo-tile-visual">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
         <span className="juo-tile-icon">
           <Icon icon="envelope" iconType="regular" />
         </span>
       </div>
 
-      <div className="juo-tile-body">
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
         <div className="juo-tile-title">Contact us</div>
-        <div className="juo-tile-text">Email our team when the docs don't answer your question.</div>
+        <div className="juo-tile-text">Email our team.</div>
       </div>
     </a>
   </div>
 </div>
 
-<Tip>
-  Working with an AI assistant of your own? Use the page menu to copy any page as Markdown or open it in ChatGPT or Claude.
-</Tip>
-
 export const AskJuo = () => {
   const examples = [
     "How do I set up a cancellation flow?",
     "How do I move subscriptions from another app?",
-    "How do I add the subscription widget to my store?",
+    "How do I add the subscription widget?",
   ];
   const [question, setQuestion] = useState("");
   const ask = (text) => {
@@ -111,35 +97,34 @@ export const AskJuo = () => {
     window.location.href = window.location.pathname + "?assistant=" + encodeURIComponent(q);
   };
   return (
-    <div className="not-prose" style={{ border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, padding: 20, display: "grid", gap: 14, margin: "8px 0 32px" }}>
+    <div className="not-prose" style={{ maxWidth: 560, margin: "0 auto 48px", display: "grid", gap: 14, textAlign: "center" }}>
+      <h1 style={{ fontSize: 28, fontWeight: 560, letterSpacing: "-0.015em", margin: 0 }}>Ask a question about Juo</h1>
       <form
         onSubmit={(e) => { e.preventDefault(); ask(question); }}
-        style={{ display: "flex", gap: 8, flexWrap: "wrap" }}
+        style={{ display: "flex", gap: 8 }}
       >
-        <label style={{ flex: "1 1 260px", minWidth: 0, display: "grid", gap: 6, fontSize: 14 }}>
-          Ask a question about Juo
-          <input
-            type="text"
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            placeholder="For example: how do I offer a delay instead of a cancellation?"
-            style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit", font: "inherit" }}
-          />
-        </label>
+        <input
+          type="text"
+          aria-label="Ask a question about Juo"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="How do I offer a delay instead of a cancellation?"
+          style={{ flex: 1, minWidth: 0, padding: "12px 14px", borderRadius: 10, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit", font: "inherit" }}
+        />
         <button
           type="submit"
-          style={{ alignSelf: "end", padding: "10px 16px", borderRadius: 8, border: "none", background: "#3727F4", color: "#ffffff", font: "inherit", fontWeight: 500, cursor: "pointer" }}
+          style={{ padding: "12px 18px", borderRadius: 10, border: "none", background: "#3727F4", color: "#ffffff", font: "inherit", fontWeight: 500, cursor: "pointer" }}
         >
           Ask
         </button>
       </form>
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", fontSize: 13 }}>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", fontSize: 13 }}>
         {examples.map((ex) => (
           <button
             key={ex}
             type="button"
             onClick={() => ask(ex)}
-            style={{ padding: "6px 10px", borderRadius: 999, border: "1px solid rgba(127,127,127,.3)", background: "transparent", color: "inherit", font: "inherit", cursor: "pointer" }}
+            style={{ padding: "6px 10px", borderRadius: 999, border: "1px solid rgba(127,127,127,.3)", background: "transparent", color: "inherit", font: "inherit", cursor: "pointer", opacity: 0.85 }}
           >
             {ex}
           </button>

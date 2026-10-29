@@ -95,6 +95,116 @@ hidden: true
   </div>
 </div>
 
+export const ParticleAsk = () => {
+  const W = 96;
+  const H = 46;
+  const GAP = 4;
+  const canvasRef = useRef(null);
+  const state = useRef({ hover: false, mx: 0, my: 0, hoverStart: 0 });
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let seed = 12345;
+    const rand = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const cols = Math.floor((W - 4) / GAP) + 1;
+    const rows = Math.floor((H - 4) / GAP) + 1;
+    const ox = (W - (cols - 1) * GAP) / 2;
+    const oy = (H - (rows - 1) * GAP) / 2;
+    const pts = [];
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        const edge = i === 0 || j === 0 || i === cols - 1 || j === rows - 1;
+        const x = ox + i * GAP;
+        const y = oy + j * GAP;
+        const a = rand() * Math.PI * 2;
+        const d = 20 + rand() * 60;
+        pts.push({
+          x, y, edge,
+          sx: x + Math.cos(a) * d, sy: y + Math.sin(a) * d,
+          px: rand() * 6.28, py: rand() * 6.28, sp: 0.6 + rand() * 0.8,
+          base: edge ? 0.9 : 0.32 + rand() * 0.12,
+        });
+      }
+    }
+    const t0 = performance.now();
+    let raf = 0;
+    const ease = (k) => 1 - Math.pow(1 - k, 3);
+    const beat = (t) => {
+      const period = 60 / 44;
+      const p = (t % period) / period;
+      const pulse = (c) => Math.max(0, 1 - Math.abs(p - c) / 0.06);
+      return Math.max(pulse(0.08), 0.65 * pulse(0.08 + 0.18));
+    };
+    const frame = (now) => {
+      const t = (now - t0) / 1000;
+      const s = state.current;
+      const enter = reduce ? 1 : ease(Math.min(1, t / 0.6));
+      ctx.fillStyle = reduce ? "#000" : "rgba(0,0,0,0.45)";
+      ctx.fillRect(0, 0, W, H);
+      const ht = (now - s.hoverStart) / 1000;
+      for (const p of pts) {
+        let x = p.sx + (p.x - p.sx) * enter;
+        let y = p.sy + (p.y - p.sy) * enter;
+        if (!reduce) {
+          x += Math.sin(t * p.sp * 2 + p.px) * 0.35;
+          y += Math.cos(t * p.sp * 2 + p.py) * 0.35;
+        }
+        let r = 0.55;
+        let b = p.base;
+        if (s.hover && !reduce) {
+          const dx = x - s.mx;
+          const dy = y - s.my;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          const near = Math.max(0, 1 - dist / 26);
+          r += near * 0.6;
+          b = Math.min(1, b + near * 0.6);
+          x -= (dx / dist) * near * 1.2;
+          y -= (dy / dist) * near * 1.2;
+          const ring = (ht * 60) % 70;
+          const w = Math.max(0, 1 - Math.abs(dist - ring) / 8) * beat(ht);
+          r += w * 0.5;
+          b = Math.min(1, b + w * 0.5);
+          x += (dx / dist) * w * 1.5;
+          y += (dy / dist) * w * 1.5;
+        }
+        ctx.fillStyle = "rgba(255,255,255," + b.toFixed(3) + ")";
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, 6.2832);
+        ctx.fill();
+      }
+      if (!reduce) raf = requestAnimationFrame(frame);
+    };
+    raf = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  const onMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    state.current.mx = ((e.clientX - rect.left) / rect.width) * W;
+    state.current.my = ((e.clientY - rect.top) / rect.height) * H;
+  };
+  const label = { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" };
+  return (
+    <button
+      type="submit"
+      aria-label="Ask"
+      onMouseEnter={(e) => { state.current.hover = true; state.current.hoverStart = performance.now(); onMove(e); }}
+      onMouseLeave={() => { state.current.hover = false; }}
+      onMouseMove={onMove}
+      style={{ position: "relative", width: W, height: H, flex: "none", padding: 0, border: "none", borderRadius: 0, background: "#000", cursor: "pointer", overflow: "hidden" }}
+    >
+      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: W, height: H, display: "block" }} />
+      <span style={{ ...label, zIndex: 1, color: "#000", WebkitTextStroke: "3px #000", fontWeight: 600, fontSize: 16 }}>Ask</span>
+      <span style={{ ...label, zIndex: 2, color: "#fff", fontWeight: 600, fontSize: 16 }}>Ask</span>
+    </button>
+  );
+};
+
 export const AskJuo = () => {
   const examples = [
     "Set up a cancellation flow",
@@ -125,14 +235,9 @@ html[data-current-path="/docs"] #sidebar-content div:has(> div > #search-bar-ent
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="Ask a question about Juo"
-          style={{ flex: 1, minWidth: 0, padding: "12px 14px", borderRadius: 10, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit", font: "inherit" }}
+          style={{ flex: 1, minWidth: 0, height: 46, boxSizing: "border-box", padding: "0 14px", borderRadius: 10, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit", font: "inherit" }}
         />
-        <button
-          type="submit"
-          style={{ padding: "12px 18px", borderRadius: 10, border: "none", background: "#3727F4", color: "#ffffff", font: "inherit", fontWeight: 500, cursor: "pointer" }}
-        >
-          Ask
-        </button>
+        <ParticleAsk />
       </form>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", fontSize: 13 }}>
         {examples.map((ex) => (

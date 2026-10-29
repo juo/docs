@@ -71,6 +71,8 @@
           {
             "group": "Keep subscribers",
             "pages": [
+              "playbooks/cancellation-flow",
+              "recipes/cancel-flow-blueprint",
               "workflows/guides",
               "workflows/guides/cancellation-flow",
               "workflows/guides/fight-new-subscriber-churn"
@@ -107,6 +109,7 @@
             "group": "Workflows",
             "pages": [
               "workflows/workflows-overview",
+              "workflows/blueprints",
               "workflows/triggers",
               "workflows/conditions",
               "workflows/actions",

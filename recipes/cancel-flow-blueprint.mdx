@@ -1,0 +1,78 @@
+---
+title: "Set up the Cancel flow blueprint"
+sidebarTitle: "Cancel flow blueprint"
+description: "Launch a cancellation flow from the Cancel flow blueprint: ask why subscribers cancel, answer with a matching offer, and track the reasons."
+icon: "wand-magic-sparkles"
+tag: "Recipe"
+keywords:
+  - "recipe"
+  - "blueprint"
+  - "cancel flow"
+  - "cancellation"
+  - "workflow"
+  - "retention"
+---
+
+<Info>
+  **Recipe.** This page shows how to build the [cancellation flow playbook](/playbooks/cancellation-flow) in Juo today. Read the playbook first to decide on your reasons and offers.
+</Info>
+
+## Goal
+
+When a subscriber clicks **Cancel** in the Customer Portal, the Cancel flow blueprint asks why they want to cancel and responds with an offer that fits the reason: a delay or frequency change, a product swap, or a discount. Subscribers who cancel after their first order get a separate path. Every answer is recorded, so you can review the most common reasons for cancelling.
+
+| | |
+| --- | --- |
+| **Implements** | [Designing a cancellation flow that saves subscribers](/playbooks/cancellation-flow) |
+| **Blueprint** | Cancel flow |
+| **Trigger** | Subscription cancellation requested (`cancellation_clicked`) |
+| **Where subscribers see it** | Customer Portal |
+
+## Before you start
+
+- Your [Customer Portal](/customer-portal) is live and linked from your store.
+- Check whether you already have a published workflow for cancellations. Only one workflow per trigger can be published, so add the blueprint's logic to the existing workflow or unpublish it first.
+- If you use the legacy cancellation poll under **Settings → Retention and acquisition**, decide which one subscribers should see. See [Retention settings](/retention-flow).
+
+## Steps
+
+<Steps>
+  <Step title="Start from the blueprint">
+    Go to **Workflows** and create a new workflow. Choose **Cancel flow** from the blueprints.
+  </Step>
+  <Step title="Customize the summary popup">
+    The first step reminds subscribers what they lose by cancelling. Replace the sample content with your own benefits: savings, convenience, results.
+  </Step>
+  <Step title="Verify the cancellation reasons">
+    Edit the poll so the reasons match what your support team hears most. Keep four to six options.
+  </Step>
+  <Step title="Set the discount size">
+    Set the discount offered to subscribers who say the subscription is too expensive. Start small and limit it to one or two orders.
+  </Step>
+  <Step title="Publish">
+    Review each path, then publish the workflow.
+  </Step>
+</Steps>
+
+## Customize for your store
+
+- **New vs long-term subscribers.** The blueprint already separates subscribers after their first order. To add more stages, branch on `subscription.cycle_count` or `subscription.age_days` before the poll. See [Conditions](/workflows/conditions).
+- **Product-specific paths.** Branch on `subscription.items contains_where variantId equals …` to give a flagship product its own content and reasons.
+- **Limit repeat discounts.** Use a usage limit on the discount offer so a subscriber can't cancel repeatedly to collect it. See [Actions](/workflows/actions).
+
+## Test and launch
+
+1. Open the Customer Portal as a test subscriber and click **Cancel**.
+2. Go through every reason and check that the right offer appears and that each path ends with a way to cancel.
+3. Accept an offer and confirm the change appears on the subscription.
+
+## Measure
+
+- Review the recorded cancellation reasons in [Analytics](/analytics).
+- Track the save rate per reason and the retention of saved subscriptions, as described in the [playbook](/playbooks/cancellation-flow#how-to-measure-it).
+- To compare two offers, add an [experiment](/workflows/experiments).
+
+## Related
+
+- [Blueprints](/workflows/blueprints)
+- [Workflows](/workflows/workflows-overview) · [Triggers](/workflows/triggers) · [Conditions](/workflows/conditions) · [Actions](/workflows/actions)

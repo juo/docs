@@ -1,0 +1,98 @@
+---
+title: "Designing a cancellation flow that saves subscribers"
+sidebarTitle: "Cancellation flow"
+description: "Why subscribers cancel, which alternative fits each reason, and how to tell whether your flow saves subscriptions or only delays churn."
+icon: "door-open"
+keywords:
+  - "playbook"
+  - "cancellation"
+  - "churn"
+  - "retention"
+  - "save offer"
+  - "cancel flow"
+---
+
+<Info>
+  **Playbook.** This page covers the strategy and is independent of any tool. To build it in Juo, go to [How to do this in Juo](#how-to-do-this-in-juo).
+</Info>
+
+|  |  |
+| --- | --- |
+| **Who it's for** | Any subscription brand that lets subscribers cancel online |
+| **Goal** | Understand why subscribers cancel and keep the ones you can serve better on different terms |
+| **Primary metric** | Save rate: the share of cancellation attempts that end with the subscription kept |
+| **Supporting metrics** | Cancellation reasons, retention of saved subscriptions 2–3 cycles later, cost per save |
+
+## Why it matters
+
+Many cancellations are not a rejection of the product. Subscribers leave because they have too much stock, the price feels high this month, the timing is wrong, or they never built the habit. Each of these has a better answer than cancelling: a delay, a different frequency, a different product, or a one-off incentive.
+
+A cancellation flow matches the answer to the reason. It also records the reason for every attempt, which shows where your product, pricing, or delivery cadence is losing subscribers.
+
+The revenue effect is direct. Each saved subscription adds at least one more paid cycle, and subscribers who move to a frequency or product that fits them tend to stay longer than those kept with a discount alone.
+
+## The strategy
+
+A good cancellation flow has four steps:
+
+1. **Remind them of the value.** Show what the subscription gives them: savings, convenience, results. Keep it short.
+2. **Ask for the reason.** Offer four to six options. Each reason gets its own response.
+3. **Offer the alternative that fits the reason.**
+4. **Confirm the outcome.** Confirm the change for saved subscriptions. If every offer is declined, cancel the subscription.
+
+### Match the offer to the reason
+
+| Reason | First offer | If declined |
+| --- | --- | --- |
+| Too much product | Delay the next order | Change the delivery frequency |
+| Too expensive | A limited discount, if they haven't had one | A pause |
+| Not seeing results or not using it | Usage guidance | A product swap |
+| Other | Ask for open feedback | Cancel |
+
+### Decisions to make
+
+- **Which reasons to list.** Use the reasons your support team hears most. Long lists lower completion. Review the "Other" answers monthly and promote recurring ones to their own option.
+- **How big the discount is.** Start with a modest discount limited to one or two orders. A permanent discount saves the subscription but lowers the value of every future order.
+- **New vs long-term subscribers.** New subscribers usually need help using the product. Long-term subscribers more often need a different cadence. Give each group its own path.
+- **Product-specific paths.** A flagship or newly launched product can have its own content and questions.
+
+### Guardrails
+
+- **One discount per customer.** Otherwise subscribers learn to start a cancellation to collect a discount.
+- **No more than two offers per reason.** More feels like an obstacle and leads to complaints and chargebacks.
+- **Always allow cancellation.** Every path ends with a way out. Hiding it hurts trust and can conflict with consumer protection rules in your markets.
+
+## Examples
+
+- **Coffee or consumables.** "Too much product" is usually the top reason. A delay or a lower frequency saves most of these without any discount.
+- **Supplements or skincare.** "Not seeing results" is common in the first orders. Usage guidance and a swap to a different product work better than a discount.
+- **Boxes and curated subscriptions.** "Too expensive" and "didn't like the last box" dominate. Offer a skip or a pause before a discount.
+
+## How to measure it
+
+- **Save rate**, overall and per reason. A reason with a low save rate needs a different offer.
+- **Retention of saved subscriptions** two to three cycles later. If most saved subscriptions cancel at the next renewal, the offer delays churn instead of preventing it.
+- **Cost per save**: the discount value and free products given, compared with the revenue from the extra orders.
+- **Test before you roll out.** Compare two offers on a share of subscribers before you give one to everyone.
+
+## How to do this in Juo
+
+<Columns cols={2}>
+  <Card title="Set up the Cancel flow blueprint" icon="wand-magic-sparkles" href="/recipes/cancel-flow-blueprint">
+    Recipe: the fastest way to launch this playbook, step by step.
+  </Card>
+  <Card title="Blueprints" icon="layer-group" href="/workflows/blueprints">
+    Feature reference: ready-made workflows you start from.
+  </Card>
+  <Card title="Workflows" icon="diagram-project" href="/workflows/workflows-overview">
+    Feature reference: build or adjust the flow yourself.
+  </Card>
+  <Card title="Experiments" icon="flask" href="/workflows/experiments">
+    Feature reference: compare two offers before you roll one out.
+  </Card>
+</Columns>
+
+## Related playbooks
+
+- [Fight new subscriber churn](/workflows/guides/fight-new-subscriber-churn)
+- [Win back cancelled subscribers](/workflows/guides/churned-subs-winback)

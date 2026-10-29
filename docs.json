@@ -73,8 +73,6 @@
             "pages": [
               "playbooks/cancellation-flow",
               "recipes/cancel-flow-blueprint",
-              "workflows/guides",
-              "workflows/guides/cancellation-flow",
               "workflows/guides/fight-new-subscriber-churn"
             ]
           },
@@ -307,8 +305,29 @@
       "destination": "/subscription-experiences"
     },
     {
+      "source": "/workflows/guides/cancellation-flow",
+      "destination": "/playbooks/cancellation-flow"
+    },
+    {
+      "source": "/workflows/guides",
+      "destination": "/learn"
+    },
+    {
       "source": "/workflows/guides/use-cases",
-      "destination": "/workflows/guides"
+      "destination": "/learn"
     }
-  ]
+  ],
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ],
+    "display": "header"
+  }
 }

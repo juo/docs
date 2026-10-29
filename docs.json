@@ -39,7 +39,7 @@
         "icon": "rocket",
         "groups": [
           {
-            "group": "Start here",
+            "group": "Get started with Juo",
             "pages": [
               "index",
               "about-juo",
@@ -59,39 +59,18 @@
         ]
       },
       {
-        "tab": "Playbooks",
-        "icon": "compass",
+        "tab": "Product",
+        "icon": "puzzle-piece",
         "groups": [
           {
             "group": "Overview",
             "pages": [
-              "learn"
+              "features"
             ]
           },
-          {
-            "group": "Keep subscribers",
-            "pages": [
-              "playbooks/cancellation-flow",
-              "recipes/cancel-flow-blueprint",
-              "workflows/guides/fight-new-subscriber-churn"
-            ]
-          },
-          {
-            "group": "Win back and reward",
-            "pages": [
-              "workflows/guides/vip-rewards",
-              "workflows/guides/churned-subs-winback"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Product",
-        "groups": [
           {
             "group": "Subscription experiences",
             "pages": [
-              "retention",
               "subscribe-and-save",
               "build-a-box",
               "curated-boxes",
@@ -165,15 +144,42 @@
               "webhooks"
             ]
           }
-        ],
-        "icon": "puzzle-piece"
+        ]
+      },
+      {
+        "tab": "Playbooks",
+        "icon": "compass",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "learn"
+            ]
+          },
+          {
+            "group": "Retention",
+            "pages": [
+              "retention",
+              "playbooks/cancellation-flow",
+              "recipes/cancel-flow-blueprint",
+              "workflows/guides/fight-new-subscriber-churn"
+            ]
+          },
+          {
+            "group": "Loyalty and win-back",
+            "pages": [
+              "workflows/guides/vip-rewards",
+              "workflows/guides/churned-subs-winback"
+            ]
+          }
+        ]
       },
       {
         "tab": "Help",
         "icon": "life-ring",
         "groups": [
           {
-            "group": "Help",
+            "group": "Troubleshooting and FAQ",
             "pages": [
               "FAQ"
             ]

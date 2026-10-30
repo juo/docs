@@ -171,6 +171,7 @@
           {
             "group": "Integrations",
             "pages": [
+              "use-juo-with-ai",
               "klaviyo-integration",
               "hubspot-integration",
               {

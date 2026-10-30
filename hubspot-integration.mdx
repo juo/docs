@@ -42,6 +42,10 @@ Juo is currently syncing the following events with HubSpot:
 | **Upcoming Renewal Subscription** | Before a subscription is scheduled to renew, per your reminder schedule |
 | **Renewed Now Subscription** | Subscription is triggered using the Renew Now option |
 | **Renewal Requires Action** | Payment requires additional authentication (e.g. 3D Secure for credit card payments) |
+| **Invoice Issued Subscription** | An invoice is issued for a postpaid subscription renewal |
+| **Invoice Payment Failed Subscription** | An automatic charge attempt on a postpaid invoice fails. Sent once per failed attempt |
+| **Invoice Overdue Subscription** | Juo stops retrying the charge on a postpaid invoice and the invoice becomes overdue |
+| **Invoice Paid Subscription** | A postpaid invoice is paid |
 | **Paused Subscription** | Subscription is paused |
 | **Reactivated Subscription** | Subscription is reactivated from the Canceled status |
 | **Canceled Subscription** | Subscription is cancelled |
@@ -88,6 +92,11 @@ Depending on the event type, some additional properties may become available:
 | **payment\_method\_type** | Payment method type for upcoming renewal notifications (`recurring` or `intentional`) | text |
 | **payment\_method** | Payment method of the upcoming renewal | text |
 | **days\_to\_renewal** | Number of days until the scheduled renewal | number |
+| **portal\_url** | Link to the subscription in the Customer Portal (Billing Failed Subscription and the invoice events except Invoice Paid Subscription) | text |
+| **invoice\_pay\_url** | Link where the customer pays the invoice, the same link the invoice emails use. Empty when the invoice cannot be paid through a link (invoice events except Invoice Paid Subscription) | text |
+| **subscription\_id** | ID of the subscription the invoice belongs to (invoice events) | text |
+| **invoice\_cycle** | Subscription cycle the invoice bills (invoice events) | number |
+| **attempts** | Number of automatic charge attempts Juo made before the invoice became overdue (Invoice Overdue Subscription) | number |
 
 The **Renewal Requires Action** event carries its own minimal set of properties instead of the subscription-related ones:
 

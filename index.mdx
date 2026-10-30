@@ -49,8 +49,8 @@ hidden: true
       </div>
 
       <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
-        <div className="juo-tile-title">Talk to subscribers</div>
-        <div className="juo-tile-text">Notifications, Klaviyo, Customer.io and quick links in emails.</div>
+        <div className="juo-tile-title">Klaviyo</div>
+        <div className="juo-tile-text">Sync subscription events and build lifecycle emails.</div>
       </div>
     </a>
 
@@ -62,7 +62,7 @@ hidden: true
       </div>
 
       <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
-        <div className="juo-tile-title">Keep subscribers</div>
+        <div className="juo-tile-title">Increase retention</div>
         <div className="juo-tile-text">Design a cancellation flow that saves subscribers, then explore more playbooks.</div>
       </div>
     </a>
@@ -75,7 +75,7 @@ hidden: true
       </div>
 
       <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
-        <div className="juo-tile-title">Automate with workflows</div>
+        <div className="juo-tile-title">Automate with Workflows</div>
         <div className="juo-tile-text">React to subscription events, or start from a ready-made blueprint.</div>
       </div>
     </a>
@@ -207,9 +207,9 @@ export const ParticleAsk = () => {
 
 export const AskJuo = () => {
   const examples = [
-    { label: "Discount missing on renewal", q: "Why wasn't a subscription discount applied on a renewal, and how do I fix it?" },
-    { label: "How iDEAL and SEPA renewals work", q: "How do iDEAL and SEPA subscriptions renew, and why can payment take a few days?" },
-    { label: "Klaviyo emails for failed payments", q: "How do I send Klaviyo emails when a subscription payment fails, with a link to update the payment method?" },
+    { label: "Discount not applied", q: "Why wasn't a subscription discount applied on a renewal, and how do I fix it?" },
+    { label: "iDEAL and SEPA renewals", q: "How do iDEAL and SEPA subscriptions renew, and why can payment take a few days?" },
+    { label: "Failed payment emails", q: "How do I send Klaviyo emails when a subscription payment fails, with a link to update the payment method?" },
   ];
   const [question, setQuestion] = useState("");
   const ask = (text) => {
@@ -252,13 +252,13 @@ html.dark[data-current-path="/docs"] .nav-tabs-item[data-active] {
         />
         <ParticleAsk />
       </form>
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", fontSize: 13 }}>
+      <div style={{ display: "flex", gap: 6, flexWrap: "nowrap", justifyContent: "center", fontSize: 12, overflow: "hidden" }}>
         {examples.map((ex) => (
           <button
             key={ex.label}
             type="button"
             onClick={() => ask(ex.q)}
-            style={{ padding: "5px 10px", borderRadius: 999, border: "1px solid rgba(127,127,127,.3)", background: "transparent", color: "inherit", font: "inherit", cursor: "pointer", opacity: 0.85, whiteSpace: "nowrap" }}
+            style={{ padding: "4px 9px", borderRadius: 999, border: "1px solid rgba(127,127,127,.3)", background: "transparent", color: "inherit", font: "inherit", cursor: "pointer", opacity: 0.85, whiteSpace: "nowrap" }}
           >
             {ex.label}
           </button>

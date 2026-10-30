@@ -55,17 +55,18 @@
             "pages": [
               "get-started",
               "installing-juo",
-              "about-juo",
-              "migrating-to-juo"
-            ]
-          },
-          {
-            "group": "Launch subscriptions",
-            "pages": [
               "subscription-experiences",
               "adding-juo-subscription-widget",
               "linking-customer-portal",
+              "test-first-subscriber",
               "shipping-setup",
+              "about-juo"
+            ]
+          },
+          {
+            "group": "More setup",
+            "pages": [
+              "migrating-to-juo",
               "custom-storefront"
             ]
           }
@@ -91,10 +92,15 @@
             ]
           },
           {
-            "group": "Loyalty and win-back",
+            "group": "Win-back",
             "pages": [
-              "workflows/guides/vip-rewards",
               "workflows/guides/churned-subs-winback"
+            ]
+          },
+          {
+            "group": "Loyalty and gifts",
+            "pages": [
+              "workflows/guides/vip-rewards"
             ]
           }
         ]
@@ -143,14 +149,14 @@
               "workflows/conditions",
               "workflows/actions",
               "workflows/connections",
-              "workflows/experiments",
-              "editor"
+              "workflows/experiments"
             ]
           },
           {
             "group": "Customer Portal",
             "pages": [
-              "customer-portal"
+              "customer-portal",
+              "editor"
             ]
           },
           {

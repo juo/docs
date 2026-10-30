@@ -1,0 +1,53 @@
+---
+title: "Test as your first subscriber"
+description: "Walk through the whole subscriber journey yourself before real customers subscribe."
+icon: "flask"
+keywords:
+  - "test"
+  - "launch"
+  - "checklist"
+  - "first subscription"
+  - "customer portal"
+---
+
+Before real customers subscribe, go through the journey yourself: subscribe, find the subscription in Juo, and manage it as a customer would. It takes about 15 minutes and catches most launch issues.
+
+## Before you start
+
+- You've created a subscription offer, for example [Subscribe and save](/subscribe-and-save).
+- The [subscription widget](/adding-juo-subscription-widget) is on your product page.
+- The [Manage subscriptions link](/linking-customer-portal) is in your store.
+
+## Walk through the journey
+
+<Steps>
+  <Step title="Subscribe on your store">
+    Open the product page, choose the subscription option in the widget and complete checkout. Use a payment method that supports subscriptions, and an order you can refund afterwards.
+  </Step>
+  <Step title="Check the order and the subscription">
+    The order appears in Shopify under **Orders**. In Juo, go to **Subscriptions** and open the new subscription. Check the products, price, discount, delivery frequency and next order date.
+  </Step>
+  <Step title="Open the Customer Portal as the customer">
+    Use the **Manage subscriptions** link in your store, or open the subscription in Juo and select **Generate customer portal link** to see the portal exactly as the customer does.
+  </Step>
+  <Step title="Try what subscribers will do">
+    Skip the next order, change the delivery frequency, then start to cancel. If you've set up a [cancellation flow](/guides/cancel-flow-blueprint), it appears at this point.
+  </Step>
+  <Step title="Check the emails">
+    Review the emails you received at each step. Adjust them under **Settings → Notifications**. See [Notifications](/notifications).
+  </Step>
+  <Step title="Clean up">
+    Cancel the test subscription and refund the order in Shopify.
+  </Step>
+</Steps>
+
+## Next steps
+
+<Columns cols={2}>
+  <Card title="Turn on your safeguards" icon="shield-halved" href="/retention-flow">
+    Set how failed payments are retried and what subscribers see when they cancel.
+  </Card>
+  <Card title="Design a cancellation flow" icon="door-open" href="/playbooks/cancellation-flow">
+    Keep subscribers who are about to cancel.
+  </Card>
+</Columns>

@@ -71,6 +71,34 @@
         ]
       },
       {
+        "tab": "Playbooks",
+        "icon": "compass",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "learn"
+            ]
+          },
+          {
+            "group": "Retention",
+            "pages": [
+              "retention",
+              "playbooks/cancellation-flow",
+              "recipes/cancel-flow-blueprint",
+              "workflows/guides/fight-new-subscriber-churn"
+            ]
+          },
+          {
+            "group": "Loyalty and win-back",
+            "pages": [
+              "workflows/guides/vip-rewards",
+              "workflows/guides/churned-subs-winback"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Product",
         "icon": "puzzle-piece",
         "groups": [
@@ -159,34 +187,6 @@
         ]
       },
       {
-        "tab": "Playbooks",
-        "icon": "compass",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "learn"
-            ]
-          },
-          {
-            "group": "Retention",
-            "pages": [
-              "retention",
-              "playbooks/cancellation-flow",
-              "recipes/cancel-flow-blueprint",
-              "workflows/guides/fight-new-subscriber-churn"
-            ]
-          },
-          {
-            "group": "Loyalty and win-back",
-            "pages": [
-              "workflows/guides/vip-rewards",
-              "workflows/guides/churned-subs-winback"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "Help",
         "icon": "life-ring",
         "groups": [
@@ -246,6 +246,10 @@
   },
   "navbar": {
     "links": [
+      {
+        "href": "/about-juo",
+        "label": "About Juo"
+      },
       {
         "label": "Contact us",
         "href": "mailto:hi@juo.io"

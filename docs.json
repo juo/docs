@@ -101,6 +101,14 @@
             "pages": [
               "workflows/guides/vip-rewards"
             ]
+          },
+          {
+            "group": "Discounts and promotions",
+            "pages": []
+          },
+          {
+            "group": "Upsells and order value",
+            "pages": []
           }
         ]
       },

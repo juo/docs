@@ -1,57 +1,144 @@
 ---
-title: "SID conversion engine"
+title: "Subscription intent detection"
+sidebarTitle: "Subscription intent detection"
+description: "Find customers who already reorder regularly and invite them to subscribe with a personalized offer in Klaviyo."
+keywords:
+  - "subscription intent"
+  - "SID"
+  - "conversion"
+  - "acquisition"
+  - "klaviyo"
+  - "repeat customers"
+  - "email template"
 ---
 
 ![Subscription intent detection](https://cdn.juo.io/content-uploads/subscription_intent_ebc36d1306.png)
 
-Subscription intent detection
+Subscription intent detection finds customers who already buy the same products regularly but haven't subscribed. Juo analyzes your customers' orders, tags the likely subscribers, and sends a personalized subscription offer for each of them to Klaviyo: the products they reorder, a suggested delivery frequency based on how often they buy, and links to a cart or checkout with that subscription ready.
 
-## What is subscription intent detection
+Use it to send an email that turns repeat buyers into subscribers.
 
-To help you acquire more subscribers Juo team developed an algorithm that analyses customers behaviour and finds patterns that indicate subscription intent. Juo analyses the current customer base and tags the potential subscribers. Additional properties are transferred to Klaviyo and can be used to send email campaigns with personalized susbcription offers.
+## Turn it on
 
-### Subscription Intent properties
+Enable subscription intent under **Settings → Retention and acquisition**. Tagging can take up to 24 hours after you turn it on. See [Retention and acquisition settings](/retention-flow#subscription-intent).
 
-#### Information about a product that is purchased frequently
+You also need the [Klaviyo integration](/klaviyo-integration) connected, so the offer reaches Klaviyo.
 
-Items detected by the algorithm are stored in the Items array. To access these items and their properties use a loop. for example:
+## What Juo sends to Klaviyo
 
-```
+### The products a customer reorders
+
+Products detected for a customer are in the `Items` array. Each item has:
+
+| Property | What it contains |
+| --- | --- |
+| `ProductID` | ID of the product the customer buys regularly |
+| `SKU` | Product SKU |
+| `ProductName` | Product name |
+| `VariantName` | Variant name |
+| `Quantity` | Average quantity the customer buys |
+| `ItemPrice` | Item price |
+| `RowTotal` | Line total |
+| `ProductURL` | Link to the product page |
+| `ImageURL` | Product image |
+| `Orders` | Orders that include this product |
+| `Categories` | Product categories |
+
+Loop through all items:
+
+```liquid
 {% for item in event.Items %}
-{{ item.ProductName }} ({{ item.VariantName }}): {{ item.Quantity }} packs.
+{{ item.ProductName }} ({{ item.VariantName }}): {{ item.Quantity }} packs
 {% endfor %}
 ```
 
-And this is how you can access only the first item in the array:
+Or use only the first item:
 
-```
+```liquid
 {{ event.Items.0.ProductName }}
 ```
 
-* **ProductID** — ID of a product that is purchased frequently
-* **SKU**
-* **ProductName**
-* **VariantName**
-* **Quantity** — average quantity that a customer purchases
-* **ItemPrice**
-* **RowTotal**
-* **ProductURL**
-* **ImageURL**
-* **Orders**
-* **Categories**
+### The personalized subscription offer
 
-#### Personalized subscription offer
+| Property | What it contains |
+| --- | --- |
+| `OrderIntervalUnit` | Suggested delivery unit, for example `month` |
+| `OrderIntervalFrequency` | Suggested delivery frequency, for example `1` |
+| `SellingPlanId` | The selling plan used for the offer |
+| `CartUrl` | Link to a cart with the products and the subscription offer added |
+| `CheckoutUrl` | Link to checkout with the products and the subscription offer added |
 
-The syntax for accessing these events is:
+Access them directly, for example `{{ event.CartUrl }}`.
 
+## Email template
+
+This template invites a repeat buyer to subscribe. It shows each product they reorder with its image, the quantity they usually buy and a link to the product page, suggests a delivery frequency based on their buying pattern, and links straight to checkout or to a cart they can review first.
+
+Paste it into an HTML block in a Klaviyo email used in a flow triggered by the subscription intent event. Replace the copy and the button color with your own.
+
+```html
+{% with first=event.Items.0 %}
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-family: Arial, sans-serif; color: #1a1a1a;">
+  <tr>
+    <td style="padding: 32px 24px 8px; text-align: center;">
+      <h1 style="margin: 0 0 12px; font-size: 24px; line-height: 1.3;">
+        You keep coming back for {{ first.ProductName|default:'your favorites' }}
+      </h1>
+      <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #555;">
+        Subscribe and get it delivered automatically, so you never run out.
+        You can skip, pause or change your subscription at any time.
+      </p>
+    </td>
+  </tr>
+
+  {% for item in event.Items %}
+  <tr>
+    <td style="padding: 16px 24px;">
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border: 1px solid #eee; border-radius: 8px;">
+        <tr>
+          <td style="width: 96px; padding: 12px;">
+            <a href="{{ item.ProductURL }}">
+              <img src="{{ item.ImageURL|default:'' }}" alt="{{ item.ProductName|default:'Product' }}" width="96" style="display: block; border-radius: 6px;">
+            </a>
+          </td>
+          <td style="padding: 12px; vertical-align: top;">
+            <p style="margin: 0; font-weight: bold; font-size: 16px;">{{ item.ProductName }}</p>
+            {% if item.VariantName %}
+            <p style="margin: 4px 0 0; font-size: 14px; color: #555;">{{ item.VariantName }}</p>
+            {% endif %}
+            <p style="margin: 8px 0 0; font-size: 14px; color: #555;">
+              You usually buy {{ item.Quantity }} at a time · {{ item.ItemPrice }} each
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {% endfor %}
+
+  <tr>
+    <td style="padding: 16px 24px; text-align: center;">
+      <p style="margin: 0 0 20px; font-size: 16px; line-height: 1.5;">
+        Based on how often you order, we suggest a delivery every
+        <strong>{{ event.OrderIntervalFrequency }} {{ event.OrderIntervalUnit }}{% if event.OrderIntervalFrequency > 1 %}s{% endif %}</strong>.
+      </p>
+      <a href="{{ event.CheckoutUrl }}" style="display: inline-block; padding: 14px 24px; background-color: #3727F4; color: #ffffff; text-decoration: none; font-weight: bold; border-radius: 6px;">
+        Subscribe now
+      </a>
+      <p style="margin: 16px 0 0; font-size: 14px;">
+        <a href="{{ event.CartUrl }}" style="color: #3727F4;">Review my subscription in the cart</a>
+      </p>
+    </td>
+  </tr>
+</table>
+{% endwith %}
 ```
-{{ event.CartUrl }}
-```
 
-* **OrderIntervalUnit** — suggested delivery time unit (e.g. month)
-* **OrderIntervalFrequency** — suggested delivery frequency based (e.g. 1)
-* **SellingPlanId** — contains ID of a selling plan for reference
-* **CartUrl** — contains a direct link to Cart with already added products with the personalized subscription offer
-* **CheckoutUrl** — contains a direct link to Checkout with added products and personalized subscription offer
+<Tip>
+  Preview the email with a real customer profile in Klaviyo to check how the item list looks for customers with one product and with several.
+</Tip>
 
-To see how to set up Subscription intent detection step by step and start sending emails with Klaviyo, refer to our [guide](https://juo-io.notion.site/How-to-use-Juo-Subscription-Intent-Detection-fa9372d3b5d24d3a99d6af84f9f52713).
+## Related
+
+- [Quick actions](/quick-actions): one-click links for subscribers in your emails.
+- [Klaviyo integration](/klaviyo-integration)

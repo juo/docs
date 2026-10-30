@@ -116,7 +116,16 @@
             ]
           },
           {
-            "group": "Business",
+            "group": "Subscriptions",
+            "pages": [
+              "create-subscription",
+              "bulk-actions",
+              "quick-actions",
+              "subscription-intent-detection"
+            ]
+          },
+          {
+            "group": "Offers",
             "pages": [
               "subscribe-and-save",
               "build-a-box",
@@ -128,16 +137,7 @@
               "discounts",
               "tiered-discounts",
               "subscription-widget",
-              "subscription-intent-detection",
               "analytics"
-            ]
-          },
-          {
-            "group": "Operations",
-            "pages": [
-              "create-subscription",
-              "bulk-actions",
-              "quick-actions"
             ]
           },
           {
@@ -158,6 +158,10 @@
               "customer-portal",
               "editor"
             ]
+          },
+          {
+            "group": "Storefront",
+            "pages": []
           },
           {
             "group": "Payments",

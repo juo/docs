@@ -87,7 +87,6 @@
               "retention",
               "playbooks/cancellation-flow",
               "guides/cancel-flow-blueprint",
-              "recipes/cancel-flow-blueprint",
               "workflows/guides/fight-new-subscriber-churn"
             ]
           },
@@ -341,6 +340,10 @@
     {
       "source": "/workflows/guides/use-cases",
       "destination": "/learn"
+    },
+    {
+      "source": "/recipes/cancel-flow-blueprint",
+      "destination": "/guides/cancel-flow-blueprint"
     }
   ],
   "contextual": {

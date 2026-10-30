@@ -239,10 +239,10 @@ export const JuoMcpDemo = () => {
           {s.extra === "flow" && (
             <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6, fontSize: 12 }}>
               {["Cancellation clicked", "Offer 15% discount", "Offer pause"].map((n, k) => (
-                <React.Fragment key={n}>
+                <span key={n} style={{ display: "contents" }}>
                   {k > 0 && <span aria-hidden="true" style={{ opacity: 0.5 }}>→</span>}
                   <span style={{ ...chipBase }}>{n}</span>
-                </React.Fragment>
+                </span>
               ))}
             </div>
           )}

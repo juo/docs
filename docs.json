@@ -54,6 +54,7 @@
             "group": "Get started with Juo",
             "pages": [
               "get-started",
+              "installing-juo",
               "about-juo",
               "migrating-to-juo"
             ]

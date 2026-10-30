@@ -41,6 +41,9 @@ Juo is currently syncing the following events with Klaviyo:
 | **Renewal Requires Action** | Payment requires additional authentication (e.g. 3D Secure for credit card payments) |
 | **Renewal Payment Requested Subscription** | The customer is asked to pay for a renewal themselves (e.g. through Shopify Checkout, BLIK or MB WAY). Sent with each payment request and reminder |
 | **Invoice Issued Subscription** | An invoice is issued for a postpaid subscription renewal |
+| **Invoice Payment Failed Subscription** | An automatic charge attempt on a postpaid invoice fails. Sent once per failed attempt |
+| **Invoice Overdue Subscription** | Juo stops retrying the charge on a postpaid invoice and the invoice becomes overdue |
+| **Invoice Paid Subscription** | A postpaid invoice is paid |
 | **Product Out Of Stock Subscription** | Subscription renewal fails due to one or more products being out of stock |
 | **Renewal Invalid Delivery Information** | Subscription renewal fails because the delivery method or shipping address is missing or invalid |
 | **Opened Subscription Fulfillment** | A fulfillment order for a subscription is released for fulfilment (e.g. the next shipment of a prepaid subscription) |
@@ -182,6 +185,11 @@ Depending on the event type, some additional properties may become available, su
 | **reasonCode** | Chargeback reason code, e.g. `"MS02"` | string |
 | **reasonMessage** | Chargeback reason, e.g. `"Refusal by the Debtor"` | string |
 | **attempt** | Contains the number of the failed billing attempt | number |
+| **InvoicePayUrl** | Link where the customer pays the invoice, the same link the invoice emails use. Empty when the invoice cannot be paid through a link (Invoice Issued, Invoice Payment Failed and Invoice Overdue Subscription) | string |
+| **SubscriptionId** | ID of the subscription the invoice belongs to (invoice events) | string |
+| **InvoiceCycle** | Subscription cycle the invoice bills (invoice events) | number |
+| **Attempt** / **ErrorMessage** | Number of the failed charge attempt and the reason it failed (Invoice Payment Failed Subscription) | number / string |
+| **Attempts** | Number of automatic charge attempts Juo made before the invoice became overdue (Invoice Overdue Subscription) | number |
 
 ### Customer-related properties
 

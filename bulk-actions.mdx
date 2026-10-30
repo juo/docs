@@ -28,7 +28,7 @@ Large selections can take several minutes. You can close the sidebar and reopen 
 | Action | What it does |
 |---|---|
 | **Add product** | Adds a product variant to each selected subscription. Optionally set a **custom price**, or mark it as a **one-time** line (added for a single renewal only). The product does not need to be on a subscription plan; plan discounts are not applied to the new line. |
-| **Swap product** | Replaces one variant with another. Subscriptions that do not contain the “from” product are skipped. Optionally **retain the original price** after the swap. |
+| **Swap product** | Replaces one variant with another. Subscriptions that do not contain the “from” product are skipped. Optionally **retain the original price** after the swap. To also replace the product inside Build-a-box boxes, select **Also swap items inside Build a Box**. See [Build-a-box items](#build-a-box-items). |
 | **Remove product** | Removes a product variant. Only subscriptions that contain it are updated; others are skipped. |
 
 ### Pricing
@@ -55,12 +55,22 @@ Large selections can take several minutes. You can close the sidebar and reopen 
 | **Update status** | Sets status to Active, Cancelled, Expired, Failed, or Paused. |
 | **Run workflow** | Runs the published **Admin initiated** workflow on selected subscriptions. The workflow must use only automatic (execution) steps — no customer-facing offers or polls. See [Triggers → Admin initiated](/workflows/triggers#admin-initiated). |
 
+## Build-a-box items
+
+Actions that target specific products leave items inside a [Build-a-box](/build-a-box) unchanged. This applies to **Swap product**, **Remove product**, **Change product price**, **Update subscription plan pricing**, and to **Reschedule** and **Add discount** when you limit them to specific variants. The log shows how many box items were skipped on each subscription.
+
+To swap a product inside boxes, select **Also swap items inside Build a Box** in the **Swap product** sidebar. Juo rebuilds each box with the new product and recalculates its discount tier. Keep these limits in mind:
+
+- The new variant must be offered by the box. Boxes that do not offer it are skipped.
+- Box items are priced by the box, so you cannot combine this option with **Retain original price**.
+
 ## Update subscription plan pricing
 
 This action does not change products that should keep their current price. It skips:
 
 - products with a manual price override
 - one-time products
+- Build-a-box items
 - upsells, unless you select **Include upsells**
 - products on plans that were deleted in Shopify
 
@@ -80,6 +90,6 @@ From a customer’s detail page you can also bulk-edit that customer’s subscri
 
 ## Results and activity log
 
-Each run produces a per-subscription log (Done / Skipped / Error). Skipped usually means the subscription did not match the action (for example, the product to swap was not on that subscription).
+Each run produces a per-subscription log (Done / Skipped / Error). Skipped usually means the subscription did not match the action (for example, the product to swap was not on that subscription) or the matching product was a Build-a-box item.
 
 Completed bulk actions also appear in the **Activity log**, where you can open a past job and review or download its log.

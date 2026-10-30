@@ -1,6 +1,6 @@
 ---
 title: "General settings"
-description: "Configure inventory, pricing, shipping rates, tags, and order attribute copying for subscriptions."
+description: "Configure inventory, pricing, shipping rates, pickup points, tags, and order attribute copying for subscriptions."
 ---
 
 Global settings live under **Settings** in the Admin Panel. This page covers the **General** tab. Related options also appear under **Customer Portal**, **Retention and acquisition**, **Notifications**, and **Integrations**.
@@ -32,6 +32,14 @@ By default, Juo **retains** the shipping rate on a subscription until the custom
 Enable **Dynamic Shipping Rates** to pull rates from your Shopify shipping profile whenever rates change. Already-scheduled upcoming renewals keep their current rate; the new rates apply from the following cycle.
 
 For profile setup details, see [Shipping setup](/shipping-setup).
+
+## Pickup points
+
+**Require a pickup point for pickup delivery methods** is on by default. With it on, Juo refuses to save a pickup delivery method (for example InPost, DPD, DHL, ORLEN Paczka, BoxNow or Skroutz) on a subscription that would be left without a pickup point. This applies in both the Customer Portal and the Admin Panel.
+
+Turn it off only if your Customer Portal collects the pickup point through your own custom blocks. Juo then saves the method even without a point, and a subscription saved without one renews without one.
+
+Either way, a stored pickup point is kept when the subscription moves to another method of the same carrier, and dropped when it moves to another carrier's method. See [Shipping setup](/shipping-setup#pickup-points).
 
 ## Tags
 

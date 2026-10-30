@@ -38,7 +38,7 @@ Juo is currently syncing the following events with Customer.io:
 | **Next Billing Date Updated Subscription** | Next billing date is changed                                                    |
 | **Plan Changed Subscription**         | Subscription delivery frequency is changed                                           |
 | **Plan Changed Subscription Line**    | Product delivery frequency is changed                                                |
-| **Cancelled Subscription**            | Subscription is cancelled                                                            |
+| **Canceled Subscription**            | Subscription is canceled                                                            |
 | **Failed Subscription**            | Subscription has failed e.g. because of too many failed payment attempts                                                            |
 | **Upcoming Renewal Subscription**     | 3 days before a subscription is scheduled to renew                                   |
 | **Billed Subscription**               | Subscription is successfully paid                                                    |
@@ -87,7 +87,7 @@ Depending on the event type, some additional properties may become available, su
 | **errorMessage**       | Provides more background on the reason for payment failure, e.g. "Payment method was revoked" | string |
 | **NextActionUrl**      | Link to where subscribers can finish their payment validation when required                   | string |
 | **PaymentMethodType**  | Payment method type for upcoming renewal notifications (`recurring` or `intentional`)         | string |
-| **CancellationReason** | Reason for cancelling the subscription provided by the customer                               | string |
+| **CancellationReason** | Reason for canceling the subscription provided by the customer                               | string |
 | **reasonCode**         | Chargeback reason code, e.g. `"MS02"`                                                         | string |
 | **reasonMessage**      | Chargeback reason, e.g. `"Refusal by the Debtor"`                                             | string |
 | **attempt**            | Contains the number of the failed billing attempt                                             | number |

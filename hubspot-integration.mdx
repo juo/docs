@@ -48,7 +48,7 @@ Juo is currently syncing the following events with HubSpot:
 | **Invoice Paid Subscription** | A postpaid invoice is paid |
 | **Paused Subscription** | Subscription is paused |
 | **Reactivated Subscription** | Subscription is reactivated from the Canceled status |
-| **Canceled Subscription** | Subscription is cancelled |
+| **Canceled Subscription** | Subscription is canceled |
 | **Next Billing Date Updated Subscription** | Next billing date is changed |
 | **Chargeback Subscription** | Chargeback request is initiated by the customer |
 
@@ -87,7 +87,7 @@ Depending on the event type, some additional properties may become available:
 | :-- | :-- | :-- |
 | **error\_message** | Provides more background on the reason for payment failure, e.g. "Payment method was revoked" | text |
 | **attempt** | Contains the number of the failed billing attempt | number |
-| **cancellation\_reason** | Reason for cancelling the subscription provided by the customer | text |
+| **cancellation\_reason** | Reason for canceling the subscription provided by the customer | text |
 | **send\_email** | Whether a cancellation email was sent to the customer | boolean |
 | **payment\_method\_type** | Payment method type for upcoming renewal notifications (`recurring` or `intentional`) | text |
 | **payment\_method** | Payment method of the upcoming renewal | text |

@@ -33,7 +33,7 @@ Juo is currently syncing the following events with Klaviyo:
 | **Next Billing Date Updated Subscription** | Next billing date is changed |
 | **Plan Changed Subscription** | Subscription delivery frequency is changed |
 | **Plan Changed Subscription Line** | Product delivery frequency is changed |
-| **Canceled Subscription** | Subscription is cancelled |
+| **Canceled Subscription** | Subscription is canceled |
 | **Failed Subscription** | Subscription has failed e.g. because of too many failed payment attempts |
 | **Upcoming Renewal Subscription** | A configured reminder window before a subscription renews is reached (one event per window) |
 | **Billed Subscription** | Subscription is successfully paid |
@@ -46,7 +46,7 @@ Juo is currently syncing the following events with Klaviyo:
 | **Invoice Paid Subscription** | A postpaid invoice is paid |
 | **Product Out Of Stock Subscription** | Subscription renewal fails due to one or more products being out of stock |
 | **Renewal Invalid Delivery Information** | Subscription renewal fails because the delivery method or shipping address is missing or invalid |
-| **Opened Subscription Fulfillment** | A fulfillment order for a subscription is released for fulfilment (e.g. the next shipment of a prepaid subscription) |
+| **Opened Subscription Fulfillment** | A fulfillment order for a subscription is released for fulfillment (e.g. the next shipment of a prepaid subscription) |
 | **Chargeback Subscription** | Chargeback request is initiated by the customer |
 
 <Note>
@@ -91,7 +91,7 @@ Juo automatically tags subscription and membership customers with different tags
 | :-- | :-- |
 | **active_subscriber** | Customer with active subscription |
 | **paused_subscriber** | Customer with paused subscription |
-| **cancelled_subscriber** | Customer with cancelled subscription |
+| **cancelled_subscriber** | Customer with canceled subscription |
 | **failed_subscriber** | Customer with failed subscription payment |
 | **expired_subscriber** | Customer whose subscription auto-expired due to its schedule |
 
@@ -175,8 +175,8 @@ Depending on the event type, some additional properties may become available, su
 | **index** | Position of the reminder window that sent the event, starting at `0` (Upcoming Renewal Subscription) | number |
 | **label** | Label of the reminder window, if configured (Upcoming Renewal Subscription) | string |
 | **PaymentUrl** | Link where the customer pays for the renewal (Renewal Payment Requested Subscription) | string |
-| **CancellationReason** | Reason for cancelling the subscription provided by the customer | string |
-| **SendEmail** | Whether the merchant selected to notify the customer when cancelling from the admin portal (Canceled Subscription) | boolean |
+| **CancellationReason** | Reason for canceling the subscription provided by the customer | string |
+| **SendEmail** | Whether the merchant selected to notify the customer when canceling from the admin portal (Canceled Subscription) | boolean |
 | **OldVariantId** / **NewVariantId** | Variant that was replaced and the variant that replaced it (Replaced Line Subscription) | string |
 | **VariantId** | Variant that was added or removed (Line Added Subscription, Line Removed Subscription) | string |
 | **IsOneTime** | Whether the added or removed product is a one-time item (Line Added Subscription, Line Removed Subscription) | boolean |

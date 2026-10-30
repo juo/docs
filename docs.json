@@ -86,6 +86,7 @@
             "pages": [
               "retention",
               "playbooks/cancellation-flow",
+              "guides/cancel-flow-blueprint",
               "recipes/cancel-flow-blueprint",
               "workflows/guides/fight-new-subscriber-churn"
             ]

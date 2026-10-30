@@ -19,7 +19,13 @@
     "groups": [
       {
         "group": "Getting started",
-        "pages": ["index", "about-juo", "subscription-experiences", "retention"]
+        "pages": [
+          "index",
+          "about-juo",
+          "use-juo-with-ai",
+          "subscription-experiences",
+          "retention"
+        ]
       },
       {
         "group": "Subscription experiences",

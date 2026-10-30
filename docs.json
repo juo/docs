@@ -104,11 +104,17 @@
           },
           {
             "group": "Discounts and promotions",
-            "pages": []
+            "pages": [
+              "playbooks/seasonal-campaigns",
+              "guides/seasonal-campaigns-in-juo"
+            ]
           },
           {
             "group": "Upsells and order value",
-            "pages": []
+            "pages": [
+              "playbooks/upsells",
+              "guides/upsells-portal-and-email"
+            ]
           }
         ]
       },

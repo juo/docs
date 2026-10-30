@@ -1,0 +1,114 @@
+---
+title: "Offer upsells in the Customer Portal and by email"
+sidebarTitle: "Upsells in the portal and by email"
+description: "Create an upsell campaign, show it in the Customer Portal, and send an email or SMS that adds the product to the next order in one click."
+icon: "envelope-open-text"
+keywords:
+  - "upsell"
+  - "quick actions"
+  - "add product"
+  - "klaviyo"
+  - "email template"
+  - "sms"
+  - "customer portal"
+  - "how to"
+---
+
+Subscribers can add upsell products to their next order in two places: in the Customer Portal, and straight from an email or text message. This guide sets up both. For what to offer and when, see [Upsells for subscriptions](/playbooks/upsells).
+
+## Before you start
+
+- Your [Customer Portal](/customer-portal) is live and linked from your store.
+- For emails, the [Klaviyo integration](/klaviyo-integration) is connected.
+
+## Create the upsell campaign
+
+1. Go to **Experiences → Upsells → Add Upsell**.
+2. Enter a **Campaign name**.
+3. Set the **Schedule**: always available, or between a start and end date.
+4. Optionally set a **Discount**. Only customers who add the product through the upsell get it.
+5. Optionally set a **Usage limit** and limit **Customer eligibility** to specific segments or to customers subscribed to a specific product.
+6. Select **Save**, then add the **Products** you want to offer.
+7. Turn on **Active**.
+
+You can run several upsell campaigns with different settings at the same time. See [Upsells](/upsells).
+
+## Show it in the Customer Portal
+
+Active upsells appear in the Customer Portal automatically, following their schedule. Subscribers who add a product are charged for it with their next renewal and receive it in the same delivery.
+
+## Add it to your emails
+
+The **Add Product** quick action lets subscribers add an upsell product to their next renewal from an email, without logging in. Juo sends the upsell products with these Klaviyo events, among others:
+
+- **Upcoming Renewal Subscription**, the best moment for an add-on
+- **Billed Subscription**
+- **Started Subscription**
+
+The products are in the `event.QuickActions.Products` array. Each product has `Title`, `ImageUrl`, `CurrentPrice`, `BasePrice`, `AddProductUrl`, `VariantId` and `AvailableForSale`.
+
+Paste this template into an HTML block in the email for your upcoming renewal flow. It lists every in-stock upsell product with its image and price, shows the original price crossed out when there's a discount, and adds the product in one click.
+
+```html
+{% if event.QuickActions.Products|length > 0 %}
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-family: Arial, sans-serif; color: #1a1a1a;">
+  <tr>
+    <td style="padding: 24px; text-align: center;">
+      <h2 style="margin: 0 0 8px; font-size: 22px;">Add something to your next delivery</h2>
+      <p style="margin: 0; font-size: 15px; color: #555;">Subscriber prices, shipped with your next order.</p>
+    </td>
+  </tr>
+  {% for product in event.QuickActions.Products %}
+  {% if product.AvailableForSale %}
+  <tr>
+    <td style="padding: 8px 24px;">
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border: 1px solid #eee; border-radius: 8px;">
+        <tr>
+          <td style="width: 96px; padding: 12px;">
+            <img src="{{ product.ImageUrl|default:'' }}" alt="{{ product.Title|default:'Product' }}" width="96" style="display: block; border-radius: 6px;">
+          </td>
+          <td style="padding: 12px; vertical-align: top;">
+            <p style="margin: 0; font-weight: bold; font-size: 16px;">{{ product.Title }}</p>
+            {% if product.CurrentPrice < product.BasePrice %}
+            <p style="margin: 6px 0 0;">
+              <span style="color: #999; text-decoration: line-through;">{{ product.BasePrice }}</span>
+              <span style="font-weight: bold;">{{ product.CurrentPrice }}</span>
+            </p>
+            {% else %}
+            <p style="margin: 6px 0 0; font-weight: bold;">{{ product.CurrentPrice }}</p>
+            {% endif %}
+            <a href="{{ product.AddProductUrl }}" style="display: inline-block; margin-top: 10px; padding: 10px 16px; background-color: #3727F4; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold;">Add to next delivery</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {% endif %}
+  {% endfor %}
+</table>
+{% endif %}
+```
+
+If there are no upsell products for a subscriber, the block doesn't show. Preview the email with a real subscriber profile in Klaviyo before you send it.
+
+## Add it to SMS or messaging apps
+
+The add product link is a plain URL, so you can use it in any channel that receives Juo events, such as Klaviyo SMS. Keep the message to one product:
+
+```text
+Your next delivery ships soon. Add {{ event.QuickActions.Products.0.Title }} at your subscriber price: {{ event.QuickActions.Products.0.AddProductUrl }}
+```
+
+<Note>
+  Quick links and actions expire after 72 hours. Send them in messages that go out shortly before the subscriber is likely to act, such as the renewal reminder.
+</Note>
+
+## Measure
+
+Compare renewal order value and the number of added products before and after you launch the campaign, per channel. See [Analytics](/analytics).
+
+## Related
+
+- [Upsells](/upsells)
+- [Quick actions](/quick-actions)
+- [Klaviyo integration](/klaviyo-integration)

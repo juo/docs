@@ -1,0 +1,77 @@
+---
+title: "Set up a sale or gift campaign for subscribers"
+sidebarTitle: "Set up a campaign for subscribers"
+description: "Give subscribers a discount or a gift, change subscription pricing for a season, and keep a store-wide sale from stacking with subscription discounts."
+icon: "gift"
+keywords:
+  - "black friday"
+  - "sale"
+  - "bulk actions"
+  - "discount"
+  - "gift"
+  - "discount code"
+  - "stacking"
+  - "how to"
+---
+
+This guide covers the Juo and Shopify settings behind a seasonal campaign. To plan who gets what, see [Running sales and seasonal campaigns with subscribers](/playbooks/seasonal-campaigns).
+
+## Give existing subscribers a discount
+
+Use a bulk action to add a discount to the subscriptions you choose, for a set number of renewals.
+
+1. Go to **Subscriptions** and use search and filters to find the subscribers the campaign is for.
+2. Select the subscriptions, or use **Select all** to include every subscription that matches the filters.
+3. Open **Pricing → Add discount**.
+4. Choose **Amount off subscription** or **Amount off products**, then a percentage or a flat amount.
+5. Set the **number of renewals** the discount applies to, for example 1 for the next order only, and **Confirm**.
+
+The discount applies without a code, so subscribers don't need to do anything. See [Bulk actions](/bulk-actions).
+
+## Add a gift to the next order
+
+1. Select the subscriptions as above.
+2. Open **Products → Add product** and choose the gift variant.
+3. Set a **custom price** for it and mark it as **one-time**, so it's added to the next renewal only.
+4. **Confirm**.
+
+Plan discounts don't apply to a product added this way, so the custom price is what the subscriber pays. To give gifts automatically at subscription milestones instead, start from the **Gift flow** [blueprint](/workflows/blueprints).
+
+## Let subscribers claim an offer themselves
+
+An upsell campaign shows products at a special price in the Customer Portal for a set period.
+
+1. Go to **Experiences → Upsells → Add Upsell**.
+2. Set the **Schedule** to the campaign dates and an optional **Discount**.
+3. Use **Usage limit** and **Customer eligibility** to control who can claim it and how many times.
+4. Add the products and activate the upsell.
+
+To let subscribers claim it from an email in one click, add the Add Product quick action to your campaign email. See [Upsells](/upsells) and [Quick actions](/quick-actions).
+
+## Change the subscription discount for a season
+
+Changing a plan's discount in **Offers → Subscribe and save** applies to new subscriptions only. To move existing subscriptions to the new price:
+
+1. Change the discount on the plan.
+2. Go to **Subscriptions**, select the subscriptions on that plan, and run **Pricing → Update subscription plan pricing**.
+3. When the campaign ends, change the discount back and run the same bulk action again.
+
+Products with a manual price override, one-time products and upsells are skipped unless you choose otherwise. See [Update subscription plan pricing](/bulk-actions#update-subscription-plan-pricing).
+
+## Run a store-wide sale without stacking discounts
+
+Subscription plan discounts and Extras always combine with Shopify discount codes. To keep a sale code from stacking on top of the subscription discount:
+
+- In Shopify, set the sale code's **Purchase type** to one-time purchases only, so it doesn't apply to subscription items.
+- Or create a plan-specific code in **Shopify → Discounts → Create discount** under **Juo Subscriptions**, and choose exactly which purchase options it applies to.
+
+The Build-a-box discount is a product discount. A code combines with it only if the code is set to combine with product discounts. Place a test order with a subscription item before the sale starts. See [Discounts](/discounts).
+
+## Offer a volume discount
+
+- **At checkout:** [Tiered discounts](/tiered-discounts) give a bigger discount as customers add more eligible products to the cart, for one-time and subscription orders.
+- **On renewals:** the **Volume discount** [blueprint](/workflows/blueprints) recalculates the discount on the upcoming order from the number of items in it.
+
+## Announce the campaign
+
+Send the offer through your email tool. With the [Klaviyo integration](/klaviyo-integration), you can add [quick links](/quick-actions) that take subscribers straight to the right place in the Customer Portal.

@@ -212,6 +212,30 @@ export const AskJuo = () => {
     { label: "Failed payment emails", q: "How do I send Klaviyo emails when a subscription payment fails, with a link to update the payment method?" },
   ];
   const [question, setQuestion] = useState("");
+  const openSearch = (text) => {
+    try {
+      const find = () => document.querySelector('[data-search-item="input"]');
+      const press = (mod) => document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", code: "KeyK", metaKey: mod === "meta", ctrlKey: mod === "ctrl", bubbles: true, cancelable: true }));
+      if (!find()) press("meta");
+      let tries = 0;
+      const fill = () => {
+        const inp = find();
+        if (!inp) {
+          tries += 1;
+          if (tries === 3) press("ctrl");
+          if (tries < 20) setTimeout(fill, 50);
+          return;
+        }
+        if (text) {
+          const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+          setter.call(inp, text);
+          inp.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+        inp.focus();
+      };
+      setTimeout(fill, 50);
+    } catch (e) {}
+  };
   const ask = (text) => {
     const q = text.trim();
     if (!q) return;
@@ -239,15 +263,16 @@ html.dark[data-current-path="/docs"] .nav-tabs-item[data-active] {
   color: rgb(160, 159, 165) !important;
 }`}</style>
       <form
-        onSubmit={(e) => { e.preventDefault(); ask(question); }}
+        onSubmit={(e) => { e.preventDefault(); if (question.trim()) { ask(question); } else { openSearch(""); } }}
         style={{ display: "flex", gap: 8 }}
       >
         <input
           type="text"
-          aria-label="Ask a question about Juo"
+          aria-label="Search or ask a question"
           value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          placeholder="Ask a question"
+          onChange={(e) => { const v = e.target.value; setQuestion(""); e.target.blur(); openSearch(v); }}
+          onFocus={(e) => { if (!question) { e.target.blur(); openSearch(""); } }}
+          placeholder="Search or ask a question"
           style={{ flex: 1, minWidth: 0, height: 46, boxSizing: "border-box", padding: "0 14px", borderRadius: 10, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit", font: "inherit" }}
         />
         <ParticleAsk />

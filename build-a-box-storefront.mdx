@@ -1,0 +1,70 @@
+---
+title: "Build-a-box on your storefront"
+sidebarTitle: "Build-a-box storefront"
+description: "Show a Build-a-box offer on your store with the Juo Build-a-box block, or build your own box experience."
+keywords:
+  - "build-a-box"
+  - "storefront"
+  - "theme"
+  - "block"
+  - "custom"
+  - "headless"
+---
+
+Once the [Build-a-box offer](/build-a-box) is set up in Juo, customers need a page where they build their box. Juo's **Build-a-box block** is a ready-made way to do it in a Shopify 2.0 theme. It's one option: if you want a different experience, such as a quiz, a bundle builder in your own design or a headless store, you can build your own and Juo handles the box at checkout.
+
+## Use the Juo Build-a-box block
+
+<Warning>
+  The block works with Shopify 2.0 themes. If you use an older theme, [contact us](mailto:hi@juo.io) or build your own box page as described below.
+</Warning>
+
+### Create a box template
+
+1. In Shopify, go to **Online Store** and select **Customize** on your active theme.
+2. Select **Products** in the top bar and select **Create template**.
+3. Name the template, for example "Build-a-box", and base it on your **Default product** template.
+4. Assign this template to the box's parent product.
+
+### Add the block
+
+1. In the new template, remove or hide **all** product information blocks, such as the variant picker and price.
+2. Add the **Juo Build-a-box** block in their place and select it.
+3. In the **Products** section, choose the collection with your boxable products. Products appear in the same order as in the collection.
+4. Save the template.
+
+### Add one-time add-ons (optional)
+
+You can add a step where customers pick one-time products to go with their box subscription.
+
+1. In the **Juo Build-a-box** block settings, select **Additional step (Addons)**.
+2. Enter a title and description, and choose the collection to show in that step.
+
+Customers then see a **Next** button before they go to checkout.
+
+### Customize the block
+
+- **Theme**: colors and corner radius of the elements.
+- **Headline**: a custom title and images for desktop and mobile.
+- **Filters**: buttons that show products from specific collections only.
+- **Subscriptions option**: turn the subscription option for the box on or off.
+
+## Build your own box experience
+
+You can design the box page any way you like, as long as each box item reaches the cart with the box properties below. Juo uses them to group the items into one box and apply the box discount.
+
+```json
+"properties": {
+  "_box": "box-<PARENT_PRODUCT_ID>",
+  "_parent_product_handle": "<PARENT_PRODUCT_HANDLE>",
+  "_parent_product_id": "<PARENT_PRODUCT_ID>"
+}
+```
+
+Replace the placeholders with the ID and handle of the box's parent product. For subscription items, also add the selling plan to each line. See [Custom storefront](/custom-storefront) for how subscription items have to reach the cart.
+
+## Related
+
+- [Build-a-box](/build-a-box)
+- [Customize the subscription widget](/subscription-widget)
+- [Custom storefront](/custom-storefront)

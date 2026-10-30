@@ -66,8 +66,7 @@
           {
             "group": "More setup",
             "pages": [
-              "migrating-to-juo",
-              "custom-storefront"
+              "migrating-to-juo"
             ]
           }
         ]
@@ -135,9 +134,7 @@
               "upsells",
               "extras",
               "discounts",
-              "tiered-discounts",
-              "subscription-widget",
-              "analytics"
+              "tiered-discounts"
             ]
           },
           {
@@ -161,7 +158,17 @@
           },
           {
             "group": "Storefront",
-            "pages": []
+            "pages": [
+              "subscription-widget",
+              "build-a-box-storefront",
+              "custom-storefront"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "pages": [
+              "analytics"
+            ]
           },
           {
             "group": "Payments",

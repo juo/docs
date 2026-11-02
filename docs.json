@@ -99,6 +99,7 @@
           {
             "group": "Loyalty and gifts",
             "pages": [
+              "playbooks/gifts",
               "workflows/guides/vip-rewards"
             ]
           },

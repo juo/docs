@@ -1,0 +1,63 @@
+/* ── Assistant: one entry point, the floating "Ask a question" bar ──
+   Hides the sidebar/header assistant toggle, keeps the bar visible while
+   scrolling and gives it a solid, clearly visible surface. The homepage
+   has its own ask box, so the bar is hidden there. */
+#assistant-entry,
+#assistant-entry-mobile {
+  display: none !important;
+}
+
+.chat-assistant-floating-input {
+  translate: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.chat-assistant-floating-input > div {
+  padding-top: 28px;
+  background: linear-gradient(to top, rgb(var(--background-light)) 55%, rgb(var(--background-light) / 0));
+}
+
+html.dark .chat-assistant-floating-input > div {
+  background: linear-gradient(to top, rgb(var(--background-dark)) 55%, rgb(var(--background-dark) / 0));
+}
+
+.chat-assistant-floating-input > div > div {
+  background: #ffffff;
+  border: 1px solid rgb(var(--primary) / 0.35) !important;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px -12px rgb(15 16 17 / 0.25), 0 0 0 4px rgb(var(--primary) / 0.06);
+}
+
+html.dark .chat-assistant-floating-input > div > div {
+  background: #18181b;
+  border-color: rgb(var(--primary-light) / 0.4) !important;
+  box-shadow: 0 12px 32px -10px rgb(0 0 0 / 0.7), 0 0 0 4px rgb(var(--primary-light) / 0.08);
+}
+
+.chat-assistant-floating-input > div > div:focus-within {
+  border-color: rgb(var(--primary)) !important;
+}
+
+html.dark .chat-assistant-floating-input > div > div:focus-within {
+  border-color: rgb(var(--primary-light)) !important;
+}
+
+#chat-assistant-textarea:placeholder-shown {
+  height: 46px !important;
+  padding-top: 12px;
+}
+
+.chat-assistant-send-button {
+  background: rgb(var(--primary)) !important;
+  bottom: 11px !important;
+}
+
+html.dark .chat-assistant-send-button {
+  background: rgb(var(--primary-light)) !important;
+}
+
+html[data-current-path="/"] [data-assistant-bar],
+html[data-current-path="/docs"] [data-assistant-bar] {
+  display: none !important;
+}

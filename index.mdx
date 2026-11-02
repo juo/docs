@@ -221,26 +221,9 @@ export const AskJuo = () => {
     { label: "Failed payment emails", q: "How do I send Klaviyo emails when a subscription payment fails, with a link to update the payment method?" },
   ];
   const [question, setQuestion] = useState("");
-  const formRef = useRef(null);
   const ask = (text) => {
     const q = text.trim();
     window.location.href = window.location.pathname + (q ? "?assistant=" + encodeURIComponent(q) : "?assistant");
-  };
-  const placeDialog = () => {
-    const form = formRef.current;
-    const dialog = document.querySelector('[data-search-item="dialog"]');
-    if (!form || !dialog || window.innerWidth < 768) return;
-    const fr = form.getBoundingClientRect();
-    const parent = dialog.offsetParent;
-    const pr = parent ? parent.getBoundingClientRect() : { top: 0, left: 0 };
-    const cs = getComputedStyle(dialog);
-    const curTop = pr.top + dialog.offsetTop - (parent ? parent.scrollTop : 0);
-    const curLeft = pr.left + dialog.offsetLeft;
-    const top = parseFloat(cs.marginTop) + (fr.top - curTop) - (dialog.offsetHeight - fr.height) / 2;
-    const left = parseFloat(cs.marginLeft) + (fr.left - curLeft);
-    dialog.style.margin = top + "px 0 0 " + left + "px";
-    dialog.style.width = fr.width + "px";
-    dialog.style.maxWidth = fr.width + "px";
   };
   const openSearch = (text) => {
     try {
@@ -256,7 +239,6 @@ export const AskJuo = () => {
           if (tries < 20) setTimeout(fill, 30);
           return;
         }
-        placeDialog();
         if (text) {
           const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
           setter.call(inp, text);
@@ -306,7 +288,6 @@ html.dark { --juo-surface: #1b1b1b; --juo-raised: #333333; --juo-border: #404040
 .juo-tile-title { color: var(--juo-text) !important; }
 .juo-tile-text { color: var(--juo-text-2) !important; }`}</style>
       <form
-        ref={formRef}
         onSubmit={(e) => { e.preventDefault(); ask(question); }}
         style={{ display: "flex", gap: 8 }}
       >

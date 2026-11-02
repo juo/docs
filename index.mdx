@@ -231,10 +231,13 @@ export const AskJuo = () => {
     const dialog = document.querySelector('[data-search-item="dialog"]');
     if (!form || !dialog || window.innerWidth < 768) return;
     const fr = form.getBoundingClientRect();
-    const dr = dialog.getBoundingClientRect();
+    const parent = dialog.offsetParent;
+    const pr = parent ? parent.getBoundingClientRect() : { top: 0, left: 0 };
     const cs = getComputedStyle(dialog);
-    const top = parseFloat(cs.marginTop) + (fr.top - dr.top) - (dr.height - fr.height) / 2;
-    const left = parseFloat(cs.marginLeft) + (fr.left - dr.left);
+    const curTop = pr.top + dialog.offsetTop - (parent ? parent.scrollTop : 0);
+    const curLeft = pr.left + dialog.offsetLeft;
+    const top = parseFloat(cs.marginTop) + (fr.top - curTop) - (dialog.offsetHeight - fr.height) / 2;
+    const left = parseFloat(cs.marginLeft) + (fr.left - curLeft);
     dialog.style.margin = top + "px 0 0 " + left + "px";
     dialog.style.width = fr.width + "px";
     dialog.style.maxWidth = fr.width + "px";

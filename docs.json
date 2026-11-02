@@ -18,7 +18,7 @@
   "background": {
     "color": {
       "light": "#FFFFFF",
-      "dark": "#08090A"
+      "dark": "#111111"
     }
   },
   "fonts": {
@@ -35,19 +35,110 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Docs",
+        "tab": "Home",
+        "hidden": true,
         "groups": [
           {
-            "group": "Get started",
+            "group": "Home",
             "pages": [
-              "index",
-              "about-juo",
-              "use-juo-with-ai",
-              "migrating-to-juo"
+              "index"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Get started",
+        "icon": "rocket",
+        "groups": [
+          {
+            "group": "Get started with Juo",
+            "pages": [
+              "get-started",
+              "installing-juo",
+              "subscription-experiences",
+              "adding-juo-subscription-widget",
+              "linking-customer-portal",
+              "test-first-subscriber",
+              "shipping-setup",
+              "about-juo"
             ]
           },
           {
-            "group": "Subscription experiences",
+            "group": "More setup",
+            "pages": [
+              "migrating-to-juo"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Playbooks",
+        "icon": "compass",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "learn"
+            ]
+          },
+          {
+            "group": "Retention",
+            "pages": [
+              "retention",
+              "playbooks/cancellation-flow",
+              "guides/cancel-flow-blueprint",
+              "workflows/guides/fight-new-subscriber-churn"
+            ]
+          },
+          {
+            "group": "Win-back",
+            "pages": [
+              "workflows/guides/churned-subs-winback"
+            ]
+          },
+          {
+            "group": "Loyalty and gifts",
+            "pages": [
+              "workflows/guides/vip-rewards"
+            ]
+          },
+          {
+            "group": "Discounts and promotions",
+            "pages": [
+              "playbooks/seasonal-campaigns",
+              "guides/seasonal-campaigns-in-juo"
+            ]
+          },
+          {
+            "group": "Upsells and order value",
+            "pages": [
+              "playbooks/upsells",
+              "guides/upsells-portal-and-email"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Product",
+        "icon": "puzzle-piece",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "features"
+            ]
+          },
+          {
+            "group": "Subscriptions",
+            "pages": [
+              "create-subscription",
+              "bulk-actions",
+              "quick-actions",
+              "subscription-intent-detection"
+            ]
+          },
+          {
+            "group": "Offers",
             "pages": [
               "subscribe-and-save",
               "build-a-box",
@@ -55,13 +146,16 @@
               "custom-workflows",
               "memberships",
               "upsells",
-              "extras"
+              "extras",
+              "discounts",
+              "tiered-discounts"
             ]
           },
           {
             "group": "Workflows",
             "pages": [
               "workflows/workflows-overview",
+              "workflows/blueprints",
               "workflows/triggers",
               "workflows/conditions",
               "workflows/actions",
@@ -70,22 +164,31 @@
             ]
           },
           {
-            "group": "Storefront and portal",
+            "group": "Customer Portal",
             "pages": [
-              "adding-juo-subscription-widget",
-              "subscription-widget",
-              "linking-customer-portal",
+              "customer-portal",
               "editor"
             ]
           },
           {
-            "group": "Managing subscriptions",
+            "group": "Storefront",
             "pages": [
-              "create-subscription",
-              "bulk-actions",
-              "quick-actions",
-              "tiered-discounts",
+              "subscription-widget",
+              "build-a-box-storefront",
+              "custom-storefront"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "pages": [
               "analytics"
+            ]
+          },
+          {
+            "group": "Payments",
+            "pages": [
+              "sepa-direct-debit",
+              "sepa-chargebacks"
             ]
           },
           {
@@ -93,15 +196,13 @@
             "pages": [
               "general-settings",
               "retention-flow",
-              "shipping-setup",
-              "notifications",
-              "subscription-intent-detection",
-              "sepa-chargebacks"
+              "notifications"
             ]
           },
           {
             "group": "Integrations",
             "pages": [
+              "use-juo-with-ai",
               "klaviyo-integration",
               "hubspot-integration",
               {
@@ -119,33 +220,14 @@
         ]
       },
       {
-        "tab": "Learn",
+        "tab": "Help",
+        "icon": "life-ring",
         "groups": [
           {
-            "group": "Foundations",
+            "group": "Troubleshooting and FAQ",
             "pages": [
-              "learn",
-              "subscription-experiences",
-              "retention",
-              "discounts"
-            ]
-          },
-          {
-            "group": "Storefront and payments",
-            "pages": [
-              "custom-storefront",
-              "customer-portal",
-              "sepa-direct-debit"
-            ]
-          },
-          {
-            "group": "Workflow playbooks",
-            "pages": [
-              "workflows/guides",
-              "workflows/guides/cancellation-flow",
-              "workflows/guides/fight-new-subscriber-churn",
-              "workflows/guides/vip-rewards",
-              "workflows/guides/churned-subs-winback"
+              "help",
+              "FAQ"
             ]
           },
           {
@@ -176,12 +258,6 @@
               "glossary/subscription",
               "glossary/variable-discount"
             ]
-          },
-          {
-            "group": "Help",
-            "pages": [
-              "FAQ"
-            ]
           }
         ]
       }
@@ -203,6 +279,10 @@
   },
   "navbar": {
     "links": [
+      {
+        "href": "/about-juo",
+        "label": "About Juo"
+      },
       {
         "label": "Contact us",
         "href": "mailto:hi@juo.io"
@@ -281,8 +361,33 @@
       "destination": "/subscription-experiences"
     },
     {
+      "source": "/workflows/guides/cancellation-flow",
+      "destination": "/playbooks/cancellation-flow"
+    },
+    {
+      "source": "/workflows/guides",
+      "destination": "/learn"
+    },
+    {
       "source": "/workflows/guides/use-cases",
-      "destination": "/workflows/guides"
+      "destination": "/learn"
+    },
+    {
+      "source": "/recipes/cancel-flow-blueprint",
+      "destination": "/guides/cancel-flow-blueprint"
     }
-  ]
+  ],
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ],
+    "display": "header"
+  }
 }

@@ -2,22 +2,30 @@
 title: "Use Juo with an AI assistant"
 sidebarTitle: "Juo MCP"
 description: "Connect Claude or another AI assistant to your Juo store to look up subscriptions, review performance, and build workflows by asking."
-keywords: ["MCP", "Model Context Protocol", "AI assistant", "Claude", "agent", "connector", "Codex", "Cursor"]
+keywords:
+  - "MCP"
+  - "Model Context Protocol"
+  - "AI assistant"
+  - "Claude"
+  - "agent"
+  - "connector"
+  - "Codex"
+  - "Cursor"
 ---
 
 Juo has an MCP server. MCP, the Model Context Protocol, is an open standard that lets an AI assistant work with the tools your business already runs on. Once your assistant is connected to Juo, you can ask about subscribers, subscriptions, and performance in plain language, and have the assistant make changes in your store.
 
 <JuoMcpDemo />
 
-*Illustrative conversations. Your assistant's wording will differ.*
+_Illustrative conversations. Your assistant's wording will differ._
 
 ## What you can ask
 
 Ask in your own words. The assistant finds the right customer, subscription, or workflow in your store and shows what it did.
 
 | Task | Example prompt |
-|---|---|
-| Find a customer | "Find anna@example.com and show her active subscriptions." |
+| --- | --- |
+| Find a customer | "Find [anna@example.com](mailto:anna@example.com) and show her active subscriptions." |
 | Skip or move one order | "Skip Anna's next order." or "Move Anna's next order to November 20." |
 | Change a subscription | "Pause Anna's subscription." or "Add a free sample to Anna's next order only." |
 | Review performance | "Compare cancellations this month with last month." |
@@ -37,7 +45,7 @@ https://mcp.juo.com/mcp
 <Tabs>
   <Tab title="Claude">
     1. In Claude on the web or in Claude Desktop, open **Customize**, then **Connectors**.
-    2. Select **+**, then **Add custom connector**.
+    2. Select **\+**, then **Add custom connector**.
     3. Enter the server address above and save.
     4. The first time you use the connector, Claude opens the Juo login page. Log in with your Juo account, choose the store, and grant access.
 
@@ -94,11 +102,11 @@ The assistant works with your live store, so treat its actions as you would a te
 - **Workflows are saved as drafts.** The assistant asks before it publishes. Pop-ups, polls, and other customer-facing content can't be previewed through MCP, so open the draft in the [workflow editor](/workflows/workflows-overview) and check it before you publish.
 - **Disconnect when you no longer need it.** Remove the Juo connector in your assistant's settings.
 
-## Start from a playbook
+## Start from a guide
 
-[Workflow playbooks](/workflows/guides) describe the goal, the metric, and the flow for each pattern, so they work as a brief. Share one with your assistant and ask it to build a draft:
+The [cancellation flow playbook](/playbooks/cancellation-flow) describes the goal and the flow of a proven pattern, so it works as a brief. Share it with your assistant and ask for a draft:
 
-> Using the cancellation flow playbook, create a draft workflow in my store. Offer a discount first, then a pause, and ask for a reason if the subscriber still cancels.
+> Using the cancellation flow playbook, create a draft workflow in my store. Offer a discount first, then a pause.
 
 Review the draft in the editor, adjust the offers, and publish when it matches your terms.
 
@@ -108,6 +116,7 @@ Review the draft in the editor, adjust the offers, and publish when it matches y
   <Card title="MCP reference" icon="code" href="https://juo.dev/docs/mcp">
     Every tool, the full list of supported clients, and endpoint details.
   </Card>
+
   <Card title="Connect with an API key" icon="key" href="https://juo.dev/docs/mcp#connecting-with-an-admin-api-key">
     Use an Admin API key for scripts, scheduled tasks, CI, and self-hosted agents.
   </Card>

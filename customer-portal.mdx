@@ -1,193 +1,88 @@
 ---
-title: "Using Customer Portal"
+title: "Customer Portal"
+description: "Where subscribers manage their subscriptions, what they can change and how to make the portal your own."
+keywords:
+  - "customer portal"
+  - "manage subscriptions"
+  - "self-service"
+  - "login"
+  - "editor"
+  - "blocks"
+  - "management options"
 ---
 
 <Frame>
-  ![Customer Portal - Subscription
-  management](https://cdn.juo.io/content-uploads/CP_management_6fbc5d7768.png)
-</Frame>
-## Logging in to the Customer Portal
-
-The Customer Portal is a designed space where subscribers can manage their subscriptions.
-
-In the Customer Portal, subscribers can overview their existing subscriptions, their statuses and scheduled renewals, and change their properties flexibly.
-
-A customer account is not required to log in to the Customer Portal - subscribers can also log in with a one-time login code or their social media account.
-
-<Frame caption="Customers can log in to an existing account or with a single-use code">
-  ![Login screen - Customer Portal login
-  options](https://cdn.juo.io/content-uploads/CP_account_login_c61b30ff3e.png)
+  <img
+    src="https://cdn.juo.io/content-uploads/CP_management_6fbc5d7768.png"
+    alt="Juo Customer Portal showing a subscription with its next renewal and management options"
+  />
 </Frame>
 
-### Logging in with an Account
+The Customer Portal is where subscribers manage their subscriptions without contacting you. It lives on your store's domain at `/apps/juo`, and you decide what subscribers can change there.
 
-Subscribers who already have a store account can log in to their account and click on the **Manage subscription** button to get to the Customer Portal.
+## How subscribers get in
 
-<Frame caption="Manage subscriptions button will open the Customer Portal">
-  ![Customer Accout page - Manage subscriptions
-  button](https://cdn.juo.io/content-uploads/CP_account_manage_1d8118627a.png)
-</Frame>
+Subscribers open the portal from the **Manage subscriptions** link in your store. To add it, see [Customer Portal link](/linking-customer-portal).
 
-### Logging in without an Account
+They don't need a store account. They can log in with:
 
-Juo offers passwordless and social login methods alongside the traditional login. Subscribers without an Account can still log in to the Customer Portal with a one-time login code sent to their emails. Alternatively, they can use Facebook or Google accounts login to proceed with subscription management.
+- their Shopify customer account,
+- a one-time code sent to their email,
+- Google or Facebook, if you turn social login on.
 
-<Frame caption="The code is sent to an email provided by the customer">
-  ![Customer Portal login - single-use
-  code](https://cdn.juo.io/content-uploads/CP_passwordless_login_081765dc5c.png)
-</Frame>
+## What subscribers can do
 
-## Managing subscriptions
+| Area | Actions |
+| --- | --- |
+| **Next order** | Renew now, skip the next order, change the renewal date |
+| **Subscription** | Change the delivery frequency, pause, resume, cancel, reactivate |
+| **Products** | Change quantity or variant, swap, add, remove, skip one product in the next order, add a discount code |
+| **Details** | Change the delivery address, delivery method or pickup point, update the payment method |
 
-The Customer Portal gives subscribers full control over their subscriptions: renewal dates, delivery frequencies, items in subscription, and so on.
+Changes apply from the next renewal. A payment method update sends a secure link to the subscriber's email.
 
-<Frame caption="Key management options are visible at the top">
-  ![Customer Portal - Subscription management
-  options](https://cdn.juo.io/content-uploads/CP_manangement_subscription_cbb77137ea.png)
-</Frame>
+## Choose what subscribers can change
 
-### Managing orders
+In Juo, go to **Settings** → **Customer Portal** to turn each action on or off:
 
-In the Customer Portal, subscribers are able to speed up, skip, or reschedule their next delivery, change delivery frequency, or pause and cancel the entire subscription. They can also edit, add, swap, or remove products currently in their subscription as well as add discounts to products.
+- **Management actions**: cancel, pause, skip, change renewal date, change frequency (including a custom frequency), change address and delivery method, redeem discount codes, reactivate cancelled or failed subscriptions, add products as one-time purchases.
+- **Product editing**: add, remove, swap, change quantity or variant.
+- **Excluded products**: hide products from the portal. Turn on **auto-exclude new products** if you add products often.
 
-#### Renew now
+Anything you turn off, subscribers need to ask your support team for.
 
-Allows the customer to immediately renew their subscription. A renewed subscription is immediately billed and scheduled for fulfilment.
+<Note>
+  If a plan has a minimum number of renewals, subscribers can't cancel, pause or skip until they reach it. The portal tells them how many renewals are left.
+</Note>
 
-#### Pause
+Turn on **redeem discount codes** only if you share codes that work on subscriptions. See [Discounts](/discounts).
 
-Customers can pause their subscription anytime by clicking the **Pause** button next to an active subscription.
+## Make it look like your store
 
-#### Resume
+The portal picks up your store's fonts and colors. Under **Settings** → **Customer Portal**, you can fine-tune colors and button shapes.
 
-A paused subscription can be resumed by clicking a **Resume** button next to the **Renew now** button. A resumed subscription will become active and will renew on the next scheduled renewal date.
+For more control, turn on the **block-based Customer Portal** in the same settings. You then design the portal in the [Editor](/editor): reorder sections, add banners and upsells, change texts and translations, and preview everything with a real subscriber's data before you publish.
 
-#### Cancel
+<Tip>
+  Added custom links or code to your current portal? Contact [team@juo.io](mailto:team@juo.io) before you switch, so we can move them to blocks for you.
+</Tip>
 
-Subscribers have the ability to cancel their subscription via the Customer Portal by clicking the **Cancel** button. Depending on your settings and workflows, they may be offered save options first. Cancelled subscriptions can be reactivated when **Reactivate cancelled** is enabled in Customer Portal settings.
+## Go further
 
-### Rescheduling subscriptions
+<Columns cols={2}>
+  <Card title="Save subscribers who want to cancel" icon="shield" href="/playbooks/cancellation-flow">
+    Show offers in the portal before a subscriber cancels.
+  </Card>
 
-#### Skip next order
+  <Card title="Sell more in the portal" icon="cart-plus" href="/playbooks/upsells">
+    Recommend add-ons and one-time products to subscribers.
+  </Card>
 
-If subscribers want to skip the upcoming delivery, they can click on **Skip next order**. The next order and delivery will then be skipped without charging. The subscription will renew as planned on the next scheduled renewal date (e.g. a month later).
+  <Card title="Design the portal in the Editor" icon="paintbrush" href="/editor">
+    Every block, style and setting of the block-based portal.
+  </Card>
 
-<Frame>
-  ![Customer Portal - Skip next
-  order](https://cdn.juo.io/content-uploads/CP_manangement_skip_e8feedae20.png)
-</Frame>
-
-#### Skip a product in the next order
-
-When product editing is allowed, customers can **Skip in next order** on an individual line. That product is left out of the upcoming renewal only; other products still renew. Whole-order skip and per-product skip are both controlled by the **Skip next order** setting in Customer Portal management options.
-#### Change renewal date
-
-If subscribers want their order delivered at a later or earlier date, they can use **Change renewal date** to pick a different date from the date picker. Any future date can be picked as the next delivery date.
-
-<Frame>
-  ![Customer Portal - Change renewal
-  date](https://cdn.juo.io/content-uploads/CP_manangement_reschedule_c67e24620a.png)
-</Frame>
-#### Change delivery frequency
-
-If the orders are too frequent or too sparse, subscribers can adjust the delivery frequency to their needs.
-
-They can choose from any of the frequencies that are shared by all the products in their subscription.
-
-<Frame>
-  ![Customer Portal - Change delivery
-  frequency](https://cdn.juo.io/content-uploads/CP_manangement_frequency_a9f47c4c62.png)
-</Frame>
-## Changing the products in a subscription
-
-Subscribers can overview and edit the content of their subscription orders using the Customer Portal: update, swap, add more products and add discounts to an existing subscription.
-
-#### Update products
-
-Subscribers can change the quantity of the products in their subscriptions. They can also switch to a different product variant.
-
-<Frame caption="You can change the variant and quantity of the product with Update">
-  ![Customer Portal - Update
-  product](https://cdn.juo.io/content-uploads/CP_manangement_update_77175f029d.png)
-</Frame>
-
-#### Swap products
-
-Any product in subscription can be swapped for a different product sold under the same subscription plan. Subscribers can choose from a list of products available for swapping and add a selected product in a chosen quantity.
-
-<Frame caption="Select a replacement product from the list">
-  ![Customer Portal - Swap
-  product](https://cdn.juo.io/content-uploads/CP_manangement_swap_b5bff91c4d.png)
-</Frame>
-
-#### Add products
-
-Products that are sold under the same selling plan can be easily added to a subscription from the Products section, by clicking on the **Add product** button, selecting the product or products from the list and clicking the **Confirm** button to save the changes.
-
-<Frame>
-  ![Customer Portal - Add a product to a
-  subscription](https://cdn.juo.io/content-uploads/CP_manangement_add_product_ad6b0ff3d4.png)
-</Frame>
-#### Add discounts
-
-Discounts can also be added to subscriptions from the Product section. Adding a discount requires an eligible discount code that a subscriber can then enter into the discount code input field. Once entered, the **Add discount** will apply the discount and save it.
-
-<Frame>
-  ![Customer Portal - Add a discount
-  code](https://cdn.juo.io/content-uploads/CP_manangement_add_discount_8f97408325.png)
-</Frame>
-## Changing customer information
-
-Subscribers can also use the Customer Portal to adjust their delivery address, delivery method, and payment method.
-
-#### Change delivery address
-
-Under the Delivery address section, subscribers can change the address to which their subscription orders will be sent. The **Change** button allows to adjust the delivery address, the name and contact information.
-
-<Frame>
-  ![Customer Portal - Change delivery
-  address](https://cdn.juo.io/content-uploads/CP_manangement_subscriber_address_6dd13537e6.png)
-</Frame>
-#### Change delivery method
-
-As with the delivery address, subscribers can also change how their subscription orders are delivered by choosing from alternative delivery methods available for the products in their subscription.
-
-When **pickup points** are enabled, customers can choose or change a parcel locker / PUDO location instead of a home address. See [Shipping setup → Pickup points](/shipping-setup#pickup-points).
-
-The changes will be applied starting from the next delivery.
-
-<Frame>
-  ![Customer Portal - Change delivery
-  method](https://cdn.juo.io/content-uploads/CP_manangement_subscriber_shipping_36b1de0b2e.png)
-</Frame>
-### Changing payment method
-
-Finally, subscribers can change the way their subscriptions are paid for in the Customer Portal, by clicking on the **Change** under Payment method and editing the method they want to change.
-
-A link to update the payment method will be sent to the email address that was used to log in to the Customer Portal.
-
-<Frame>
-  ![Customer Portal - Change payment
-  details](https://cdn.juo.io/content-uploads/CP_manangement_subscriber_payment_98cb02d66f.png)
-</Frame>
-## Available management options
-
-Control what subscribers can do under **Settings → Customer Portal**:
-
-- Enable the **block-based Customer Portal** (required for the [Editor](/editor))
-- Toggle management actions: cancel, pause, skip next order, change renewal date, reactivate cancelled / failed, change delivery method and address, redeem discount codes, edit delivery frequency (including custom frequency), add any product as a one-time purchase
-- Control product-line editing: add, remove, swap, quantity, variant, hide descriptions
-- Exclude specific products from the portal, and optionally **auto-exclude new products**
-
-Cancel, pause, and skip are unavailable while a subscription is still under its **minimum required renewals**. Change renewal date may be unavailable for fixed fulfillment-day plans.
-
-Redeem discount codes should only be enabled if you share subscription-eligible codes with customers. See [Discounts](/discounts).
-
-Some subscriptions will not be editable before a minimum number of renewals is reached. If this is the case, there will be a notification informing about how many renewals are still required before editing becomes possible.
-
-<Frame>
-  ![Customer Portal - Required
-  renewals](https://cdn.juo.io/content-uploads/CP_required_renewals_a07140bdaa.png)
-</Frame>
-In this case, subscribers can reach out directly to the store and ask to have their
-subscription edited.
+  <Card title="Build your own blocks" icon="code" href="https://juo.dev/docs/blocks/overview">
+    Developer docs for custom Customer Portal blocks.
+  </Card>
+</Columns>

@@ -2,9 +2,9 @@
 title: "SEPA chargebacks recovery"
 ---
 
-Juo has built-in **chargeback recovery features** to help recover lost revenue from failed SEPA Direct Debit subscription payments. To better understand how SEPA payments and chargebacks work, see our **[SEPA Direct Debit guide](https://juo.io/docs/sepa-direct-debit)**.
+Juo has built-in **chargeback recovery features** to help recover lost revenue from failed SEPA Direct Debit subscription payments. To better understand how SEPA payments and chargebacks work, see our [**SEPA Direct Debit guide**](/sepa-direct-debit).
 
-You can enable and configure chargeback recovery in the **[Retention tab](https://admin.juo.io/experiences/retention)** of your Juo admin.
+You can enable and configure chargeback recovery under **Settings** → **Retention and acquisition** in Juo. See [Retention settings](/retention-flow).
 
 Regardless of whether a dunning flow is enabled, **any SEPA chargeback** triggers the following actions:
 
@@ -24,9 +24,7 @@ When chargeback dunning is enabled, Juo will:
 2. Include a **Shopify checkout link** in the **Chargeback Subscription** event sent to Klaviyo.
 3. Automatically **reactivate the subscription** if the customer successfully pays the duplicated order.
 
-**Action required:**
-Use this event in Klaviyo to build an automated recovery flow that asks customers to complete payment for the pending order.
-See the **[Klaviyo integration guide](https://juo.io/docs/klaviyo-integration)** for implementation details.
+**Action required:** Use this event in Klaviyo to build an automated recovery flow that asks customers to complete payment for the pending order. See the [**Klaviyo integration guide**](/klaviyo-integration) for implementation details.
 
 ---
 
@@ -58,5 +56,3 @@ This helps recover payments automatically without customer involvement, especial
 
    * The payment method is revoked.
    * The **Chargeback Subscription** event is sent to Klaviyo to trigger the dunning flow.
-
-

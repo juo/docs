@@ -393,6 +393,31 @@
       "source": "/glossary/merchant-portal",
       "destination": "/features",
       "permanent": true
+    },
+    {
+      "source": "/quickstart",
+      "destination": "/get-started",
+      "permanent": true
+    },
+    {
+      "source": "/docs/launch-subscriptions",
+      "destination": "/get-started",
+      "permanent": true
+    },
+    {
+      "source": "/docs/grow-and-retain",
+      "destination": "/learn",
+      "permanent": true
+    },
+    {
+      "source": "/customer-portal-inprogress",
+      "destination": "/customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/enable-klaviyo-integration",
+      "destination": "/klaviyo-integration",
+      "permanent": true
     }
   ],
   "contextual": {

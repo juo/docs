@@ -29,9 +29,15 @@ Upsells also help retention. A subscriber who tries more of your range has more 
 
 ### Where to offer
 
-- **In the Customer Portal.** Subscribers come here to manage their next order, so they're already thinking about what's in it.
-- **In the renewal reminder.** The message before each renewal is the natural moment to suggest adding something. One click from the email should add it.
-- **In SMS or messaging apps.** Short messages with a direct link work for one clear offer, such as a new flavor or a seasonal product.
+Use the same offer in two places. Subscribers who open the portal see it there, and everyone else sees it in the message before their renewal.
+
+| Channel | When subscribers see it | How they add the product |
+| --- | --- | --- |
+| **Customer Portal** | Whenever they manage their subscription | One click on the offer, no checkout |
+| **Renewal reminder email**, for example in Klaviyo | A few days before each renewal | One click in the email, no login |
+| **SMS or messaging apps** | Same moment as the email | A direct link for one product |
+
+The renewal reminder reaches every subscriber, including those who never open the portal, so it usually brings most of the added products. The portal catches subscribers who are already changing their order.
 
 ### One-time add-on or recurring item
 
@@ -68,16 +74,29 @@ Offer a price subscribers can't get elsewhere. The offer should feel like a perk
 
 ## How to do this in Juo
 
+One [upsell campaign](/upsells) feeds every channel. You choose the products, price, dates and who sees it once, and Juo shows it in the Customer Portal and sends it with your email events.
+
+1. **Create the upsell campaign** with two or three products and a subscriber price.
+2. **Check the Customer Portal.** Active upsells appear there automatically. In the block-based portal, place the Upsell block where you want it with the [Editor](/editor).
+3. **Add the products to your renewal reminder** in Klaviyo with the Add Product [quick action](/quick-actions), so subscribers add them in one click.
+4. **Optionally, add an SMS** with the add link for one product.
+5. **Measure** added products per channel, then swap offers that don't sell.
+
 <Columns cols={2}>
   <Card title="Offer upsells in the portal and by email" icon="envelope-open-text" href="/guides/upsells-portal-and-email">
-    Set up an upsell campaign and an email that adds the product in one click.
+    Step by step, with a ready-to-paste Klaviyo template and SMS text.
   </Card>
   <Card title="Upsells" icon="arrow-trend-up" href="/upsells">
     Campaign settings, schedules and eligibility.
   </Card>
 </Columns>
 
+<Tip>
+  An upsell can also be a gift: a free or heavily discounted product subscribers claim themselves. See [Gifts for subscribers](/playbooks/gifts).
+</Tip>
+
 ## Related playbooks
 
+- [Gifts for subscribers](/playbooks/gifts)
 - [Running sales and seasonal campaigns with subscribers](/playbooks/seasonal-campaigns)
 - [VIP rewards](/workflows/guides/vip-rewards)

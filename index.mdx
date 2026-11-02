@@ -221,10 +221,48 @@ export const AskJuo = () => {
     { label: "Failed payment emails", q: "How do I send Klaviyo emails when a subscription payment fails, with a link to update the payment method?" },
   ];
   const [question, setQuestion] = useState("");
+  const formRef = useRef(null);
   const ask = (text) => {
     const q = text.trim();
-    if (!q) return;
-    window.location.href = window.location.pathname + "?assistant=" + encodeURIComponent(q);
+    window.location.href = window.location.pathname + (q ? "?assistant=" + encodeURIComponent(q) : "?assistant");
+  };
+  const placeDialog = () => {
+    const form = formRef.current;
+    const dialog = document.querySelector('[data-search-item="dialog"]');
+    if (!form || !dialog || window.innerWidth < 768) return;
+    const fr = form.getBoundingClientRect();
+    const dr = dialog.getBoundingClientRect();
+    const cs = getComputedStyle(dialog);
+    const top = parseFloat(cs.marginTop) + (fr.top - dr.top) - (dr.height - fr.height) / 2;
+    const left = parseFloat(cs.marginLeft) + (fr.left - dr.left);
+    dialog.style.margin = top + "px 0 0 " + left + "px";
+    dialog.style.width = fr.width + "px";
+    dialog.style.maxWidth = fr.width + "px";
+  };
+  const openSearch = (text) => {
+    try {
+      const find = () => document.querySelector('[data-search-item="input"]');
+      const press = (mod) => document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", code: "KeyK", metaKey: mod === "meta", ctrlKey: mod === "ctrl", bubbles: true, cancelable: true }));
+      if (!find()) press("meta");
+      let tries = 0;
+      const fill = () => {
+        const inp = find();
+        if (!inp) {
+          tries += 1;
+          if (tries === 3) press("ctrl");
+          if (tries < 20) setTimeout(fill, 30);
+          return;
+        }
+        placeDialog();
+        if (text) {
+          const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+          setter.call(inp, text);
+          inp.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+        inp.focus();
+      };
+      setTimeout(fill, 30);
+    } catch (e) {}
   };
   return (
     <div className="not-prose" style={{ maxWidth: 640, margin: "0 auto 56px", display: "grid", gap: 12 }}>
@@ -265,15 +303,17 @@ html.dark { --juo-surface: #1b1b1b; --juo-raised: #333333; --juo-border: #404040
 .juo-tile-title { color: var(--juo-text) !important; }
 .juo-tile-text { color: var(--juo-text-2) !important; }`}</style>
       <form
+        ref={formRef}
         onSubmit={(e) => { e.preventDefault(); ask(question); }}
         style={{ display: "flex", gap: 8 }}
       >
         <input
           type="text"
-          aria-label="Ask a question"
+          aria-label="Search or ask a question"
           value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          placeholder="Ask a question"
+          onChange={(e) => { const v = e.target.value; setQuestion(""); e.target.blur(); openSearch(v); }}
+          onFocus={(e) => { e.target.blur(); openSearch(""); }}
+          placeholder="Search or ask a question"
           className="juo-ask-input"
         />
         <ParticleAsk />

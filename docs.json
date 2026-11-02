@@ -232,30 +232,36 @@
                 "group": "Glossary",
                 "expanded": false,
                 "pages": [
-                  "glossary/build-a-box",
-                  "glossary/customer-portal",
-                  "glossary/delivery-frequency",
-                  "glossary/dunning",
-                  "glossary/dynamic-boxes",
-                  "glossary/email-notifications",
-                  "glossary/inventory-policy",
-                  "glossary/lifetime-value",
-                  "glossary/membership",
-                  "glossary/merchant-portal",
-                  "glossary/migration",
-                  "glossary/one-time-purchase",
-                  "glossary/product-swap",
-                  "glossary/retention-flow",
                   "glossary/skip-renewal",
                   "glossary/stock-keeping-unit",
+                  "glossary/subscribe-and-save",
                   "glossary/subscriber",
+                  "glossary/subscription",
                   "glossary/subscription-box",
                   "glossary/subscription-cancellation",
+                  "glossary/subscription-contract",
+                  "glossary/migration",
+                  "glossary/email-notifications",
                   "glossary/subscription-order",
                   "glossary/subscription-pause",
                   "glossary/subscription-renewal",
-                  "glossary/subscription",
-                  "glossary/variable-discount"
+                  "glossary/variable-discount",
+                  "glossary/win-back",
+                  "glossary/build-a-box",
+                  "glossary/retention-flow",
+                  "glossary/churn-rate",
+                  "glossary/lifetime-value",
+                  "glossary/customer-portal",
+                  "glossary/delivery-frequency",
+                  "glossary/dunning",
+                  "glossary/membership",
+                  "glossary/monthly-recurring-revenue",
+                  "glossary/one-time-purchase",
+                  "glossary/inventory-policy",
+                  "glossary/prepaid-subscription",
+                  "glossary/product-swap",
+                  "glossary/selling-plan",
+                  "glossary/average-order-value"
                 ]
               }
             ]
@@ -376,6 +382,16 @@
     {
       "source": "/recipes/cancel-flow-blueprint",
       "destination": "/guides/cancel-flow-blueprint"
+    },
+    {
+      "source": "/glossary/dynamic-boxes",
+      "destination": "/workflows/workflows-overview",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/merchant-portal",
+      "destination": "/features",
+      "permanent": true
     }
   ],
   "contextual": {

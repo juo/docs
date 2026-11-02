@@ -1,25 +1,27 @@
 ---
-title: "Stock Keeping Unit"
+title: "SKU (stock keeping unit)"
+sidebarTitle: "SKU"
+description: "A SKU is the unique code for a product variant. Learn why SKUs matter for subscription renewals, swaps and migrations."
+keywords:
+  - "SKU"
+  - "stock keeping unit"
+  - "product variant code"
+  - "SKU mapping"
+  - "variant ID"
 ---
 
 <Info>
 
-Unique ID for merchants’ inventory items.
+A unique code for each product variant you sell.
 
 </Info>
 
-## What is a Stock Keeping Unit
+## What is a SKU
 
-Stock Keeping Unit (or SKU) is a unique identification code, assigned to products (or product variants) by merchants or manufacturers for inventory tracking purposes. SKUs help merchants manage their inventory more effectively, allowing them to track the movement of each item from the moment it enters their inventory to the moment it’s sold.
+A SKU, short for stock keeping unit, is a code you give each product variant to track inventory, for example `COF-250-DEC` for a 250 g decaf coffee. Every size, flavor or pack of a product gets its own SKU.
 
-## What are possible SKU formats
+## Why SKUs matter for subscriptions
 
-SKUs are often assigned internally by the merchants, so there isn’t a single, unified SKU format that will be found in all ecommerce stores. The format used will depend on the merchant’s preferences and their product’s attributes. For example, a merchant selling clothes can use SKUs to code item properties such as item type, size, color, and brand.
-
-In this case, the SKU code could look like this: TH-BL-49137-RD-L, where
-
-* TH is the code for the brand
-* BL is the code for item type
-* 49137 is the product ID
-* RD is the code for color
-* L is the code for size
+* **Renewals** ship the exact variant the subscriber chose, so stock and fulfilment depend on correct SKUs.
+* **Pack sizes** work best as separate variants with their own SKUs. See [Build a custom subscription storefront](/custom-storefront#4-map-selections-to-selling-plans).
+* **Migrations** use SKUs or variant IDs to match old products to new ones. See [Migrate to Juo](/migrating-to-juo).

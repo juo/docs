@@ -310,79 +310,93 @@
   "redirects": [
     {
       "source": "/adding-build-a-box",
-      "destination": "/build-a-box"
+      "destination": "/build-a-box",
+      "permanent": true
     },
     {
       "source": "/adding-manage-subscriptions-link",
-      "destination": "/linking-customer-portal"
+      "destination": "/linking-customer-portal",
+      "permanent": true
     },
     {
       "source": "/creating-subscription-plan",
-      "destination": "subscribe-and-save"
+      "destination": "/subscribe-and-save",
+      "permanent": true
     },
     {
-      "source": "customizing-juo-subscription-widget",
-      "destination": "/subscription-widget"
+      "source": "/customizing-juo-subscription-widget",
+      "destination": "/subscription-widget",
+      "permanent": true
     },
     {
       "source": "/managing-subscriptions-customer-portal",
-      "destination": "customer-portal"
+      "destination": "/customer-portal",
+      "permanent": true
     },
     {
       "source": "/setting-subscription-notifications",
-      "destination": "/notifications"
+      "destination": "/notifications",
+      "permanent": true
     },
     {
       "source": "/setting-up-curated-boxes",
-      "destination": "/curated-boxes"
+      "destination": "/curated-boxes",
+      "permanent": true
     },
     {
       "source": "/setting-up-memberships",
-      "destination": "/memberships"
+      "destination": "/memberships",
+      "permanent": true
     },
     {
       "source": "/shipping",
-      "destination": "/shipping-setup"
+      "destination": "/shipping-setup",
+      "permanent": true
     },
     {
       "source": "/using-global-settings",
-      "destination": "/general-settings"
+      "destination": "/general-settings",
+      "permanent": true
     },
     {
       "source": "/using-tiered-discounts",
-      "destination": "/tiered-discounts"
-    },
-    {
-      "source": "/guides/:slug*",
-      "destination": "/:slug*"
+      "destination": "/tiered-discounts",
+      "permanent": true
     },
     {
       "source": "/grow-and-retain",
-      "destination": "/retention"
+      "destination": "/retention",
+      "permanent": true
     },
     {
       "source": "/customer-io-integration",
-      "destination": "/customerio-integration"
+      "destination": "/customerio-integration",
+      "permanent": true
     },
     {
       "source": "/launch-subscriptions",
-      "destination": "/subscription-experiences"
+      "destination": "/subscription-experiences",
+      "permanent": true
     },
     {
       "source": "/workflows/guides/cancellation-flow",
-      "destination": "/playbooks/cancellation-flow"
+      "destination": "/playbooks/cancellation-flow",
+      "permanent": true
     },
     {
       "source": "/workflows/guides",
-      "destination": "/learn"
+      "destination": "/learn",
+      "permanent": true
     },
     {
       "source": "/workflows/guides/use-cases",
-      "destination": "/learn"
+      "destination": "/learn",
+      "permanent": true
     },
     {
       "source": "/recipes/cancel-flow-blueprint",
-      "destination": "/guides/cancel-flow-blueprint"
+      "destination": "/guides/cancel-flow-blueprint",
+      "permanent": true
     },
     {
       "source": "/glossary/dynamic-boxes",
@@ -416,6 +430,321 @@
     },
     {
       "source": "/enable-klaviyo-integration",
+      "destination": "/klaviyo-integration#connect-klaviyo",
+      "permanent": true
+    },
+    {
+      "source": "/guides/FAQ",
+      "destination": "/FAQ",
+      "permanent": true
+    },
+    {
+      "source": "/guides/about-juo",
+      "destination": "/about-juo",
+      "permanent": true
+    },
+    {
+      "source": "/guides/adding-juo-subscription-widget",
+      "destination": "/adding-juo-subscription-widget",
+      "permanent": true
+    },
+    {
+      "source": "/guides/analytics",
+      "destination": "/analytics",
+      "permanent": true
+    },
+    {
+      "source": "/guides/build-a-box",
+      "destination": "/build-a-box",
+      "permanent": true
+    },
+    {
+      "source": "/guides/build-a-box-storefront",
+      "destination": "/build-a-box-storefront",
+      "permanent": true
+    },
+    {
+      "source": "/guides/bulk-actions",
+      "destination": "/bulk-actions",
+      "permanent": true
+    },
+    {
+      "source": "/guides/create-subscription",
+      "destination": "/create-subscription",
+      "permanent": true
+    },
+    {
+      "source": "/guides/curated-boxes",
+      "destination": "/curated-boxes",
+      "permanent": true
+    },
+    {
+      "source": "/guides/custom-storefront",
+      "destination": "/custom-storefront",
+      "permanent": true
+    },
+    {
+      "source": "/guides/custom-workflows",
+      "destination": "/custom-workflows",
+      "permanent": true
+    },
+    {
+      "source": "/guides/customer-portal",
+      "destination": "/customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/guides/customerio-integration",
+      "destination": "/customerio-integration",
+      "permanent": true
+    },
+    {
+      "source": "/guides/discounts",
+      "destination": "/discounts",
+      "permanent": true
+    },
+    {
+      "source": "/guides/editor",
+      "destination": "/editor",
+      "permanent": true
+    },
+    {
+      "source": "/guides/extras",
+      "destination": "/extras",
+      "permanent": true
+    },
+    {
+      "source": "/guides/features",
+      "destination": "/features",
+      "permanent": true
+    },
+    {
+      "source": "/guides/general-settings",
+      "destination": "/general-settings",
+      "permanent": true
+    },
+    {
+      "source": "/guides/get-started",
+      "destination": "/get-started",
+      "permanent": true
+    },
+    {
+      "source": "/guides/gorgias-integration",
+      "destination": "/gorgias-integration",
+      "permanent": true
+    },
+    {
+      "source": "/guides/help",
+      "destination": "/help",
+      "permanent": true
+    },
+    {
+      "source": "/guides/hubspot-integration",
+      "destination": "/hubspot-integration",
+      "permanent": true
+    },
+    {
+      "source": "/guides/installing-juo",
+      "destination": "/installing-juo",
+      "permanent": true
+    },
+    {
+      "source": "/guides/klaviyo-integration",
+      "destination": "/klaviyo-integration",
+      "permanent": true
+    },
+    {
+      "source": "/guides/learn",
+      "destination": "/learn",
+      "permanent": true
+    },
+    {
+      "source": "/guides/linking-customer-portal",
+      "destination": "/linking-customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/guides/memberships",
+      "destination": "/memberships",
+      "permanent": true
+    },
+    {
+      "source": "/guides/migrating-to-juo",
+      "destination": "/migrating-to-juo",
+      "permanent": true
+    },
+    {
+      "source": "/guides/notifications",
+      "destination": "/notifications",
+      "permanent": true
+    },
+    {
+      "source": "/guides/quick-actions",
+      "destination": "/quick-actions",
+      "permanent": true
+    },
+    {
+      "source": "/guides/quick-actions-cio",
+      "destination": "/quick-actions-cio",
+      "permanent": true
+    },
+    {
+      "source": "/guides/retention",
+      "destination": "/retention",
+      "permanent": true
+    },
+    {
+      "source": "/guides/retention-flow",
+      "destination": "/retention-flow",
+      "permanent": true
+    },
+    {
+      "source": "/guides/sepa-chargebacks",
+      "destination": "/sepa-chargebacks",
+      "permanent": true
+    },
+    {
+      "source": "/guides/sepa-direct-debit",
+      "destination": "/sepa-direct-debit",
+      "permanent": true
+    },
+    {
+      "source": "/guides/shipping-setup",
+      "destination": "/shipping-setup",
+      "permanent": true
+    },
+    {
+      "source": "/guides/subscribe-and-save",
+      "destination": "/subscribe-and-save",
+      "permanent": true
+    },
+    {
+      "source": "/guides/subscription-experiences",
+      "destination": "/subscription-experiences",
+      "permanent": true
+    },
+    {
+      "source": "/guides/subscription-intent-detection",
+      "destination": "/subscription-intent-detection",
+      "permanent": true
+    },
+    {
+      "source": "/guides/subscription-widget",
+      "destination": "/subscription-widget",
+      "permanent": true
+    },
+    {
+      "source": "/guides/test-first-subscriber",
+      "destination": "/test-first-subscriber",
+      "permanent": true
+    },
+    {
+      "source": "/guides/tiered-discounts",
+      "destination": "/tiered-discounts",
+      "permanent": true
+    },
+    {
+      "source": "/guides/upsells",
+      "destination": "/upsells",
+      "permanent": true
+    },
+    {
+      "source": "/guides/use-juo-with-ai",
+      "destination": "/use-juo-with-ai",
+      "permanent": true
+    },
+    {
+      "source": "/guides/webhooks",
+      "destination": "/webhooks",
+      "permanent": true
+    },
+    {
+      "source": "/guides/zipify-integration",
+      "destination": "/zipify-integration",
+      "permanent": true
+    },
+    {
+      "source": "/guides/adding-build-a-box",
+      "destination": "/build-a-box",
+      "permanent": true
+    },
+    {
+      "source": "/guides/adding-manage-subscriptions-link",
+      "destination": "/linking-customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/guides/creating-subscription-plan",
+      "destination": "/subscribe-and-save",
+      "permanent": true
+    },
+    {
+      "source": "/guides/customizing-juo-subscription-widget",
+      "destination": "/subscription-widget",
+      "permanent": true
+    },
+    {
+      "source": "/guides/managing-subscriptions-customer-portal",
+      "destination": "/customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/guides/setting-subscription-notifications",
+      "destination": "/notifications",
+      "permanent": true
+    },
+    {
+      "source": "/guides/setting-up-curated-boxes",
+      "destination": "/curated-boxes",
+      "permanent": true
+    },
+    {
+      "source": "/guides/setting-up-memberships",
+      "destination": "/memberships",
+      "permanent": true
+    },
+    {
+      "source": "/guides/shipping",
+      "destination": "/shipping-setup",
+      "permanent": true
+    },
+    {
+      "source": "/guides/using-global-settings",
+      "destination": "/general-settings",
+      "permanent": true
+    },
+    {
+      "source": "/guides/using-tiered-discounts",
+      "destination": "/tiered-discounts",
+      "permanent": true
+    },
+    {
+      "source": "/guides/grow-and-retain",
+      "destination": "/retention",
+      "permanent": true
+    },
+    {
+      "source": "/guides/customer-io-integration",
+      "destination": "/customerio-integration",
+      "permanent": true
+    },
+    {
+      "source": "/guides/launch-subscriptions",
+      "destination": "/subscription-experiences",
+      "permanent": true
+    },
+    {
+      "source": "/guides/quickstart",
+      "destination": "/get-started",
+      "permanent": true
+    },
+    {
+      "source": "/guides/customer-portal-inprogress",
+      "destination": "/customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/guides/enable-klaviyo-integration",
       "destination": "/klaviyo-integration#connect-klaviyo",
       "permanent": true
     }

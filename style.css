@@ -10,7 +10,9 @@
   --juo-border: rgba(0, 0, 0, 0.08);
   --juo-surface: #fbfbfc;
   --juo-muted: #6b6f76;
-  --juo-radius: 8px;
+  --juo-radius: 10px;    /* containers: tiles, cards, callouts, code, frames */
+  --juo-radius-sm: 8px;  /* controls: search, buttons, inputs, menus */
+  --juo-radius-xs: 4px;  /* inline code, media inside frames */
 }
 
 :root.dark,
@@ -62,8 +64,45 @@ html[data-theme="dark"] {
 }
 
 /* Images in content get the same frame as cards */
-#content-area img {
+#content-area img:not(.frame img) {
   border-radius: var(--juo-radius);
+}
+
+/* ── Corner radius: one scale for the whole site ──
+   Matches the homepage: slightly rounded corners everywhere. */
+.juo-tile,
+.accordion-group,
+.code-block,
+[data-component-part="code-block-root"],
+.frame,
+[data-layout-item="pagination"],
+[data-search-item="dialog"],
+.chat-assistant-floating-input > div > div {
+  border-radius: var(--juo-radius) !important;
+}
+
+.frame > div,
+.frame img,
+.frame video,
+#content-area code:not(pre code) {
+  border-radius: var(--juo-radius-xs) !important;
+}
+
+#search-bar-entry,
+#assistant-entry,
+[data-layout-item="pagination"] a,
+[data-layout-item="pagination"] div,
+[data-search-item="header"],
+[data-search-item="input"] {
+  border-radius: var(--juo-radius-sm) !important;
+}
+
+#page-context-menu-button {
+  border-radius: var(--juo-radius-sm) 0 0 var(--juo-radius-sm) !important;
+}
+
+#page-context-menu-button + button {
+  border-radius: 0 var(--juo-radius-sm) var(--juo-radius-sm) 0 !important;
 }
 
 /* Hide "Powered by Mintlify" (kept from previous stylesheet) */
@@ -101,7 +140,7 @@ a[href^="https://mintlify.com"] {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--juo-border);
-  border-radius: 10px;
+  border-radius: var(--juo-radius);
   background: var(--juo-surface);
   overflow: hidden;
   text-decoration: none !important;

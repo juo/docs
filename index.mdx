@@ -101,6 +101,15 @@ export const ParticleAsk = () => {
   const GAP = 4;
   const canvasRef = useRef(null);
   const state = useRef({ hover: false, mx: 0, my: 0, hoverStart: 0 });
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const el = document.documentElement;
+    const update = () => setDark(el.classList.contains("dark"));
+    update();
+    const mo = new MutationObserver(update);
+    mo.observe(el, { attributes: true, attributeFilter: ["class"] });
+    return () => mo.disconnect();
+  }, []);
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -145,7 +154,7 @@ export const ParticleAsk = () => {
       const t = (now - t0) / 1000;
       const s = state.current;
       const enter = reduce ? 1 : ease(Math.min(1, t / 0.6));
-      ctx.fillStyle = reduce ? "#000" : "rgba(0,0,0,0.45)";
+      ctx.fillStyle = dark ? (reduce ? "#F5F5F5" : "rgba(245,245,245,0.45)") : (reduce ? "#000" : "rgba(0,0,0,0.45)");
       ctx.fillRect(0, 0, W, H);
       const ht = (now - s.hoverStart) / 1000;
       for (const p of pts) {
@@ -173,7 +182,7 @@ export const ParticleAsk = () => {
           x += (dx / dist) * w * 1.5;
           y += (dy / dist) * w * 1.5;
         }
-        ctx.fillStyle = "rgba(255,255,255," + b.toFixed(3) + ")";
+        ctx.fillStyle = (dark ? "rgba(17,17,17," : "rgba(255,255,255,") + b.toFixed(3) + ")";
         ctx.beginPath();
         ctx.arc(x, y, r, 0, 6.2832);
         ctx.fill();
@@ -182,7 +191,7 @@ export const ParticleAsk = () => {
     };
     raf = requestAnimationFrame(frame);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [dark]);
   const onMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     state.current.mx = ((e.clientX - rect.left) / rect.width) * W;
@@ -196,11 +205,11 @@ export const ParticleAsk = () => {
       onMouseEnter={(e) => { state.current.hover = true; state.current.hoverStart = performance.now(); onMove(e); }}
       onMouseLeave={() => { state.current.hover = false; }}
       onMouseMove={onMove}
-      style={{ position: "relative", width: W, height: H, flex: "none", padding: 0, border: "none", borderRadius: 0, background: "#000", cursor: "pointer", overflow: "hidden" }}
+      style={{ position: "relative", width: W, height: H, flex: "none", padding: 0, border: "none", borderRadius: 4, background: dark ? "#F5F5F5" : "#000", cursor: "pointer", overflow: "hidden" }}
     >
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: W, height: H, display: "block" }} />
-      <span style={{ ...label, zIndex: 1, color: "#000", WebkitTextStroke: "3px #000", fontWeight: 600, fontSize: 16 }}>Ask</span>
-      <span style={{ ...label, zIndex: 2, color: "#fff", fontWeight: 600, fontSize: 16 }}>Ask</span>
+      <span style={{ ...label, zIndex: 1, color: dark ? "#F5F5F5" : "#000", WebkitTextStroke: dark ? "3px #F5F5F5" : "3px #000", fontWeight: 600, fontSize: 16 }}>Ask</span>
+      <span style={{ ...label, zIndex: 2, color: dark ? "#111111" : "#fff", fontWeight: 600, fontSize: 16 }}>Ask</span>
     </button>
   );
 };
@@ -237,7 +246,24 @@ html[data-current-path="/docs"] .nav-tabs-item[data-active] {
 html.dark[data-current-path="/"] .nav-tabs-item[data-active],
 html.dark[data-current-path="/docs"] .nav-tabs-item[data-active] {
   color: rgb(160, 159, 165) !important;
-}`}</style>
+}
+/* Grayscale home styles. Move to style.css (it already has the same rules) and delete from here. */
+html { --juo-surface: #fbfbfc; --juo-raised: #f3f3f4; --juo-border: #ebebeb; --juo-border-strong: #d4d4d4; --juo-field-border: #8f8f8f; --juo-field-focus: #555555; --juo-text: #0f1011; --juo-text-2: #6b6f76; --juo-icon-2: #6b6f76; }
+html.dark { --juo-surface: #1b1b1b; --juo-raised: #333333; --juo-border: #404040; --juo-border-strong: #555555; --juo-field-border: #6b6b6b; --juo-field-focus: #9e9e9e; --juo-text: #f5f5f5; --juo-text-2: #c4c4c4; --juo-icon-2: #9e9e9e; }
+.juo-ask-input { flex: 1; min-width: 0; height: 46px; box-sizing: border-box; padding: 0 14px; border-radius: 4px; border: 1px solid var(--juo-field-border); background: var(--juo-surface); color: var(--juo-text); font: inherit; outline: none; }
+.juo-ask-input::placeholder { color: var(--juo-icon-2); }
+.juo-ask-input:hover { border-color: var(--juo-field-focus); }
+.juo-ask-input:focus { border-color: var(--juo-text); }
+.juo-ask-chip { padding: 4px 9px; border-radius: 2px; border: 1px solid var(--juo-border); background: var(--juo-surface); color: var(--juo-text-2); font: inherit; cursor: pointer; white-space: nowrap; }
+.juo-ask-chip:hover { background: var(--juo-raised); border-color: var(--juo-border-strong); color: var(--juo-text); }
+.juo-tile { border-radius: 4px !important; border-color: var(--juo-border) !important; background: var(--juo-surface) !important; }
+.juo-tile:hover { border-color: var(--juo-border-strong) !important; }
+.juo-tile-visual { border-bottom-color: var(--juo-border) !important; }
+.juo-tile-icon { opacity: 1 !important; color: var(--juo-icon-2) !important; }
+.juo-tile-icon svg { background-color: var(--juo-icon-2) !important; }
+.juo-tile:hover .juo-tile-icon svg { background-color: var(--juo-text) !important; }
+.juo-tile-title { color: var(--juo-text) !important; }
+.juo-tile-text { color: var(--juo-text-2) !important; }`}</style>
       <form
         onSubmit={(e) => { e.preventDefault(); ask(question); }}
         style={{ display: "flex", gap: 8 }}
@@ -248,7 +274,7 @@ html.dark[data-current-path="/docs"] .nav-tabs-item[data-active] {
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="Ask a question"
-          style={{ flex: 1, minWidth: 0, height: 46, boxSizing: "border-box", padding: "0 14px", borderRadius: 10, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit", font: "inherit" }}
+          className="juo-ask-input"
         />
         <ParticleAsk />
       </form>
@@ -258,7 +284,7 @@ html.dark[data-current-path="/docs"] .nav-tabs-item[data-active] {
             key={ex.label}
             type="button"
             onClick={() => ask(ex.q)}
-            style={{ padding: "4px 9px", borderRadius: 999, border: "1px solid rgba(127,127,127,.3)", background: "transparent", color: "inherit", font: "inherit", cursor: "pointer", opacity: 0.85, whiteSpace: "nowrap" }}
+            className="juo-ask-chip"
           >
             {ex.label}
           </button>

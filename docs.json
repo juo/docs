@@ -416,7 +416,7 @@
     },
     {
       "source": "/enable-klaviyo-integration",
-      "destination": "/klaviyo-integration",
+      "destination": "/klaviyo-integration#connect-klaviyo",
       "permanent": true
     }
   ],

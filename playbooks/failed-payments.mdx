@@ -1,0 +1,70 @@
+---
+title: "Recover failed payments before subscriptions stop"
+sidebarTitle: "Recover failed payments"
+description: "Retry failed renewal payments, ask subscribers to update their payment method at the right moment and keep involuntary churn low."
+keywords:
+  - "failed payments"
+  - "dunning"
+  - "involuntary churn"
+  - "payment retries"
+  - "card update"
+  - "payment recovery"
+---
+
+|  |  |
+| --- | --- |
+| **Who it's for** | Any store with card, PayPal or SEPA subscriptions |
+| **Goal** | Recover as many failed renewal payments as possible before the subscription changes to **Failed** |
+| **Primary metric** | Recovery rate: the share of failed payments paid within the dunning period |
+| **Supporting metrics** | Involuntary churn, time to recovery, share recovered by retry compared with a payment method update |
+
+## Why it matters
+
+Subscribers whose payments fail usually didn't decide to leave. Their card expired, their limit was reached or their bank asked for authentication. This involuntary churn is often a large share of all cancellations, and most of it can be recovered with retries and a clear request to update the payment method.
+
+## The strategy
+
+### Retry, then ask
+
+Many failures are temporary, such as insufficient funds a few days before payday. Retry the payment over several days before involving the subscriber. If retries keep failing, the subscriber has to act, usually by updating their card.
+
+### Message at each step
+
+| Moment | Message |
+| --- | --- |
+| **First failure** | A short note that the payment failed, with a link to update the payment method |
+| **Authentication needed** | A request to confirm the payment, for example with 3-D Secure |
+| **Before the final retry** | A reminder that the subscription will stop, with the same link |
+| **Subscription failed** | What they miss, and how to restart in one step |
+
+Keep the tone factual. Subscribers rarely know a payment failed, and a clear message with one link works better than a warning.
+
+### Use the right window
+
+The dunning period is how long Juo retries before the subscription fails. Too short gives up on recoverable payments. Too long keeps sending products later than subscribers expect. One month, the default, suits most monthly plans. Shorten it for weekly plans.
+
+## Guardrails
+
+- **Don't ship unpaid orders.** Renewal orders are created only after payment.
+- **Space out retries.** Several retries on the same day rarely succeed and can trigger fraud checks.
+- **Check the update flow.** Test that the payment update link works on mobile for every payment method you offer.
+- **Watch SEPA separately.** SEPA failures arrive later and as chargebacks. See [SEPA chargebacks recovery](/sepa-chargebacks).
+
+## How to measure it
+
+- **Recovery rate** per month, split by retry and by payment method update.
+- **Involuntary churn**: subscriptions that changed to Failed, as a share of active subscriptions.
+- **Email performance** of each failed-payment message: opens, clicks and payment method updates.
+
+## How to do this in Juo
+
+1. **Set the dunning period** under **Settings** → **Retention and acquisition**. See [Retention settings](/retention-flow#dunning-flow).
+2. **Send failed-payment messages.** Turn on **Subscription billing failed** and **Subscription billing requires an action** in [Notifications](/notifications), or build a Klaviyo flow from the **Billing Failed Subscription** and **Renewal Requires Action** events. See the [Klaviyo integration](/klaviyo-integration).
+3. **Link to the payment update.** Add the **Change Payment Method** quick link to your emails so subscribers update their card without logging in. See [Quick actions](/quick-actions).
+4. **Customize retries if needed.** A workflow with the **Payment failed** trigger can retry after a set delay with **Schedule Charge**, fall back to **Default Dunning**, or end the subscription with **Fail Subscription**. See [Triggers](/workflows/triggers#system-initiated) and [Actions](/workflows/actions).
+5. **Recover SEPA chargebacks** with automatic retries and a payment link. See [SEPA Direct Debit](/sepa-direct-debit#chargeback-recovery).
+
+## Related playbooks
+
+- [Subscriber retention](/retention)
+- [Win back cancelled subscribers](/workflows/guides/churned-subs-winback)

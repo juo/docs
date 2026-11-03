@@ -1,37 +1,44 @@
 ---
-title: "Retention"
-sidebarTitle: "Retention overview"
-description: "How subscription revenue grows when subscribers stay longer, and which playbook moves each retention lever."
+title: "Subscriber retention"
+sidebarTitle: "Subscriber retention"
+description: "Where subscribers drop off, which lever moves each stage, and the playbook for each one."
 keywords:
   - "playbook"
   - "retention"
   - "churn"
   - "lifetime value"
   - "LTV"
+  - "reduce cancellations"
 ---
 
 ## How retention moves subscription revenue
 
-Subscription revenue comes from a small set of levers:
+Subscription revenue depends on a few numbers:
 
-- **Recurring revenue** = active subscribers × average order value (AOV) × orders per subscriber per period
-- **Lifetime value (LTV)** ≈ AOV × gross margin × number of paid cycles before a subscriber leaves
-- **Number of paid cycles** grows when fewer subscribers cancel, skip, pause or fail payment in each cycle
+- **Recurring revenue** = active subscribers × average order value × orders per subscriber in a period.
+- **Lifetime value** ≈ average order value × gross margin × paid orders before a subscriber leaves.
+- **Paid orders per subscriber** grow when fewer subscribers cancel, skip, pause or fail payment at each renewal.
 
-Small changes compound. A subscriber kept for one more cycle adds a full order of revenue, and a subscriber kept past an early drop-off point is likely to stay for several more.
+Small changes compound. A subscriber kept for one more renewal adds a full order of revenue, and a subscriber kept past an early drop-off point is likely to stay for several more.
 
-## Playbooks by lever
+## Retention by subscriber stage
 
-| Lever | What changes | Playbook |
+Subscribers leave at different moments and for different reasons. Review each stage and the playbook that covers it.
+
+| Stage | What to manage | Playbook |
 | --- | --- | --- |
-| Fewer cancellations | Subscribers who try to leave stay on better-fitting terms | [Cancellation flow](/playbooks/cancellation-flow) |
-| Fewer early drop-offs | New subscribers reach their second and third orders | [Fight new subscriber churn](/workflows/guides/fight-new-subscriber-churn) |
-| Longer high-value tenure | Top subscribers have a reason to stay to the next milestone | [VIP rewards](/workflows/guides/vip-rewards) |
-| Reactivated subscribers | Cancelled subscribers return without new acquisition cost | [Win back cancelled subscribers](/workflows/guides/churned-subs-winback) |
+| **First orders** | New subscribers reach their second and third orders | [Fight new subscriber churn](/workflows/guides/fight-new-subscriber-churn) |
+| **Failed payments** | Payments that fail are retried and recovered before the subscription stops | [Retention settings](/retention-flow#dunning-flow) · [SEPA Direct Debit](/sepa-direct-debit) |
+| **Cancellation** | Subscribers who try to leave stay on terms that fit them better | [Cancellation flow](/playbooks/cancellation-flow) |
+| **Long-term subscribers** | High-value subscribers have a reason to stay to the next milestone | [VIP rewards](/workflows/guides/vip-rewards) · [Gifts for subscribers](/playbooks/gifts) |
+| **After cancellation** | Cancelled subscribers return without new acquisition cost | [Win back cancelled subscribers](/workflows/guides/churned-subs-winback) |
+
+Find where your subscribers leave in **Analytics** → **Cohort retention**, and start with the stage that loses the most. See [Analytics](/analytics).
 
 ## Principles for every retention playbook
 
-- **Lead with value, then offer.** Content that reminds subscribers why they subscribed costs nothing. Incentives cost margin and train subscribers to ask for them.
-- **Limit every incentive.** A subscriber shouldn't be able to collect the same offer repeatedly.
+- **Lead with value, then offer.** Content that reminds subscribers why they subscribed costs nothing. Incentives cost margin and teach subscribers to ask for them.
+- **Give subscribers control.** Skips, pauses, swaps and frequency changes keep subscribers who would otherwise cancel. Check which ones you allow in **Settings** → **Customer Portal**.
+- **Limit every incentive.** A subscriber shouldn't be able to collect the same offer again and again.
 - **Test before you scale.** Compare offers or messages on a share of subscribers before you settle on one.
-- **Measure the cycles after the save.** A save that cancels at the next renewal only delays churn.
+- **Measure the renewals after the save.** A save that cancels at the next renewal only delays churn.

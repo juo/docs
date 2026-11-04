@@ -1,382 +1,294 @@
 ---
 title: "FAQ"
-description: Frequently asked questions about Juo.
+description: "Answers to the questions merchants ask us most, grouped by topic."
+keywords:
+  - "faq"
+  - "questions"
+  - "help"
+  - "troubleshooting"
+  - "how do I"
+  - "why"
+icon: "circle-question"
 ---
 
-## Subscriptions configuration
+Pick a topic, then open a question. Can't find your answer? Ask in the box at the bottom of the page or email [support@juo.io](mailto:support@juo.io).
+
+<Columns cols={3}>
+  <Card title="Subscription setup" icon="sliders" href="#subscription-setup">
+    Plans, the widget, bundles and quantities.
+  </Card>
+
+  <Card title="Customers and the portal" icon="user" href="#customers-and-the-portal">
+    Accounts, addresses, links and languages.
+  </Card>
+
+  <Card title="Payments and billing" icon="credit-card" href="#payments-and-billing">
+    iDEAL, SEPA, chargebacks and PayPal.
+  </Card>
 
-1. **How can I make a product available only as a subscription?**
+  <Card title="Discounts and retention" icon="tag" href="#discounts-and-retention">
+    First-order discounts, memberships, cancellations.
+  </Card>
 
-   On the product page in Shopify, enable **Only sell this product as a subscription**.
+  <Card title="Subscriptions and orders" icon="repeat" href="#subscriptions-and-orders">
+    Editing, renewals, products and exports.
+  </Card>
+
+  <Card title="Shipping and fulfillment" icon="truck" href="#shipping-and-fulfillment">
+    Shipping methods, stock, pickup and locations.
+  </Card>
+</Columns>
 
-   If you use a custom widget (not the default Juo widget), developers may need to adjust it to reflect this setting.
+## Subscription setup
+
+<AccordionGroup>
+  <Accordion title="How can I sell a product only as a subscription?">
+    On the product page in Shopify, turn on **Only sell this product as a subscription**. The Juo widget then shows only the subscription option. A custom widget may need a small change from your developer to do the same.
+  </Accordion>
 
-2. **Why aren’t Build-a-Box selling plans visible?**
+  <Accordion title="Why don't Build-a-box plans show up?">
+    Every product in the box must be in the same subscription plans, and all of them must share the **same delivery frequencies**. One mismatched frequency hides the plans.
+  </Accordion>
 
-   Make sure all products included in the Build-a-Box are also included in the relevant selling plans, and that all products share the **same plan frequencies**.
+  <Accordion title="Why are there two checkout buttons in the cart?">
+    With local payment methods such as iDEAL or BLIK on a store without Shopify Plus, the second button sends customers to the right checkout for those methods. On Shopify Plus, one button is enough.
+  </Accordion>
 
-   Mismatched frequencies prevent plans from displaying.
+  <Accordion title="How is the order of delivery frequencies set in the widget?">
+    Frequencies appear in the order you added them in Juo. To change the order, add them again in the order you want.
+  </Accordion>
 
-3. **Why are there two checkout buttons in the cart (for local payment methods)?**
+  <Accordion title="Can I show the one-time option above the subscription option?">
+    Yes. In the theme editor, select the Juo widget and add this under **Custom CSS**:
+
+    ```css
+    .j-widget {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Can I offer subscriptions only in some countries?">
+    Yes. This needs a payment profile connected to subscription orders through the API. Contact us to set it up.
+  </Accordion>
 
-   For non-Shopify Plus, this is needed to route customers into the right checkout and payment method setup.
+  <Accordion title="Do subscriptions work with Shopify Bundles?">
+    No. [Shopify Bundles can't use selling plans](https://shopify.dev/docs/apps/build/product-merchandising/bundles#store-configurations). Sell the bundle as its own product or variant, or use [Build-a-box](/build-a-box).
+  </Accordion>
+
+  <Accordion title="How can I limit the quantity customers can subscribe to?">
+    For regular subscriptions, add quantity validation on the product page and in the cart. In Build-a-box, use its built-in quantity limits.
+  </Accordion>
+
+  <Accordion title="Can a delivery frequency change the product quantity?">
+    Not in Juo itself. Use a pack-size variant per frequency, or a small storefront change that sets quantity and plan together. See [Build a custom subscription storefront](/custom-storefront#offers-that-depend-on-quantity).
+  </Accordion>
+
+  <Accordion title="How do I ship a welcome kit first and refills after?">
+    Use the **Starter kit → refill swap** [blueprint](/workflows/blueprints). It sends the kit with the first order and replaces it with the refill from the next order. In Juo, go to **Workflows**, create a workflow and choose the blueprint.
+  </Accordion>
+</AccordionGroup>
 
-   On Shopify Plus it is not needed.
+## Customers and the portal
 
-4. **How is the order of selling plans determined in the widget?**
+<AccordionGroup>
+  <Accordion title="How is the Customer Portal different from a Shopify customer account?">
+    They're separate, linked by the same email address. Shopify creates the customer at the first purchase, and Juo creates its record at the first subscription. Customers logged in to Shopify can open the portal without logging in again.
+  </Accordion>
+
+  <Accordion title="Can I see the portal exactly as a customer does?">
+    Yes. In Juo, open the subscription and select **Generate customer portal link**.
+  </Accordion>
 
-   Selling plans appear in the **order they are added** in Juo.
+  <Accordion title="How does a customer change their delivery address?">
+    In the [Customer Portal](/customer-portal), when the subscription uses home delivery. With a pickup point, they change the pickup point there instead. Switching between a pickup point and home delivery is done by your team in Juo.
+  </Accordion>
 
-   To change the order, re-add them in the desired sequence.
+  <Accordion title="Can I merge two Shopify customers when one has an active subscription?">
+    Shopify often blocks the merge while a subscription is active. Cancel or move the subscription first. When Shopify does merge them, Juo moves the subscriptions, orders and payment methods to the remaining customer automatically.
+  </Accordion>
 
-5. **Can I enable subscriptions only for selected countries?**
+  <Accordion title="How do I send a customer a link to start a subscription?">
+    Use this link, with your own values:
 
-   Yes.
+    ```text
+    https://your-store.com/cart/add?id=VARIANT_ID&quantity=QUANTITY&selling_plan=SELLING_PLAN_ID
+    ```
 
-   **Set up a payment profile** and have it connected to subscription orders via API.
+    For several products:
 
-6. **Do subscriptions work with bundled products?**
+    ```text
+    https://your-store.com/cart/add?items[0][id]=VARIANT_ID_1&items[0][quantity]=QTY_1&items[0][selling_plan]=PLAN_ID_1&items[1][id]=VARIANT_ID_2&items[1][quantity]=QTY_2&items[1][selling_plan]=PLAN_ID_2
+    ```
 
-   Not by default.
+    You can find the selling plan ID by inspecting the frequency dropdown on the product page.
+  </Accordion>
 
-   Shopify Bundles do not support selling plans. According to [Shopify docs](https://shopify.dev/docs/apps/build/product-merchandising/bundles#store-configurations), bundles can be sold only through the Online Store channel and **cannot use selling plans**.
+  <Accordion title="Which language are notifications sent in?">
+    The language the customer used on your store. To change it for one customer, edit their language in Shopify.
+  </Accordion>
 
-   Alternative solutions require a custom frontend implementation.
+  <Accordion title="Can I change a customer's email address in Juo?">
+    No. Juo uses the email from Shopify. Change it in Shopify under **Customers** → the customer → **Edit contact information**.
+  </Accordion>
+</AccordionGroup>
 
-7. **How can I restrict quantity for subscription purchases?**
+## Payments and billing
 
-   For regular subscriptions, use product page and cart validation to enforce **quantity limits** when a recurring selling plan is present.
+<AccordionGroup>
+  <Accordion title="Can I use iDEAL or Bancontact without Mollie?">
+    No, these subscriptions need Mollie. You can still use Shopify Payments or Stripe for cards, PayPal and one-time purchases. See [Local payment methods](/local-payment-methods) to request access.
+  </Accordion>
 
-   In Juo Build-a-Box, use the built-in quantity restriction feature.
+  <Accordion title="Why does a payment take two days?">
+    SEPA payments take **24–48 hours** to complete. To fulfill on time, charge two days before the renewal date. See [Payment timing](/sepa-direct-debit#payment-timing).
+  </Accordion>
 
-8. **Can a selling plan automatically adjust product quantity?**
+  <Accordion title="Why don't discounts work with iDEAL subscriptions?">
+    Shopify treats iDEAL and Bancontact orders as one-time purchases. Set the discount to apply to both one-time and subscription purchases.
+  </Accordion>
 
-   Not strictly via Juo.
+  <Accordion title="Why don't iDEAL or Bancontact subscriptions count as recurring revenue in Shopify?">
+    Shopify records them as one-time orders, even though they work as subscriptions in Juo. Use [Juo Analytics](/analytics) for subscription numbers.
+  </Accordion>
 
-   You can implement a small customization, such as checking the selected selling plan on Add to Cart and **adjusting quantity**, or using a custom button that sets both the selling plan and quantity.
+  <Accordion title="Why was an order charged back automatically?">
+    Some bank accounts don't allow SEPA Direct Debit. Mollie can mark a payment as paid before the bank confirms it, and the bank can reverse it one or two days later. See [Mollie's help article](https://help.mollie.com/hc/en-gb/articles/115000309865-Why-did-my-SEPA-direct-debit-payment-fail) and [SEPA Direct Debit](/sepa-direct-debit).
+  </Accordion>
 
-9. **How do I set up a “welcome kit” workflow where Product A ships first and Product B recurs?**
+  <Accordion title="Why are SEPA chargebacks processed automatically, and can I charge again?">
+    Customers can ask for a SEPA refund for up to **8 weeks**, and Shopify doesn't allow charging the same order again. Use the [chargeback recovery flow](/sepa-chargebacks) to recover the payment. If the customer asked for the refund, be careful about charging again.
+  </Accordion>
 
-   Create a **custom workflow** with Product A as the triggering product (set as a physical product in Shopify).
+  <Accordion title="How do I add the chargeback payment link to a Klaviyo email?">
+    Use the `event.paymentLink` property. You can see it in Klaviyo under **Analytics** → **Metrics** → **Chargeback subscription** → **Activity feed**.
+  </Accordion>
 
-   Leave Cycle 1 empty.
+  <Accordion title="Can customers update PayPal with Shopify's payment update link?">
+    Yes. The Shopify link works for PayPal too.
+  </Accordion>
+</AccordionGroup>
 
-   Add Product B to Cycle 2 and set **When cycle is complete: Continue subscription with products from the final step.**
+## Discounts and retention
 
-10. **Can I show the one-time option above subscription in the widget, not below?**
+<AccordionGroup>
+  <Accordion title="How do I give a discount on the first subscription order only?">
+    Use a [variable discount](/glossary/variable-discount) in Subscribe and save. A discount code can't be limited to the first order in Juo. That needs a third-party app or custom code.
+  </Accordion>
 
-    Yes.
+  <Accordion title="If a Shopify discount is limited to the first payment, does it affect active subscriptions?">
+    Yes. It also applies when added to an active subscription, not only at checkout.
+  </Accordion>
 
-    In your Shopify theme, open the Juo widget settings and add the following to **Custom CSS**:
+  <Accordion title="Can memberships give discounts or free shipping?">
+    Yes. Juo tags members with `membership_active`. Use the tag in Shopify customer segments for discounts or free shipping. Members must be logged in for the benefits to apply. See [Memberships](/memberships).
+  </Accordion>
 
-```
+  <Accordion title="Do Buy X Get Y discounts work with Juo?">
+    Shopify's own Buy X Get Y discounts don't work with fixed selling plans. Buy X Get Y discounts from dedicated apps do.
+  </Accordion>
 
-.j-widget {
+  <Accordion title="How do I combine a Build-a-box discount with a discount code?">
+    In Shopify, let the code combine with product discounts. In Juo, let the Build-a-box discount combine with order discounts.
+  </Accordion>
 
-display: flex;
+  <Accordion title="How can I reduce cancellations?">
+    Start with the [cancellation flow guide](/guides/cancellation-flow). Check **Analytics** → **Cohort retention** to see when subscribers leave, then add [Extras](/extras), [Upsells](/upsells) or loyalty rewards before that point.
+  </Accordion>
+</AccordionGroup>
 
-flex-direction: column-reverse;
+## Subscriptions and orders
 
-}
+<AccordionGroup>
+  <Accordion title="Why can't I edit a subscription?">
+    Usually it's renewing and the payment is still processing. You can edit it again once the renewal completes. Also check that:
 
-```
+    - the subscription hasn't got a minimum number of renewals left (you can change its cycle manually),
+    - the next renewal date is in the future.
+  </Accordion>
 
-## Customer Management
+  <Accordion title="Why isn't an estimated order date shown?">
+    For cards, the order is placed on the payment date, so there's no estimate. Payment methods that take longer, such as SEPA, show one.
+  </Accordion>
 
-1. **How does the Juo Customer Portal differ from the Shopify customer account?**
+  <Accordion title="Why do items in one subscription renew on different dates?">
+    A subscription can hold items with different frequencies and dates. Each date creates its own order.
+  </Accordion>
 
-   They are independent accounts linked only by the **same email address**.
+  <Accordion title="Why did the first order include the free item twice?">
+    This comes from a custom workflow that includes the parent product in cycle 1. Turn on **Fulfill parent product automatically** to avoid the duplicate.
+  </Accordion>
 
-   When a purchase is made, a Shopify customer is created. The Juo account is created at the first subscription purchase.
+  <Accordion title="Why was no order created on the renewal date?">
+    This can happen after a migration when Shopify rejects some customer data, such as an email domain. The **Activity log** shows an alert when it happens.
+  </Accordion>
 
-   Logging into Shopify allows access to Juo without an additional login.
+  <Accordion title="Can I delete a subscription?">
+    No. To stop it from being reactivated, set its status to **Expired**.
+  </Accordion>
 
-2. **Can I view the customer portal exactly as a customer?**
+  <Accordion title="Does removing a selling plan affect active subscriptions?">
+    No. Selling plans only control what customers can buy on your store.
+  </Accordion>
 
-   Yes.
+  <Accordion title="Does deleting a product in Shopify break subscriptions?">
+    Yes. [Bulk-swap](/bulk-actions) the product in existing subscriptions first, then delete it.
+  </Accordion>
 
-   In Juo, open a specific subscription on the [subscriptions list](https://admin.juo.io/subscriptions) and click **Generate customer portal link**.
+  <Accordion title="Can I export subscriptions to a spreadsheet automatically?">
+    Yes, with the [Juo API](https://juo.dev/).
+  </Accordion>
+</AccordionGroup>
 
-3. **How can a customer change their delivery address?**
+## Shipping and fulfillment
 
-   Customers can update their address in the Customer Portal when home delivery is selected.
+<AccordionGroup>
+  <Accordion title="Which shipping method do renewals use?">
+    Customers choose the method on the first order. For renewals, Shopify picks the cheapest available method. With equal prices, it picks the first one alphabetically. To change this, rename your methods or ask us for a renewal shipping profile. See [Shipping setup](/shipping-setup).
+  </Accordion>
 
-   If the subscription uses a **carrier pickup point** (for example InPost, BOX NOW, or Skroutz Point), customers change the pickup point in the portal instead of editing a street address. To switch a pickup-point subscription to home delivery (or the reverse), update the delivery method in the Admin Panel.
+  <Accordion title="Why is the shipping price wrong?">
+    Often a location is missing from the shipping profile. Add every location you ship from. For other causes, see the limitations in [Shipping setup](/shipping-setup#limitations).
+  </Accordion>
 
-4. **Can two Shopify customer accounts be merged if one has an active subscription?**
+  <Accordion title="Can subscriptions renew when a product is out of stock?">
+    Yes. In Juo, turn on **Settings** → **General** → **Renew subscription when out of stock**. You may also want to turn off the out-of-stock notification under **Settings** → **Notifications**.
+  </Accordion>
 
-   Shopify often blocks merging accounts that still have an **active** subscription. Cancel or move the subscription first if Shopify rejects the merge.
+  <Accordion title="How do I stop selling a product but keep its renewals?">
+    Unpublish the product from your online store and hide its buy button.
+  </Accordion>
 
-   When Shopify does merge two customers, Juo **re-links** subscriptions, orders, and payment methods to the surviving customer automatically.
+  <Accordion title="Are in-store pickup and pickup points supported?">
+    In-store pickup isn't supported for renewals. Carrier pickup points, such as InPost, BOX NOW or Skroutz Point, are. See [Shipping setup](/shipping-setup#choose-your-setup).
+  </Accordion>
 
-5. **How can I send customers a link to purchase a new subscription?**
+  <Accordion title="How does Juo handle several warehouse locations?">
+    Shopify decides. An item counts as in stock if any location has it, and Shopify allocates the order across locations.
+  </Accordion>
 
-   Use this permalink structure and replace values (remove curly braces):
+  <Accordion title="What happens when several subscriptions renew on the same day?">
+    Renewals within **24 hours** of each other are merged into one order with one shipping charge.
+  </Accordion>
 
-```
+  <Accordion title="Why don't order tags reach my logistics partner?">
+    The tag may be added after the order reaches them. Ask them for a short processing delay. If that doesn't help, add the gift with [Extras](/extras) instead of a tag.
+  </Accordion>
+</AccordionGroup>
 
-https://your-store.myshopify.com/cart/add?id={VARIANT_ID}&quantity={QUANTITY}&selling_plan={SELLING_PLAN_ID}
+## Account and integrations
 
-```
+<AccordionGroup>
+  <Accordion title="How do I cancel my Juo plan?">
+    Uninstall Juo from your Shopify admin. This cancels your Juo plan.
+  </Accordion>
 
-For multiple products, use:
+  <Accordion title="Why don't Juo events appear in Klaviyo?">
+    Events appear only after they happen in Juo. Create a test subscription and skip, pause or change it to send the first events. See [Klaviyo integration](/klaviyo-integration).
+  </Accordion>
 
-```
-
-[https://yourstore.com/cart/add?items[0][id]=VARIANT_ID_1&items[0][quantity]=QTY_1&items[0][selling_plan]=SELLING_PLAN_1&items[1][id]=VARIANT_ID_2&items[1][quantity]=QTY_2&items[1][selling_plan]=SELLING_PLAN_2](https://yourstore.com/cart/add?items[0][id]=VARIANT_ID_1&items[0][quantity]=QTY_1&items[0][selling_plan]=SELLING_PLAN_1&items[1][id]=VARIANT_ID_2&items[1][quantity]=QTY_2&items[1][selling_plan]=SELLING_PLAN_2)
-
-```
-
-    Selling plan IDs can be found by inspecting the selling plans dropdown on the product page.
-
-6. **How is the notifications language chosen, and can I change it?**
-
-   Notifications are automatically translated based on the **language selected by the customer** during their visit.
-
-   To change the language for a specific customer, adjust it at the user level in Shopify settings.
-
-## Payments and Billing
-
-1. **Can I use iDEAL/Bancontact without Mollie?**
-
-   You need Mollie for iDEAL and Bancontact subscriptions, but you can still use other gateways (Shopify Payments, Stripe) for card, PayPal, and one-time purchases.
-
-2. **Why is a payment taking so long (e.g., 2 days)?**
-
-   Payments via SEPA by default take **24–48 hours** to complete.
-
-   To avoid delays in order fulfillment, you can trigger the payments 2 days before the renewal date.
-
-   You can enable this option in the [Retention settings](https://admin.juo.io/experiences/retention).
-
-3. **Why are discounts not working for iDEAL payments?**
-
-   Shopify treats iDEAL and Bancontact as **one-time purchases**.
-
-   Configure discounts to apply to both one-time and subscription purchases in order for them to be applied to iDEAL subscriptions.
-
-4. **How do I include the chargeback-flow checkout link in Klaviyo?**
-
-   Use the property `event.paymentLink`.
-
-   The link is available in **Analytics → Metrics → Chargeback subscription → Activity feed**.
-
-5. **Why was an order automatically charged back?**
-
-   Some accounts don’t allow SEPA Direct Debit.
-
-   Check your Mollie account and see [Mollie docs](https://help.mollie.com/hc/en-gb/articles/115000309865-Why-did-my-SEPA-direct-debit-payment-fail). Additional details are in [Juo SEPA docs](https://juo.io/docs/sepa-direct-debit).
-
-   Mollie marks payments as processed before they are fully authenticated by the bank. It’s possible that the payment is initially processed, but gets automatically revoked by the bank 1–2 days later.
-
-6. **Why are SEPA chargebacks processed automatically, and can we charge again?**
-
-   SEPA allows chargebacks up to **90 days**, and Shopify does not allow charging again for the same order after a chargeback.
-
-   To recover revenue, use our [chargeback recovery flow](https://juo.io/docs/sepa-chargebacks#sepa-chargebacks-recovery).
-
-   If the refund was requested by the customer, proceed cautiously to avoid fraud risk.
-
-7. **Can I update PayPal via a Shopify payment update link?**
-
-   Yes.
-
-   Updating via the Shopify link allows updating PayPal as well.
-
-8. **Why don’t iDEAL/Bancontact subscriptions show as subscriptions in Shopify analytics (recurring revenue)?**
-
-   Shopify treats these as one-time orders on the Shopify side, even though they behave as subscriptions in Juo.
-
-## Discounts and Retention
-
-1. **What’s the best way to apply a discount to the first subscription order?**
-
-   Use a **variable discount** in Subscribe & Save to apply the discount only to the first order.
-
-2. **How can I apply a discount code only to the first subscription order?**
-
-   This cannot be done directly in Juo.
-
-   Use a third-party app or custom code.
-
-3. **Can Memberships grant discounts or free delivery?**
-
-   Yes.
-
-   After purchasing a Membership product, Juo assigns the tag `membership_active` to the customer.
-
-   Use this tag in Shopify segments to provide discounts or free shipping, and to disable other benefits if needed.
-
-   Customers must be logged in for benefits to apply.
-
-4. **How can I reduce cancellations and improve retention?**
-
-   Enable or optimize the cancellation poll in Settings → Retention & Acquisition.
-
-   Review results in Analytics → Retention Flow.
-
-   Check Analytics → Cohort Retention to identify when subscribers tend to cancel, then use Extras, Upsells, or loyalty incentives to retain them.
-
-   See the in-depth [guide on increasing retention](https://juo-io.notion.site/Increase-retention-with-Juo-features-11d903e568c4805a94b0e2bcf19e3b62) for more ideas.
-
-5. **Will a Buy X Get Y discount work with Juo?**
-
-   Shopify native Buy X Get Y discounts do not work with **fixed selling plans**.
-
-   Buy X Get Y discounts set up in dedicated apps will work properly.
-
-6. **How can I combine a Build-a-Box discount with a Shopify discount code?**
-
-   In Shopify, allow the discount code to combine with product discounts.
-
-   In Juo, configure the Build-a-Box discount to combine with order discounts.
-
-7. **If I limit a Shopify discount to the first payment, does it also apply to active subscriptions?**
-
-   Yes.
-
-   The discount will also apply to an active subscription, not just the initial checkout.
-
-## Managing Subscriptions and Orders
-
-1. **Why can’t I edit a subscription?**
-
-   Most likely, the subscription is in the process of renewing and the payment is being processed.
-
-   Subscriptions in this status cannot be modified until the payment renewal completes. Once the renewal succeeds, the next order can be edited, and refunds or product changes can be applied.
-
-   It’s also possible that a minimum number of renewals is required. Until it’s met, changes or removals are blocked (if necessary, you can manually change the cycle of the subscription).
-
-   Finally, check the next renewal date and make sure it’s in the future.
-
-2. **Why isn’t the estimated order date displayed?**
-
-   For credit card subscriptions, the order date equals the payment date, so the estimated order date is not shown.
-
-   For payment methods with longer processing times (for example, SEPA), an estimated order date is displayed.
-
-3. **Why do items within one subscription have different renewal dates?**
-
-   A subscription can include items with different renewal dates and frequencies, which can generate separate orders on different days.
-
-4. **Why did the first order include a duplicate free item?**
-
-   This is likely related to custom workflows.
-
-   If the parent product is included in the workflow and the same product is added to Cycle 1, enable **Fulfil parent product automatically** to prevent duplicates.
-
-5. **Can I permanently delete a subscription?**
-
-   No.
-
-   You cannot delete a subscription entirely or remove all products from it.
-
-   To prevent reactivation, set the subscription status to **Expired**.
-
-6. **Can I change a customer’s email address in Juo?**
-
-   No.
-
-   Juo reads the email from the Shopify customer account.
-
-   Update the email in Shopify → Customer → Edit contact information.
-
-7. **Why did a subscription reach the renewal date, but no order was created?**
-
-   This can happen after migrations if the customer record contains data that Shopify does not accept (for example, an email domain).
-
-   The subscription may appear migrated successfully, but Shopify can still refuse to process the order.
-
-   Alerts for these situations are shown in the Activity Log.
-
-8. **Can subscription data be exported automatically to a spreadsheet?**
-
-   Yes.
-
-   Use the Customer API to push subscription data to a spreadsheet.
-
-9. **If I remove a selling plan, will it affect active subscriptions?**
-
-   No.
-
-   Selling plans control what’s available for purchase in the store.
-
-   Active subscriptions are not affected by removing or adjusting selling plans.
-
-10. **Will removing a product in Shopify break subscriptions that include this product?**
-
-    Yes.
-
-    Removing the product will break existing subscriptions that include it.
-
-    Bulk-swap the product in existing subscriptions before removing it in Shopify.
-
-## Shipping and Fulfillment
-
-1. **How can I change the shipping method for all subscription orders?**
-
-   Customers choose the shipping method for the first order.
-
-   For renewals, Shopify assigns the cheapest available method automatically (or, in case of multiple methods with the same price, the first one alphabetically).
-
-   To influence selection, rename methods to prioritize one or ask Juo support to set a dedicated shipping profile for subscription renewals.
-
-2. **Why is the shipping price wrong?**
-
-   This is often caused by missing locations in the shipping profile.
-
-   Make sure all relevant locations are added.
-
-3. **Why can’t customers purchase out-of-stock items?**
-
-   In Juo settings, enable **General → Renew subscription when out of stock**.
-
-   Consider disabling the out-of-stock notification in Settings → Notifications so customers don’t receive alerts when the subscription will renew anyway.
-
-4. **How can I make a product unavailable in the store but keep renewals running?**
-
-   Unpublish the product on the online store and hide the purchase button on the product page.
-
-5. **Is in-store pickup or pickup points supported for subscriptions?**
-
-   **In-store pickup** (buy online, pick up in your retail location) is not supported as a recurring shipping method.
-
-   **Carrier pickup points** (parcel lockers / PUDO such as InPost, BOX NOW, Skroutz Point) can be used when enabled for your shop. Customers select or change the pickup point in the Customer Portal. See [Shipping setup → Pickup points](/shipping-setup#pickup-points).
-
-6. **How does Juo handle multiple fulfillment locations?**
-
-   If at least one location has stock, Shopify marks the item as “in stock.”
-
-   Order allocation across inventories is controlled by Shopify.
-
-   For advanced handling, consider Shopify Functions or consult your fulfillment partner.
-
-7. **What happens if multiple subscriptions renew on the same day?**
-
-   If renewals occur within **24 hours**, Juo merges orders and counts shipping once.
-
-## Other
-
-1. **How do I cancel my Juo plan?**
-
-   Uninstalling the Juo app in Shopify automatically cancels the associated Juo subscription.
-
-2. **Why can’t I see Juo-related triggers and events in Klaviyo?**
-
-   After you integrate with Klaviyo, triggers and events will populate only after they occur within Juo.
-
-   To push them into Klaviyo, it’s a good idea to set up a test subscription and perform multiple actions on it to push data into Klaviyo.
-
-3. **Why aren’t tags being pushed to the logistics center?**
-
-   There may be a timing delay when the tag is applied.
-
-   Ask the logistics center to add a short processing delay.
-
-   If that does not help, consider an app such as [Gifter – Cart Auto Include](https://apps.shopify.com/gifter-cart-auto-include) or add the gift via Extras in Juo.
-
-4. **Why don’t analytics show new subscribers for a given day?**
-
-   Time zone differences may cause discrepancies.
-
-   Verify the merchant’s location and the Shopify store time zone settings.
+  <Accordion title="Why are new subscribers missing from analytics for a day?">
+    Usually a time zone difference. Check the time zone in your Shopify store settings.
+  </Accordion>
+</AccordionGroup>

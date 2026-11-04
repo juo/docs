@@ -18,6 +18,10 @@ keywords:
 | **Primary metric** | Save rate: the share of cancellation attempts that end with the subscription kept |
 | **Supporting metrics** | Cancellation reasons, retention of saved subscriptions 2–3 cycles later, cost per save |
 
+<Tip>
+  **Start from a blueprint.** The **Cancel flow** blueprint sets up this flow as a ready-made workflow. In Juo, go to **Workflows**, create a workflow and choose **Cancel flow**, complete its to-dos and publish. To give subscribers a way to delay from the renewal email, add the **Delay order from email** blueprint too. See [Blueprints](/workflows/blueprints).
+</Tip>
+
 ## Why it matters
 
 Many cancellations are not a rejection of the product. Subscribers leave because they have too much stock, the price feels high this month, the timing is wrong, or they never built the habit. Each of these has a better answer than cancelling: a delay, a different frequency, a different product, or a one-off incentive.
@@ -72,24 +76,13 @@ A good cancellation flow has four steps:
 
 ## How to do this in Juo
 
-Build the flow yourself in Workflows, or start from the **Cancel flow** blueprint and adjust it to your reasons and offers. The **Delay order from email** blueprint adds a delay option to your renewal reminder, so subscribers who have too much product can postpone before they ever reach the cancel button.
+1. **Create the workflow.** Start from the **Cancel flow** blueprint, or build your own workflow with the **Subscription cancellation requested** trigger. Only one workflow per trigger can be published, so extend an existing cancellation workflow instead of adding a second one.
+2. **Match it to your store.** Replace the value reminder with your own benefits, keep four to six reasons and set a small discount limited to one or two orders.
+3. **Branch where it helps.** Give new subscribers their own path with `subscription.cycle_count`, or a flagship product its own content. See [Conditions](/workflows/conditions).
+4. **Test it.** Open the Customer Portal as a test subscriber, select **Cancel** and go through every reason. Each path should end with a way to cancel.
+5. **Publish and measure.** A published cancellation workflow replaces the legacy cancellation poll in [Retention settings](/retention-flow#cancellation-flow). Review reasons in [Analytics](/analytics), and compare offers with an [experiment](/workflows/experiments).
 
-<Columns cols={2}>
-  <Card title="Set up the Cancel flow blueprint" icon="wand-magic-sparkles" href="/guides/cancel-flow-blueprint">
-    The fastest way to launch this flow, step by step.
-  </Card>
-  <Card title="Blueprints" icon="layer-group" href="/workflows/blueprints">
-    Ready-made workflows you start from.
-  </Card>
-  <Card title="Workflows" icon="diagram-project" href="/workflows/workflows-overview">
-    Build or adjust the flow yourself.
-  </Card>
-  <Card title="Experiments" icon="flask" href="/workflows/experiments">
-    Compare two offers before you roll one out.
-  </Card>
-</Columns>
+## Related guides
 
-## Related playbooks
-
-- [Fight new subscriber churn](/workflows/guides/fight-new-subscriber-churn)
-- [Win back cancelled subscribers](/workflows/guides/churned-subs-winback)
+- [Fight new subscriber churn](/guides/new-subscriber-churn)
+- [Win back cancelled subscribers](/guides/win-back)

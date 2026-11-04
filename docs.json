@@ -72,50 +72,49 @@
         ]
       },
       {
-        "tab": "Playbooks",
+        "tab": "Guides",
         "icon": "compass",
         "groups": [
           {
             "group": "Overview",
             "pages": [
-              "learn"
+              "guides/overview"
             ]
           },
           {
             "group": "Retention",
             "pages": [
-              "retention",
-              "playbooks/cancellation-flow",
-              "guides/cancel-flow-blueprint",
-              "workflows/guides/fight-new-subscriber-churn",
-              "playbooks/failed-payments",
-              "playbooks/renewal-reminders"
+              "guides/retention",
+              "guides/cancellation-flow",
+              "guides/new-subscriber-churn",
+              "guides/failed-payments",
+              "guides/renewal-reminders"
             ]
           },
           {
             "group": "Win-back",
             "pages": [
-              "workflows/guides/churned-subs-winback"
+              "guides/win-back"
             ]
           },
           {
             "group": "Loyalty and gifts",
             "pages": [
-              "playbooks/gifts",
-              "workflows/guides/vip-rewards"
+              "guides/gifts",
+              "guides/vip-rewards"
             ]
           },
           {
             "group": "Discounts and promotions",
             "pages": [
-              "playbooks/seasonal-campaigns",
+              "guides/seasonal-campaigns",
               "guides/seasonal-campaigns-in-juo"
             ]
           },
           {
             "group": "Upsells and order value",
             "pages": [
-              "playbooks/upsells",
+              "guides/upsells-for-subscriptions",
               "guides/upsells-portal-and-email"
             ]
           }
@@ -369,7 +368,7 @@
     },
     {
       "source": "/grow-and-retain",
-      "destination": "/retention",
+      "destination": "/guides/retention",
       "permanent": true
     },
     {
@@ -384,22 +383,22 @@
     },
     {
       "source": "/workflows/guides/cancellation-flow",
-      "destination": "/playbooks/cancellation-flow",
+      "destination": "/guides/cancellation-flow",
       "permanent": true
     },
     {
       "source": "/workflows/guides",
-      "destination": "/learn",
+      "destination": "/guides/overview",
       "permanent": true
     },
     {
       "source": "/workflows/guides/use-cases",
-      "destination": "/learn",
+      "destination": "/guides/overview",
       "permanent": true
     },
     {
       "source": "/recipes/cancel-flow-blueprint",
-      "destination": "/guides/cancel-flow-blueprint",
+      "destination": "/guides/cancellation-flow",
       "permanent": true
     },
     {
@@ -424,7 +423,7 @@
     },
     {
       "source": "/docs/grow-and-retain",
-      "destination": "/learn",
+      "destination": "/guides/overview",
       "permanent": true
     },
     {
@@ -559,7 +558,7 @@
     },
     {
       "source": "/guides/learn",
-      "destination": "/learn",
+      "destination": "/guides/overview",
       "permanent": true
     },
     {
@@ -590,11 +589,6 @@
     {
       "source": "/guides/quick-actions-cio",
       "destination": "/quick-actions-cio",
-      "permanent": true
-    },
-    {
-      "source": "/guides/retention",
-      "destination": "/retention",
       "permanent": true
     },
     {
@@ -724,7 +718,7 @@
     },
     {
       "source": "/guides/grow-and-retain",
-      "destination": "/retention",
+      "destination": "/guides/retention",
       "permanent": true
     },
     {
@@ -750,6 +744,81 @@
     {
       "source": "/guides/enable-klaviyo-integration",
       "destination": "/klaviyo-integration#connect-klaviyo",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/cancellation-flow",
+      "destination": "/guides/cancellation-flow",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/failed-payments",
+      "destination": "/guides/failed-payments",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/renewal-reminders",
+      "destination": "/guides/renewal-reminders",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/gifts",
+      "destination": "/guides/gifts",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/seasonal-campaigns",
+      "destination": "/guides/seasonal-campaigns",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/upsells",
+      "destination": "/guides/upsells-for-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/workflows/guides/churned-subs-winback",
+      "destination": "/guides/win-back",
+      "permanent": true
+    },
+    {
+      "source": "/workflows/guides/fight-new-subscriber-churn",
+      "destination": "/guides/new-subscriber-churn",
+      "permanent": true
+    },
+    {
+      "source": "/workflows/guides/vip-rewards",
+      "destination": "/guides/vip-rewards",
+      "permanent": true
+    },
+    {
+      "source": "/retention",
+      "destination": "/guides/retention",
+      "permanent": true
+    },
+    {
+      "source": "/learn",
+      "destination": "/guides/overview",
+      "permanent": true
+    },
+    {
+      "source": "/guides/cancel-flow-blueprint",
+      "destination": "/guides/cancellation-flow",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks",
+      "destination": "/guides/overview",
+      "permanent": true
+    },
+    {
+      "source": "/guides",
+      "destination": "/guides/overview",
+      "permanent": true
+    },
+    {
+      "source": "/custom-workflows.html",
+      "destination": "/custom-workflows",
       "permanent": true
     }
   ],

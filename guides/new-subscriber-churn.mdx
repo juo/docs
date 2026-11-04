@@ -12,19 +12,19 @@ description: "Get new subscribers past their first renewal with a welcome, a rea
 | **Audience** | Subscriptions that have not renewed yet |
 | **Default outcome** | None. Only the configured actions run |
 
+<Tip>
+  **Start from a blueprint.** The **Onboarding flow** and **Welcome message** blueprints set up this flow as a ready-made workflow. In Juo, go to **Workflows**, create a workflow and choose **Onboarding flow**, complete its to-dos and publish. The Onboarding flow shows a different Customer Portal message after each of the first three orders, with a check-in poll and an optional gift on the second order. See [Blueprints](/workflows/blueprints).
+</Tip>
+
 ## Why it works
 
 Churn is highest before the first renewal. Some new subscribers are loyal customers trying the subscription, some are testing the product, and some subscribed without fully registering it. The first renewal charge is the moment all of them decide.
 
 Subscribers who pass that point are much more likely to stay for several more cycles, so effort spent here has a multiplied effect on lifetime value. Two things help most: making the value of the subscription clear early, and making sure the first renewal is expected rather than a surprise. A surprise charge leads to cancellations, refund requests, and chargebacks.
 
-<Tip>
-  **Start from a blueprint (optional).** The **Welcome message** and **Onboarding flow** [blueprints](/workflows/blueprints) cover most of this flow. The Onboarding flow shows a different Customer Portal message after each of the first three orders, with a check-in poll and an optional gift on the second order.
-</Tip>
-
 ## Flow
 
-The playbook uses two workflows, because each trigger can have one published workflow.
+This guide uses two workflows, because each trigger can have one published workflow.
 
 **1. Welcome in the Customer Portal**
 
@@ -54,7 +54,7 @@ The playbook uses two workflows, because each trigger can have one published wor
 - **Welcome content.** Focus on how to use the product and what results to expect, not on promotions. A short video works well for products with a learning curve.
 - **Incentive.** A free sample of another product builds range awareness and raises the chance of a later add-on. A discount on the second order is simpler but trains price sensitivity.
 - **Reminder timing.** Send it early enough for the subscriber to act: two to five days before renewal, depending on your cadence and shipping time.
-- **Combine with the cancellation flow.** Give new subscribers their own branch in the [Cancellation flow](/playbooks/cancellation-flow), with usage guidance before any offer.
+- **Combine with the cancellation flow.** Give new subscribers their own branch in the [Cancellation flow](/guides/cancellation-flow), with usage guidance before any offer.
 
 ## Guardrails
 
@@ -70,6 +70,6 @@ The playbook uses two workflows, because each trigger can have one published wor
 
 ## Related
 
-- [Cancellation flow](/playbooks/cancellation-flow)
+- [Cancellation flow](/guides/cancellation-flow)
 - [Blueprints](/workflows/blueprints)
 - [Klaviyo integration](/klaviyo-integration) · [Customer.io integration](/customerio-integration)

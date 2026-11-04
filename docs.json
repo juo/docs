@@ -141,6 +141,7 @@
           {
             "group": "Payments",
             "pages": [
+              "local-payment-methods",
               "sepa-direct-debit",
               "sepa-chargebacks"
             ]

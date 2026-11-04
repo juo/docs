@@ -209,17 +209,10 @@
             ]
           },
           {
-            "group": "Discounts and promotions",
-            "pages": [
-              "guides/seasonal-campaigns",
-              "guides/seasonal-campaigns-in-juo"
-            ]
-          },
-          {
-            "group": "Upsells and order value",
+            "group": "Promotions and order value",
             "pages": [
               "guides/upsells-for-subscriptions",
-              "guides/upsells-portal-and-email"
+              "guides/seasonal-campaigns"
             ]
           }
         ]
@@ -824,6 +817,26 @@
       "source": "/help",
       "destination": "/FAQ",
       "permanent": false
+    },
+    {
+      "source": "/guides/seasonal-campaigns-in-juo",
+      "destination": "/guides/seasonal-campaigns",
+      "permanent": true
+    },
+    {
+      "source": "/guides/upsells-portal-and-email",
+      "destination": "/guides/upsells-for-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/seasonal-campaigns-in-juo",
+      "destination": "/guides/seasonal-campaigns",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/upsells-portal-and-email",
+      "destination": "/guides/upsells-for-subscriptions",
+      "permanent": true
     }
   ],
   "contextual": {

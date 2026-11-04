@@ -27,7 +27,7 @@ Large selections can take several minutes. You can close the sidebar and reopen 
 
 | Action | What it does |
 |---|---|
-| **Add product** | Adds a product variant to each selected subscription. Optionally set a **custom price**, or mark it as a **one-time** line (added for a single renewal only). The product does not need to be on a subscription plan; plan discounts are not applied to the new line. |
+| **Add product** | Adds a product variant to each selected subscription. Optionally set a **custom price** in your shop currency, or mark it as a **one-time** line (added for a single renewal only). The product does not need to be on a subscription plan; plan discounts are not applied to the new line. With a custom price, see [Subscriptions in another currency](#subscriptions-in-another-currency). |
 | **Swap product** | Replaces one variant with another. Subscriptions that do not contain the “from” product are skipped. Optionally **retain the original price** after the swap. To also replace the product inside Build-a-box boxes, select **Also swap items inside Build a Box**. See [Build-a-box items](#build-a-box-items). |
 | **Remove product** | Removes a product variant. Only subscriptions that contain it are updated; others are skipped. |
 
@@ -35,8 +35,8 @@ Large selections can take several minutes. You can close the sidebar and reopen 
 
 | Action | What it does |
 |---|---|
-| **Add discount** | Applies a discount to selected subscriptions. Choose **Amount off subscription** or **Amount off products** (pick variants), then percent or flat amount. Apply for a set **number of renewals**, or **permanently**. |
-| **Change product price** | Sets a fixed price for a specific variant on matching subscriptions. Subscriptions without that variant are skipped. |
+| **Add discount** | Applies a discount to selected subscriptions. Choose **Amount off subscription** or **Amount off products** (pick variants), then percent or flat amount. A flat amount is in your shop currency, and Juo converts it into each subscription's currency at the current exchange rates. Apply for a set **number of renewals**, or **permanently**. |
+| **Change product price** | Sets a fixed price, in your shop currency, for a specific variant on matching subscriptions. Subscriptions without that variant are skipped. See [Subscriptions in another currency](#subscriptions-in-another-currency). |
 | **Update subscription plan pricing** | Updates the price of each product to match the current pricing of its subscription plan. Use it after you change a plan's discount, so subscriptions created before the change get the new price. See [Update subscription plan pricing](#update-subscription-plan-pricing). |
 
 ### Schedule
@@ -63,6 +63,10 @@ To swap a product inside boxes, select **Also swap items inside Build a Box** in
 
 - The new variant must be offered by the box. Boxes that do not offer it are skipped.
 - Box items are priced by the box, so you cannot combine this option with **Retain original price**.
+
+## Subscriptions in another currency
+
+**Add product** with a custom price and **Change product price** take a price in your shop currency. Subscriptions in another currency are skipped unless you select **Convert currency**. With it selected, Juo converts the price into each subscription's currency at the current exchange rates. Subscriptions in your shop currency are always updated.
 
 ## Update subscription plan pricing
 

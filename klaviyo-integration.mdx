@@ -1,5 +1,6 @@
 ---
 title: "Klaviyo"
+description: "Send Juo subscription events, tags and properties to Klaviyo and build subscription flows there."
 ---
 
 <Frame>
@@ -63,10 +64,6 @@ Juo is currently syncing the following events with Klaviyo:
 | **Opened Subscription Fulfillment** | A fulfillment order for a subscription is released for fulfillment (e.g. the next shipment of a prepaid subscription) |
 | **Chargeback Subscription** | Chargeback request is initiated by the customer |
 
-<Note>
-  Klaviyo uses the US spelling in the event name: **Canceled Subscription**. Search for this name when selecting the flow trigger.
-</Note>
-
 The timing of **Upcoming Renewal Subscription** follows the “trigger before renewal” windows configured in Juo. If you set up more than one window, Juo sends a separate event for each, and you can branch your flow on the `daysToRenewal`, `index` or `label` properties. See [Retention flow](/retention-flow).
 
 <Warning>
@@ -128,11 +125,11 @@ A subscriber will only have one tag per tag group assigned at any give time.
 
 #### Tags assigned to potential subscribers
 
-Based on their order history, customers can also be assigned the **subscription_intent** tag, which allows merchants to convert them to subscribers more easily with targeted messaging.
+Based on their order history, customers can also be assigned the **subscription_intent** tag, which allows merchants to convert them to subscribers with targeted messaging.
 
 [Subscription intent tagging](/subscription-intent-detection) is a PRO feature that can be enabled under **Settings** > **Subscription intent**.
 
-All the above tags can be used as flow filters in Klaviyo — they can be found under **Flow filter** > **Properties about someone** > **Shopify Tags**.
+All the above tags can be used as flow filters in Klaviyo. Find them under **Flow filter** > **Properties about someone** > **Shopify Tags**.
 
 <Frame caption="Subscriber tags can also be used as filters">
   <img

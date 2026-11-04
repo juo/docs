@@ -1,22 +1,22 @@
 ---
-title: "Win back cancelled subscribers"
-sidebarTitle: "Win back cancelled subscribers"
-description: "Bring cancelled subscribers back with a timed message and an offer honoured when they reactivate."
+title: "Win back canceled subscribers"
+sidebarTitle: "Win back canceled subscribers"
+description: "Bring canceled subscribers back with a timed message and an offer honored when they reactivate."
 ---
 
 | | |
 |---|---|
 | **Goal** | Reactivate subscribers after they cancel |
-| **Primary metric** | Reactivation rate: share of cancelled subscriptions reactivated within 90 days |
+| **Primary metric** | Reactivation rate: share of canceled subscriptions reactivated within 90 days |
 | **Supporting metrics** | Revenue per reactivated subscription, share that cancel again within two cycles |
 | **Triggers** | Subscription reactivation requested (`subscription_reactivate_requested`), Subscription reactivated (`subscription_reactivated`) |
-| **Audience** | Customers with a cancelled subscription who receive a win-back message |
+| **Audience** | Customers with a canceled subscription who receive a win-back message |
 | **Default outcome** | None. Reactivation proceeds on its own; the workflow adds the offer and messages |
 | **Requires** | An email or SMS platform connected to Juo, such as [Klaviyo](/klaviyo-integration) or [Customer.io](/customerio-integration) |
 
 ## Why it works
 
-A cancelled subscriber already knows your product, has a saved address, and has shown what they buy. Bringing them back costs a message and an offer, with no acquisition spend. Many cancellations are also temporary: the subscriber had too much stock, was travelling, or wanted a break.
+A canceled subscriber already knows your product, has a saved address, and has shown what they buy. Bringing them back costs a message and an offer, with no acquisition spend. Many cancellations are also temporary: the subscriber had too much stock, was traveling, or wanted a break.
 
 Timing matters. Asking straight after cancellation repeats the cancellation flow. Waiting until their stock is likely running out, or until you have something new to show, meets them when the need returns.
 
@@ -24,7 +24,7 @@ Timing matters. Asking straight after cancellation repeats the cancellation flow
 
 This guide combines your email platform with a Juo workflow:
 
-1. **Email platform.** A flow starts on the *Cancelled Subscription* event, waits two to six weeks, and sends a win-back message with an offer. The message links to the Customer Portal with a UTM campaign, for example `utm_campaign=winback`.
+1. **Email platform.** A flow starts on the *Canceled Subscription* event, waits two to six weeks, and sends a win-back message with an offer. The message links to the Customer Portal with a UTM campaign, for example `utm_campaign=winback`.
 2. **Juo workflow.** When the customer clicks **Reactivate** from that link, the workflow checks the campaign and that the offer has not been used before, applies the promised discount, and shows a welcome-back confirmation.
 3. **Exit the flow.** When the subscription is reactivated, Juo sends an event so the email platform stops the remaining win-back messages.
 
@@ -34,8 +34,8 @@ Use the *CancellationReason* property of the event to tailor or exclude messages
 
 - **Wait time.** Base it on the delivery frequency: roughly one cycle after cancellation is when stock runs low.
 - **Offer.** State it in the message, so the customer knows what they get by reactivating. A single-cycle discount or a free product with the next order keeps the cost to one order.
-- **Content.** New products, flavours, or improvements give a reason to return that does not depend on price.
-- **Exclusions.** Skip customers who cancelled over a complaint until support has resolved it, and customers with an open chargeback.
+- **Content.** New products, flavors, or improvements give a reason to return that does not depend on price.
+- **Exclusions.** Skip customers who canceled over a complaint until support has resolved it, and customers with an open chargeback.
 
 ## Guardrails
 
@@ -45,7 +45,7 @@ Use the *CancellationReason* property of the event to tailor or exclude messages
 
 ## Measure results
 
-- **Reactivation rate** of cancelled subscriptions, compared with the period before launch.
+- **Reactivation rate** of canceled subscriptions, compared with the period before launch.
 - **Repeat cancellation**: the share of reactivated subscriptions that cancel again within two cycles. A high rate means the offer brings customers back for one discounted order only.
 - **Revenue per reactivated subscription** against the offer cost.
 

@@ -1,5 +1,6 @@
 ---
-title: "Hubspot"
+title: "HubSpot"
+description: "Sync Juo subscription events and contact properties to HubSpot and use them in workflows and lists."
 ---
 
 <Frame>
@@ -28,7 +29,7 @@ Before using the HubSpot integration, enable it in the Juo admin panel under **S
 | **Service key token** | Created in HubSpot under **Development → Keys → Service Keys → Create service key** |
 | **Service key scopes** | `crm.objects.contacts.read` `crm.objects.contacts.write` `crm.schemas.contacts.write` `behavioral_events.event_definitions.read_write` <br />`analytics.behavioral_events.send` |
 
-After you save the token and enable the integration, Juo automatically creates the required event definitions and contact properties in your HubSpot portal — no manual setup in HubSpot is needed.
+After you save the token and enable the integration, Juo automatically creates the required event definitions and contact properties in your HubSpot portal. No manual setup in HubSpot is needed.
 
 ## **Juo \<\> HubSpot workflow triggers**
 
@@ -60,7 +61,7 @@ You can use the above events as enrollment triggers in HubSpot workflows. For ex
 
 Each of the events that is synced between Juo and HubSpot comes with a set of properties that can be used in HubSpot workflows, for example in enrollment filters and if/then branches.
 
-HubSpot event properties only support simple values — no nested lists or objects. Because of that, products are represented by their joined names and a count, and monetary amounts are sent as text with two decimal places (e.g. `49.99`) to preserve exact values.
+HubSpot event properties only support simple values, with no nested lists or objects. Because of that, products are represented by their joined names and a count, and monetary amounts are sent as text with two decimal places (e.g. `49.99`) to preserve exact values.
 
 ### **Subscription-related properties**
 

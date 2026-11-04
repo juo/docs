@@ -15,7 +15,7 @@ Shopify has no separate "subscription product". A subscription is a regular cart
 The objects you work with:
 
 | Object | What it is | In Juo |
-|---|---|---|
+| --- | --- | --- |
 | Selling plan group | A set of purchase options for one or more products | A subscription plan |
 | Selling plan | One purchase option, for example "Delivery every 2 weeks" | A delivery frequency within the plan |
 | Selling plan allocation | The price of one variant on one selling plan | Calculated from the plan's discount |
@@ -23,12 +23,13 @@ The objects you work with:
 Things that follow from this model:
 
 - **A cart line has exactly one selling plan, or none.** No selling plan means a one-time purchase.
+- **Only Juo's selling plans become Juo subscriptions.** Plans created by other apps are handled by those apps.
 - **Allocations are per variant.** A variant that is not in any subscription plan has no allocations and cannot be added with a selling plan. Shopify rejects the request.
-- **The plan's price applies per unit.** Shopify does not link a selling plan to a quantity. See [Map selections to selling plans](#4-map-selections-to-selling-plans).
-- **Plans can be recurring or fixed.** A recurring plan (`recurring_deliveries: true`) creates a subscription contract with a stored payment method. A fixed plan does not. Juo uses hidden fixed plans for local payment methods. See [Local payment methods](#local-payment-methods).
+- **The plan's price applies per unit.** Shopify does not link a selling plan to a quantity. See [Offers that depend on quantity](#offers-that-depend-on-quantity).
+- **Plans can be recurring or fixed.** A recurring plan (`recurring_deliveries: true`) creates a subscription contract with a stored payment method. A fixed plan does not. Juo uses hidden fixed plans for local payment methods. See [If you use local payment methods](#if-you-use-local-payment-methods).
 
 <Note>
-Set up subscription plans in Juo and assign products to them before you build the storefront. See [Subscribe and save](/subscribe-and-save).
+  Set up subscription plans in Juo and assign products to them before you build the storefront. See [Subscribe and save](/subscribe-and-save), or assign products and variants with the [Juo Admin API](https://juo.dev/docs/api-reference/admin/products/assign-plan). A selling plan group holds at most 31 plans. With local payment methods enabled, Juo's hidden fixed plans count toward that limit, so each subscription plan supports up to 15 frequencies.
 </Note>
 
 ## 1. Expose selling plan data
@@ -80,44 +81,60 @@ Two filters matter here:
 - **`app_id: 'juo-subscriptions'`** keeps plans from other apps out of your interface.
 - **`recurring_deliveries`** keeps only recurring plans. When local payment methods are enabled, Juo adds a hidden fixed plan with the same name for every recurring plan. Without this filter, every frequency appears twice.
 
-Prices are in the store currency's minor units, for example cents. Format them with your theme's money helpers.
+Prices are in the customer's currency, in minor units (for example cents). Format them with your theme's money helpers. `price` is what the customer pays at checkout. If a plan charges for several deliveries at once, `perDeliveryPrice` is the price of one delivery; otherwise the two are equal.
 
 <Accordion title="Headless storefronts (Storefront API)">
-Query the same data from the product:
+  Query the same data from the product:
 
-```graphql
-query ProductSellingPlans($handle: String!) {
-  product(handle: $handle) {
-    requiresSellingPlan
-    sellingPlanGroups(first: 10) {
-      nodes {
-        appName
-        name
-        sellingPlans(first: 31) {
-          nodes { id name recurringDeliveries }
+  ```graphql
+  query ProductSellingPlans($handle: String!) {
+    product(handle: $handle) {
+      requiresSellingPlan
+      sellingPlanGroups(first: 10) {
+        nodes {
+          appName
+          sellingPlans(first: 31) {
+            nodes { id name recurringDeliveries }
+          }
         }
       }
-    }
-    variants(first: 100) {
-      nodes {
-        id
-        sellingPlanAllocations(first: 31) {
-          nodes {
-            sellingPlan { id name recurringDeliveries }
-            priceAdjustments {
-              price { amount currencyCode }
-              compareAtPrice { amount }
-              perDeliveryPrice { amount }
+      variants(first: 100) {
+        nodes {
+          id
+          sellingPlanAllocations(first: 31) {
+            nodes {
+              sellingPlan { id name recurringDeliveries }
+              priceAdjustments {
+                price { amount currencyCode }
+                compareAtPrice { amount }
+                perDeliveryPrice { amount }
+              }
             }
           }
         }
       }
     }
   }
-}
-```
+  ```
 
-Filter groups to those created by Juo with `appName` (the app's display name; check the value on your store), and plans with `recurringDeliveries: true`. Storefront API IDs are global IDs, for example `gid://shopify/SellingPlan/123`.
+  Allocations do not say which app created their plan. Collect the IDs of Juo's recurring plans from the groups first, then keep only the allocations on those plans:
+
+  ```js
+  const juoPlanIds = new Set(
+    product.sellingPlanGroups.nodes
+      .filter((group) => group.appName === "Juo Subscriptions")
+      .flatMap((group) => group.sellingPlans.nodes)
+      .filter((plan) => plan.recurringDeliveries)
+      .map((plan) => plan.id)
+  );
+  
+  const plansFor = (variant) =>
+    variant.sellingPlanAllocations.nodes.filter((allocation) =>
+      juoPlanIds.has(allocation.sellingPlan.id)
+    );
+  ```
+
+  Storefront API IDs are global IDs, for example `gid://shopify/SellingPlan/123`. Paginate `variants` for products with more than 100 variants.
 </Accordion>
 
 ## 2. Build the purchase options
@@ -129,14 +146,25 @@ const data = JSON.parse(
   document.getElementById("subscription-data-PRODUCT_ID").textContent
 );
 
-const state = {
-  variantId: data.selectedVariantId,
-  sellingPlanId: data.selectedSellingPlanId,
-};
-
 function plansFor(variantId) {
   return data.variants.find((v) => v.id === variantId)?.sellingPlans ?? [];
 }
+
+// The URL can carry any selling plan, including other apps' plans and
+// fixed plans. Use it only if it is one of this variant's Juo plans.
+const initialPlans = plansFor(data.selectedVariantId);
+const urlPlanIsValid = initialPlans.some(
+  (p) => p.id === data.selectedSellingPlanId
+);
+
+const state = {
+  variantId: data.selectedVariantId,
+  sellingPlanId: urlPlanIsValid
+    ? data.selectedSellingPlanId
+    : data.requiresSellingPlan
+      ? initialPlans[0]?.id ?? null
+      : null,
+};
 
 function selectVariant(variantId) {
   const previous = plansFor(state.variantId).find(
@@ -167,7 +195,7 @@ Rules to apply in `render()`:
 - **Hide the one-time option when `requiresSellingPlan` is true.** The product is set to sell only as a subscription, and Shopify rejects lines without a plan.
 - **Show prices from the allocation, not the variant.** The allocation price already includes the plan's discount. Show the saving against `compareAtPrice`.
 - **Re-render when the variant changes.** Plans and prices differ per variant.
-- **Keep the URL in sync if you want shareable links.** Shopify reads `?variant=` and `?selling_plan=` on product URLs and exposes them as `product.selected_or_first_available_variant` and `product.selected_selling_plan`.
+- **Optional: keep the URL in sync for shareable links.** Shopify reads `?variant=` and `?selling_plan=` on product URLs.
 
 ## 3. Add the line to the cart
 
@@ -175,7 +203,7 @@ The selling plan ID has to travel with every add-to-cart request for the product
 
 ### Product forms
 
-Shopify's `/cart/add` form endpoint accepts a `selling_plan` field. Product pages often render more than one form (main form, sticky bar, quick add), so set the field on whichever form is submitted rather than on one known form.
+Shopify's `/cart/add` form endpoint accepts a `selling_plan` field. Set it on whichever form is submitted, since product pages often have more than one (main form, sticky bar, quick add). Listening in the capture phase sets the field before the theme's own submit handlers read the form.
 
 ```js
 document.addEventListener(
@@ -199,11 +227,11 @@ document.addEventListener(
     input.value = state.sellingPlanId ?? "";
     input.disabled = state.sellingPlanId == null; // one-time: send no plan
   },
-  true // capture phase: runs before the theme's own submit handlers
+  true
 );
 ```
 
-Listening in the capture phase sets the field before themes that read `FormData` in their own submit handler. If your theme builds the request from its own state instead of the form, pass the selling plan there.
+If your theme builds the request from its own state instead of the form, pass the selling plan there.
 
 ### Ajax Cart API
 
@@ -222,12 +250,6 @@ await fetch(window.Shopify.routes.root + "cart/add.js", {
   }),
 });
 ```
-
-To change the plan of a line already in the cart, for example from a frequency picker in the cart drawer, use `/cart/change.js` with the line `key` and a new `selling_plan`. Pass `null` to turn the line into a one-time purchase.
-
-<Warning>
-`/cart/change.js` replaces the line's whole `properties` object. Send the existing properties along with any change, or you remove properties that Juo and other apps rely on.
-</Warning>
 
 ### Storefront API
 
@@ -255,57 +277,61 @@ mutation AddSubscriptionLine($cartId: ID!, $lines: [CartLineInput!]!) {
 }
 ```
 
-### In the cart
+## 4. Show and change the plan in the cart
 
 Cart lines expose the plan as `item.selling_plan_allocation.selling_plan`. Show its name next to the line so customers can see which items will renew and how often.
 
-## 4. Map selections to selling plans
+<Warning>
+  Keep line item properties that start with an underscore, such as `_selling_plan_id`. Many carts hide them from customers, which is fine, but they must not be removed: Juo reads them when it creates subscriptions.
+</Warning>
 
-Some offers depend on more than the frequency: "1 bottle every month" against "3 bottles every 3 months", or a bigger discount on a larger pack. Shopify does not support this directly, because a selling plan's price applies per unit at any quantity. Choose one of these approaches.
-
-### Pack sizes as variants (recommended)
-
-Create a variant per pack size, for example "1 bottle" and "3 bottles", and add each variant to the plans it should be sold on. Each variant then has its own allocations, prices, and available frequencies.
-
-This approach holds up in the cart, at checkout, and on renewal: the customer cannot change the quantity and end up with the wrong price, and stock and fulfilment see a distinct SKU. Use it whenever pack size is part of what the customer is choosing.
-
-### Separate selling plans per selection
-
-If the offer has to stay on one variant, create a selling plan for each combination in Juo, for example "Monthly · 1 unit" and "Every 3 months · 3 units". Then map the customer's selection to a plan in your interface.
+To change the plan of a line already in the cart, for example from a frequency picker in the cart drawer, use `/cart/change.js`:
 
 ```js
-const offers = [
-  { label: "1 bottle, monthly", quantity: 1, sellingPlanId: 111 },
-  { label: "3 bottles, every 3 months", quantity: 3, sellingPlanId: 222 },
-];
+async function changeLinePlan(item, sellingPlanId) {
+  const body = {
+    id: item.key,
+    quantity: item.quantity, // defaults to 1 if omitted
+    selling_plan: sellingPlanId, // null for one-time purchase
+  };
+
+  // Passing `properties` replaces the whole object, so copy the existing
+  // ones. Clear `_selling_plan_id` so it does not point at the old plan.
+  if (item.properties?._selling_plan_id != null) {
+    body.properties = { ...item.properties, _selling_plan_id: "" };
+  }
+
+  await fetch(window.Shopify.routes.root + "cart/change.js", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+}
 ```
 
-Add quantity and selling plan together, in one request. Plan for the places where the pair can drift apart:
+With local payment methods enabled, the line's plan in the cart may be a hidden fixed plan. See [If you use local payment methods](#if-you-use-local-payment-methods) for how to read the selected frequency.
 
-- **Cart quantity changes.** Lock the quantity input for these lines, or swap the plan with `/cart/change.js` when the quantity changes.
-- **Checkout.** If the combination must be enforced, add a [cart and checkout validation](https://shopify.dev/docs/apps/build/checkout/cart-checkout-validation) function that rejects lines whose quantity does not match their plan.
-- **After purchase.** Subscribers can edit their subscription in the [Customer Portal](/customer-portal). Review which edits you allow so a quantity change does not leave a subscription on the wrong offer.
+## If you use local payment methods
 
-### Volume discounts
+When a cart contains a recurring selling plan, Shopify checkout only offers payment methods that can be charged again later, such as cards, Shop Pay, and PayPal. To support local methods like iDEAL, Bancontact, BLIK, and MB WAY for subscriptions, Juo adds a hidden **fixed** selling plan for each recurring plan and switches subscription lines to it in the cart.
 
-If the goal is "the more you buy, the more you save" rather than fixed bundles, use [Tiered discounts](/tiered-discounts) on top of a standard plan instead of multiplying selling plans.
+How it works: after a line is added with a recurring plan, Juo's app embed changes the line to the fixed plan with the same name and saves the original recurring plan ID in the `_selling_plan_id` line property. When the order is placed, Juo creates the subscription on that recurring plan.
 
-<Note>
-A selling plan group holds at most 31 plans. With local payment methods enabled, Juo's hidden fixed plans count toward that limit, so each subscription plan supports up to 15 frequencies or offers.
-</Note>
+What this means for a custom storefront:
 
-## Local payment methods
-
-When a cart contains a recurring selling plan, Shopify checkout only offers payment methods that can be charged again later, such as cards, Shop Pay, and PayPal. To support local methods like iDEAL, Bancontact, BLIK, and MB WAY for subscriptions, Juo adds hidden **fixed** selling plans to your subscription plans and handles checkout routing through its theme app embeds.
-
-In a standard setup, a custom storefront needs to:
-
-- **Filter out fixed selling plans.** Show and add to cart only plans with `recurring_deliveries: true`, as in [step 1](#1-expose-selling-plan-data). Fixed plans share their names with the recurring ones and are not meant to be selected directly.
-- **Keep Juo's app embeds enabled** under **Online Store → Themes → Customize → App embeds** in Shopify.
-- **Route subscription purchases through the cart.** Dynamic checkout buttons ("Buy it now", express wallets) skip the cart. Hide them while a subscription option is selected.
+- **Show and add only recurring plans.** Filter out fixed plans as in [step 1](#1-expose-selling-plan-data). Juo handles the switch in the cart.
+- **Read the selected frequency from `_selling_plan_id`.** In the cart, `item.selling_plan_allocation.selling_plan` is the fixed plan. Its name matches the recurring plan, so you can display it, but its ID is not in your list of recurring plans.
+  ```js
+  const recurringPlanId =
+    Number(item.properties?._selling_plan_id) ||
+    item.selling_plan_allocation?.selling_plan.id;
+  ```
+- **Clear `_selling_plan_id` when you change a line's plan**, as in [step 4](#4-show-and-change-the-plan-in-the-cart). If it still holds the old plan, the line is not switched to a fixed plan, and the subscription can be created on the old frequency.
+- **Keep Juo's app embeds enabled.** In Shopify, go to **Online Store → Themes → Customize → App embeds** and turn on **Local Payments Default** and **Local Payments Info**. They appear once local payment methods are enabled in Juo.
+- **Route subscription purchases through the cart.** Dynamic checkout buttons ("Buy it now", express wallets) skip the cart, so the switch to a fixed plan never happens. Hide them while a subscription option is selected.
 
 <Note>
-For headless storefronts or other non-standard setups with local payment methods, contact Juo support before launch.
+  For headless storefronts or other setups without Juo's app embeds, contact Juo support before enabling local payment methods.
 </Note>
 
 ## Other common cases
@@ -314,11 +340,20 @@ For headless storefronts or other non-standard setups with local payment methods
 
 **Upsell and cross-sell widgets.** Third-party apps that add products to the cart usually add one-time lines. Check whether they support selling plans before offering subscription products through them.
 
-**Several subscription products in one cart.** Each line carries its own plan. Depending on your settings, Juo can combine lines that renew on the same schedule into one subscription.
+**Several subscription products in one cart.** Each line carries its own plan. By default, Juo combines lines that renew on the same schedule into one subscription.
 
-**Bundles.** Shopify Bundles cannot use selling plans. To sell a bundle as a subscription, model it as a variant or use [Build-a-box](/build-a-box).
+**Bundles.** [Shopify Bundles](https://shopify.dev/docs/apps/bundles) cannot use selling plans. To sell a bundle as a subscription, model it as a variant or use [Build-a-box](/build-a-box).
 
 **Free gifts and add-ons.** A gift added as a one-time line ships with the first order only. To include it in every delivery, add it with the same selling plan. To give free products or other benefits on selected orders, see [Extras](/extras).
+
+### Offers that depend on quantity
+
+Some offers tie the quantity to the plan, for example "1 unit every month" against "3 units every 3 months". Because a selling plan's price applies per unit at any quantity, Shopify does not support this directly. Two options:
+
+- **Variants per pack size.** Create a variant for each size and add each to the plans it is sold on. Each variant gets its own prices and frequencies, and a quantity change in the cart cannot put a line on the wrong price.
+- **A selling plan per combination.** Create plans such as "Monthly · 1 unit" and "Every 3 months · 3 units", and add quantity and plan together. Lock the quantity of these lines in the cart, or change the plan when the quantity changes.
+
+For "the more you buy, the more you save" pricing, use [Tiered discounts](/tiered-discounts) on a standard plan instead.
 
 ## Testing checklist
 
@@ -327,9 +362,18 @@ Before launch, place test orders that cover:
 - One-time purchase of a product that also has subscription options.
 - Subscription purchase for each frequency, and after switching variants.
 - A subscription-only product, from the product page and from quick add.
-- Changing quantity and frequency in the cart.
-- Each combination, if you map selections to plans.
-- A local payment method, if enabled: confirm it is offered at checkout and a subscription appears in Juo after the order.
+- Changing quantity and frequency in the cart, and switching a line to one-time.
 - A cart with both one-time and subscription lines.
+- If local payment methods are enabled: a local method is offered at checkout, and changing the frequency in the cart creates the subscription on the new frequency.
 
 After each subscription order, open the subscription in the Juo Admin Panel and check the product, quantity, frequency, and price.
+
+## Troubleshooting
+
+**No subscription was created.** Check the order in Shopify. The line needs a Juo selling plan, or a fixed plan with a `_selling_plan_id` property. A line with no plan, or with another app's plan, is a one-time purchase for Juo.
+
+**Add to cart fails.** The selling plan does not apply to the variant, or the product requires a selling plan and none was sent.
+
+**The subscription has the wrong frequency.** The line's `_selling_plan_id` still pointed at an earlier plan. Clear it whenever you change a line's plan.
+
+**Local payment methods are not offered at checkout.** Check that Juo's app embeds are on, that the purchase went through the cart, and that the cart lines are on fixed plans.

@@ -134,6 +134,7 @@
           {
             "group": "Subscriptions",
             "pages": [
+              "managing-subscriptions",
               "create-subscription",
               "bulk-actions",
               "quick-actions",
@@ -216,6 +217,7 @@
                 ]
               },
               "gorgias-integration",
+              "leat-integration",
               "zipify-integration",
               "webhooks"
             ]

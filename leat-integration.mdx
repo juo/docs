@@ -1,0 +1,59 @@
+---
+title: "Leat"
+description: "Send subscription orders to Leat for loyalty points and referrals, and give customers their Leat referral link."
+---
+
+The Leat integration connects Juo subscriptions to your [Leat](https://leat.com) loyalty and referral program. It does two things:
+
+- **Sends subscription orders to Leat**, so first subscription orders and renewals earn loyalty points and complete referrals in the same way as other orders.
+- **Provides each customer's Leat referral code and link**, so you can display them in the Customer Portal.
+
+Points, rewards, and referral rules stay in Leat. Juo sends the order data, and your Leat setup decides what each order earns.
+
+## Requirements
+
+| Requirement | Details |
+| :-- | :-- |
+| **Leat account** | A Leat account with the loyalty program set up. The referral program is needed only if you want to show referral links |
+| **Private app access token** | An access token for the Leat API, created in your Leat account |
+
+## Set up the integration
+
+1. In the Juo admin panel, go to **Settings → Integrations → Leat**.
+2. Paste your Leat **Private app access token** and click **Save**.
+3. Turn on the switch next to **API Credentials**.
+
+The switch turns on only after a token has been entered. Subscription orders placed before the integration was turned on are not sent to Leat.
+
+## Subscription orders in Leat
+
+When the integration is on, Juo sends every subscription order to Leat after it is created in Shopify — the first subscription order and each renewal.
+
+Each order is sent with:
+
+- the order number and total, in your store currency
+- every line item, with its quantity, price, and the discount taken off it
+- shipping costs, with their discounts
+- the discounts applied to the order
+
+Leat uses these details to calculate points, so product-specific rules and discounts in your Leat setup apply to subscription orders too.
+
+Juo matches the order to a Leat contact by the customer's email address. If the customer is not yet a Leat contact, the contact is created. Orders without an email address are not sent.
+
+<Note>
+  Juo sends subscription orders only. Other orders in your store are not sent to Leat by this integration.
+</Note>
+
+<Warning>
+  If your access token is revoked or entered incorrectly, Juo keeps retrying each order for about 36 hours. Update the token within that time so the orders still reach Leat.
+</Warning>
+
+## Referral links in the Customer Portal
+
+Juo can look up the logged-in customer's Leat referral code and referral link, so subscribers can share them from the Customer Portal. This is available to custom Customer Portal blocks through the Customer API endpoint `GET /customer/v1/integrations/leat`.
+
+The code and link are empty when the referral program is not enabled in your Leat account.
+
+## Data stored in Juo
+
+Juo does not store Leat data. Contacts, referral codes, and points are read from Leat each time they are needed.

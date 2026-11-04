@@ -837,6 +837,21 @@
       "source": "/playbooks/upsells-portal-and-email",
       "destination": "/guides/upsells-for-subscriptions",
       "permanent": true
+    },
+    {
+      "source": "/guides/leat-integration",
+      "destination": "/leat-integration",
+      "permanent": true
+    },
+    {
+      "source": "/guides/managing-subscriptions",
+      "destination": "/managing-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/docs",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "contextual": {

@@ -72,55 +72,6 @@
         ]
       },
       {
-        "tab": "Guides",
-        "icon": "compass",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "guides/overview"
-            ]
-          },
-          {
-            "group": "Retention",
-            "pages": [
-              "guides/retention",
-              "guides/cancellation-flow",
-              "guides/new-subscriber-churn",
-              "guides/failed-payments",
-              "guides/renewal-reminders"
-            ]
-          },
-          {
-            "group": "Win-back",
-            "pages": [
-              "guides/win-back"
-            ]
-          },
-          {
-            "group": "Loyalty and gifts",
-            "pages": [
-              "guides/gifts",
-              "guides/vip-rewards"
-            ]
-          },
-          {
-            "group": "Discounts and promotions",
-            "pages": [
-              "guides/seasonal-campaigns",
-              "guides/seasonal-campaigns-in-juo"
-            ]
-          },
-          {
-            "group": "Upsells and order value",
-            "pages": [
-              "guides/upsells-for-subscriptions",
-              "guides/upsells-portal-and-email"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "Product",
         "icon": "puzzle-piece",
         "groups": [
@@ -224,13 +175,61 @@
         ]
       },
       {
+        "tab": "Guides",
+        "icon": "compass",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "guides/overview"
+            ]
+          },
+          {
+            "group": "Retention",
+            "pages": [
+              "guides/retention",
+              "guides/cancellation-flow",
+              "guides/new-subscriber-churn",
+              "guides/failed-payments",
+              "guides/renewal-reminders"
+            ]
+          },
+          {
+            "group": "Win-back",
+            "pages": [
+              "guides/win-back"
+            ]
+          },
+          {
+            "group": "Loyalty and gifts",
+            "pages": [
+              "guides/gifts",
+              "guides/vip-rewards"
+            ]
+          },
+          {
+            "group": "Discounts and promotions",
+            "pages": [
+              "guides/seasonal-campaigns",
+              "guides/seasonal-campaigns-in-juo"
+            ]
+          },
+          {
+            "group": "Upsells and order value",
+            "pages": [
+              "guides/upsells-for-subscriptions",
+              "guides/upsells-portal-and-email"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Help",
         "icon": "life-ring",
         "groups": [
           {
             "group": "Troubleshooting and FAQ",
             "pages": [
-              "help",
               "FAQ",
               {
                 "group": "Glossary",
@@ -291,19 +290,18 @@
   "navbar": {
     "links": [
       {
-        "href": "/about-juo",
-        "label": "About Juo"
-      },
-      {
         "label": "Contact us",
         "href": "mailto:hi@juo.io"
+      },
+      {
+        "href": "https://juo.io/demo",
+        "label": "Book a demo"
+      },
+      {
+        "href": "/about-juo",
+        "label": "About Juo"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Book a demo",
-      "href": "https://juo.io/demo"
-    }
+    ]
   },
   "footer": {
     "socials": {
@@ -820,6 +818,11 @@
       "source": "/custom-workflows.html",
       "destination": "/custom-workflows",
       "permanent": true
+    },
+    {
+      "source": "/help",
+      "destination": "/FAQ",
+      "permanent": false
     }
   ],
   "contextual": {

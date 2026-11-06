@@ -23,7 +23,8 @@ In **Admin Panel → Workflows**:
 ## Variants persistence
 
 - **Within a single customer session / run**: once a customer is assigned a variant, they stay in that variant while they move through the workflow (even if the run pauses and resumes later).
-- **Across separate runs** (e.g. the same customer enters the workflow on another day): variant assignment may not be guaranteed to stay the same.
+- **Across separate runs** (e.g. the same customer enters the workflow on another day): the customer keeps the variant they were assigned in their most recent run of that workflow.
+- **Removed or switched-off variants**: if you delete a customer's variant or set its traffic to 0%, Juo assigns them a new variant based on the current traffic split the next time they reach the experiment.
 
 ## Reading results
 

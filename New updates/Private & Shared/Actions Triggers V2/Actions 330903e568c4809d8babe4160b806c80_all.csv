@@ -1,0 +1,34 @@
+﻿Name,Description,Priority,Status,Task,Type
+https://www.notion.so/Admin-panel-bettering-32c903e568c480bab4ebcb311792c920?pvs=21 (previously Skip Order),,Week 1,Launched,[SUB-2611: Offer delay order (previously Skip Order)](https://linear.app/juo/issue/SUB-2611/offer-delay-order-previously-skip-order),Interaction
+Show content,,,Launched,[SUB-2612: Show content](https://linear.app/juo/issue/SUB-2612/show-content),Interaction
+Collect feedback,,,Todo,,Interaction
+Show Notifications,,,Todo,,Execution
+Pause Subscription,,,Todo,,Execution
+Apply Free Shipping,,,Todo,,Execution
+Replace Subscriptions Products,,,Todo,,Execution
+Renew Now,,,Todo,,Execution
+Send Email,,Week 4,Todo,,Execution
+Send Event to Klaviyo,,,Todo,,Execution
+Send SMS,,Week 3,Todo,,Execution
+Add Tag,,,Todo,,Execution
+Remove Tag,,,Todo,,Execution
+Update Custom Field,,,Todo,,Execution
+Skip order,,,Launched,,Execution
+AB test,,Week 1,Launched,[SUB-2610: AB test](https://linear.app/juo/issue/SUB-2610/ab-test),Execution
+Offer free product,,,Launched,,Interaction
+Offer discount,,,Launched,,Interaction
+Offer selection,,,Launched,,Interaction
+Offer swap product,,,Launched,,Interaction
+Custom offer,,Week 1,Launched,[SUB-2622: Custom offer](https://linear.app/juo/issue/SUB-2622/custom-offer),Interaction
+Poll,,,Launched,,Interaction
+Offer renew,,,Launched,,Interaction
+Offer change frequency,,,Launched,,Interaction
+Show confirmation,,,Launched,,Interaction
+Apply Discount,,,Launched,,Execution
+Cancel Subscription,,,Launched,,Execution
+Add Product,,,Launched,,Execution
+Swap Product,,,Launched,,Execution
+Change Frequency,,,Launched,,Interaction
+Retry payment,,Week 3,Todo,,Execution
+,,,Todo,,
+Remove all discounts,,,Launched,,Execution

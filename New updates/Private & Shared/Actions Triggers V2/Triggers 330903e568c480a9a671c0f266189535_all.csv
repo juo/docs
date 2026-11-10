@@ -1,0 +1,15 @@
+﻿Name,Description,Priority,Status,Task
+Cancellation clicked,,,Launched,
+Schedule order,,Week 1,Launched,
+Renew now clicked,,,Todo,
+Subscription Renewed,,,Todo,
+Subscription Cycle Entered,,,Todo,
+Subscription Created,,,Todo,
+Chargeback Initiated,,Week 3,Todo,
+Subscription Reactivated,,,Todo,
+Custom Action via Bulk Action ?,,,Todo,
+Product subscription cancellation,,Week 2,Launched,[SUB-2625: Trigger: Subscription item removed clicked](https://linear.app/juo/issue/SUB-2625/trigger-subscription-item-removed-clicked)
+Payment failed,,Week 3,Launched,
+Skip clicked,,,Launched,
+Pause clicked,,,Launched,
+Customer portal entered,,,Launched,

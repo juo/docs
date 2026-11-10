@@ -640,6 +640,16 @@
       "source": "/guides/:slug*",
       "destination": "/:slug*",
       "permanent": true
+    },
+    {
+      "source": "/upsells-portal-and-email",
+      "destination": "/upsells-for-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/seasonal-campaigns-in-juo",
+      "destination": "/seasonal-campaigns",
+      "permanent": true
     }
   ]
 }

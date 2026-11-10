@@ -182,37 +182,37 @@
           {
             "group": "Overview",
             "pages": [
-              "guides/overview"
+              "guides-overview"
             ]
           },
           {
             "group": "Retention",
             "pages": [
-              "guides/retention",
-              "guides/cancellation-flow",
-              "guides/new-subscriber-churn",
-              "guides/failed-payments",
-              "guides/renewal-reminders"
+              "retention",
+              "cancellation-flow",
+              "new-subscriber-churn",
+              "failed-payments",
+              "renewal-reminders"
             ]
           },
           {
             "group": "Win-back",
             "pages": [
-              "guides/win-back"
+              "win-back"
             ]
           },
           {
             "group": "Loyalty and gifts",
             "pages": [
-              "guides/gifts",
-              "guides/vip-rewards"
+              "gifts",
+              "vip-rewards"
             ]
           },
           {
             "group": "Promotions and order value",
             "pages": [
-              "guides/upsells-for-subscriptions",
-              "guides/seasonal-campaigns"
+              "upsells-for-subscriptions",
+              "seasonal-campaigns"
             ]
           }
         ]
@@ -302,6 +302,19 @@
       "linkedin": "https://www.linkedin.com/company/juo-io"
     }
   },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ],
+    "display": "header"
+  },
   "redirects": [
     {
       "source": "/adding-build-a-box",
@@ -360,7 +373,7 @@
     },
     {
       "source": "/grow-and-retain",
-      "destination": "/guides/retention",
+      "destination": "/retention",
       "permanent": true
     },
     {
@@ -375,22 +388,22 @@
     },
     {
       "source": "/workflows/guides/cancellation-flow",
-      "destination": "/guides/cancellation-flow",
+      "destination": "/cancellation-flow",
       "permanent": true
     },
     {
       "source": "/workflows/guides",
-      "destination": "/guides/overview",
+      "destination": "/guides-overview",
       "permanent": true
     },
     {
       "source": "/workflows/guides/use-cases",
-      "destination": "/guides/overview",
+      "destination": "/guides-overview",
       "permanent": true
     },
     {
       "source": "/recipes/cancel-flow-blueprint",
-      "destination": "/guides/cancellation-flow",
+      "destination": "/cancellation-flow",
       "permanent": true
     },
     {
@@ -415,7 +428,7 @@
     },
     {
       "source": "/docs/grow-and-retain",
-      "destination": "/guides/overview",
+      "destination": "/guides-overview",
       "permanent": true
     },
     {
@@ -429,228 +442,8 @@
       "permanent": true
     },
     {
-      "source": "/guides/FAQ",
-      "destination": "/FAQ",
-      "permanent": true
-    },
-    {
-      "source": "/guides/about-juo",
-      "destination": "/about-juo",
-      "permanent": true
-    },
-    {
-      "source": "/guides/adding-juo-subscription-widget",
-      "destination": "/adding-juo-subscription-widget",
-      "permanent": true
-    },
-    {
-      "source": "/guides/analytics",
-      "destination": "/analytics",
-      "permanent": true
-    },
-    {
-      "source": "/guides/build-a-box",
-      "destination": "/build-a-box",
-      "permanent": true
-    },
-    {
-      "source": "/guides/build-a-box-storefront",
-      "destination": "/build-a-box-storefront",
-      "permanent": true
-    },
-    {
-      "source": "/guides/bulk-actions",
-      "destination": "/bulk-actions",
-      "permanent": true
-    },
-    {
-      "source": "/guides/create-subscription",
-      "destination": "/create-subscription",
-      "permanent": true
-    },
-    {
-      "source": "/guides/curated-boxes",
-      "destination": "/curated-boxes",
-      "permanent": true
-    },
-    {
-      "source": "/guides/custom-storefront",
-      "destination": "/custom-storefront",
-      "permanent": true
-    },
-    {
-      "source": "/guides/custom-workflows",
-      "destination": "/custom-workflows",
-      "permanent": true
-    },
-    {
-      "source": "/guides/customer-portal",
-      "destination": "/customer-portal",
-      "permanent": true
-    },
-    {
-      "source": "/guides/customerio-integration",
-      "destination": "/customerio-integration",
-      "permanent": true
-    },
-    {
-      "source": "/guides/discounts",
-      "destination": "/discounts",
-      "permanent": true
-    },
-    {
-      "source": "/guides/editor",
-      "destination": "/editor",
-      "permanent": true
-    },
-    {
-      "source": "/guides/extras",
-      "destination": "/extras",
-      "permanent": true
-    },
-    {
-      "source": "/guides/features",
-      "destination": "/features",
-      "permanent": true
-    },
-    {
-      "source": "/guides/general-settings",
-      "destination": "/general-settings",
-      "permanent": true
-    },
-    {
-      "source": "/guides/get-started",
-      "destination": "/get-started",
-      "permanent": true
-    },
-    {
-      "source": "/guides/gorgias-integration",
-      "destination": "/gorgias-integration",
-      "permanent": true
-    },
-    {
-      "source": "/guides/help",
-      "destination": "/help",
-      "permanent": true
-    },
-    {
-      "source": "/guides/hubspot-integration",
-      "destination": "/hubspot-integration",
-      "permanent": true
-    },
-    {
-      "source": "/guides/installing-juo",
-      "destination": "/installing-juo",
-      "permanent": true
-    },
-    {
-      "source": "/guides/klaviyo-integration",
-      "destination": "/klaviyo-integration",
-      "permanent": true
-    },
-    {
       "source": "/guides/learn",
-      "destination": "/guides/overview",
-      "permanent": true
-    },
-    {
-      "source": "/guides/linking-customer-portal",
-      "destination": "/linking-customer-portal",
-      "permanent": true
-    },
-    {
-      "source": "/guides/memberships",
-      "destination": "/memberships",
-      "permanent": true
-    },
-    {
-      "source": "/guides/migrating-to-juo",
-      "destination": "/migrating-to-juo",
-      "permanent": true
-    },
-    {
-      "source": "/guides/notifications",
-      "destination": "/notifications",
-      "permanent": true
-    },
-    {
-      "source": "/guides/quick-actions",
-      "destination": "/quick-actions",
-      "permanent": true
-    },
-    {
-      "source": "/guides/quick-actions-cio",
-      "destination": "/quick-actions-cio",
-      "permanent": true
-    },
-    {
-      "source": "/guides/retention-flow",
-      "destination": "/retention-flow",
-      "permanent": true
-    },
-    {
-      "source": "/guides/sepa-chargebacks",
-      "destination": "/sepa-chargebacks",
-      "permanent": true
-    },
-    {
-      "source": "/guides/sepa-direct-debit",
-      "destination": "/sepa-direct-debit",
-      "permanent": true
-    },
-    {
-      "source": "/guides/shipping-setup",
-      "destination": "/shipping-setup",
-      "permanent": true
-    },
-    {
-      "source": "/guides/subscribe-and-save",
-      "destination": "/subscribe-and-save",
-      "permanent": true
-    },
-    {
-      "source": "/guides/subscription-experiences",
-      "destination": "/subscription-experiences",
-      "permanent": true
-    },
-    {
-      "source": "/guides/subscription-intent-detection",
-      "destination": "/subscription-intent-detection",
-      "permanent": true
-    },
-    {
-      "source": "/guides/subscription-widget",
-      "destination": "/subscription-widget",
-      "permanent": true
-    },
-    {
-      "source": "/guides/test-first-subscriber",
-      "destination": "/test-first-subscriber",
-      "permanent": true
-    },
-    {
-      "source": "/guides/tiered-discounts",
-      "destination": "/tiered-discounts",
-      "permanent": true
-    },
-    {
-      "source": "/guides/upsells",
-      "destination": "/upsells",
-      "permanent": true
-    },
-    {
-      "source": "/guides/use-juo-with-ai",
-      "destination": "/use-juo-with-ai",
-      "permanent": true
-    },
-    {
-      "source": "/guides/webhooks",
-      "destination": "/webhooks",
-      "permanent": true
-    },
-    {
-      "source": "/guides/zipify-integration",
-      "destination": "/zipify-integration",
+      "destination": "/guides-overview",
       "permanent": true
     },
     {
@@ -710,7 +503,7 @@
     },
     {
       "source": "/guides/grow-and-retain",
-      "destination": "/guides/retention",
+      "destination": "/retention",
       "permanent": true
     },
     {
@@ -740,72 +533,67 @@
     },
     {
       "source": "/playbooks/cancellation-flow",
-      "destination": "/guides/cancellation-flow",
+      "destination": "/cancellation-flow",
       "permanent": true
     },
     {
       "source": "/playbooks/failed-payments",
-      "destination": "/guides/failed-payments",
+      "destination": "/failed-payments",
       "permanent": true
     },
     {
       "source": "/playbooks/renewal-reminders",
-      "destination": "/guides/renewal-reminders",
+      "destination": "/renewal-reminders",
       "permanent": true
     },
     {
       "source": "/playbooks/gifts",
-      "destination": "/guides/gifts",
+      "destination": "/gifts",
       "permanent": true
     },
     {
       "source": "/playbooks/seasonal-campaigns",
-      "destination": "/guides/seasonal-campaigns",
+      "destination": "/seasonal-campaigns",
       "permanent": true
     },
     {
       "source": "/playbooks/upsells",
-      "destination": "/guides/upsells-for-subscriptions",
+      "destination": "/upsells-for-subscriptions",
       "permanent": true
     },
     {
       "source": "/workflows/guides/churned-subs-winback",
-      "destination": "/guides/win-back",
+      "destination": "/win-back",
       "permanent": true
     },
     {
       "source": "/workflows/guides/fight-new-subscriber-churn",
-      "destination": "/guides/new-subscriber-churn",
+      "destination": "/new-subscriber-churn",
       "permanent": true
     },
     {
       "source": "/workflows/guides/vip-rewards",
-      "destination": "/guides/vip-rewards",
-      "permanent": true
-    },
-    {
-      "source": "/retention",
-      "destination": "/guides/retention",
+      "destination": "/vip-rewards",
       "permanent": true
     },
     {
       "source": "/learn",
-      "destination": "/guides/overview",
+      "destination": "/guides-overview",
       "permanent": true
     },
     {
       "source": "/guides/cancel-flow-blueprint",
-      "destination": "/guides/cancellation-flow",
+      "destination": "/cancellation-flow",
       "permanent": true
     },
     {
       "source": "/playbooks",
-      "destination": "/guides/overview",
+      "destination": "/guides-overview",
       "permanent": true
     },
     {
       "source": "/guides",
-      "destination": "/guides/overview",
+      "destination": "/guides-overview",
       "permanent": true
     },
     {
@@ -820,51 +608,38 @@
     },
     {
       "source": "/guides/seasonal-campaigns-in-juo",
-      "destination": "/guides/seasonal-campaigns",
+      "destination": "/seasonal-campaigns",
       "permanent": true
     },
     {
       "source": "/guides/upsells-portal-and-email",
-      "destination": "/guides/upsells-for-subscriptions",
+      "destination": "/upsells-for-subscriptions",
       "permanent": true
     },
     {
       "source": "/playbooks/seasonal-campaigns-in-juo",
-      "destination": "/guides/seasonal-campaigns",
+      "destination": "/seasonal-campaigns",
       "permanent": true
     },
     {
       "source": "/playbooks/upsells-portal-and-email",
-      "destination": "/guides/upsells-for-subscriptions",
-      "permanent": true
-    },
-    {
-      "source": "/guides/leat-integration",
-      "destination": "/leat-integration",
-      "permanent": true
-    },
-    {
-      "source": "/guides/managing-subscriptions",
-      "destination": "/managing-subscriptions",
+      "destination": "/upsells-for-subscriptions",
       "permanent": true
     },
     {
       "source": "/docs",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/overview",
+      "destination": "/guides-overview",
+      "permanent": true
+    },
+    {
+      "source": "/guides/:slug*",
+      "destination": "/:slug*",
+      "permanent": true
     }
-  ],
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ],
-    "display": "header"
-  }
+  ]
 }

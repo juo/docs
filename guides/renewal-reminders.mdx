@@ -1,0 +1,77 @@
+---
+title: "Renewal reminders that prevent cancellations"
+sidebarTitle: "Renewal reminders"
+description: "Use the message before each renewal to let subscribers skip, delay or adjust their order instead of canceling."
+keywords:
+  - "renewal reminder"
+  - "upcoming renewal email"
+  - "skip"
+  - "delay order"
+  - "subscription flexibility"
+  - "reduce cancellations"
+---
+
+|  |  |
+| --- | --- |
+| **Who it's for** | Stores whose subscribers cancel because they have too much product or need a break |
+| **Goal** | Replace cancellations with skips, delays and changes that keep the subscription active |
+| **Primary metric** | Cancellation rate in the days after a renewal reminder |
+| **Supporting metrics** | Skips and delays per reminder, renewals that happen after a delay, support requests about unexpected charges |
+
+<Tip>
+  **Start from a blueprint.** The **Delay order from email** blueprint sets up this flow as a ready-made workflow. In Juo, go to **Workflows**, create a workflow and choose **Delay order from email**, complete its to-dos and publish. It adds Delay 1 week and Delay 2 weeks buttons to your Klaviyo renewal email. See [Blueprints](/workflows/blueprints).
+</Tip>
+
+## Why it matters
+
+A subscriber who is surprised by a charge or a delivery is likely to cancel. The same subscriber, reminded a few days earlier, often just skips or delays one order. The renewal reminder is the last moment you control before the order is charged.
+
+## The strategy
+
+### Remind at the right time
+
+Send the reminder early enough to act on, and close enough to be relevant. Three days before is a common default. For larger or less frequent orders, add a second reminder a week before.
+
+### Put the choices in the message
+
+List what's in the next order and the date it ships. Then give one-click options for the most common reasons to cancel:
+
+| Reason | Option in the reminder |
+| --- | --- |
+| Too much product | **Skip** this order, or delay it by one or two weeks |
+| Wrong timing | **Change the date** |
+| Wants something else | **Swap** a product, or add one |
+| Needs a break | **Pause** |
+
+Make the subscription easy to change in the Customer Portal too, so subscribers who click through find the same options.
+
+### Keep it short
+
+One clear message with a few buttons works better than a long email. Put any upsell below the subscription details, never above them.
+
+## Guardrails
+
+- **Link expiry.** One-click links expire after a set time. Send the reminder as soon as the event arrives, and keep the expiry longer than the gap to the renewal.
+- **Don't hide cancellation.** Subscribers who can't find a way to cancel complain and charge back. Offer alternatives first, and keep the cancel option available.
+- **Watch repeat delays.** A subscriber who delays every order may need a lower frequency. Offer it.
+
+## How to measure it
+
+- **Cancellation rate** within 7 days of a reminder, before and after you add the options.
+- **Actions per reminder**: skips, delays, date changes and swaps.
+- **Orders after a delay** that renew as planned.
+
+## How to do this in Juo
+
+1. **Set when reminders go out** under **Settings** → **Retention and acquisition** → **Upcoming renewal reminders**. See [Retention settings](/retention-flow#upcoming-renewal-reminders).
+2. **Send the reminder** with Juo's **Subscription renewal** email in [Notifications](/notifications), or a Klaviyo flow triggered by **Upcoming Renewal Subscription**. See the [Klaviyo integration](/klaviyo-integration).
+3. **Add one-click actions** such as **Skip**, **Pause** and **Change Billing Date** to the email. See [Quick actions](/quick-actions).
+4. **Add delay buttons** with the **Delay order from email** [blueprint](/workflows/blueprints), which adds Delay 1 week and Delay 2 weeks buttons.
+5. **Allow changes in the portal.** Check that skip, change date, change frequency and swap are on in **Settings** → **Customer Portal**. See [Customer Portal](/customer-portal).
+6. **Optionally add an upsell** below the order details. See [Upsells for subscriptions](/guides/upsells-for-subscriptions).
+
+## Related guides
+
+- [Subscriber retention](/guides/retention)
+- [Cancellation flow](/guides/cancellation-flow)
+- [Upsells for subscriptions](/guides/upsells-for-subscriptions)

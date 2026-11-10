@@ -17,15 +17,15 @@ Juo has an MCP server. MCP, the Model Context Protocol, is an open standard that
 
 <JuoMcpDemo />
 
-*Illustrative conversations. Your assistant's wording will differ.*
+_Illustrative conversations. Your assistant's wording will differ._
 
 ## What you can ask
 
 Ask in your own words. The assistant finds the right customer, subscription, or workflow in your store and shows what it did.
 
 | Task | Example prompt |
-|---|---|
-| Find a customer | "Find anna@example.com and show her active subscriptions." |
+| --- | --- |
+| Find a customer | "Find [anna@example.com](mailto:anna@example.com) and show her active subscriptions." |
 | Skip or move one order | "Skip Anna's next order." or "Move Anna's next order to November 20." |
 | Change a subscription | "Pause Anna's subscription." or "Add a free sample to Anna's next order only." |
 | Review performance | "Compare cancellations this month with last month." |
@@ -45,7 +45,7 @@ https://mcp.juo.com/mcp
 <Tabs>
   <Tab title="Claude">
     1. In Claude on the web or in Claude Desktop, open **Customize**, then **Connectors**.
-    2. Select **+**, then **Add custom connector**.
+    2. Select **\+**, then **Add custom connector**.
     3. Enter the server address above and save.
     4. The first time you use the connector, Claude opens the Juo login page. Log in with your Juo account, choose the store, and grant access.
 
@@ -97,14 +97,14 @@ Once connected, start with a question that only reads data:
 The assistant works with your live store, so treat its actions as you would a teammate's.
 
 - **One store per connection.** Access is limited to the store you choose at login. To work with another store, connect again and choose that store.
-- **Changes are real.** Pausing, skipping, and cancelling affect real subscribers, and cancelling can email the customer. Review each action before your assistant runs it, and keep approval prompts on for anything that changes data.
+- **Changes are real.** Pausing, skipping, and canceling affect real subscribers, and canceling can email the customer. Review each action before your assistant runs it, and keep approval prompts on for anything that changes data.
 - **Deleting needs extra care.** Deleting a customer or a product is permanent. Workflows are never deleted through MCP: removing one archives it, and the run history stays.
 - **Workflows are saved as drafts.** The assistant asks before it publishes. Pop-ups, polls, and other customer-facing content can't be previewed through MCP, so open the draft in the [workflow editor](/workflows/workflows-overview) and check it before you publish.
 - **Disconnect when you no longer need it.** Remove the Juo connector in your assistant's settings.
 
 ## Start from a guide
 
-The [cancellation flow guide](/workflows/guides/cancellation-flow) describes the goal and the flow of a proven pattern, so it works as a brief. Share it with your assistant and ask for a draft:
+The [cancellation flow guide](/guides/cancellation-flow) describes the goal and the flow of a proven pattern, so it works as a brief. Share it with your assistant and ask for a draft:
 
 > Using the cancellation flow guide, create a draft workflow in my store. Offer a discount first, then a pause.
 

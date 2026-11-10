@@ -1,0 +1,119 @@
+---
+title: "Gifts for subscribers: when to give them and how to add them"
+sidebarTitle: "Gifts for subscribers"
+description: "Gift strategies that keep subscribers longer, from welcome and milestone gifts to save offers and claimable rewards, and every way to add a gift in Juo."
+keywords:
+  - "free gift"
+  - "gift with subscription"
+  - "loyalty gift"
+  - "milestone reward"
+  - "surprise and delight"
+  - "free product"
+  - "gift with purchase"
+  - "save offer"
+---
+
+|  |  |
+| --- | --- |
+| **Who it's for** | Subscription brands that want to reward subscribers or keep them past the orders where they usually cancel |
+| **Goal** | Increase retention and order value with gifts that cost less than the revenue they keep |
+| **Primary metric** | Retention of subscribers who received a gift compared with a group who didn't |
+| **Supporting metrics** | Gift cost per retained subscriber, share of gifted products later added as paid items |
+
+<Tip>
+  **Start from a blueprint.** The **Gift flow** blueprint sets up this flow as a ready-made workflow. In Juo, go to **Workflows**, create a workflow and choose **Gift flow**, complete its to-dos and publish. It adds a free product on the 1st, 3rd, 6th and 12th renewal and keeps a 10% holdout group to measure the effect. See [Blueprints](/workflows/blueprints).
+</Tip>
+
+## Why it matters
+
+A gift is often cheaper than a discount. It costs you the product, not the full price, and a subscriber remembers a surprise in the box longer than a few euros off. Gifts also introduce products subscribers haven't tried, so some become paid add-ons later.
+
+The risk is giving too much, to the wrong people or at the wrong time. A gift works when it lands just before a subscriber would otherwise leave, or when it rewards behavior you want more of.
+
+## Gift strategies
+
+| Strategy | When the gift lands | Best for |
+| --- | --- | --- |
+| **Welcome gift** | The first order or first renewal | Making the first weeks feel special, when churn is highest |
+| **Milestone gift** | Set renewals, such as the 3rd, 6th or 12th | Giving subscribers a reason to stay until the next reward |
+| **Anniversary gift** | One year after subscribing | Thanking long-term subscribers |
+| **Save offer** | When a subscriber tries to cancel | Keeping subscribers who are unsure, instead of a discount |
+| **Claimable gift** | When the subscriber chooses, from the portal or an email | Rewards subscribers pick themselves, campaigns with limited stock |
+| **Gift with a bigger order** | When the next order passes a value or size | Raising order value, for example in build-a-box |
+| **Seasonal gift** | One planned renewal, such as Black Friday or the holidays | Campaigns for existing subscribers |
+| **Surprise and delight** | Any order, chosen by your team | Fixing a bad experience, rewarding reviews or referrals |
+| **Win-back gift** | When a canceled subscriber returns | Giving former subscribers a reason to come back |
+
+<Tip>
+  Not sure where to start? A milestone gift just before the renewal where your retention drops most is usually the best first gift. Check your cohort retention in [Analytics](/analytics).
+</Tip>
+
+### Choosing the gift
+
+- **Something they don't already get.** Samples and new products cost little and may become paid add-ons.
+- **Something that fits the box.** Small, light and quick to pack, so it doesn't change shipping costs.
+- **A choice, where you can.** Letting subscribers pick between two or three gifts makes the gift feel more personal.
+
+## Guardrails
+
+- **Measure against a holdout.** Keep a group without the gift, or you won't know whether it kept anyone.
+- **One gift per moment.** Check that automatic gifts don't stack, for example a milestone gift and a seasonal gift in the same order.
+- **Watch stock.** An automatic gift keeps being added while the rule is active.
+- **Make it visible.** Say in the renewal email and the portal that a gift is coming. A gift subscribers don't notice doesn't keep them.
+
+## How to measure it
+
+- **Retention** of gifted subscribers against the holdout, at the renewals right after the gift.
+- **Cost per retained subscriber**: total gift cost divided by the extra subscribers kept.
+- **Conversion to paid**: how many subscribers add the gifted product later.
+
+## How to add gifts in Juo
+
+There's a way to add a gift for each situation: automatically on set renewals, as an offer in the portal, from an email, by your team, or through the API.
+
+### Automatically, on set renewals
+
+| Method | Use it for | Notes |
+| --- | --- | --- |
+| [Workflows](/workflows/workflows-overview), **Next order updated** trigger | Rules such as "add a gift to the 6th renewal" or "add a gift when the order passes €60" | Use the **Add Item** action on the upcoming order. Start from the **Gift flow** [blueprint](/workflows/blueprints), which includes a holdout group. See [VIP rewards](/guides/vip-rewards). |
+| [Extras](/extras) | Free product, free shipping or an extra discount on set renewals of a subscription plan | Set once per plan. Can't be added to the first order, and changes apply to new subscriptions only. |
+| [Custom workflows](/custom-workflows) | A fixed sequence of orders with a free product on chosen cycles, such as a welcome kit | Built per product with cycle rules. |
+
+### As an offer in the Customer Portal
+
+| Method | Use it for | Notes |
+| --- | --- | --- |
+| [Workflows](/workflows/actions) offer actions | A gift as a save offer when a subscriber cancels, or a choice of gifts | Use **Offer Free Product** or **Offer Selection**. See the [cancellation flow guide](/guides/cancellation-flow). |
+| [Upsells](/upsells) | Gifts subscribers claim themselves, with dates, eligibility and a usage limit | Set the discount so the product is free or nearly free, then test it with a test subscriber. |
+
+### From an email or text
+
+| Method | Use it for | Notes |
+| --- | --- | --- |
+| [Quick actions](/quick-actions), Add Product | A one-click "Add your gift to your next delivery" button in Klaviyo | Works with products in an upsell campaign. See [Upsells for subscriptions](/guides/upsells-for-subscriptions#add-it-to-your-klaviyo-emails). |
+
+### By your team
+
+| Method | Use it for | Notes |
+| --- | --- | --- |
+| **One subscription**, in Juo | Surprise and delight, or making up for a problem | Open the subscription and add the product to the next order as a one-time item at the price you choose. |
+| [Bulk actions](/bulk-actions), Add product | A seasonal gift for many subscribers at once | Filter the subscriptions, add the product as **one-time** with a **custom price**. See [Set up a campaign for subscribers](/guides/seasonal-campaigns-in-juo#add-a-gift-to-the-next-order). |
+| [Bulk actions](/bulk-actions), Run workflow | A gift with conditions, run on a selection | Runs your **Admin initiated** workflow on the selected subscriptions. |
+
+### Through the API or AI assistants
+
+| Method | Use it for | Notes |
+| --- | --- | --- |
+| [Juo API](https://juo.dev/) | Gifts triggered from your own systems, such as a loyalty or referral app | Add an item to a subscription with a custom price. |
+| [Juo MCP](/use-juo-with-ai) | Adding gifts by asking an AI assistant | For one-off requests, such as "add a free sample to these 20 subscriptions". |
+
+<Note>
+  Gift subscriptions, where someone pays for a subscription for another person, are a different setup. See [prepaid subscription](/glossary/prepaid-subscription).
+</Note>
+
+## Related guides
+
+- [VIP rewards](/guides/vip-rewards)
+- [Cancellation flow](/guides/cancellation-flow)
+- [Upsells for subscriptions](/guides/upsells-for-subscriptions)
+- [Running sales and seasonal campaigns with subscribers](/guides/seasonal-campaigns)

@@ -1,47 +1,93 @@
 ---
 title: Workflows overview
 sidebarTitle: Overview
+description: "Build automations that respond to subscribers, store events and your team, to keep more subscribers, raise order value and automate operations."
+keywords:
+  - "workflows"
+  - "automation"
+  - "subscription automation"
+  - "cancellation flow"
+  - "save offers"
+  - "triggers"
+  - "blueprints"
 ---
 
-Workflows is a powerful tool to **automate subscription experiences and customer journeys**. Create automated flows that respond to customer actions and subscription events. Use them to reduce churn, recover failed payments, upsell products, reward loyal customers, reduce tickets and manual work, and more.
+Workflows automate what happens around a subscription. Each workflow starts from a trigger, checks conditions you set, and runs actions: showing a subscriber an offer, changing their next order, tagging a customer or sending an event to your email platform.
 
-![Workflows](https://cdn.juo.io/content-uploads/workflows_1_50f6f4243b.png)
+Use workflows to keep subscribers who are about to leave, add value to upcoming orders, recover payments and take repetitive work off your team.
 
-# Getting started with workflows
+## What starts a workflow
 
-Workflows come with a visual builder where you create desired logic by connecting nodes using the following logic structure:
+| Trigger type | When it runs | Examples |
+| --- | --- | --- |
+| **Customer initiated** | A subscriber does something in the Customer Portal | Selects **Cancel**, **Skip** or **Pause**, removes a product, opens the portal, reactivates a subscription |
+| **System initiated** | Something happens to a subscription | A payment fails, the next order changes, an order is placed, a chargeback starts |
+| **Admin initiated** | Your team runs it on selected subscriptions | A one-off change or campaign through the **Run workflow** bulk action |
 
-**Trigger →** (optional) **Conditions → Actions**
+See [Triggers](/workflows/triggers) for the full list.
 
-- ⚡ **Triggers** are events that **start a workflow**.
-- 🔀 **Conditions** define **how the workflow should continue**.
-- ▶️ **Actions** define **what the workflow does**.
+## What you can do with workflows
 
-# How to build a workflow
-
-<iframe
-  src="https://cdn.juo.io/content-uploads/workflows_1_7b69e99e1b.mp4"
-  width="100%"
-  height="410"
-  style={{ border: 0, borderRadius: 12 }}
-  allow="autoplay; fullscreen"
-  allowFullScreen
-/>
-
-To build a workflow, go to **Admin Panel → Workflows**. 
-
-- Create a new workflow and add a starting **[trigger](/workflows/triggers)**
-- Add an **[action](/workflows/actions)** or a **[condition](/workflows/conditions)**
-- Branch the flow with more **actions** and **conditions** according to your needs
-- Finalize each path by adding an `End` node
-
-Use the sidebar to customize each element. Interactions can be further customized visually by clicking [**Preview in Editor**](/editor).
+| Goal | Examples | Guide |
+| --- | --- | --- |
+| **Keep more subscribers** | Ask why subscribers cancel and offer a delay, swap or discount. Offer a delay instead of a skip. Welcome new subscribers before their first renewal. | [Cancellation flow](/guides/cancellation-flow) · [Fight new subscriber churn](/guides/new-subscriber-churn) |
+| **Raise order value** | Add a gift on the 6th renewal. Raise the discount with every renewal. Give a bigger discount for bigger orders. Offer a swap instead of removal when a subscriber takes a product out. | [VIP rewards](/guides/vip-rewards) · [Gifts for subscribers](/guides/gifts) · [Upsells for subscriptions](/guides/upsells-for-subscriptions) |
+| **Recover payments** | Retry failed payments on your own schedule and stop the subscription when retries run out. | [Recover failed payments](/guides/failed-payments) |
+| **Win subscribers back** | Show a welcome-back offer when a canceled subscriber reactivates. | [Win back canceled subscribers](/guides/win-back) |
+| **Automate operations** | Swap a starter kit for refills after the first order. Block renewals for customers tagged as resellers. Add notes or attributes to orders for fulfillment. Send events to Klaviyo or Customer.io. | [Blueprints](/workflows/blueprints) |
 
 <Tip>
-  **Triggers** begin every workflow. **Conditions** and **actions** can be lined up freely to create complex, personalized automations.
+  **Start from a blueprint.** Blueprints are ready-made workflows for common goals, such as a cancellation flow, a gift flow or an onboarding flow. In Juo, go to **Workflows**, create a workflow and choose a blueprint. Complete its to-dos and publish. See [Blueprints](/workflows/blueprints).
 </Tip>
 
-## Next steps
+## How a workflow is built
 
-- See [Use cases](/workflows/guides/cancellation-flow) for starter workflows you can adapt
+Go to **Workflows** in Juo and create a workflow. In the visual builder, connect steps in this order:
+
+1. **Trigger**: the event that starts the workflow.
+2. **Conditions** (optional): split the flow by subscriber, subscription, order or time, for example new subscribers or orders above a value. See [Conditions](/workflows/conditions).
+3. **Actions**: what the workflow does. Interactions show something to the subscriber in the Customer Portal, such as a poll or an offer. Executions make changes, such as applying a discount or adding a product. See [Actions](/workflows/actions).
+4. **End**: every path ends with an End node.
+
+<iframe src="https://cdn.juo.io/content-uploads/workflows_1_7b69e99e1b.mp4" width="100%" height="410" style={{ border: 0, borderRadius: 4 }} allow="autoplay; fullscreen" allowFullScreen />
+
+- See [Guides](/guides/overview) for proven workflow patterns you can adapt
 - Use the technical reference for [Triggers](/workflows/triggers), [Conditions](/workflows/conditions), and [Actions](/workflows/actions)
+
+To change how interactions look to subscribers, select **Preview in Editor**. See [Editor](/editor).
+
+## Before you publish
+
+- **One published workflow per trigger.** To add logic to a trigger that already has a published workflow, extend that workflow instead of creating a second one.
+- **Test as a subscriber.** Open the Customer Portal with a test subscription and go through every path.
+- **Compare before you commit.** Split subscribers between two versions of a step to see which works better. See [Experiments](/workflows/experiments).
+
+## Reference
+
+<Columns cols={3}>
+  <Card title="Triggers" icon="bolt" href="/workflows/triggers">
+    Events that start a workflow.
+  </Card>
+
+  <Card title="Conditions" icon="code-branch" href="/workflows/conditions">
+    Rules that decide which path to take.
+  </Card>
+
+  <Card title="Actions" icon="play" href="/workflows/actions">
+    Offers, messages and changes a workflow makes.
+  </Card>
+
+  <Card title="Connections" icon="share-nodes" href="/workflows/connections">
+    Link, branch and merge steps in the builder.
+  </Card>
+
+  <Card title="Experiments" icon="flask" href="/workflows/experiments">
+    Test two versions of a step.
+  </Card>
+
+  <Card title="Blueprints" icon="layer-group" href="/workflows/blueprints">
+    Ready-made workflows to start from.
+  </Card>
+</Columns>
+
+You can also build workflows by asking an AI assistant connected to your store. See [Juo MCP](/use-juo-with-ai).

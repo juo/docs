@@ -14,38 +14,49 @@ A blueprint is a ready-made [workflow](/workflows/workflows-overview) built arou
 
 - **Launch a proven flow quickly.** Each blueprint already contains the triggers, conditions and actions the flow needs.
 - **Learn how workflows are built.** Open a blueprint to see how a complete flow fits together, then change it.
-- **Brief an AI agent.** The blueprint name and its guide give an [AI assistant connected to Juo](/use-juo-with-ai) a precise starting point.
 
 ## Where to find them
 
-Go to **Workflows** and create a new workflow. Choose a blueprint, or build the workflow manually.
+Go to **Workflows** and open the **Blueprints** tab. Blueprints are grouped by the goal they serve. Each card shows how many customizations the blueprint needs, or **Works out of the box** when it needs none, and any integration it relies on, such as Klaviyo.
+
+You can also start from a blueprint when you create a workflow: select **New workflow**, and **Quick start** offers a blueprint before you choose a trigger. When you first open Workflows, the **Welcome to Workflows** screen leads to the blueprints too.
 
 ## How a blueprint works
 
-1. **Pick a blueprint.** Each one shows what it does, its tags (for example *Churn prevention* or *Klaviyo*) and the to-dos it needs.
-2. **Complete the to-dos.** For example: set the discount size, choose gift products, or set up the Klaviyo email the blueprint links to.
-3. **Publish.** After publishing, a blueprint behaves like any other workflow. Edit, test or unpublish it the same way.
+1. **Open a blueprint.** Select a card to see what the blueprint contains, step by step. The blueprint itself is read-only.
+2. **Select Use this blueprint.** Juo creates a new draft from it in your workflows. Values that only make sense for one store, such as the products to swap or add, are left empty for you to fill in.
+3. **Complete Quick setup.** **Quick setup** walks you through the blueprint's to-dos one at a time, for example setting the discount size, choosing gift products or copying a link into your Klaviyo email. The builder highlights the field to fill in on the canvas. Select **Next** to go on, then check every step in **Review** and select **Complete**.
+4. **Publish.** Completing the setup doesn't publish the workflow. Select **Publish** in the top bar when you're ready. **Publish** stays disabled until you reach **Review** or select **Skip setup**.
+
+After publishing, a workflow made from a blueprint behaves like any other workflow. Edit, test or unpublish it the same way.
 
 ## Available blueprints
 
 Each blueprint is an optional starting point. You can build the same flow from scratch, or start from the blueprint and change it to fit your store.
 
-### Increase subscriber value
+### Reduce churn
 
 | Blueprint | What it does | Use it for |
 | --- | --- | --- |
 | Cancel flow | Asks subscribers why they want to cancel and responds with an offer that fits the reason | [Cancellation flow](/cancellation-flow) |
 | Delay order from email | Adds Delay 1 week and Delay 2 weeks buttons to your upcoming renewal email in Klaviyo | [Cancellation flow](/cancellation-flow), giving subscribers a way out before they cancel |
-| Volume discount | Gives a bigger discount when the next order contains more items | Growing order value |
 
-### Reward loyalty
+### Grow subscriber value
 
 | Blueprint | What it does | Use it for |
 | --- | --- | --- |
 | Gift flow | Adds a free product to the order on selected renewals, with a holdout group to measure the effect | [VIP rewards](/vip-rewards) |
 | Progressive discount | Increases the discount with every renewal | [VIP rewards](/vip-rewards) |
+| Volume discount | Gives a bigger discount when the next order contains more items | Growing order value |
 
-### Automate operations
+### Onboard new subscribers
+
+| Blueprint | What it does | Use it for |
+| --- | --- | --- |
+| Welcome message | Greets new subscribers the first time they open the Customer Portal | [Fight new subscriber churn](/new-subscriber-churn) |
+| Onboarding flow | Shows a different message after each of the first three orders | [Fight new subscriber churn](/new-subscriber-churn) |
+
+### Streamline operations
 
 | Blueprint | What it does | Use it for |
 | --- | --- | --- |
@@ -53,16 +64,9 @@ Each blueprint is an optional starting point. You can build the same flow from s
 | Block customers | Stops renewals for customers tagged "blocked" | Fraud, resellers or repeated chargebacks |
 | Send test events to Klaviyo | Sends one of each Juo event to Klaviyo so you can build flows before launch | Building Klaviyo flows before your first subscribers |
 
-### Onboarding
-
-| Blueprint | What it does | Use it for |
-| --- | --- | --- |
-| Welcome message | Greets new subscribers the first time they open the Customer Portal | [Fight new subscriber churn](/new-subscriber-churn) |
-| Onboarding flow | Shows a different message after each of the first three orders | [Fight new subscriber churn](/new-subscriber-churn) |
-
 ## Considerations
 
-- **One published workflow per trigger.** If a blueprint uses a trigger that already has a published workflow, merge the logic into that workflow or unpublish it first.
+- **One published workflow per trigger.** If a blueprint uses a trigger that already has a live workflow, Juo asks **Replace the live workflow?** when you publish. Select **Replace and publish** to make the new workflow live and move the current one back to drafts. To keep both sets of logic, merge them into one workflow instead.
 - **Klaviyo blueprints need the email.** Blueprints that start from an email link only work after you add the link to your Klaviyo email. See [Klaviyo integration](/klaviyo-integration).
 
 ## Used in

@@ -1,45 +1,135 @@
 ---
 title: "Subscription widget"
+sidebarTitle: "Add the widget"
+description: "Add Juo's built-in subscription widget to your product pages so customers can choose between a one-time purchase and a subscription."
+keywords:
+  - "widget"
+  - "product page"
+  - "theme editor"
+  - "app block"
+  - "subscribe and save"
+  - "selling plan"
+  - "install widget"
 ---
+
+<Info>
+  This page helps you set up Juo's built-in product page widget. If you're working on a custom storefront, see [Build a custom subscription storefront](/custom-storefront).
+</Info>
 
 <Frame>
 ![Shopify theme editor - Juo widget installation](https://cdn.juo.io/content-uploads/Widget_installation_7c172973d3.png)
 </Frame>
-Adding the Juo Subscription widget to your store’s theme is a quick way to enable recurring purchases for your customers. Once you add the widget to your current theme, it will show up on your product pages and your customers will be able to choose between subscription and one-time purchases and buy your products in subscription.
 
-## Customize the theme
+The subscription widget lets customers choose between a one-time purchase and a subscription on your product pages. It shows the delivery frequencies and discounts from your [subscription plans](/subscribe-and-save), updates prices when customers switch variants, and adds the right option to the cart.
 
-In order to enable the Subscription widget, you’ll need to adjust the current theme of your store. To do so, go to **Online store** in Shopify admin, select **Themes** in the left menu and find your active theme. Click **Customize** to start editing
-<Frame caption="Start with customizing your Shopify theme">
-![Shopify Admin - Theme customization](https://cdn.juo.io/content-uploads/add_widget_customize_theme_572424158f.png)
-</Frame>
+## Before you start
 
-## Choose the pages to add the widget
-
-To let your customers select between one-time and subscription purchase on the product pages, you need to add the widget to the Product page template. First, choose **Products** and then **Default Product** from the **Templates** dropdown.
-<Frame caption="Find and open your Product page template">
-<video
-  controls
-  className="w-full aspect-video"
-  src="https://cdn.juo.io/content-uploads/installation_default_product_bf2a8da9ec.mp4"
-></video>
-</Frame>
+- [Install Juo](/installing-juo).
+- Create at least one [subscription plan](/subscribe-and-save) and add products to it. The widget only appears on products that belong to a plan.
+- Use an Online Store 2.0 theme, such as Dawn or any theme that supports app blocks. If your theme doesn't support app blocks, or you use a page builder, see [Page builders and older themes](#page-builders-and-older-themes).
 
 ## Add the widget to product pages
 
-On your product page template, choose where you want the widget to appear. It’s best to place it immediately above your “Add to cart” or “Buy” button. Click on the “Add block” button and select “Juo Subscription Widget” from the dropdown that appears. Hit Save to approve the changes.
-<Frame caption="Add the Juo widget block where you want it to appear">
-<video
-  controls
-  className="w-full aspect-video"
-  src="https://cdn.juo.io/content-uploads/installation_add_widget_5ab80dc16d.mp4"
-></video>
-</Frame>
+<Steps>
+  <Step title="Open the theme editor">
+    In Shopify admin, go to **Online Store** → **Themes**. Next to your current theme, select **Customize**.
 
-## Customize the Juo widget
+    <Frame>
+      ![Shopify admin - Theme customization](https://cdn.juo.io/content-uploads/add_widget_customize_theme_572424158f.png)
+    </Frame>
+  </Step>
+  <Step title="Open your product template">
+    From the page selector at the top, choose **Products** → **Default product**. If you use more than one product template, repeat these steps for each template that shows subscription products.
 
-The default look and feel of the widget can be further adjusted to match your current product page design. You can read more about the possible customizations [here](/subscription-widget).
+    <Frame>
+      <video controls className="w-full aspect-video" src="https://cdn.juo.io/content-uploads/installation_default_product_bf2a8da9ec.mp4" />
+    </Frame>
+  </Step>
+  <Step title="Add the widget block">
+    In the product information section, select **Add block**. Under **Apps**, choose the Juo subscription widget. Drag it directly above the **Add to cart** button.
 
-## Add the widget to non-product pages
+    <Frame>
+      <video controls className="w-full aspect-video" src="https://cdn.juo.io/content-uploads/installation_add_widget_5ab80dc16d.mp4" />
+    </Frame>
+  </Step>
+  <Step title="Save and test">
+    Select **Save**. Open a subscription product in your store, choose a subscription option and add it to the cart. The cart should show the delivery frequency next to the product.
+  </Step>
+</Steps>
 
-You can add the subscription to other widgets (e.g. homepage). To do this, you need to use one of available product sections like Featured Product. Pick a product and add Juo Subscription Widget to this section. The widget will automatically pull the appropriate product from this section. This can work differently depending on your theme.
+<Note>
+  If you offer subscriptions with local payment methods, such as iDEAL, Bancontact or BLIK, keep Juo's app embeds turned on under **Theme settings** → **App embeds**.
+</Note>
+
+## Customize the widget
+
+Select the widget block in the theme editor to change its style, colors, labels, badges and subscription benefits. See [Customize widget](/subscription-widget) for every setting.
+
+To translate the widget's labels, use Shopify's **Translate & Adapt** app. The widget's texts appear there with your product template content.
+
+## Add the widget to other pages
+
+You can also show the widget outside product pages, for example on your homepage. Add a product section, such as **Featured product**, choose a product and add the Juo subscription widget block to that section. The widget picks up the product from the section. Some themes handle this differently.
+
+## Page builders and older themes
+
+- **Zipify Pages**: follow the [Zipify integration guide](/zipify-integration).
+- **Other page builders or themes without app blocks**: contact [support@juo.io](mailto:support@juo.io) and we'll help you add the widget.
+- **Fully custom product pages or headless stores**: see [Build a custom subscription storefront](/custom-storefront).
+
+## Extend the widget with code
+
+Developers can react to the widget from theme code without changing the widget itself. The widget exposes hooks on `window.juoSubscriptionWidget.hooks`:
+
+| Hook | Use it to |
+| --- | --- |
+| `onReady` | Run code once the widget has rendered. |
+| `onModeChange` | React when a customer switches between one-time purchase and subscription. |
+| `onSellingPlanChange` | React when a customer picks a different delivery frequency. |
+| `onPriceUpdate` | Update other page elements when the displayed price changes. |
+| `filterSellingPlans` | Choose which plans the widget shows for each variant, for example to hide legacy plans. |
+
+```javascript
+function withJuoWidgetHooks(callback) {
+  if (window.juoSubscriptionWidget?.hooks) {
+    callback(window.juoSubscriptionWidget.hooks);
+  } else {
+    document.addEventListener(
+      "juo-subscription-widget:hooks:ready",
+      () => callback(window.juoSubscriptionWidget.hooks),
+      { once: true }
+    );
+  }
+}
+
+withJuoWidgetHooks(({ filterSellingPlans }) => {
+  // Hide subscription options on variants that are out of stock.
+  filterSellingPlans((plans, variant) => (variant.available ? plans : []));
+});
+```
+
+Each hook returns a function that removes it. Errors in your hooks are logged to the console and never break the widget.
+
+<Tip>
+  Need the full hooks reference, for example to show a price per day? Contact [support@juo.io](mailto:support@juo.io).
+</Tip>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The widget doesn't appear on a product page">
+    Check that the product is in an active [subscription plan](/subscribe-and-save) and that you added the block to the template this product uses. Products can use a different template than **Default product**.
+  </Accordion>
+
+  <Accordion title="The widget doesn't update when I switch variants">
+    Some themes change the selected variant without a standard change event. Ask your developer to call `window.juoSubscriptionWidget.refresh()` after the theme switches variants.
+  </Accordion>
+
+  <Accordion title="Local payment methods don't show at checkout">
+    **Buy it now** and express checkout buttons skip the cart, where Juo routes subscriptions to local payment methods. Hide these buttons on subscription products and check that Juo's app embeds are turned on.
+  </Accordion>
+
+  <Accordion title="Old or imported plans show in the widget">
+    Remove those products from the plan in Juo, or hide the plans with the `filterSellingPlans` hook.
+  </Accordion>
+</AccordionGroup>

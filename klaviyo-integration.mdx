@@ -1,5 +1,6 @@
 ---
 title: "Klaviyo"
+description: "Send Juo subscription events, tags and properties to Klaviyo and build subscription flows there."
 ---
 
 <Frame>
@@ -14,7 +15,34 @@ Juo provides out-of-the box email notifications for subscription purchase, renew
 
 In addition to these automatic notifications, or instead of them, merchants can also integrate Juo with Klaviyo to manage their subscription-related communication there.
 
-Before using Klaviyo integration, [enable it in the Juo settings](/enable-klaviyo-integration).
+## Connect Klaviyo
+
+Juo connects to Klaviyo with a **Private API Key**.
+
+1. In Klaviyo, go to **Settings** → **Account** → **API Keys**.
+2. Under **Private API Keys**, copy an existing key, or select **Create API key**. For a new key, choose **Custom Key** and give **Full Access** to the **Events** and **Profiles** scopes.
+   <Frame caption="Give the key full access to Events and Profiles">
+     ![Klaviyo settings - Create new Private API Key](https://cdn.juo.io/content-uploads/klaviyo_private_key_scopes_688547df91.png)
+   </Frame>
+3. In Juo, go to **Settings** → **Integrations**, turn on Klaviyo, paste the key and select **Save**.
+   <Frame caption="Paste your Private API Key and select Save">
+     ![Juo settings - Klaviyo integration](https://cdn.juo.io/content-uploads/juo_klaviyo_integration_9b594c3567.png)
+   </Frame>
+
+Use a Private API Key, not the public one.
+
+### If Klaviyo rejects your API key
+
+If Klaviyo stops accepting your Private API Key, Juo shows a warning on the Klaviyo integration page. This happens, for example, when the key is revoked or loses access to **Events** or **Profiles**. The warning says since when Klaviyo has rejected the key, and whether subscription events, profile updates or both aren't reaching Klaviyo.
+
+While the key is rejected, Juo doesn't retry the affected events and profile updates. They aren't sent to Klaviyo later, so flows that rely on them don't run for that period.
+
+To fix it:
+
+1. In Klaviyo, check that the key is still active and has **Full Access** to **Events** and **Profiles**. If it doesn't, create a new key as described in [Connect Klaviyo](#connect-klaviyo).
+2. In Juo, paste the key in the **API Key** field on the Klaviyo integration page and select **Save**.
+
+Saving the key clears the warning. If Klaviyo still rejects the key, the warning appears again after the next event Juo sends.
 
 ## Juo \<> Klaviyo Flow triggers
 
@@ -48,10 +76,6 @@ Juo is currently syncing the following events with Klaviyo:
 | **Renewal Invalid Delivery Information** | Subscription renewal fails because the delivery method or shipping address is missing or invalid |
 | **Opened Subscription Fulfillment** | A fulfillment order for a subscription is released for fulfillment (e.g. the next shipment of a prepaid subscription) |
 | **Chargeback Subscription** | Chargeback request is initiated by the customer |
-
-<Note>
-  Klaviyo uses the US spelling in the event name: **Canceled Subscription**. Search for this name when selecting the flow trigger.
-</Note>
 
 The timing of **Upcoming Renewal Subscription** follows the “trigger before renewal” windows configured in Juo. If you set up more than one window, Juo sends a separate event for each, and you can branch your flow on the `daysToRenewal`, `index` or `label` properties. See [Retention flow](/retention-flow).
 
@@ -114,11 +138,11 @@ A subscriber will only have one tag per tag group assigned at any give time.
 
 #### Tags assigned to potential subscribers
 
-Based on their order history, customers can also be assigned the **subscription_intent** tag, which allows merchants to convert them to subscribers more easily with targeted messaging.
+Based on their order history, customers can also be assigned the **subscription_intent** tag, which allows merchants to convert them to subscribers with targeted messaging.
 
-[Subscription intent tagging](/guides/using-global-settings#subscription-intent) is a PRO feature that can be enabled under **Settings** > **Subscription intent**.
+[Subscription intent tagging](/subscription-intent-detection) is a PRO feature that can be enabled under **Settings** > **Subscription intent**.
 
-All the above tags can be used as flow filters in Klaviyo — they can be found under **Flow filter** > **Properties about someone** > **Shopify Tags**.
+All the above tags can be used as flow filters in Klaviyo. Find them under **Flow filter** > **Properties about someone** > **Shopify Tags**.
 
 <Frame caption="Subscriber tags can also be used as filters">
   <img

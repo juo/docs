@@ -1,0 +1,75 @@
+---
+title: "Fight new subscriber churn"
+description: "Get new subscribers past their first renewal with a welcome, a reason to stay, and a reminder before the first charge."
+---
+
+| | |
+|---|---|
+| **Goal** | Get new subscribers to their second and third orders |
+| **Primary metric** | Second-order retention: share of new subscriptions that complete their first renewal |
+| **Supporting metrics** | Cancellations and refund requests before the first renewal, incentive acceptance rate |
+| **Triggers** | Customer portal opened (`customer_portal_entered`), Days before renewal (`days_before_renewal`) |
+| **Audience** | Subscriptions that have not renewed yet |
+| **Default outcome** | None. Only the configured actions run |
+
+<Tip>
+  **Start from a blueprint.** The **Onboarding flow** and **Welcome message** blueprints set up this flow as a ready-made workflow. In Juo, go to **Workflows**, create a workflow and choose **Onboarding flow**, complete its to-dos and publish. The Onboarding flow shows a different Customer Portal message after each of the first three orders, with a check-in poll and an optional gift on the second order. See [Blueprints](/workflows/blueprints).
+</Tip>
+
+## Why it works
+
+Churn is highest before the first renewal. Some new subscribers are loyal customers trying the subscription, some are testing the product, and some subscribed without fully registering it. The first renewal charge is the moment all of them decide.
+
+Subscribers who pass that point are much more likely to stay for several more cycles, so effort spent here has a multiplied effect on lifetime value. Two things help most: making the value of the subscription clear early, and making sure the first renewal is expected rather than a surprise. A surprise charge leads to cancellations, refund requests, and chargebacks.
+
+## Flow
+
+This guide uses two workflows, because each trigger can have one published workflow.
+
+**1. Welcome in the Customer Portal**
+
+1. A subscriber who has not renewed yet opens the Customer Portal.
+2. Show welcome content once: a thank-you, how to get the most from the product, and what being a subscriber includes.
+3. Optionally, offer a choice of welcome incentive for the next order, such as a free sample or a small discount.
+
+![New subscriber welcome](https://cdn.juo.io/content-uploads/Screenshot_2026_04_29_at_17_17_44_68f625fbc2.png)
+
+<video
+  controls
+  playsInline
+  preload="metadata"
+  style={{ width: "100%", borderRadius: 12 }}
+>
+  <source src="https://cdn.juo.io/content-uploads/New_subscriber_welcome_Workflows_Juo_Showroom_Juo_29_April_2026_bf0a1a95c5.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+**2. Reminder before the first renewal**
+
+1. A few days before the first renewal, send an event to your email or SMS platform.
+2. The platform sends a message that confirms the upcoming order and date, repeats the value, and links to the Customer Portal to skip, delay, or change it.
+
+## Configuration choices
+
+- **Welcome content.** Focus on how to use the product and what results to expect, not on promotions. A short video works well for products with a learning curve.
+- **Incentive.** A free sample of another product builds range awareness and raises the chance of a later add-on. A discount on the second order is simpler but trains price sensitivity.
+- **Reminder timing.** Send it early enough for the subscriber to act: two to five days before renewal, depending on your cadence and shipping time.
+- **Combine with the cancellation flow.** Give new subscribers their own branch in the [Cancellation flow](/cancellation-flow), with usage guidance before any offer.
+
+## Guardrails
+
+- **Show the welcome once.** Use a display limit; a pop-up on every portal visit becomes noise.
+- **One welcome incentive per customer.** Use a usage limit, so customers with several subscriptions do not collect it several times.
+- **Don't hide the renewal.** The reminder should make it easy to delay or skip. A subscriber who delays is still a subscriber; one who is charged by surprise often is not.
+
+## Measure results
+
+- **Second-order retention** for subscriptions created after launch, compared with the months before.
+- **Cancellations and refund requests in the first cycle.** Both should fall if the reminder works.
+- **Incentive acceptance** and the retention of subscribers who accepted against those who did not. Test incentives with an [experiment](/workflows/experiments).
+
+## Related
+
+- [Cancellation flow](/cancellation-flow)
+- [Blueprints](/workflows/blueprints)
+- [Klaviyo integration](/klaviyo-integration) · [Customer.io integration](/customerio-integration)

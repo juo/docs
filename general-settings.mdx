@@ -9,15 +9,15 @@ Global settings live under **Settings** in the Admin Panel. This page covers the
 
 Choose what happens when a subscription renews with an out-of-stock item:
 
-- **Renew when back in stock** — Hold renewals until stock returns (duration follows your dunning period).
-- **Renew when out of stock** — Renew and bill without interruption.
+- **Renew when back in stock**: Hold renewals until stock returns (duration follows your dunning period).
+- **Renew when out of stock**: Renew and bill without interruption.
 
 ## Price changes
 
 When product prices change in Shopify:
 
-- **Update to the new price** — Upcoming renewals use the new catalog price.
-- **Keep the initial price** — Existing subscription lines keep the price from when they were added.
+- **Update to the new price**: Upcoming renewals use the new catalog price.
+- **Keep the initial price**: Existing subscription lines keep the price from when they were added.
 
 Changes apply to upcoming orders only.
 
@@ -39,17 +39,27 @@ For profile setup details, see [Shipping setup](/shipping-setup).
 
 Turn it off only if your Customer Portal collects the pickup point through your own custom blocks. Juo then saves the method even without a point, and a subscription saved without one renews without one.
 
-Either way, a stored pickup point is kept when the subscription moves to another method of the same carrier, and dropped when it moves to another carrier's method. See [Shipping setup](/shipping-setup#pickup-points).
+Either way, a stored pickup point is kept when the subscription moves to another method of the same carrier, and dropped when it moves to another carrier's method. See [Shipping setup](/shipping-setup#choose-your-setup).
 
 ## Tags
 
-Define tags Juo writes to Shopify **orders** and **customers** (for example first order vs recurring, active vs cancelled). Changes apply to upcoming orders only. Cycle and reference prefixes get an automatic index suffix.
+Define tags Juo writes to Shopify **orders** and **customers** (for example first order vs recurring, active vs canceled). Changes apply to upcoming orders only. Cycle and reference prefixes get an automatic index suffix.
 
 ## Copy initial order attributes
 
-Enable this to copy selected custom attributes from the customer’s **first order** onto the subscription — useful when a shipping app adds pickup-point codes after checkout.
+Enable this to copy selected custom attributes from the customer’s **first order** onto the subscription. This is useful when a shipping app adds pickup-point codes after checkout.
 
 - Add the attribute **keys** to whitelist (only those keys are copied).
 - Existing subscription attributes are **never overwritten**.
 
-Pair this with pickup-point integrations when attributes must persist onto renewals. See [Shipping setup](/shipping-setup#pickup-points).
+Pair this with pickup-point integrations when attributes must persist onto renewals. See [Shipping setup](/shipping-setup#choose-your-setup).
+
+## Freeze renewals
+
+**Freeze all renewals** stops subscription activity across your store:
+
+- No renewal charges.
+- No renewal orders created.
+- Subscribers can't edit subscriptions in the Customer Portal.
+
+Renewals that fall due while the freeze is on are retried about every 24 hours, and resume when you turn the freeze off. Use it for planned outages, catalog changes or emergencies. To stop one subscription, pause it instead.

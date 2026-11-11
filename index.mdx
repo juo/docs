@@ -1,26 +1,302 @@
 ---
-title: "Intro"
+title: "Juo documentation"
+description: "Ask a question, or choose a path: set up Juo, explore features, or follow a guide."
+sidebarTitle: "Documentation home"
+mode: "custom"
+keywords:
+  - "juo"
+  - "documentation"
+  - "shopify subscriptions"
+  - "help"
+hidden: true
 ---
 
-Get an overview of Juo’s features and how to use them.
+<div className="not-prose" style={{ maxWidth: 960, margin: "0 auto", padding: "96px 24px 96px" }}>
+  <AskJuo />
 
-<div style={{ display:"flex",justifyContent:"center" }} />
+  <div className="juo-tiles">
+    <a className="juo-tile" href="/subscription-experiences">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
+        <span className="juo-tile-icon">
+          <Icon icon="repeat" iconType="regular" />
+        </span>
+      </div>
 
-## Getting started
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
+        <div className="juo-tile-title">Sell subscriptions</div>
+        <div className="juo-tile-text">Subscribe and save, build-a-box, curated boxes and memberships.</div>
+      </div>
+    </a>
 
-<CardGroup cols={2}>
-  <Card 
-    title="Launch subscriptions" 
-    icon="rocket" 
-    href="/subscription-experiences"
-  >
-    Create a complete subscription experience and start selling today
-  </Card>
-  <Card 
-    title="Grow & retain" 
-    icon="leaf" 
-    href="/grow-and-retain"
-  >
-    Explore tools for healthy growth of your subscriber base
-  </Card>
-</CardGroup>
+    <a className="juo-tile" href="/customer-portal">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
+        <span className="juo-tile-icon">
+          <Icon icon="store" iconType="regular" />
+        </span>
+      </div>
+
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
+        <div className="juo-tile-title">Storefront and Customer Portal</div>
+        <div className="juo-tile-text">The subscription widget, custom storefronts and self-service for subscribers.</div>
+      </div>
+    </a>
+
+    <a className="juo-tile" href="/klaviyo-integration">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
+        <span className="juo-tile-icon">
+          <Icon icon="envelope" iconType="regular" />
+        </span>
+      </div>
+
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
+        <div className="juo-tile-title">Klaviyo</div>
+        <div className="juo-tile-text">Sync subscription events and build lifecycle emails.</div>
+      </div>
+    </a>
+
+    <a className="juo-tile" href="/cancellation-flow">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
+        <span className="juo-tile-icon">
+          <Icon icon="door-open" iconType="regular" />
+        </span>
+      </div>
+
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
+        <div className="juo-tile-title">Increase retention</div>
+        <div className="juo-tile-text">Design a cancellation flow that saves subscribers, then explore more guides.</div>
+      </div>
+    </a>
+
+    <a className="juo-tile" href="/workflows/workflows-overview">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
+        <span className="juo-tile-icon">
+          <Icon icon="diagram-project" iconType="regular" />
+        </span>
+      </div>
+
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
+        <div className="juo-tile-title">Automate with Workflows</div>
+        <div className="juo-tile-text">React to subscription events, or start from a ready-made blueprint.</div>
+      </div>
+    </a>
+
+    <a className="juo-tile" href="/use-juo-with-ai">
+      <div className="juo-tile-visual" style={{ height: "auto", padding: "16px 20px" }}>
+        <span className="juo-tile-icon">
+          <Icon icon="code" iconType="regular" />
+        </span>
+      </div>
+
+      <div className="juo-tile-body" style={{ padding: "14px 20px 18px" }}>
+        <div className="juo-tile-title">Build with Juo</div>
+        <div className="juo-tile-text">API, webhooks and the MCP server for AI agents.</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+export const ParticleAsk = () => {
+  const W = 96;
+  const H = 46;
+  const GAP = 4;
+  const canvasRef = useRef(null);
+  const state = useRef({ hover: false, mx: 0, my: 0, hoverStart: 0 });
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const el = document.documentElement;
+    const update = () => setDark(el.classList.contains("dark"));
+    update();
+    const mo = new MutationObserver(update);
+    mo.observe(el, { attributes: true, attributeFilter: ["class"] });
+    return () => mo.disconnect();
+  }, []);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let seed = 12345;
+    const rand = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const cols = Math.floor((W - 4) / GAP) + 1;
+    const rows = Math.floor((H - 4) / GAP) + 1;
+    const ox = (W - (cols - 1) * GAP) / 2;
+    const oy = (H - (rows - 1) * GAP) / 2;
+    const pts = [];
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        const edge = i === 0 || j === 0 || i === cols - 1 || j === rows - 1;
+        const x = ox + i * GAP;
+        const y = oy + j * GAP;
+        const a = rand() * Math.PI * 2;
+        const d = 20 + rand() * 60;
+        pts.push({
+          x, y, edge,
+          sx: x + Math.cos(a) * d, sy: y + Math.sin(a) * d,
+          px: rand() * 6.28, py: rand() * 6.28, sp: 0.6 + rand() * 0.8,
+          base: edge ? 0.9 : 0.32 + rand() * 0.12,
+        });
+      }
+    }
+    const t0 = performance.now();
+    let raf = 0;
+    const ease = (k) => 1 - Math.pow(1 - k, 3);
+    const beat = (t) => {
+      const period = 60 / 44;
+      const p = (t % period) / period;
+      const pulse = (c) => Math.max(0, 1 - Math.abs(p - c) / 0.06);
+      return Math.max(pulse(0.08), 0.65 * pulse(0.08 + 0.18));
+    };
+    const frame = (now) => {
+      const t = (now - t0) / 1000;
+      const s = state.current;
+      const enter = reduce ? 1 : ease(Math.min(1, t / 0.6));
+      ctx.fillStyle = dark ? (reduce ? "#F5F5F5" : "rgba(245,245,245,0.45)") : (reduce ? "#000" : "rgba(0,0,0,0.45)");
+      ctx.fillRect(0, 0, W, H);
+      const ht = (now - s.hoverStart) / 1000;
+      for (const p of pts) {
+        let x = p.sx + (p.x - p.sx) * enter;
+        let y = p.sy + (p.y - p.sy) * enter;
+        if (!reduce) {
+          x += Math.sin(t * p.sp * 2 + p.px) * 0.35;
+          y += Math.cos(t * p.sp * 2 + p.py) * 0.35;
+        }
+        let r = 0.55;
+        let b = p.base;
+        if (s.hover && !reduce) {
+          const dx = x - s.mx;
+          const dy = y - s.my;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          const near = Math.max(0, 1 - dist / 26);
+          r += near * 0.6;
+          b = Math.min(1, b + near * 0.6);
+          x -= (dx / dist) * near * 1.2;
+          y -= (dy / dist) * near * 1.2;
+          const ring = (ht * 60) % 70;
+          const w = Math.max(0, 1 - Math.abs(dist - ring) / 8) * beat(ht);
+          r += w * 0.5;
+          b = Math.min(1, b + w * 0.5);
+          x += (dx / dist) * w * 1.5;
+          y += (dy / dist) * w * 1.5;
+        }
+        ctx.fillStyle = (dark ? "rgba(17,17,17," : "rgba(255,255,255,") + b.toFixed(3) + ")";
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, 6.2832);
+        ctx.fill();
+      }
+      if (!reduce) raf = requestAnimationFrame(frame);
+    };
+    raf = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(raf);
+  }, [dark]);
+  const onMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    state.current.mx = ((e.clientX - rect.left) / rect.width) * W;
+    state.current.my = ((e.clientY - rect.top) / rect.height) * H;
+  };
+  const label = { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" };
+  return (
+    <button
+      type="submit"
+      aria-label="Ask"
+      onMouseEnter={(e) => { state.current.hover = true; state.current.hoverStart = performance.now(); onMove(e); }}
+      onMouseLeave={() => { state.current.hover = false; }}
+      onMouseMove={onMove}
+      style={{ position: "relative", width: W, height: H, flex: "none", padding: 0, border: "none", borderRadius: 4, background: dark ? "#F5F5F5" : "#000", cursor: "pointer", overflow: "hidden" }}
+    >
+      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: W, height: H, display: "block" }} />
+      <span style={{ ...label, zIndex: 1, color: dark ? "#F5F5F5" : "#000", WebkitTextStroke: dark ? "3px #F5F5F5" : "3px #000", fontWeight: 600, fontSize: 16 }}>Ask</span>
+      <span style={{ ...label, zIndex: 2, color: dark ? "#111111" : "#fff", fontWeight: 600, fontSize: 16 }}>Ask</span>
+    </button>
+  );
+};
+
+export const AskJuo = () => {
+  const examples = [
+    { label: "Discount not applied", q: "Why wasn't a subscription discount applied on a renewal, and how do I fix it?" },
+    { label: "iDEAL and SEPA renewals", q: "How do iDEAL and SEPA subscriptions renew, and why can payment take a few days?" },
+    { label: "Failed payment emails", q: "How do I send Klaviyo emails when a subscription payment fails, with a link to update the payment method?" },
+  ];
+  const [question, setQuestion] = useState("");
+  const ask = (text) => {
+    const q = text.trim();
+    window.location.href = window.location.pathname + (q ? "?assistant=" + encodeURIComponent(q) : "?assistant");
+  };
+  const openSearch = (text) => {
+    try {
+      const find = () => document.querySelector('[data-search-item="input"]');
+      const press = (mod) => document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", code: "KeyK", metaKey: mod === "meta", ctrlKey: mod === "ctrl", bubbles: true, cancelable: true }));
+      if (!find()) press("meta");
+      let tries = 0;
+      const fill = () => {
+        const inp = find();
+        if (!inp) {
+          tries += 1;
+          if (tries === 3) press("ctrl");
+          if (tries < 20) setTimeout(fill, 30);
+          return;
+        }
+        if (text) {
+          const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+          setter.call(inp, text);
+          inp.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+        inp.focus();
+      };
+      setTimeout(fill, 30);
+    } catch (e) {}
+  };
+  return (
+    <div className="not-prose" style={{ maxWidth: 640, margin: "0 auto 56px", display: "grid", gap: 12 }}>
+      <style>{`html[data-current-path="/"] #navigation-items > div:has(> .sidebar-group-header),
+html[data-current-path="/docs"] #navigation-items > div:has(> .sidebar-group-header),
+html[data-current-path="/"] #sidebar-content div:has(> div > #search-bar-entry),
+html[data-current-path="/docs"] #sidebar-content div:has(> div > #search-bar-entry),
+html[data-current-path="/"] #navigation-items > ul:not(:first-child),
+html[data-current-path="/docs"] #navigation-items > ul:not(:first-child),
+html[data-current-path="/"] .nav-tabs-item[data-active] > div.absolute,
+html[data-current-path="/docs"] .nav-tabs-item[data-active] > div.absolute {
+  display: none !important;
+}
+html[data-current-path="/"] .nav-tabs-item[data-active],
+html[data-current-path="/docs"] .nav-tabs-item[data-active] {
+  color: rgb(81, 81, 87) !important;
+  text-shadow: none !important;
+}
+html.dark[data-current-path="/"] .nav-tabs-item[data-active],
+html.dark[data-current-path="/docs"] .nav-tabs-item[data-active] {
+  color: rgb(160, 159, 165) !important;
+}`}</style>
+      <form
+        onSubmit={(e) => { e.preventDefault(); ask(question); }}
+        style={{ display: "flex", gap: 8 }}
+      >
+        <input
+          type="text"
+          aria-label="Search or ask a question"
+          value={question}
+          onChange={(e) => { const v = e.target.value; setQuestion(""); e.target.blur(); openSearch(v); }}
+          onFocus={(e) => { e.target.blur(); openSearch(""); }}
+          placeholder="Search or ask a question"
+          className="juo-ask-input"
+        />
+        <ParticleAsk />
+      </form>
+      <div style={{ display: "flex", gap: 6, flexWrap: "nowrap", justifyContent: "center", fontSize: 12, overflow: "hidden" }}>
+        {examples.map((ex) => (
+          <button
+            key={ex.label}
+            type="button"
+            onClick={() => ask(ex.q)}
+            className="juo-ask-chip"
+          >
+            {ex.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};

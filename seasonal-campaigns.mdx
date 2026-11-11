@@ -1,0 +1,140 @@
+---
+title: "Sales and seasonal campaigns for subscribers"
+sidebarTitle: "Sales and seasonal campaigns"
+description: "Plan and set up Black Friday, holiday and anniversary campaigns that reward subscribers, win new ones and keep discounts from stacking."
+keywords:
+  - "black friday"
+  - "sale"
+  - "seasonal campaign"
+  - "promotion"
+  - "gift"
+  - "discount"
+  - "discount code"
+  - "stacking"
+  - "bulk actions"
+  - "subscribers"
+---
+
+|  |  |
+| --- | --- |
+| **Who it's for** | Brands running store-wide sales, holiday campaigns or anniversary promotions |
+| **Goal** | Use seasonal moments to win new subscribers and reward existing ones, without stacking discounts you didn't plan |
+| **Primary metric** | New subscriptions during the campaign, and subscriber cancellations during and after it |
+| **Supporting metrics** | Average order value, campaign cost per subscriber, retention of campaign subscribers 2–3 orders later |
+
+## Why it matters
+
+A store-wide sale is aimed at new and one-time customers, but your subscribers see it too. Two things can go wrong. If the sale price and the subscription discount combine, subscribers pay much less than you planned. If they don't, subscribers can find the sale price lower than their own, and some cancel to buy at the sale price instead.
+
+A campaign designed with subscribers in mind avoids both. It gives subscribers their own reason to stay, and it turns sale traffic into new subscriptions rather than one-off discounted orders.
+
+## Plan the campaign
+
+### Decide who it's for
+
+- **New customers.** The goal is to start subscriptions. Make the subscription option the best deal in the sale, for example a bigger first-order discount for subscribing.
+- **Existing subscribers.** The goal is to keep them and raise order value. Give them something the sale doesn't offer: a gift, an exclusive add-on, or a discount on their next order.
+- **Both.** Run two offers with clear rules for each, so the same order can't collect both.
+
+### Choose the incentive
+
+| Incentive | Best for | Watch out for | Set it up |
+| --- | --- | --- | --- |
+| Discount on the next order or next few orders | Matching the sale for subscribers | Make it time-limited, not permanent | [Give subscribers a discount](#give-subscribers-a-discount) |
+| Gift in the next order | Rewarding subscribers, introducing new products | Stock, and gifts landing on the right order | [Add a gift to the next order](#add-a-gift-to-the-next-order) |
+| Exclusive add-on at a special price | Raising order value without discounting the subscription | Too many choices at once | [Let subscribers claim an offer](#let-subscribers-claim-an-offer) |
+| Temporary change to the subscription discount | A seasonal price for every subscriber | Changing it back after the campaign | [Change the subscription discount for a season](#change-the-subscription-discount-for-a-season) |
+| Volume discount | Raising order value | Stacking with the subscription discount | [Offer a volume discount](#offer-a-volume-discount) |
+
+### Plan timing and communication
+
+- **Tell subscribers first.** A message before the public sale, with their own offer, makes them feel looked after instead of left out.
+- **Make the offer easy to claim.** One click from the email or a visible offer in the Customer Portal works better than a code to remember.
+- **Set an end date** and say it. Open-ended offers lose urgency and are easy to forget to switch off.
+
+## Set it up in Juo
+
+### Give subscribers a discount
+
+Use a bulk action to add a discount to the subscriptions you choose, for a set number of renewals.
+
+1. Go to **Subscriptions** and use search and filters to find the subscribers the campaign is for.
+2. Select the subscriptions, or use **Select all** to include every subscription that matches the filters.
+3. Open **Pricing → Add discount**.
+4. Choose **Amount off subscription** or **Amount off products**, then a percentage or a flat amount.
+5. Set the **number of renewals** the discount applies to, for example 1 for the next order only, and **Confirm**.
+
+The discount applies without a code, so subscribers don't need to do anything. See [Bulk actions](/bulk-actions).
+
+### Add a gift to the next order
+
+1. Select the subscriptions as above.
+2. Open **Products → Add product** and choose the gift variant.
+3. Set a **custom price** for it and mark it as **one-time**, so it's added to the next renewal only.
+4. **Confirm**.
+
+Plan discounts don't apply to a product added this way, so the custom price is what the subscriber pays. To give gifts automatically at subscription milestones instead, start from the **Gift flow** [blueprint](/workflows/blueprints). For every way to give a gift, see [Gifts for subscribers](/gifts).
+
+### Let subscribers claim an offer
+
+An upsell campaign shows products at a special price in the Customer Portal for a set period.
+
+1. Go to **Experiences → Upsells → Add Upsell**.
+2. Set the **Schedule** to the campaign dates and an optional **Discount**.
+3. Use **Usage limit** and **Customer eligibility** to control who can claim it and how many times.
+4. Add the products and activate the upsell.
+
+To let subscribers claim it from an email in one click, see [Upsells for subscriptions](/upsells-for-subscriptions#add-it-to-your-klaviyo-emails).
+
+### Change the subscription discount for a season
+
+Changing a plan's discount in **Offers → Subscribe and save** applies to new subscriptions only. To move existing subscriptions to the new price:
+
+1. Change the discount on the plan.
+2. Go to **Subscriptions**, select the subscriptions on that plan, and run **Pricing → Update subscription plan pricing**.
+3. When the campaign ends, change the discount back and run the same bulk action again.
+
+Products with a manual price override, one-time products and upsells are skipped unless you choose otherwise. See [Bulk actions](/bulk-actions).
+
+### Run a store-wide sale without stacking discounts
+
+Subscription plan discounts and Extras always combine with Shopify discount codes. To keep a sale code from stacking on top of the subscription discount:
+
+- In Shopify, set the sale code's **Purchase type** to one-time purchases only, so it doesn't apply to subscription items.
+- Or create a plan-specific code in **Shopify → Discounts → Create discount** under **Juo Subscriptions**, and choose exactly which purchase options it applies to.
+
+The Build-a-box discount is a product discount. A code combines with it only if the code is set to combine with product discounts. Place a test order with a subscription item before the sale starts. See [Discounts](/discounts).
+
+### Offer a volume discount
+
+- **At checkout:** [Tiered discounts](/tiered-discounts) give a bigger discount as customers add more eligible products to the cart, for one-time and subscription orders.
+- **On renewals:** the **Volume discount** [blueprint](/workflows/blueprints) recalculates the discount on the upcoming order from the number of items in it.
+
+### Announce the campaign
+
+Send the offer through your email tool. With the [Klaviyo integration](/klaviyo-integration), add [quick links](/quick-actions) that take subscribers straight to the right place in the Customer Portal.
+
+## Guardrails
+
+- **Decide on stacking before the sale starts.** Know exactly which discounts can combine for subscriptions, and test an order before launch.
+- **Don't make canceling and rebuying the best deal.** The subscriber offer should be worth at least as much as the sale.
+- **Limit gifts and one-off discounts** to one per subscriber, and check you have the stock.
+- **Plan the end of the campaign.** Write down what changes back, and when.
+
+## Examples
+
+- **Black Friday.** New customers get the store-wide sale, with the biggest saving reserved for subscribing. Existing subscribers get a free gift in their next order, announced a few days before the public sale.
+- **Subscription anniversary.** Subscribers who reach one year get a thank-you gift or a discount on their next order.
+- **Seasonal price.** For a holiday month, every subscriber gets a higher subscription discount, which returns to normal after the campaign.
+
+## How to measure it
+
+- **New subscriptions** during the campaign compared with a normal period, and how many renew after the first order.
+- **Subscriber cancellations** during the sale and in the weeks after. A spike means the sale undercut your subscribers.
+- **Cost per subscriber** of gifts and discounts, compared with the extra orders and order value. See [Analytics](/analytics).
+
+## Related guides
+
+- [Gifts for subscribers](/gifts)
+- [VIP rewards](/vip-rewards)
+- [Upsells for subscriptions](/upsells-for-subscriptions)

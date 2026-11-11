@@ -17,7 +17,7 @@ To access the properties that are available for each link or action, preview you
 
 ---
 
-# Quick Links
+## Quick Links
 
 Quick Links are used to direct customers to specific places in Juo Customer Portal. These links are sent as properties inside the **QuickLinks** object on each synced event.
 
@@ -41,7 +41,7 @@ Example usage in a Customer.io email:
 
 ---
 
-# Quick Actions
+## Quick Actions
 
 Quick Actions allow customers to perform specific tasks directly from their email. These actions are sent as properties inside the **QuickActions** object on each synced event.
 
@@ -52,7 +52,7 @@ Quick Actions allow customers to perform specific tasks directly from their emai
 | **Pause**     | Pauses the subscription                  |
 | **Skip**      | Skips the next renewal                   |
 | **RenewNow**  | Triggers an immediate renewal            |
-| **Reactivate**| Reactivates a cancelled subscription     |
+| **Reactivate**| Reactivates a canceled subscription     |
 | **Resume**    | Resumes a paused subscription            |
 
 Example usage in a Customer.io email:
@@ -64,7 +64,7 @@ Example usage in a Customer.io email:
 
 ## Add Product
 
-The **Products** array inside **QuickActions** can be used by your subscribers to easily add products included in Juo Upsell campaigns to their next renewal. Merchants can display product details such as the product's image, price, and title in the email.
+The **Products** array inside **QuickActions** can be used by your subscribers to add products included in Juo Upsell campaigns to their next renewal. Merchants can display product details such as the product's image, price, and title in the email.
 
 Each product entry in `QuickActions.Products` contains the following fields:
 
@@ -155,7 +155,7 @@ Quick action parameters are sent to Customer.io with each trigger:
 - Paused Subscription
 - Skipped Subscription
 - Renewed Now Subscription
-- Cancelled Subscription
+- Canceled Subscription
 - Upcoming Renewal Subscription
 - Billed Subscription
 - Billing Failed Subscription

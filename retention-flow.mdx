@@ -1,62 +1,68 @@
 ---
 title: "Retention and acquisition settings"
 sidebarTitle: "Retention settings"
-description: "Freeze renewals, dunning, renewal timing, cancellation recovery, and related retention settings."
+description: "Configure failed-payment retries, the cancellation poll, renewal reminders, renewal timing, quick action links and subscription intent tagging."
+keywords:
+  - "retention settings"
+  - "dunning"
+  - "failed payments"
+  - "cancellation poll"
+  - "upcoming renewal"
+  - "renewal time"
+  - "quick actions"
+  - "subscription intent"
 ---
 
-These options live under **Settings → Retention and acquisition**.
-
-For workflow-based cancellation and save offers, see [Workflows](/workflows/workflows-overview) and [Cancellation flow](/workflows/guides/cancellation-flow). The older Experiences retention poll (below) may still be used depending on your setup.
-
-## Freeze renewals
-
-**Freeze all renewals** pauses subscription operations shop-wide:
-
-- No renewal charges
-- No draft / renewal orders created
-- Customers cannot edit subscriptions in the Customer Portal
-
-Scheduled renewal jobs keep rescheduling (about every 24 hours) until you turn freeze off. When disabled, renewals resume automatically.
-
-Use this for planned outages, catalogue cutovers, or emergency stops — not as a substitute for pausing individual subscriptions.
+Go to **Settings** → **Retention and acquisition** in Juo. The same page is also available under **Experiences** → **Retention**.
 
 ## Dunning flow
 
-Set how long Juo retries failed payments before the subscription moves to **failed**. The period starts from the first failed billing attempt. Duration is configured in days, weeks, or months.
+Set how long Juo keeps retrying a failed payment before the subscription changes to **Failed**. The period starts from the first billing attempt. The default is 1 month.
 
-For payment-failure automation with custom retry logic, use a [Payment failed](/workflows/triggers) workflow with dunning actions.
+For your own retry schedule, emails or actions after a failed payment, use a workflow with the [Payment failed](/workflows/triggers#system-initiated) trigger. See [dunning](/glossary/dunning) for how failed payment recovery works.
 
-## Renewal time
+## Cancellation flow
 
-Choose when renewals run:
+The cancellation poll asks subscribers why they want to cancel when they select **Cancel** in the Customer Portal, and responds with an offer.
 
-- **Renew on the initial purchase time** — Each subscription renews at the hour it was originally purchased.
-- **Renew all at the same time** — All renewals run at a single hour you select (0–23).
+<Warning>
+  If you publish a cancellation workflow, it replaces this poll in the Customer Portal. The poll is used only when no cancellation workflow is published. For new setups, use the [Cancel flow blueprint](/cancellation-flow).
+</Warning>
 
-## Upcoming renewal events
+To set up the poll:
 
-Configure one or more “trigger before renewal” windows (interval + optional label). These drive upcoming-renewal notifications and sync to Klaviyo / Customer.io when those integrations are enabled.
+1. Turn on **Enable cancellation poll**.
+2. Under **Manage answers**, add the reasons subscribers can choose from.
+3. For each answer, choose what happens **When selected**: show a confirmation, offer a discount, ask for a reason, change the delivery interval, offer a skip, a pause, a renewal now or a product swap.
+4. To use discounts, turn on **Offer discount on cancellation** and set the percentage, how long it applies (permanently or a number of times) and the message subscribers see.
 
-## Cancellation poll (legacy retention flow)
+Results appear under **Analytics** → **Retention flow**. See the [cancellation flow guide](/cancellation-flow) for what to offer and when.
 
-If you still use the classic cancellation poll (instead of or alongside Workflows):
+## Upcoming renewal reminders
 
-- Customize the message and answer options when a customer clicks **Cancel**.
-- Attach recovery steps per answer: confirmation, discount, free-text reason, change frequency, delay order, pause, renew now, swap product.
-- Optionally offer a cancel-path discount (size, duration, message).
+Set when Juo sends the upcoming renewal event before each renewal. The default is 3 days before. Add more reminders with a label, for example "It's tomorrow" 1 day before, to send several emails.
 
-Performance for this flow appears under **Analytics → Retention flow**.
+The events trigger Juo's renewal notifications and are sent to [Klaviyo](/klaviyo-integration) and [Customer.io](/customerio-integration) when connected.
 
 ## Quick actions
 
-Configure how long authenticated quick-action / quick-link tokens remain valid. Prefer short expiries (for example ≤ 30 days) when embedding links in email.
+Set how long one-click links in emails stay valid, such as skip, pause or add product links. The default is 3 days. Keep it at 30 days or less for security.
 
 See [Quick actions](/quick-actions) and [Quick actions for Customer.io](/quick-actions-cio).
 
+## Renewal time
+
+Choose when renewals are processed on their due date:
+
+- **Renew on the initial purchase time**: each subscription renews at the time of day it was first bought.
+- **Renew all at the same time**: every renewal on a given day runs at the hour you select.
+
+Processing renewals at one hour makes fulfillment and support easier to plan.
+
 ## Subscription intent
 
-When enabled, Juo tags customers who look like potential subscribers (based on repeat purchase patterns). Tagging can take up to 24 hours. Details: [Subscription intent detection](/subscription-intent-detection).
+Under **Acquisition**, turn on subscription intent to tag customers whose order history suggests they would subscribe. Tagging can take up to 24 hours. See [Subscription intent detection](/subscription-intent-detection).
 
-## SEPA renewals and chargebacks
+## SEPA Direct Debit
 
-If your shop uses SEPA Direct Debit, additional controls appear here for payment timing and [chargeback recovery](/sepa-chargebacks).
+If your store collects renewals by SEPA Direct Debit, a **SEPA Direct Debit** section appears on this page. See [SEPA Direct Debit](/sepa-direct-debit) for every setting.

@@ -20,9 +20,9 @@ These triggers do **not** run when the same action is performed in the Admin Pan
 | `Subscription cancellation requested` | Triggered when a customer clicks **Cancel**. Default outcome: cancel the subscription unless an offer is accepted (or a Custom offer is accepted). |
 | `Next renewal skip requested` | Triggered when a customer chooses to skip an upcoming order. Default outcome: skip the order unless an offer is accepted. |
 | `Subscription pause requested` | Triggered when a customer clicks **Pause**. Default outcome: pause the subscription unless an offer is accepted. |
-| `Customer portal opened` | Triggered when a customer logs into the Customer Portal. No default outcome — only configured actions run. Use display limits on pop-ups so they do not show on every visit. |
+| `Customer portal opened` | Triggered when a customer logs into the Customer Portal. No default outcome: only configured actions run. Use display limits on pop-ups so they do not show on every visit. |
 | `Subscription item removal requested` | Triggered when a customer attempts to remove a product from their subscription. Default outcome: remove that item unless an offer is accepted. |
-| `Subscription reactivation requested` | Triggered when a customer clicks **Reactivate** on a cancelled or failed subscription. Reactivation proceeds independently (no default outcome). Use it for welcome-back offers, surveys, or confirmation messages. |
+| `Subscription reactivation requested` | Triggered when a customer clicks **Reactivate** on a canceled or failed subscription. Reactivation proceeds independently (no default outcome). Use it for welcome-back offers, surveys, or confirmation messages. |
 
 Customer-initiated triggers can carry **UTM parameters** from the link that opened the portal (for example from a Klaviyo or Customer.io email). Use `trigger.utm.*` conditions to branch on how the customer arrived. See [Conditions](/workflows/conditions).
 
@@ -35,7 +35,7 @@ Customer-initiated triggers can carry **UTM parameters** from the link that open
 | `Payment failed` | Triggered when a billing attempt fails on a recurring order. Use dunning actions (`Schedule Charge`, `Default Dunning`, `Fail Subscription`) to control retries. |
 | `Next order updated` | Triggered whenever the subscription is changed or interacted with, and validated again just before renewal. Defines and updates the upcoming renewal order. Use schedule-order actions to modify or block it. |
 | `Chargeback initiated` | Triggered when a chargeback is initiated on a subscription order. |
-| `Subscription order created` | Triggered after an order has been placed for a subscription, for the first purchase and for every renewal. No default outcome — only configured actions run. |
+| `Subscription order created` | Triggered after an order has been placed for a subscription, for the first purchase and for every renewal. No default outcome: only configured actions run. |
 
 ### Next order updated
 
@@ -48,7 +48,7 @@ Example use cases:
 
 ### Subscription order created
 
-_Subscription order created_ fires once the order exists — after the first purchase, and after each renewal order is placed. Use it to react to an order that has actually been placed, for example to remove a tag, add or swap a product for the following cycles, or apply a discount after a specific renewal.
+_Subscription order created_ fires once the order exists: after the first purchase, and after each renewal order is placed. Use it to react to an order that has actually been placed, for example to remove a tag, add or swap a product for the following cycles, or apply a discount after a specific renewal.
 
 Use **Next order updated** to change the order before it is placed. It can run many times before a renewal, while _Subscription order created_ runs once per placed order.
 

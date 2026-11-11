@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "Juo Subscriptions documentation",
-  "theme": "mint",
+  "theme": "maple",
   "favicon": {
     "light": "/favicon.png",
     "dark": "/favicon.png"
@@ -12,121 +12,255 @@
   },
   "colors": {
     "primary": "#3727F4",
-    "light": "#3727F4",
-    "dark": "#d9d9d9"
+    "light": "#8B85FF",
+    "dark": "#3727F4"
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#111111"
+    }
+  },
+  "fonts": {
+    "family": "Inter"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": false
+  },
+  "styling": {
+    "eyebrows": "section",
+    "codeblocks": "system"
   },
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Getting started",
-        "pages": [
-          "index",
-          "about-juo",
-          "use-juo-with-ai",
-          "subscription-experiences",
-          "retention"
-        ]
-      },
-      {
-        "group": "Subscription experiences",
-        "pages": [
-          "subscribe-and-save",
-          "build-a-box",
-          "upsells",
-          "extras",
-          "custom-workflows",
-          "curated-boxes",
-          "memberships"
-        ]
-      },
-      {
-        "group": "Workflows",
-        "pages": [
-          "workflows/workflows-overview",
-          "workflows/triggers",
-          "workflows/conditions",
-          "workflows/actions",
-          "workflows/experiments",
+        "tab": "Home",
+        "hidden": true,
+        "groups": [
           {
-            "group": "Use cases",
+            "group": "Home",
             "pages": [
-              "workflows/guides/cancellation-flow",
-              "workflows/guides/fight-new-subscriber-churn",
-              "workflows/guides/vip-rewards"
+              "index"
             ]
           }
         ]
       },
       {
-        "group": "Settings",
-        "pages": [
-          "general-settings",
-          "retention-flow",
-          "shipping-setup",
-          "notifications",
-          "subscription-intent-detection",
-          "sepa-chargebacks"
-        ]
-      },
-      {
-        "group": "Integrations",
-        "pages": [
-          "klaviyo-integration",
-          "hubspot-integration",
-          "customerio-integration",
-          "gorgias-integration",
-          "zipify-integration",
-          "webhooks",
-          "leat-integration"
-        ]
-      },
-      {
-        "group": "Use guide",
-        "pages": [
-          "editor",
-          "managing-subscriptions",
-          "create-subscription",
-          "bulk-actions",
-          "customer-portal",
-          "linking-customer-portal",
-          "quick-actions",
-          "discounts",
-          "tiered-discounts",
-          "adding-juo-subscription-widget",
-          "subscription-widget",
-          "custom-storefront"
-        ]
-      },
-      {
-        "group": " ",
-        "pages": [
+        "tab": "Get started",
+        "icon": "rocket",
+        "groups": [
           {
-            "group": "Glossary",
+            "group": "Get started with Juo",
             "pages": [
-              "glossary/build-a-box",
-              "glossary/customer-portal",
-              "glossary/delivery-frequency",
-              "glossary/dunning",
-              "glossary/dynamic-boxes",
-              "glossary/email-notifications",
-              "glossary/inventory-policy",
-              "glossary/lifetime-value",
-              "glossary/membership",
-              "glossary/merchant-portal",
-              "glossary/migration",
-              "glossary/one-time-purchase",
-              "glossary/product-swap",
-              "glossary/retention-flow",
-              "glossary/skip-renewal",
-              "glossary/stock-keeping-unit",
-              "glossary/subscriber",
-              "glossary/subscription-box",
-              "glossary/subscription-cancellation",
-              "glossary/subscription-order",
-              "glossary/subscription-pause",
-              "glossary/subscription-renewal",
-              "glossary/subscription",
-              "glossary/variable-discount"
+              "get-started",
+              "installing-juo",
+              "subscription-experiences",
+              "adding-juo-subscription-widget",
+              "linking-customer-portal",
+              "test-first-subscriber",
+              "shipping-setup",
+              "about-juo"
+            ]
+          },
+          {
+            "group": "More setup",
+            "pages": [
+              "migrating-to-juo"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Product",
+        "icon": "puzzle-piece",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "features"
+            ]
+          },
+          {
+            "group": "Subscriptions",
+            "pages": [
+              "managing-subscriptions",
+              "create-subscription",
+              "bulk-actions",
+              "quick-actions",
+              "subscription-intent-detection"
+            ]
+          },
+          {
+            "group": "Offers",
+            "pages": [
+              "subscribe-and-save",
+              "build-a-box",
+              "curated-boxes",
+              "custom-workflows",
+              "memberships",
+              "upsells",
+              "extras",
+              "discounts",
+              "tiered-discounts"
+            ]
+          },
+          {
+            "group": "Workflows",
+            "pages": [
+              "workflows/workflows-overview",
+              "workflows/blueprints",
+              "workflows/triggers",
+              "workflows/conditions",
+              "workflows/actions",
+              "workflows/connections",
+              "workflows/experiments"
+            ]
+          },
+          {
+            "group": "Customer Portal",
+            "pages": [
+              "customer-portal",
+              "editor"
+            ]
+          },
+          {
+            "group": "Storefront",
+            "pages": [
+              "subscription-widget",
+              "build-a-box-storefront",
+              "custom-storefront"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "pages": [
+              "analytics"
+            ]
+          },
+          {
+            "group": "Payments",
+            "pages": [
+              "local-payment-methods",
+              "sepa-direct-debit",
+              "sepa-chargebacks"
+            ]
+          },
+          {
+            "group": "Settings",
+            "pages": [
+              "general-settings",
+              "retention-flow",
+              "notifications"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "use-juo-with-ai",
+              "klaviyo-integration",
+              "hubspot-integration",
+              {
+                "group": "Customer.io",
+                "pages": [
+                  "customerio-integration",
+                  "quick-actions-cio"
+                ]
+              },
+              "gorgias-integration",
+              "leat-integration",
+              "zipify-integration",
+              "webhooks"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Guides",
+        "icon": "compass",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "guides-overview"
+            ]
+          },
+          {
+            "group": "Retention",
+            "pages": [
+              "retention",
+              "cancellation-flow",
+              "new-subscriber-churn",
+              "failed-payments",
+              "renewal-reminders"
+            ]
+          },
+          {
+            "group": "Win-back",
+            "pages": [
+              "win-back"
+            ]
+          },
+          {
+            "group": "Loyalty and gifts",
+            "pages": [
+              "gifts",
+              "vip-rewards"
+            ]
+          },
+          {
+            "group": "Promotions and order value",
+            "pages": [
+              "upsells-for-subscriptions",
+              "seasonal-campaigns"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Help",
+        "icon": "life-ring",
+        "groups": [
+          {
+            "group": "Troubleshooting and FAQ",
+            "pages": [
+              "FAQ",
+              {
+                "group": "Glossary",
+                "expanded": false,
+                "pages": [
+                  "glossary/average-order-value",
+                  "glossary/build-a-box",
+                  "glossary/retention-flow",
+                  "glossary/churn-rate",
+                  "glossary/lifetime-value",
+                  "glossary/customer-portal",
+                  "glossary/delivery-frequency",
+                  "glossary/dunning",
+                  "glossary/membership",
+                  "glossary/monthly-recurring-revenue",
+                  "glossary/one-time-purchase",
+                  "glossary/inventory-policy",
+                  "glossary/prepaid-subscription",
+                  "glossary/product-swap",
+                  "glossary/selling-plan",
+                  "glossary/skip-renewal",
+                  "glossary/stock-keeping-unit",
+                  "glossary/subscribe-and-save",
+                  "glossary/subscriber",
+                  "glossary/subscription",
+                  "glossary/subscription-box",
+                  "glossary/subscription-cancellation",
+                  "glossary/subscription-contract",
+                  "glossary/migration",
+                  "glossary/email-notifications",
+                  "glossary/subscription-order",
+                  "glossary/subscription-pause",
+                  "glossary/subscription-renewal",
+                  "glossary/variable-discount",
+                  "glossary/win-back"
+                ]
+              }
             ]
           }
         ]
@@ -141,7 +275,7 @@
         },
         {
           "anchor": "Changelog",
-          "href": "https://juo.com/changelog",
+          "href": "https://juo.app/changelog",
           "icon": "newspaper"
         }
       ]
@@ -151,80 +285,371 @@
     "links": [
       {
         "label": "Contact us",
-        "href": "mailto:hi@juo.io"
+        "href": "mailto:support@juo.io"
+      },
+      {
+        "href": "https://juo.io/demo",
+        "label": "Book a demo"
+      },
+      {
+        "href": "/about-juo",
+        "label": "About Juo"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Book a demo",
-      "href": "https://juo.io/demo"
-    }
+    ]
   },
   "footer": {
     "socials": {
       "linkedin": "https://www.linkedin.com/company/juo-io"
     }
   },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ],
+    "display": "header"
+  },
   "redirects": [
     {
       "source": "/adding-build-a-box",
-      "destination": "/build-a-box"
+      "destination": "/build-a-box",
+      "permanent": true
     },
     {
       "source": "/adding-manage-subscriptions-link",
-      "destination": "/linking-customer-portal"
+      "destination": "/linking-customer-portal",
+      "permanent": true
     },
     {
       "source": "/creating-subscription-plan",
-      "destination": "subscribe-and-save"
+      "destination": "/subscribe-and-save",
+      "permanent": true
     },
     {
-      "source": "customizing-juo-subscription-widget",
-      "destination": "/subscription-widget"
+      "source": "/customizing-juo-subscription-widget",
+      "destination": "/subscription-widget",
+      "permanent": true
     },
     {
       "source": "/managing-subscriptions-customer-portal",
-      "destination": "customer-portal"
+      "destination": "/customer-portal",
+      "permanent": true
     },
     {
       "source": "/setting-subscription-notifications",
-      "destination": "/notifications"
+      "destination": "/notifications",
+      "permanent": true
     },
     {
       "source": "/setting-up-curated-boxes",
-      "destination": "/curated-boxes"
+      "destination": "/curated-boxes",
+      "permanent": true
     },
     {
       "source": "/setting-up-memberships",
-      "destination": "/memberships"
+      "destination": "/memberships",
+      "permanent": true
     },
     {
       "source": "/shipping",
-      "destination": "/shipping-setup"
+      "destination": "/shipping-setup",
+      "permanent": true
     },
     {
       "source": "/using-global-settings",
-      "destination": "/general-settings"
+      "destination": "/general-settings",
+      "permanent": true
     },
     {
       "source": "/using-tiered-discounts",
-      "destination": "/tiered-discounts"
-    },
-    {
-      "source": "/guides/:slug*",
-      "destination": "/:slug*"
+      "destination": "/tiered-discounts",
+      "permanent": true
     },
     {
       "source": "/grow-and-retain",
-      "destination": "/retention"
+      "destination": "/retention",
+      "permanent": true
     },
     {
       "source": "/customer-io-integration",
-      "destination": "/customerio-integration"
+      "destination": "/customerio-integration",
+      "permanent": true
     },
     {
       "source": "/launch-subscriptions",
-      "destination": "/subscription-experiences"
+      "destination": "/subscription-experiences",
+      "permanent": true
+    },
+    {
+      "source": "/workflows/guides/cancellation-flow",
+      "destination": "/cancellation-flow",
+      "permanent": true
+    },
+    {
+      "source": "/workflows/guides",
+      "destination": "/guides-overview",
+      "permanent": true
+    },
+    {
+      "source": "/workflows/guides/use-cases",
+      "destination": "/guides-overview",
+      "permanent": true
+    },
+    {
+      "source": "/recipes/cancel-flow-blueprint",
+      "destination": "/cancellation-flow",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/dynamic-boxes",
+      "destination": "/workflows/workflows-overview",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/merchant-portal",
+      "destination": "/features",
+      "permanent": true
+    },
+    {
+      "source": "/quickstart",
+      "destination": "/get-started",
+      "permanent": true
+    },
+    {
+      "source": "/docs/launch-subscriptions",
+      "destination": "/get-started",
+      "permanent": true
+    },
+    {
+      "source": "/docs/grow-and-retain",
+      "destination": "/guides-overview",
+      "permanent": true
+    },
+    {
+      "source": "/customer-portal-inprogress",
+      "destination": "/customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/enable-klaviyo-integration",
+      "destination": "/klaviyo-integration#connect-klaviyo",
+      "permanent": true
+    },
+    {
+      "source": "/guides/learn",
+      "destination": "/guides-overview",
+      "permanent": true
+    },
+    {
+      "source": "/guides/adding-build-a-box",
+      "destination": "/build-a-box",
+      "permanent": true
+    },
+    {
+      "source": "/guides/adding-manage-subscriptions-link",
+      "destination": "/linking-customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/guides/creating-subscription-plan",
+      "destination": "/subscribe-and-save",
+      "permanent": true
+    },
+    {
+      "source": "/guides/customizing-juo-subscription-widget",
+      "destination": "/subscription-widget",
+      "permanent": true
+    },
+    {
+      "source": "/guides/managing-subscriptions-customer-portal",
+      "destination": "/customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/guides/setting-subscription-notifications",
+      "destination": "/notifications",
+      "permanent": true
+    },
+    {
+      "source": "/guides/setting-up-curated-boxes",
+      "destination": "/curated-boxes",
+      "permanent": true
+    },
+    {
+      "source": "/guides/setting-up-memberships",
+      "destination": "/memberships",
+      "permanent": true
+    },
+    {
+      "source": "/guides/shipping",
+      "destination": "/shipping-setup",
+      "permanent": true
+    },
+    {
+      "source": "/guides/using-global-settings",
+      "destination": "/general-settings",
+      "permanent": true
+    },
+    {
+      "source": "/guides/using-tiered-discounts",
+      "destination": "/tiered-discounts",
+      "permanent": true
+    },
+    {
+      "source": "/guides/grow-and-retain",
+      "destination": "/retention",
+      "permanent": true
+    },
+    {
+      "source": "/guides/customer-io-integration",
+      "destination": "/customerio-integration",
+      "permanent": true
+    },
+    {
+      "source": "/guides/launch-subscriptions",
+      "destination": "/subscription-experiences",
+      "permanent": true
+    },
+    {
+      "source": "/guides/quickstart",
+      "destination": "/get-started",
+      "permanent": true
+    },
+    {
+      "source": "/guides/customer-portal-inprogress",
+      "destination": "/customer-portal",
+      "permanent": true
+    },
+    {
+      "source": "/guides/enable-klaviyo-integration",
+      "destination": "/klaviyo-integration#connect-klaviyo",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/cancellation-flow",
+      "destination": "/cancellation-flow",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/failed-payments",
+      "destination": "/failed-payments",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/renewal-reminders",
+      "destination": "/renewal-reminders",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/gifts",
+      "destination": "/gifts",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/seasonal-campaigns",
+      "destination": "/seasonal-campaigns",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/upsells",
+      "destination": "/upsells-for-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/workflows/guides/churned-subs-winback",
+      "destination": "/win-back",
+      "permanent": true
+    },
+    {
+      "source": "/workflows/guides/fight-new-subscriber-churn",
+      "destination": "/new-subscriber-churn",
+      "permanent": true
+    },
+    {
+      "source": "/workflows/guides/vip-rewards",
+      "destination": "/vip-rewards",
+      "permanent": true
+    },
+    {
+      "source": "/learn",
+      "destination": "/guides-overview",
+      "permanent": true
+    },
+    {
+      "source": "/guides/cancel-flow-blueprint",
+      "destination": "/cancellation-flow",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks",
+      "destination": "/guides-overview",
+      "permanent": true
+    },
+    {
+      "source": "/guides",
+      "destination": "/guides-overview",
+      "permanent": true
+    },
+    {
+      "source": "/custom-workflows.html",
+      "destination": "/custom-workflows",
+      "permanent": true
+    },
+    {
+      "source": "/help",
+      "destination": "/FAQ",
+      "permanent": false
+    },
+    {
+      "source": "/guides/seasonal-campaigns-in-juo",
+      "destination": "/seasonal-campaigns",
+      "permanent": true
+    },
+    {
+      "source": "/guides/upsells-portal-and-email",
+      "destination": "/upsells-for-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/seasonal-campaigns-in-juo",
+      "destination": "/seasonal-campaigns",
+      "permanent": true
+    },
+    {
+      "source": "/playbooks/upsells-portal-and-email",
+      "destination": "/upsells-for-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/docs",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/overview",
+      "destination": "/guides-overview",
+      "permanent": true
+    },
+    {
+      "source": "/guides/:slug*",
+      "destination": "/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/upsells-portal-and-email",
+      "destination": "/upsells-for-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/seasonal-campaigns-in-juo",
+      "destination": "/seasonal-campaigns",
+      "permanent": true
     }
   ]
 }

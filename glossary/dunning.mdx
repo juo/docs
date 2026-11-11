@@ -1,23 +1,35 @@
 ---
 title: "Dunning"
+description: "Dunning is the process of retrying failed subscription payments and reminding subscribers to update their card. Learn how it reduces involuntary churn."
+keywords:
+  - "dunning"
+  - "failed payment recovery"
+  - "payment retries"
+  - "involuntary churn"
+  - "declined card"
+  - "card update reminder"
 ---
 
 <Info>
 
-Retrying failed or declined credit card payments to prevent subscription cancellation.
+Retrying failed payments and asking subscribers to update their payment method.
 
 </Info>
 
 ## What is dunning
 
-Dunning refers to retrying failed or declined credit card payments repeatedly and automatically to prevent a subscription from canceling. The dunning period for [subscriptions](/glossary/subscription) usually extends over 30 days. During this time a failed payment is retried a number of times with increasing intervals in an attempt to keep a subscription active.
+Dunning is what happens after a subscription payment fails, for example because a card expired or had insufficient funds. The payment is retried automatically over several days, and the subscriber gets reminders to update their payment method. If every retry fails, the subscription stops.
 
-## How dunning works
+## Why it matters
 
-Dunning in subscriptions is triggered by an unsuccessful payment attempt. If the [subscriber’s](/glossary/subscriber) credit card has expired and can’t be charged, the payment for their subscription can’t be processed on time, thus triggering the dunning flow.
+Failed payments cause involuntary churn: subscribers who never meant to leave. It's often a large share of all churn, and much of it can be recovered with good dunning.
 
-Following the trigger, automatic credit card charge attempts will be made repeatedly over a period of time, e.g. 1 day, 2 days, 4 days, 8 days, 16 days and 30 days after the initial, unsuccessful payment attempt. Both the dunning period and payment intervals can be adjusted to the merchants’ needs in the [Merchant Portal](/glossary/merchant-portal).
+## What good dunning includes
 
-Unsuccessful payment attempt in dunning is often also accompanied by an [email notification](/glossary/email-notifications) that asks the subscriber to review their payment method. If the subscriber fails to do so and all subsequent dunning attempts also fail, the subscription is failed as a result.
+- **Retries spread over time**, not all on the same day.
+- **Clear emails or texts** with a direct link to update the payment method.
+- **A grace period** before the subscription is canceled.
 
-If any of the subsequent payment attempts is successful, the subscription retains its active status and is [renewed](/glossary/subscription-renewal) immediately.
+## Dunning in Juo
+
+See [Retention settings](/retention-flow) for failed-payment retries and [Notifications](/notifications) for the emails subscribers receive.

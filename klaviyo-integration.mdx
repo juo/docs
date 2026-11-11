@@ -31,6 +31,19 @@ Juo connects to Klaviyo with a **Private API Key**.
 
 Use a Private API Key, not the public one.
 
+### If Klaviyo rejects your API key
+
+If Klaviyo stops accepting your Private API Key, Juo shows a warning on the Klaviyo integration page. This happens, for example, when the key is revoked or loses access to **Events** or **Profiles**. The warning says since when Klaviyo has rejected the key, and whether subscription events, profile updates or both aren't reaching Klaviyo.
+
+While the key is rejected, Juo doesn't retry the affected events and profile updates. They aren't sent to Klaviyo later, so flows that rely on them don't run for that period.
+
+To fix it:
+
+1. In Klaviyo, check that the key is still active and has **Full Access** to **Events** and **Profiles**. If it doesn't, create a new key as described in [Connect Klaviyo](#connect-klaviyo).
+2. In Juo, paste the key in the **API Key** field on the Klaviyo integration page and select **Save**.
+
+Saving the key clears the warning. If Klaviyo still rejects the key, the warning appears again after the next event Juo sends.
+
 ## Juo \<> Klaviyo Flow triggers
 
 Juo is currently syncing the following events with Klaviyo:

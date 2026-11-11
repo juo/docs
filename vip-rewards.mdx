@@ -1,0 +1,58 @@
+---
+title: "VIP rewards"
+description: "Keep your highest-value subscribers longer with milestone gifts and a visible VIP status."
+---
+
+| | |
+|---|---|
+| **Goal** | Increase the tenure of the subscribers who bring the most revenue |
+| **Primary metric** | Retention of the top-value cohort, for example the top 10–20% of subscribers by revenue |
+| **Supporting metrics** | Share of subscribers reaching each milestone, reward cost as a share of cohort revenue |
+| **Triggers** | Next order updated (`upcoming_order_generated`), Subscription anniversary (`subscription_anniversary`) |
+| **Audience** | Long-tenure or high-revenue subscribers |
+| **Default outcome** | Next order updated: the order is approved unless a rule blocks it |
+
+<Tip>
+  **Start from a blueprint.** The **Gift flow** and **Progressive discount** blueprints set up this flow as a ready-made workflow. In Juo, go to **Workflows**, create a workflow and choose **Gift flow**, complete its to-dos and publish. The Gift flow adds a free product on the 1st, 3rd, 6th and 12th renewal and keeps a 10% holdout group to measure the effect. The Progressive discount raises the discount with every renewal. See [Blueprints](/workflows/blueprints).
+</Tip>
+
+## Why it works
+
+Revenue in a subscription business is concentrated. A minority of subscribers, those with larger orders or longer tenure, usually accounts for a large share of recurring revenue. Losing one of them costs as much as losing several average subscribers.
+
+These subscribers rarely need a discount to stay. What keeps them is recognition and a reason to reach the next point: a gift on a known milestone, a perk that comes with a status, a thank-you on their anniversary. Predictable milestones work better than random surprises, because a subscriber who knows a reward is two orders away has a reason not to cancel before then.
+
+## Flow
+
+The rules run in your store's **Next order updated** workflow, which shapes every upcoming renewal order. If the store already has one, add these steps as branches of it.
+
+1. **Milestone gift.** When the upcoming order is the subscriber's 6th (or 12th, 24th…), add a free product to it.
+2. **VIP status.** When a customer's total revenue passes your threshold, tag them as VIP and apply a VIP perk to their orders, such as a small discount or free shipping.
+3. **Anniversary.** On the subscription's anniversary, send an event to your email platform for a thank-you message that mentions their milestone and perks.
+
+## Configuration choices
+
+- **Milestones.** Pick points just beyond where your retention curve drops, so the reward lands where subscribers would otherwise leave. Check your [cohort retention](/analytics) report.
+- **Gift choice.** A product the subscriber does not already receive works best: it costs you product cost, not full price, and introduces another item they may add later.
+- **VIP threshold.** Base it on customer revenue or subscription tenure (`subscription.cycle_count`). Set it so the VIP group stays small enough to feel exclusive.
+- **Perk type.** Free shipping and early access cost less than a permanent discount and are easier to explain.
+
+## Guardrails
+
+- **One Next order updated workflow.** Add VIP logic to the existing workflow rather than replacing it, or other order rules stop applying.
+- **Check the milestone in a test run.** Confirm on a test subscription that the gift lands on the intended order before publishing.
+- **Keep rewards simple.** One clear perk is easier to understand and communicate than several small ones.
+- **Make VIP visible to your team.** The tag lets support and marketing recognize VIP customers in Shopify and your email platform.
+
+## Measure results
+
+- **Retention of the VIP and milestone cohorts** before and after launch.
+- **Share of subscribers passing each milestone.** It should rise around the rewarded orders.
+- **Reward cost** as a share of the cohort's revenue. If cost grows faster than retained revenue, raise the threshold or change the perk.
+
+## Related
+
+- [Gifts for subscribers](/gifts)
+- [Win back canceled subscribers](/win-back)
+- [Blueprints](/workflows/blueprints)
+- [Triggers](/workflows/triggers) · [Next order updated](/workflows/triggers#next-order-updated)

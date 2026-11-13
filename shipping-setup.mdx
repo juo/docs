@@ -1,49 +1,95 @@
 ---
 title: "Shipping setup"
+description: "How Shopify handles shipping for subscriptions, which setups Juo supports and when to contact us."
+keywords:
+  - "shipping"
+  - "delivery profile"
+  - "shipping profile"
+  - "free shipping"
+  - "mixed cart"
+  - "pickup points"
+  - "InPost"
+  - "renewal shipping"
+  - "shipping rates"
 ---
 
-By default, Juo uses shipping rates defined by your currently active shipping profile in Shopify. If you’d like to use different rates for subscriptions, reach out to Juo customer support to request creating a dedicated shipping profile.
+Juo doesn't have its own shipping rates. Subscription orders use the shipping profiles you set up in Shopify under **Settings** → **Shipping and delivery**. Most stores need no extra setup. If subscriptions should ship differently from one-time purchases, the Juo team sets it up with you.
 
-Don’t add any products to this shipping profile. Once the rates are configured properly, we will make sure that they are applied to all subscription orders and renewals.
+## How Shopify handles subscription shipping
 
-In the Merchant Portal, you can edit shipping rates for individual subscriptions. ![Screenshot 2025-03-06 at 16.59.53.png](https://cdn.juo.io/content-uploads/Screenshot_2025_03_06_at_16_59_53_d72fd02f4b.png)
+- **Same rates by default.** A product ships at the same rate whether it's bought once or as a subscription.
+- **Subscriptions can have their own rates.** Shopify can link a separate shipping profile to your subscription plans, for example for free subscription shipping. These profiles are created through the API, so we create them for you.
+- **Mixed carts are split.** When a cart has both one-time and subscription items, checkout shows the shipping for each part separately. The customer pays for both.
+- **Subscriptions are grouped.** Several subscription items with the same delivery frequency share one shipping charge.
+- **Checkout explains recurring shipping.** Shopify shows a line such as "Free shipping every month" under the delivery method. You can change that text, see [Change the checkout text](#change-the-checkout-text).
+- **Renewals are separate orders.** Juo creates every renewal as a new Shopify order, so shipping is calculated again for each renewal.
 
-## Pickup points
+## Choose your setup
 
-Juo supports **carrier pickup points** (parcel lockers / PUDO) as a recurring delivery method when enabled for your shop — for example InPost via Atlas Pickup Points, BOX NOW, or Skroutz Point.
+<AccordionGroup>
+  <Accordion title="Same shipping for everything (default)">
+    One-time purchases and subscriptions use the same rates. Renewals use the rates from the product's shipping profile.
 
-**Merchant setup**
+    Nothing to set up. This works for most stores.
+  </Accordion>
 
-- **Settings → Integrations → Atlas Pickup Points** — Enable the integration and set the InPost attribute name used at checkout (default often `InPost Code`).
-- **Settings → General → Copy initial order attributes** — Whitelist pickup-related attribute keys so codes from the first order are copied onto the subscription. See [General settings](/general-settings#copy-initial-order-attributes).
-- BOX NOW / Skroutz Point are enabled per shop (contact Juo if you need them turned on).
+  <Accordion title="Different rates for subscriptions">
+    For example, free shipping on subscriptions while one-time orders pay for it.
 
-**Customer experience**
+    We create a dedicated shipping profile and link it to your subscription plans. You then add the rates in Shopify under **Settings** → **Shipping and delivery**. Don't add products to this profile.
+  </Accordion>
 
-In the Customer Portal, subscribers can choose or change a pickup point when the selected shipping method supports it. Switching between pickup point and home delivery may need an admin update on the subscription.
+  <Accordion title="Different rates for renewals than for the first order">
+    For example, customers pay shipping on the first order but renewals ship free, or the other way round.
 
-In-store retail pickup is not supported. See the [FAQ](/FAQ).
+    We can add a renewal-only shipping profile, or keep each subscription on the shipping price from its first order.
+  </Accordion>
 
-More advanced shipping rules are possible. You can reward your subscribers with free shipping after X order using [Extras](/extras). Subscription experiences like [Build-a-Box](/build-a-box) or [Custom Workflows](/custom-workflows) also have their own Shipping settings.
+  <Accordion title="Free subscription shipping in mixed carts">
+    If subscriptions ship free, customers who add a one-time product can still be charged shipping twice, once for each part of the cart.
 
-## Mixed cart shipping rates setup
+    We avoid this with an extra checkout profile and a shipping discount from Juo. You'll need to turn off **Split shipping** in Shopify's shipping settings.
+  </Accordion>
 
-For mixed cart containing both subscription and one-time products, Shopify will use both rates. If subscription orders have free shipping, it can lead to customers paying for shipping if they add one-time products to the order. To avoid it, a mix cart setup has to be configured.
+  <Accordion title="Pickup points and parcel lockers">
+    Subscribers can receive every renewal at a pickup point, for example InPost via Atlas Pickup Points, BOX NOW or Skroutz Point.
 
-Mix cart shipping rates setup requires using three delivery profiles:
+    - In Juo, go to **Settings** → **Integrations** → **Atlas Pickup Points**, turn the integration on and set the attribute name your checkout uses, often `InPost Code`.
+    - In **Settings** → **General** → **Copy initial order attributes**, add the pickup point attributes so they're copied from the first order to the subscription. See [General settings](/general-settings#copy-initial-order-attributes).
+    - BOX NOW and Skroutz Point are turned on per store. Contact us to enable them.
 
-<Tabs>
-  <Tab title="General profile">
-    - Used for one-time purchases - It cannot have conditional prices. To set
-    the correct rates, use automated shipping discount
-  </Tab>
-  <Tab title="Recurring checkout profile">
-    - Juo team will create this profile - Same shipping rates as the General
-    profile - Additionally, it must have an additional free shipping rate. It
-    must always be the first rate on the alphabetically sorted list.
-  </Tab>
-  <Tab title="(optional) Recurring profile">
-    - Juo team will create this profile - Used for subscription renewals - Only
-    needed if recurring rates should be different than the first order
-  </Tab>
-</Tabs>
+    Subscribers can change their pickup point in the [Customer Portal](/customer-portal). Switching between a pickup point and home delivery may need an update by your team in Juo.
+  </Accordion>
+</AccordionGroup>
+
+## Limitations
+
+- **Conditional rates.** Rates based on order value or weight are checked again on each renewal. A renewal below your free shipping threshold pays shipping, even if the first order didn't. In mixed carts, use a shipping discount instead of conditional rates.
+- **Local pickup and local delivery** apply to the whole order. A customer can't pick up one-time items and have the subscription shipped. In-store pickup isn't supported for renewals. See the [FAQ](/FAQ).
+- **Carrier-calculated rates.** If one subscription contains products from different shipping profiles, Shopify may calculate the renewal with only one of them.
+- **Moving products between profiles.** Existing subscriptions can keep the old rates. Contact us before you move subscription products to another profile.
+
+## Change shipping on one subscription
+
+In Juo, open a subscription to change its shipping rate. This only affects that subscription's next renewals.
+
+<Frame>
+  <img
+    src="https://cdn.juo.io/content-uploads/Screenshot_2025_03_06_at_16_59_53_d72fd02f4b.png"
+    alt="Editing the shipping rate of a subscription in Juo"
+  />
+</Frame>
+
+To give free shipping after a number of orders, use [Extras](/extras). [Build-a-box](/build-a-box) has its own shipping settings.
+
+## Change the checkout text
+
+Shopify writes the recurring delivery line at checkout for you. To change it, go to **Online Store** → **Themes** → **⋯** → **Edit default theme content**, search for **Subscription free with frequency label** and enter your own text. For example: "Free shipping every month on orders over €50".
+
+## Get help with your setup
+
+Unless you keep the default, we set up shipping with you. Email [support@juo.io](mailto:support@juo.io) with:
+
+- the rates you want for one-time orders, first subscription orders and renewals,
+- whether customers can mix one-time and subscription products in one cart,
+- the carriers, pickup points or shipping apps you use.

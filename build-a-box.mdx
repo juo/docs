@@ -1,108 +1,74 @@
 ---
 title: "Build-a-box"
+description: "Set up a Build-a-box offer in Juo: the parent product, discount tiers, boxable and free products, and subscription frequencies."
+keywords:
+  - "build-a-box"
+  - "bundle"
+  - "box"
+  - "tiered discount"
+  - "offer"
 ---
 
 <Frame>
-  ![Build-a-box setup -
-  Details](https://cdn.juo.io/content-uploads/Build_a_box_1b2fff5093.png)
+  <img
+    src="https://cdn.juo.io/content-uploads/Build_a_box_1b2fff5093.png"
+    alt="Build-a-box setup in Juo"
+  />
 </Frame>
-Juo **Build-a-box** is a dedicated page where customers can select their favorite
-products, claim discounts for reaching purchasing milestones, and more.
 
-<Warning>
-  This guide explains how to set up the Build-a-box feature using the Shopify
-  2.0 theme editor. If you are using an older theme, please contact us for
-  custom implementation support.
-</Warning>
+A **Build-a-box** offer lets customers pick their own products for a box, unlock bigger discounts as the box grows, and subscribe to it. This page covers setting up the offer in Juo. To show the box on your store, see [Build-a-box on your storefront](/build-a-box-storefront).
 
-## Step 1: Create a New Template
+## Create the parent product
 
-The Build-a-box feature requires a unique template to appear on your storefront.
+The box needs a virtual parent product in Shopify that acts as a container for the products customers add.
 
-1. Navigate to **Online Store** and click **Customize** on your active theme.
-2. Select **Products** from the top bar and click **Create template.**
-3. Name the template (e.g., Build-a-box or Build Your Own Bundle) and base it on your **Default product.**
+1. In Shopify, create a new product, for example "Build your box".
+2. Uncheck **Track quantity** and **This product requires shipping**.
+3. Save the product.
 
-## Step 2: Create a Build-a-box parent product
+The parent product must be different from every product customers can put in the box.
 
-This is a virtual product to act as a container for the physical products customers will add to their boxes. Uncheck **Track quantity** and **This product requires shipping.**
+## Set up the box in Juo
 
-Note: This product must be different from any of the products actually available to purchase in the box.
+1. In Juo, go to **Offers → Build-a-box** and select **Add Build-a-box**.
+2. Select the **parent product** you created.
+3. Optionally, give the box a **Title**. Only you see it.
+4. In **Discount code**, enter the code customers see at checkout.
+5. Set **Discount status** to **Active** to enable quantity discounts.
+6. In **Discount type**, choose **Percentage** or **Fixed amount**.
+7. In **Tiers threshold type**, choose whether tiers unlock by the number of products or by the total cart value.
+8. Set the **minimum number of products** needed to unlock a discount.
+9. Decide whether the box discount can combine with other discounts in the same order.
+10. Under **Restrict quantity to match available tiers**, decide whether customers can only check out with quantities that match a tier.
+11. Select **Add** to create the box, then select **Edit** on the box to finish the setup.
 
-Save the product and change its theme template to the newly created box template.
+## Add discount tiers
 
-## Step 3: Set Up Build-a-box details in Juo
+Add tiers so the discount grows as customers add more products. Base the number of tiers and their thresholds on how much your customers usually buy, and adjust them over time to raise average order value.
 
-In Juo admin panel, go to Offers > Build-a-box and click on **Add Build-a-box**. Configure the Build-a-box settings:
+## Choose boxable products
 
-1. Select the newly created **parent product**.
-2. Optionally, give the box a unique name in the **Title** field (visible only to you).
-3. In the **Discount code** field, enter the code you want displayed at Checkout.
-4. Set the **Discount status** to **Active** if you’d like to enable quantity discounts.
-5. In **Discount type**, choose Percentage or Fixed amount discount.
-6. In **Tiers threshold type** decide whether discount tiers should be unlocked by number of products in the cart, or total cart value.
-7. Specify the **minimum number of products** required to unlock discounts.
-8. Decide if you want to combine the box discount with other discounts within the same order.
-9. Under **Restrict quantity to match available tiers** you can decide if you only allow purchases that match your set tiers.
-10. Click **Add** to create the box.
+Select the products customers can add to the box. You can add as many as you want. Put the same products in a Shopify collection too: the storefront uses it to display the box.
 
-Note: after the box is created, just click on "Edit" on the Product boxes list to finish setting it up:
+## Add free products
 
-## Step 4: Configure Tiered Discounts
+To include specific free products in every box, add them under **Free products**. They work as an extra reason to buy the box.
 
-Enhance your Build-a-box feature by setting up a quantity discount that increases as customers add more items to their box.
+## Let customers subscribe to the box
 
-Determine the appropriate number of tiers and minimum thresholds based on typical customer behavior. Adjust these tiers over time to optimize customer engagement and Average Order Value (AOV).
+1. Go to **Offers → Subscribe and save** and add a plan, or edit an existing one.
+2. Add every product available in the box and select **Save**.
 
-## Step 5: Add Boxable Products
+Products can belong to different subscription plans, but the box only shows the delivery frequencies that all of its products share. Make sure every product has at least one frequency in common.
 
-Select products from your inventory that customers can add to their boxes. You can add as many as you want. Next, add these products to a new collection. It will be needed later.
+## Next steps
 
-## Step 6: Add free products
+<Columns cols={2}>
+  <Card title="Build-a-box on your storefront" icon="store" href="/build-a-box-storefront">
+    Show the box with Juo's ready-made block or your own design.
+  </Card>
 
-If you'd like the box to always include specific free products, make sure to add them under **Free products**. They can work as an additional incentive to purchase the box.
-
-## Step 7: Add Build-a-box to a Subscription Plan
-
-Enable subscription options for the Build-a-box feature:
-
-Go to **Offers > Subscribe and Save** and click on **Add new** or edit an existing one. Add all the products available in the box and press **Save.**
-
-Note: You can use products belonging to multiple subscription plans, but **Build-a-box will only display delivery frequencies that are common for all products**. It means that all products need to have at least one delivery frequency in common for the box subscription to work.
-
-## Step 8: Customize the Build-a-box template
-
-Go back to the newly created template in your Online Store and customize it to display your box builder.
-
-1. Remove or hide **all** Product Information blocks (Variant picker, Price, etc.)
-2. In their place add the **Juo Build-a-box** block and click on it.
-3. Scroll down to the **Products** section. Here, add the collection that you created in step 5. Build-a-box products will be displayed in the same order as in the collection.
-
-## Step 9: Set up one-time add-ons (optional)
-
-You can add an extra step to build-a-box experience, where your customers can pick one-time products to complement their box subscription.
-
-In the **Juo Build-a-box** block settings, select **Additional step (Addons)** option. Specify Title, Description, and pick the collection to be displayed in the additional step.
-
-After enabling, a **Next** button will show up for the customers before they can go to the checkout.
-
-Once done, your template should now properly display all the products. You can now further customize the template to your liking.
-
-1. **Theme** allows you to change colors, and radius of particular elements.
-2. **Headline** lets you add a custom title and images for desktop and mobile devices
-3. **Filters** lets you add filter button to let customers view products only from specific collections
-4. **Subscriptions option** lets you enable or disable the ability to subscribe to the box.
-
-## Custom frontend
-
-If you are creating custom Build-a-box frontend experience, make sure to add box items to the cart with the following properties:
-
-```html
-"properties": { "_box": "box-<PARENT_PRODUCT_ID
-  >", "_parent_product_handle": "<PARENT_PRODUCT_HANDLE
-    >", "_parent_product_id": "<PARENT_PRODUCT_ID
-      >" },</PARENT_PRODUCT_ID
-    ></PARENT_PRODUCT_HANDLE
-  ></PARENT_PRODUCT_ID
->
-```
+  <Card title="Discounts" icon="tag" href="/discounts">
+    How the box discount combines with Shopify discount codes.
+  </Card>
+</Columns>

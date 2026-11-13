@@ -3,7 +3,7 @@ title: "Bulk actions"
 description: "Update many subscriptions at once from the Admin Panel."
 ---
 
-Bulk actions let you change many subscriptions in one go from the Admin Panel. Use them carefully — changes apply immediately and can be hard to reverse.
+Bulk actions let you change many subscriptions in one go from the Admin Panel. Use them carefully: changes apply immediately and can be hard to reverse.
 
 ## How to run a bulk action
 
@@ -28,7 +28,7 @@ Large selections can take several minutes. You can close the sidebar and reopen 
 | Action | What it does |
 |---|---|
 | **Add product** | Adds a product variant to each selected subscription. Optionally set a **custom price** in your shop currency, or mark it as a **one-time** line (added for a single renewal only). The product does not need to be on a subscription plan; plan discounts are not applied to the new line. With a custom price, see [Subscriptions in another currency](#subscriptions-in-another-currency). |
-| **Swap product** | Replaces one variant with another. Subscriptions that do not contain the “from” product are skipped. Optionally **retain the original price** after the swap. To also replace the product inside Build-a-box boxes, select **Also swap items inside Build a Box**. See [Build-a-box items](#build-a-box-items). |
+| **Swap product** | Replaces one variant with another. Subscriptions that do not contain the “from” product are skipped. Optionally **retain the original price** after the swap. **Keep discounts** is selected by default: discounts on the original product move to the new one, and a discount code moves only if it applies to the new product. Build-a-box items keep the box's own discount instead. To also replace the product inside Build-a-box boxes, select **Also swap items inside Build a Box**. See [Build-a-box items](#build-a-box-items). |
 | **Remove product** | Removes a product variant. Only subscriptions that contain it are updated; others are skipped. |
 
 ### Pricing
@@ -53,7 +53,7 @@ Large selections can take several minutes. You can close the sidebar and reopen 
 |---|---|
 | **Retry payment** | Immediately retries charging subscriptions that are waiting after a failed billing attempt. Subscriptions that are not in a retryable state are skipped. |
 | **Update status** | Sets status to Active, Cancelled, Expired, Failed, or Paused. |
-| **Run workflow** | Runs the published **Admin initiated** workflow on selected subscriptions. The workflow must use only automatic (execution) steps — no customer-facing offers or polls. See [Triggers → Admin initiated](/workflows/triggers#admin-initiated). |
+| **Run workflow** | Runs the published **Admin initiated** workflow on selected subscriptions. The workflow must use only automatic (execution) steps, with no customer-facing offers or polls. See [Triggers → Admin initiated](/workflows/triggers#admin-initiated). |
 
 ## Build-a-box items
 

@@ -853,6 +853,66 @@
       "source": "/docs",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/cancellation-flow",
+      "destination": "/guides/cancellation-flow",
+      "permanent": true
+    },
+    {
+      "source": "/failed-payments",
+      "destination": "/guides/failed-payments",
+      "permanent": true
+    },
+    {
+      "source": "/gifts",
+      "destination": "/guides/gifts",
+      "permanent": true
+    },
+    {
+      "source": "/guides-overview",
+      "destination": "/guides/overview",
+      "permanent": true
+    },
+    {
+      "source": "/new-subscriber-churn",
+      "destination": "/guides/new-subscriber-churn",
+      "permanent": true
+    },
+    {
+      "source": "/renewal-reminders",
+      "destination": "/guides/renewal-reminders",
+      "permanent": true
+    },
+    {
+      "source": "/seasonal-campaigns",
+      "destination": "/guides/seasonal-campaigns",
+      "permanent": true
+    },
+    {
+      "source": "/upsells-for-subscriptions",
+      "destination": "/guides/upsells-for-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/vip-rewards",
+      "destination": "/guides/vip-rewards",
+      "permanent": true
+    },
+    {
+      "source": "/win-back",
+      "destination": "/guides/win-back",
+      "permanent": true
+    },
+    {
+      "source": "/upsells-portal-and-email",
+      "destination": "/guides/upsells-for-subscriptions",
+      "permanent": true
+    },
+    {
+      "source": "/seasonal-campaigns-in-juo",
+      "destination": "/guides/seasonal-campaigns",
+      "permanent": true
     }
   ],
   "contextual": {

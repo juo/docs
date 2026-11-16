@@ -1,0 +1,88 @@
+---
+title: "Create a one-time discount code for subscribers"
+sidebarTitle: "One-time discount codes"
+description: "Create a Shopify discount code that an existing subscriber redeems in the Customer Portal, applies to their next renewal and is then removed."
+keywords:
+  - "discount code"
+  - "one-time discount"
+  - "single use code"
+  - "customer portal"
+  - "redeem discount code"
+  - "next renewal"
+  - "goodwill"
+  - "subscribers"
+---
+
+|  |  |
+| --- | --- |
+| **Who it's for** | Support and marketing teams that give individual subscribers a discount on an upcoming order |
+| **Goal** | Give an existing subscriber a discount on their next renewal, which they redeem themselves |
+| **Primary metric** | Codes redeemed, and the retention of subscribers who redeemed one |
+| **Supporting metrics** | Discount cost, renewals after the discounted order |
+
+## When to use a code
+
+A code works well when the subscriber should claim the discount themselves: a message after a support issue, a win-back email, a referral reward, or a thank-you in a campaign. The subscriber enters the code in the Customer Portal, and it applies to their next renewal.
+
+If you already know which subscription should get the discount, add it directly instead. Open the subscription in Juo and add **Amount off subscription** or **Amount off products** for a set number of renewals, or use a [bulk action](/bulk-actions) for several subscriptions. No code is needed. See [Discounts](/discounts) for every method.
+
+## Before you start
+
+Turn on **Redeem discount code** in Juo under **Settings → Customer Portal**. It is off by default, and without it subscribers can't enter a code in the portal.
+
+## Create the code
+
+1. In the Shopify admin, go to **Discounts** and select **Create discount**.
+2. Under **Juo Subscriptions**, choose **Order discount** or **Product discount**.
+   - **Order discount** reduces the whole order.
+   - **Product discount** reduces the price of the products you choose.
+3. Enter a **Discount code**, or select **Generate random code**. Subscribers must enter this code exactly as written.
+4. Under **Discount value**, choose **Percentage** or **Fixed amount** and enter the value, for example 20%.
+5. Under **Eligible selling plans**, choose **All selling plans**, or **Specific selling plans** to limit the code to some offers.
+6. Under **Minimum purchase requirements**, leave **No minimum requirements** unless the discount should depend on order value or quantity.
+7. Under **Recurring payments for subscriptions**, choose **Limit discount to the first payment**. For a subscriber redeeming the code in the portal, this is their next renewal.
+8. Under **Maximum discount uses**, select **Limit to one use per customer**.
+9. Under **Eligibility**, keep **All customers**, or choose specific customers or a segment when the code is meant for named subscribers.
+10. Set the **Active dates**, then save the discount.
+
+## What the subscriber sees
+
+1. The subscriber receives the code from you, for example in a support reply or an email.
+2. They open the Customer Portal and enter the code in the discount field on the upcoming order.
+3. The discount applies to their next renewal.
+4. After that renewal, the discount is removed from the subscription. The subscription's activity log records it as **Subscription discount removed**.
+
+## Where the code works
+
+The code isn't limited to existing subscribers or to the portal. It works for new customers and existing subscribers, both at checkout and in the Customer Portal. That lets one code serve several uses, but it also means anyone who has the code can use it at checkout.
+
+There is no setting that limits a code to the Customer Portal. If the discount must reach only specific subscribers, limit the code with **Eligibility**, or add the discount to the subscription directly in Juo.
+
+## Adjust it for other cases
+
+| Situation | Change |
+| --- | --- |
+| Discount several renewals, such as the next three | Choose **Limit discount to multiple recurring payments** and enter the number of renewals |
+| Goodwill credit for a support issue | Use **Fixed amount**, and limit eligibility to the customer |
+| Code for one product or collection | Use **Product discount** and select the products |
+| Code for a time-limited message | Set an end date under **Active dates** |
+| Code that should work with other discounts | Select the combinations under **Combines with** |
+
+## Guardrails
+
+- **Limit to one use per customer.** Otherwise one subscriber can redeem a shared code on every subscription they have.
+- **Personal codes need personal eligibility.** A code sent to one subscriber works for anyone who has it unless you limit it to that customer.
+- **Set an end date** so old codes in emails don't stay redeemable.
+- **Check stacking before you send.** Plan discounts and Extras always combine with Shopify codes. See [Combining discounts](/discounts#combining-discounts).
+- **Test once.** Redeem the code on a test subscription and confirm the next renewal shows the discount and the one after it doesn't.
+
+## How to measure it
+
+In Shopify, open the **Sales by discount** report to see how often the code was used. In Juo, compare retention for subscribers who redeemed it with those who didn't. See [Analytics](/analytics).
+
+## Related
+
+- [Discounts](/discounts)
+- [Customer Portal](/customer-portal)
+- [Sales and seasonal campaigns](/guides/seasonal-campaigns)
+- [Cancellation flow](/guides/cancellation-flow)

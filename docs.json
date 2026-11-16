@@ -212,7 +212,8 @@
             "group": "Promotions and order value",
             "pages": [
               "upsells-for-subscriptions",
-              "seasonal-campaigns"
+              "seasonal-campaigns",
+              "one-time-discount-codes"
             ]
           }
         ]

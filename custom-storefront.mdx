@@ -376,4 +376,4 @@ After each subscription order, open the subscription in the Juo Admin Panel and 
 
 **The subscription has the wrong frequency.** The line's `_selling_plan_id` still pointed at an earlier plan. Clear it whenever you change a line's plan.
 
-**Local payment methods are not offered at checkout.** Check that Juo's app embeds are on, that the purchase went through the cart, and that the cart lines are on fixed plans.
+**Local payment methods are not offered at checkout.** Check that Juo's app embeds are on, that the purchase went through the cart, and that the cart lines are on fixed plans. If the lines stay on recurring plans, another app (such as a bundle app) may be intercepting the cart update. In **Online Store → Themes → Customize → App embeds**, open **Local Payments Default** and turn on **Use native fetch for cart updates**. Leave this setting off unless another app causes the problem.

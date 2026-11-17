@@ -5,7 +5,7 @@ description: "Send subscription orders to Leat for loyalty points and referrals,
 
 The Leat integration connects Juo subscriptions to your [Leat](https://leat.com) loyalty and referral program. It does two things:
 
-- **Sends subscription orders to Leat**, so first subscription orders and renewals earn loyalty points and complete referrals in the same way as other orders.
+- **Sends subscription orders to Leat**, so first subscription orders, and optionally renewals, earn loyalty points and complete referrals in the same way as other orders.
 - **Provides each customer's Leat referral code and link**, so you can display them in the Customer Portal.
 
 Points, rewards, and referral rules stay in Leat. Juo sends the order data, and your Leat setup decides what each order earns.
@@ -22,12 +22,27 @@ Points, rewards, and referral rules stay in Leat. Juo sends the order data, and 
 1. In the Juo admin panel, go to **Settings → Integrations → Leat**.
 2. Paste your Leat **Private app access token** and click **Save**.
 3. Turn on the switch next to **API Credentials**.
+4. Under **Orders sent to Leat**, choose which subscription orders Juo sends. See [Choose which orders are sent](#choose-which-orders-are-sent).
 
 The switch turns on only after a token has been entered. Subscription orders placed before the integration was turned on are not sent to Leat.
 
 ## Subscription orders in Leat
 
-When the integration is on, Juo sends every subscription order to Leat after it is created in Shopify: the first subscription order and each renewal.
+When the integration is on, Juo sends subscription orders to Leat after they are created in Shopify. The **Orders sent to Leat** setting decides which ones.
+
+### Choose which orders are sent
+
+Each order Juo sends runs your Leat order rules, which award points and complete referrals.
+
+| Option | Orders sent |
+| :-- | :-- |
+| **All subscription orders** | The first subscription order and every renewal |
+| **First orders only** | Only the order that starts a subscription. This is enough to complete referrals |
+| **No orders** | None. Referral links and vouchers keep working |
+
+**No orders** is the default, so Juo sends nothing to Leat until you choose another option.
+
+### Order details sent to Leat
 
 Each order is sent with:
 

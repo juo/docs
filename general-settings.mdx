@@ -9,8 +9,22 @@ Global settings live under **Settings** in the Admin Panel. This page covers the
 
 Choose what happens when a subscription renews with an out-of-stock item:
 
-- **Renew when back in stock**: Hold renewals until stock returns (duration follows your dunning period).
-- **Renew when out of stock**: Renew and bill without interruption.
+- **Wait until everything is in stock**: Hold the renewal until the items are back in stock, swapped or removed. Juo keeps retrying for the length of your dunning period.
+- **Renew with out-of-stock items**: Renew and bill without interruption, including the out-of-stock items.
+- **Renew with in-stock items only**: Charge and ship the in-stock items on schedule. Juo skips the out-of-stock items and includes them in the next regular order.
+
+### Renew with in-stock items only
+
+When you select this option, set a **Minimum in-stock share of the order value** from 1 to 100% (50% by default). If the in-stock items make up less than this share of the order's value, the renewal waits for full stock instead. Free items, such as gifts, don't count toward the share.
+
+The customer pays for the shipped items what they would have cost on the full order. The renewal's entry on the subscription timeline lists the skipped items.
+
+Juo waits for full stock instead of skipping items when:
+
+- The order has only one product line, or every line is out of stock.
+- An out-of-stock item is part of a box (Build-a-box, Dynamic box or Curated box).
+- An out-of-stock item is a one-time product or a free gift.
+- The subscription is prepaid (billed for several deliveries at once) or postpaid.
 
 ## Price changes
 

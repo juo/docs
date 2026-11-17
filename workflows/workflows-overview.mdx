@@ -37,17 +37,17 @@ See [Triggers](/workflows/triggers) for the full list.
 | **Automate operations** | Swap a starter kit for refills after the first order. Block renewals for customers tagged as resellers. Add notes or attributes to orders for fulfillment. Send events to Klaviyo or Customer.io. | [Blueprints](/workflows/blueprints) |
 
 <Tip>
-  **Start from a blueprint.** Blueprints are ready-made workflows for common goals, such as a cancellation flow, a gift flow or an onboarding flow. In Juo, go to **Workflows**, create a workflow and choose a blueprint. Complete its to-dos and publish. See [Blueprints](/workflows/blueprints).
+  **Start from a blueprint.** Blueprints are ready-made workflows for common goals, such as a cancellation flow, a gift flow or an onboarding flow. In Juo, go to **Workflows**, open **Blueprints**, choose one and select **Use this blueprint**. **Quick setup** walks you through its to-dos, then you publish. See [Blueprints](/workflows/blueprints).
 </Tip>
 
 ## How a workflow is built
 
-Go to **Workflows** in Juo and create a workflow. In the visual builder, connect steps in this order:
+Go to **Workflows** in Juo and select **New workflow**. **Quick start** guides you through the three parts every workflow needs: **Choose a trigger**, **Add steps** and **Define outcomes**. In the visual builder, connect steps in this order:
 
 1. **Trigger**: the event that starts the workflow.
 2. **Conditions** (optional): split the flow by subscriber, subscription, order or time, for example new subscribers or orders above a value. See [Conditions](/workflows/conditions).
 3. **Actions**: what the workflow does. Interactions show something to the subscriber in the Customer Portal, such as a poll or an offer. Executions make changes, such as applying a discount or adding a product. See [Actions](/workflows/actions).
-4. **End**: every path ends with an End node.
+4. **End**: every path ends with an End node and its outcome, such as **Recovered**, **Cancelled** or **Complete**, so the workflow's results are counted by path.
 
 <iframe src="https://cdn.juo.io/content-uploads/workflows_1_7b69e99e1b.mp4" width="100%" height="410" style={{ border: 0, borderRadius: 4 }} allow="autoplay; fullscreen" allowFullScreen />
 
@@ -56,9 +56,21 @@ Go to **Workflows** in Juo and create a workflow. In the visual builder, connect
 
 To change how interactions look to subscribers, select **Preview in Editor**. See [Editor](/editor).
 
+## Manage your workflows
+
+Go to **Workflows** to open **My workflows**:
+
+- **Recent workflows** shows the workflows you edited last, live or draft.
+- **All workflows** lists every workflow, grouped by status: **Live**, **Drafts** and **Archived**. Search by name or trigger, or filter by **Status** and **Trigger**. Archived workflows are hidden until you add **Archived** to the **Status** filter.
+- Select **Edit** to open a workflow in the builder. Use the status menu on a row to switch a workflow between **Live** and **Draft**.
+- Open a row's menu to **Rename** or **Archive** a workflow. For an archived workflow, select **Restore** to bring it back as a draft, or **Delete permanently** to remove it. A deleted workflow can't be restored.
+
+To see the **Welcome to Workflows** screen again, select **Show the welcome again** on **My workflows**.
+
 ## Before you publish
 
-- **One published workflow per trigger.** To add logic to a trigger that already has a published workflow, extend that workflow instead of creating a second one.
+- **One published workflow per trigger.** To add logic to a trigger that already has a live workflow, extend that workflow instead of creating a second one. If you publish another workflow on the same trigger, Juo asks **Replace the live workflow?**. Select **Replace and publish** to make it live and move the current one back to drafts.
+- **Connect every response.** Each response in a step, such as a poll answer or an offer button, must connect to another step or an End node. The builder blocks publishing while a response leads nowhere.
 - **Test as a subscriber.** Open the Customer Portal with a test subscription and go through every path.
 - **Compare before you commit.** Split subscribers between two versions of a step to see which works better. See [Experiments](/workflows/experiments).
 

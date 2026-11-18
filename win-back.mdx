@@ -285,11 +285,11 @@ To use it, go to **Content → Templates → Create template → Code** in Klavi
           </td>
         </tr>
 
-        <!-- 7. Secondary Action: same link and tag as the button, so the offer still shows -->
+        <!-- 7. Reassurance -->
         <tr>
           <td class="px" align="center" style="padding: 32px 48px 40px;">
             <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #55534e;">
-              Want to update your items or schedule first? <a href="{{ event.QuickLinks.ViewSubscription }}&utm_source=klaviyo&utm_medium=email&utm_content=juo_reactivate" target="_blank" style="color: #1a1a1a; font-weight: 600; text-decoration: underline;">Customize your subscription</a>
+              You can change your products and delivery dates anytime after you reactivate.
             </p>
           </td>
         </tr>
@@ -324,7 +324,7 @@ To use it, go to **Content → Templates → Create template → Code** in Klavi
 | **Button** | The **View Subscription** link with `utm_content=juo_reactivate` | The button label. Keep the tag, so the offer appears |
 | **Your saved subscription** | Each product with its image, name, variant and quantity, and the delivery frequency, from the event's `Items` | Usually nothing. Remove the section if you show a single hero product instead |
 | **Why subscribers stay** | Three reasons to subscribe | Your real benefits, such as free shipping or member prices |
-| **Customize link** | The same link and tag as the button, for subscribers who want to change their order first | Nothing |
+| **Reassurance** | A line saying products and delivery dates can be changed after reactivating | Nothing. Avoid adding a second portal link: the offer is only claimed from the welcome-back message, so subscribers who edit first and then reactivate from the portal don't get it |
 | **Footer** | Your address and an unsubscribe link from Klaviyo | Nothing. Klaviyo requires both in marketing emails |
 
 The colors are in the inline styles: `#1a1a1a` for the button and text, `#f4f3ef` for the background and the offer box. Replace them with your brand colors.

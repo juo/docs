@@ -43,3 +43,7 @@ For chargebacks with the reason insufficient funds (AM04), turn on **Enable auto
 5. If every retry fails, the payment method is revoked and the Chargeback Subscription event starts your Klaviyo flow.
 
 Many insufficient-funds chargebacks are temporary, so retries recover part of them without any action from the customer.
+
+<Note>
+  Automatic retries don't apply to payments made through Stripe. For a Stripe chargeback, Juo skips the retries and starts the [recovery flow](#sepa-chargebacks-recovery) right away, so the customer gets the payment link. Your **Revoke payment method** setting decides whether the payment method is revoked.
+</Note>

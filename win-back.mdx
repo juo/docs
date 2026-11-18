@@ -64,7 +64,6 @@ Most brands run both. The automated email catches every cancellation while it's 
 Before you start, check that:
 
 - **The Klaviyo integration is enabled.** Juo sends subscription events, product details and Customer Portal links to Klaviyo only while it's on, and events from before you enable it aren't synced. See [Enable the Klaviyo integration](/enable-klaviyo-integration).
-- **Your Customer Portal is live.** The email button opens it, and the welcome-back message appears there. See [Customer Portal](/customer-portal).
 - **You have a test subscription** with your own email address, to try the whole path before subscribers do.
 
 <Steps>
@@ -73,7 +72,7 @@ Before you start, check that:
 
     The link is created when Juo sends the event to Klaviyo, not when Klaviyo sends the email. A flow that waits 45 days after a cancellation sends a link that expired 42 days earlier.
 
-    1. In Juo, go to **Settings → Retention → Quick actions**.
+    1. In Juo, open [Experiences → Retention](https://admin.juo.io/experiences/retention) and find **Quick actions**.
     2. Set **Authentication token expiry** to about 10 days longer than your flow's wait time, so subscribers have time to open the email. For a 60-day wait, set 70 days.
 
     Anyone who has the email can use its links until they expire, so don't set it longer than your flows need. One-time campaigns create fresh links at the moment you send them, so they work even with the default 3-day expiry.

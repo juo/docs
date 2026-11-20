@@ -29,6 +29,7 @@ Interactions require the customer to be present in the Customer Portal, so they 
 | `Offer Discount` | Present a discount offer to the customer |
 | `Offer Delay Order` | Offer to delay the next order by one billing cycle, or let the customer pick a custom delay (days/weeks/months) |
 | `Offer Renew` | Offer to renew the subscription immediately |
+| `Offer Reactivation` | Show a customer whose subscription is paused or canceled a welcome-back popup. Accepting resumes or reactivates the subscription, so no separate `Reactivate Subscription` step is needed. The popup gives no perk itself: connect **Accept** to the steps that give what it promises (for example `Apply Discount`). Turn on **Decline button** to let the customer turn it down; otherwise they close the popup. For any other status the step shows nothing and answers **Unavailable**. Only available on **Customer portal opened** |
 | `Offer Pause` | Offer to pause the subscription instead. The pause has no end date: the subscription stays paused until the customer or an admin resumes it |
 | `Offer Free Product` | Offer a free product to the customer |
 | `Offer Selection` | Present multiple offer options (discounts and/or free products) for the customer to choose |
@@ -49,6 +50,7 @@ Executions run without waiting for confirmation.
 | `Apply Discount` | Apply a percentage or fixed discount to the subscription (optional recurring cycle limit) |
 | `Cancel Subscription` | Cancel the subscription |
 | `Pause Subscription` | Pause the subscription with no end date. Available on **Subscription cancellation requested** and **Subscription pause requested** |
+| `Reactivate Subscription` | Resume a paused subscription or reactivate a canceled one. An active subscription is left as it is. A failed, expired or merged subscription can't be reactivated and the step fails. Available on **Customer portal opened** and **Admin initiated** |
 | `Delay Order` | Delay the next scheduled order. **Delay by frequency** moves it by one billing cycle; **Custom delay** moves it by a number of days, weeks, or months |
 | `Add Product` | Add a product variant to the subscription (optional custom price, quantity, and recurring cycle limit) |
 | `Swap Product` | Replace products in the subscription with another variant. **From any of product variants** accepts several variants: every line matching one of them is replaced. Leave it empty to replace all lines |

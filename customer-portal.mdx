@@ -43,6 +43,23 @@ Changes apply from the next renewal. A payment method update sends a secure link
 
 To move the next renewal of a single product, subscribers open **Edit product** and pick a date in the **Next renewal** field. They can choose any date from tomorrow up to two cycles of the selected delivery frequency ahead. The field appears only when **change renewal date** is turned on.
 
+### Paused, canceled and failed subscriptions
+
+Subscribers can also change a subscription that is not active, so it is set up before it is resumed or reactivated. They can change its renewal date, frequency, products, payment method and delivery details.
+
+| Status | Editable in the portal |
+| --- | --- |
+| Paused | Always |
+| Canceled | Only when **Reactivate cancelled subscription** is turned on |
+| Failed | Only when **Reactivate failed-payment subscription** is turned on |
+| Expired | Never |
+
+On a subscription that is not active:
+
+- A new renewal date takes effect only once the subscription is active again.
+- Subscribers can't remove the last product. The portal shows **The last product can only be removed while your subscription is active.**
+- Removing a product skips the cancellation flow and its retention offers.
+
 ## Choose what subscribers can change
 
 In Juo, go to **Settings** → **Customer Portal** to turn each action on or off:

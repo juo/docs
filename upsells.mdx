@@ -1,36 +1,96 @@
 ---
 title: "Upsells"
-description: "Offer subscribers extra products at a special price in the Customer Portal and in emails."
+description: "Offer subscribers extra products at a special price in the Customer Portal and in emails. Subscribers add them to their subscription or buy them now as an instant order."
 ---
 
-<Frame>![](https://cdn.juo.io/content-uploads/upsells_e47664b8f5.png)</Frame>
-Juo Upsells let you enhance the subscription experience by offering exclusive, one-time
-deals available only to your subscribers.
+<Frame>
+  ![](https://cdn.juo.io/content-uploads/upsells_e47664b8f5.png)
+</Frame>
 
-This guide will walk you through the steps to set up and manage Upsells in the Juo Customer Portal.
+Juo Upsells let you offer products at a special price to your subscribers only. A campaign sells in one of two ways: subscribers add the products to their subscription, or they buy them now as a separate instant order.
+
+This guide covers how to set up and manage Upsells in the Juo Customer Portal.
+
+## How a campaign is sold
+
+Each campaign sells through one channel. A subscriber never gets the same campaign through both.
+
+|  | Add to subscription | Buy now as a separate order |
+| --- | --- | --- |
+| **What the subscriber does** | Adds the products to their subscription or upcoming renewal | Buys the products straight away |
+| **When they are charged** | With the next renewal | Immediately, with the subscription's saved payment method |
+| **How it ships** | In the same delivery as the renewal | As its own order, outside the subscription schedule |
+| **Effect on the subscription** | Products are added to it, one-time or recurring | None. The subscription stays as it is |
+| **Where it shows in the Customer Portal** | **Upsell** block | **Instant product sale** block |
+| **Discount** | Fixed discount, or a variable discount for recurring products | Fixed discount only |
+
+The **Purchase type** column on the Upsells list shows **Buy now**, **Subscription** or **One-time** for each campaign.
+
+<Note>
+  The **How it's sold** setting appears only on campaigns that are already set up as buy now. New campaigns are created as add to subscription.
+</Note>
 
 ## Create an Upsell
 
-To create a new Upsell, navigate to **Experiences → Upsells → Add Upsell** and fill in the details:
+To create a new Upsell, go to **Experiences → Upsells → Add Upsell** and fill in the details:
 
 1. **Campaign name**: Enter a name for your upsell campaign.
-2. **Schedule**: Choose whether your upsell should be available always, or only during a specific time period. Set the start and end date for the upsell offer if you choose the latter.
-3. **Discount**: Optionally, set a discount percentage. This discount will only be granted to the customers who purchase the product through Juo Upsells.
-4. **Usage limit**: Decide if you want to limit the number of products your customers can add using Upsells.
-5. **Customer eligibility**: Limit the offer to specific customer segments or customers subscribed to a specific product.
-6. Click **Save** button for the other options to appear at the bottom of the page.
-7. **Products**: Select which products you want to offer as part of the upsell.
-8. Activate the Upsell by pressing the **Active** toggle at the top of the page.
+2. **Status**: Set to **Inactive** while you configure the campaign. Switch it to **Active** when it is ready.
+3. **Schedule**: Choose **Always** to keep the upsell available, or **Selected period of time** and set a start and end date.
+4. **Purchase options** (add to subscription campaigns): Choose **One-time** to let subscribers add the products to one renewal only, or **Subscription + one-time** to let them also add the products to their subscription.
+5. **Discount**: Optionally turn on **Add discount**. The discount only applies to customers who buy the product through the upsell. It can be a percentage, an amount off or a fixed price. Add to subscription campaigns can also use a variable discount, which changes after a set number of orders. Variable discounts need **Subscription + one-time**.
+6. **Usage limits**: Choose how often each customer can use the offer:
+   - **No limits**: customers can add or buy the products as many times as they like while the campaign is active.
+   - **Once per customer**: customers can use the campaign once. After their first addition or order, the offer is gone for them.
+   - **Each product once per customer**: customers can use each offer product once.
+7. **Customer eligibility**: Limit the offer to specific customer segments or to customers subscribed to a specific product.
+8. Select **Save**. The **Products** and **Variants** sections appear at the bottom of the page.
+9. **Products** and **Variants**: Select what you want to offer, either whole products or specific variants.
+10. Set **Status** to **Active**.
 
-Multiple Upsell offers with different settings can be used together.
+You can run several campaigns with different settings at the same time.
 
 ## Customer experience
 
-Your selected products will become visible in the Customer Portal as per the schedule.
+Active campaigns are visible in the Customer Portal according to their schedule. Customers only see a campaign when they match its customer eligibility and haven't reached its usage limit.
+
+### Add to subscription
 
 <Frame caption="Upsells visible in Juo Customer Portal">
-  ![Juo Subscription Upsells view in Customer
-  Portal](https://cdn.juo.io/content-uploads/Screenshot_2024_09_17_at_14_13_33_9fc4147588.png)
+  <img
+    src="https://cdn.juo.io/content-uploads/Screenshot_2024_09_17_at_14_13_33_9fc4147588.png"
+    alt="Juo Subscription Upsells view in Customer
+Portal"
+  />
 </Frame>
 
-Customers who add Upsell products to their subscription will be charged upon the next renewal, and will receive them along with their scheduled subscription.
+Customers who add upsell products to their subscription are charged at the next renewal and receive the products with their scheduled subscription.
+
+### Buy now
+
+Buy now campaigns appear in the **Instant product sale** block on the main subscription page of the Customer Portal, below the header. The block is shown only while your shop has a live buy now campaign. Subscribers can buy one or several products from the offer in a single order:
+
+1. The subscriber selects products, up to 10 units of each, and reviews the order summary with the delivery cost and total.
+2. They confirm the order. It is charged to the subscription's payment method and shipped as its own order.
+3. The Customer Portal shows when the order is placed.
+
+Buy now offers are available only for subscriptions that are active and have a payment method. For other subscriptions, the block shows no offers.
+
+What to expect from an instant order:
+
+- **Pricing.** The order is charged the offer price shown in the block, in the subscription's currency. Subscription discounts don't apply, so the offer is the only discount on the order. Products the subscription already contains can still be offered.
+- **Subscription.** The order doesn't change what the subscription contains, its schedule or its renewal price.
+- **Payment.** Depending on the payment method, a subscriber may be sent to a payment page to finish paying. If a payment is declined, nothing is charged and the order is not placed. An order that isn't paid in time is cancelled.
+- **Usage limits.** A limit counts toward each campaign, across all of the customer's orders and subscription lines. A cancelled instant order releases its claim on the offer.
+- **Orders in Shopify.** Each instant order is tagged `subscription`, `subscription_instant_order` and the subscription's reference tag, so you can tell it from a one-time storefront purchase. Its products are labeled **One-time purchase**.
+
+### Set up the Instant product sale block
+
+Add the block in the [Editor](/editor). It sells one campaign. Use the block's controls to choose which one:
+
+- **Upsell offer**: select a buy now campaign. The picker shows whether each campaign is scheduled, ended or off. If you don't select one, the block sells your shop's default campaign: the oldest buy now campaign that is active and inside its schedule.
+- A customer who isn't eligible for the campaign, or who has reached its limit, sees no offer. The block doesn't switch to another campaign for them.
+- **Styles**: theme, product card style, header layout and the promo badge colors.
+- **Translations**: the header text. The block shows the campaign's discount as a badge and, in the last week of the campaign, its end date.
+
+Use **Preview customer** to check the block with a real subscriber. If the preview customer can't buy the campaign, the editor shows sample products and explains why.

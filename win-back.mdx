@@ -1,55 +1,370 @@
 ---
-title: "Win back canceled subscribers"
-sidebarTitle: "Win back canceled subscribers"
-description: "Bring canceled subscribers back with a timed message and an offer honored when they reactivate."
+title: "Reactivation campaigns for canceled and paused subscribers"
+sidebarTitle: "Reactivation campaigns"
+description: "Bring canceled and paused subscribers back with automated emails or one-time campaigns, a link to their saved subscription and a welcome-back offer."
+keywords:
+  - "reactivation"
+  - "win-back"
+  - "winback"
+  - "canceled subscribers"
+  - "paused subscribers"
+  - "unpause"
+  - "klaviyo"
+  - "quick links"
+  - "email template"
+  - "black friday"
+  - "blueprint"
 ---
 
 | | |
 |---|---|
-| **Goal** | Reactivate subscribers after they cancel |
-| **Primary metric** | Reactivation rate: share of canceled subscriptions reactivated within 90 days |
-| **Supporting metrics** | Revenue per reactivated subscription, share that cancel again within two cycles |
-| **Triggers** | Subscription reactivation requested (`subscription_reactivate_requested`), Subscription reactivated (`subscription_reactivated`) |
-| **Audience** | Customers with a canceled subscription who receive a win-back message |
-| **Default outcome** | None. Reactivation proceeds on its own; the workflow adds the offer and messages |
-| **Requires** | An email or SMS platform connected to Juo, such as [Klaviyo](/klaviyo-integration) or [Customer.io](/customerio-integration) |
+| **Who it's for** | Brands with canceled or paused subscribers they want back |
+| **Goal** | Reactivate canceled and paused subscriptions, with an always-on email and with occasional campaigns |
+| **Primary metric** | Reactivation rate: the share of emailed subscribers who reactivate within 30 days |
+| **Supporting metrics** | Revenue per reactivated subscription, share that cancel again within two orders, offer cost |
 
-## Why it works
+## Why it matters
 
-A canceled subscriber already knows your product, has a saved address, and has shown what they buy. Bringing them back costs a message and an offer, with no acquisition spend. Many cancellations are also temporary: the subscriber had too much stock, was traveling, or wanted a break.
+A cancellation is a stage in the customer journey, not the end of it. Canceled and paused subscribers already know your product, and their subscription, address and payment method are still in Juo. Bringing them back takes one email and a good reason, with no acquisition cost.
 
-Timing matters. Asking straight after cancellation repeats the cancellation flow. Waiting until their stock is likely running out, or until you have something new to show, meets them when the need returns.
+Many subscribers leave for reasons that pass: too much stock, a trip, a tight month. An email that reaches them when the need is back, with a reactivation that takes seconds, recovers revenue you would otherwise write off.
 
-## Flow
+## How it works
 
-This guide combines your email platform with a Juo workflow:
+1. **The email.** The subscriber receives your offer, a reminder of the products they used to get, and a button to reactivate.
+2. **The welcome back.** One click opens their subscription in your Customer Portal, already signed in. A message welcomes them back and shows their offer.
+3. **The reactivation.** One more click reactivates the subscription and adds the discount or gift to their next orders. No password and no checkout.
 
-1. **Email platform.** A flow starts on the *Canceled Subscription* event, waits two to six weeks, and sends a win-back message with an offer. The message links to the Customer Portal with a UTM campaign, for example `utm_campaign=winback`.
-2. **Juo workflow.** When the customer clicks **Reactivate** from that link, the workflow checks the campaign and that the offer has not been used before, applies the promised discount, and shows a welcome-back confirmation.
-3. **Exit the flow.** When the subscription is reactivated, Juo sends an event so the email platform stops the remaining win-back messages.
+The experience is the same for canceled and paused subscriptions, and so is the email. You can give paused subscribers different wording if you like, but you don't have to.
 
-Use the *CancellationReason* property of the event to tailor or exclude messages. A subscriber who left over product quality needs a different message from one who had too much stock.
+Behind the scenes, the button opens the **View Subscription** link with the tag `utm_content=juo_reactivate`. The **Reactivation campaign** workflow recognizes the tag, shows the message, and reactivates the subscription when the subscriber accepts. Subscribers who open the portal any other way don't see the message and don't get the offer.
 
-## Configuration choices
+This guide uses Klaviyo. [Customer.io](/quick-actions-cio) receives the same links and custom events, so the same setup works there, and any channel that can send the link with its tag can lead to the same welcome back.
 
-- **Wait time.** Base it on the delivery frequency: roughly one cycle after cancellation is when stock runs low.
-- **Offer.** State it in the message, so the customer knows what they get by reactivating. A single-cycle discount or a free product with the next order keeps the cost to one order.
-- **Content.** New products, flavors, or improvements give a reason to return that does not depend on price.
-- **Exclusions.** Skip customers who canceled over a complaint until support has resolved it, and customers with an open chargeback.
+You can send the email in two ways. Both use the same workflow and the same email template.
+
+|  | Automated | One-time campaign |
+| --- | --- | --- |
+| **Sends** | A set time after a subscriber cancels or pauses | When you run it |
+| **Reaches** | Every subscriber who cancels or pauses | The subscriptions you select in Juo |
+| **Starts from** | Juo's _Canceled Subscription_ or _Paused Subscription_ event | A custom event sent by a Juo workflow |
+| **Best for** | An always-on win-back | Black Friday, a product launch, a new season, a price change |
+
+Most brands run both. The automated email catches every cancellation while it's recent, and a campaign a few times a year reaches everyone who left earlier.
+
+## Plan the campaign
+
+- **The offer.** A discount on the next few orders or a gift with the next one. Keep it to a limited number of orders, so you pay for the return, not for every future order.
+- **The timing.** For canceled subscriptions, 30 to 60 days after the cancellation. Subscribers who only needed a short break would have skipped or paused, so give them time to miss the product. Choose the shorter end for products used up quickly, the longer end for slow ones, and avoid landing on top of your other campaigns. For paused subscriptions, a few weeks into the pause. To try again later, for example after 90 days or a year, send a one-time campaign.
+- **The message.** Lead with the offer, show the products they subscribed to, and give one reason to return that isn't price: a new flavor, an improved formula, a product launch.
+- **Who to leave out.** Subscribers who canceled over a complaint until support has resolved it, and customers with an open chargeback. Use the _CancellationReason_ property of the event to tailor or exclude messages.
+
+## Set it up
+
+Before you start, check that:
+
+- **The Klaviyo integration is enabled.** Juo sends subscription events, product details and Customer Portal links to Klaviyo only while it's on, and events from before you enable it aren't synced. See [Enable the Klaviyo integration](/enable-klaviyo-integration).
+- **You have a test subscription** with your own email address, to try the whole path before subscribers do.
+
+<Steps>
+  <Step title="Set how long email links work">
+    The links in Juo emails sign the subscriber in, and they stop working after the **Authentication token expiry**, which is **3 days** by default.
+
+    The link is created when Juo sends the event to Klaviyo, not when Klaviyo sends the email. A flow that waits 45 days after a cancellation sends a link that expired 42 days earlier.
+
+    1. In Juo, open [Experiences → Retention](https://admin.juo.io/experiences/retention) and find **Quick actions**.
+    2. Set **Authentication token expiry** to about 10 days longer than your flow's wait time, so subscribers have time to open the email. For a 60-day wait, set 70 days.
+
+    Anyone who has the email can use its links until they expire, so don't set it longer than your flows need. One-time campaigns create fresh links at the moment you send them, so they work even with the default 3-day expiry.
+
+    <Warning>
+      The expiry applies to every quick link and quick action Juo sends, including your renewal reminders.
+    </Warning>
+  </Step>
+  <Step title="Create the workflow from the blueprint">
+    1. Go to **Workflows → Blueprints** and open **Reactivation campaign**.
+    2. Select **Use this blueprint** and follow **Quick setup**.
+    3. **Set the offer.** Set the discount type, value and number of orders in the built-in workflow, or replace the discount with a gift.
+    4. **Write the welcome-back message.** The message uses the **Reactivation perks** block. Set the same discount and gift in the block as in the workflow, so the message shows exactly what the subscriber gets.
+    5. **Publish** the workflow.
+
+    The workflow starts on the **Customer portal opened** trigger and checks the `utm_content` tag of the link. Only one published workflow can use a trigger. If you already run a workflow on **Customer portal opened**, such as a welcome message, combine both in one workflow. See [Blueprints](/workflows/blueprints#considerations).
+  </Step>
+  <Step title="Build the email">
+    <Tabs>
+      <Tab title="Automated">
+        Create one flow for canceled subscriptions and one for paused ones. Both use the same [email template](#email-template).
+
+        **Canceled subscriptions**
+
+        1. In Klaviyo, create a flow triggered by **Canceled Subscription**.
+        2. Add two flow filters: **What someone has done → Reactivated Subscription → zero times since starting this flow**, and the same for **Started Subscription**. Klaviyo checks flow filters before each email, so subscribers who reactivate on their own, or start a new subscription at checkout, don't receive it.
+        3. Add a **time delay**, for example 45 days. Keep it about 10 days shorter than the token expiry from step 1.
+        4. Add an email with the template.
+
+        **Paused subscriptions**
+
+        1. Create a flow triggered by **Paused Subscription**.
+        2. Add a flow filter: **Properties about someone → Shopify tags contains paused_subscriber**, so subscribers who already unpaused don't receive it.
+        3. Add a time delay and an email with the template.
+
+        For a short sequence, add a second email a week after the first, behind the same filter.
+      </Tab>
+      <Tab title="One-time campaign">
+        You choose who gets the email in Juo, and they receive it within minutes. Behind the scenes, a Juo workflow sends a custom event to Klaviyo for each subscription you select, and a Klaviyo flow sends the email when the event arrives. The event carries the same subscription details as Juo's standard events, with links created at the moment you send.
+
+        **In Juo**
+
+        1. Create a workflow from the **Send campaign event to Klaviyo** blueprint and name the event `Reactivation Campaign`.
+        3. Publish the workflow.
+        4. Run it once on a test subscription, so Klaviyo creates the metric: go to **Subscriptions**, select the subscription and choose **Run workflow**.
+
+        For details, see [Klaviyo campaign events](/klaviyo-campaign-events).
+
+        **In Klaviyo**
+
+        1. Create a flow triggered by the **Reactivation Campaign** metric.
+        2. Add an email with the template and set the flow live.
+
+        **Send the campaign**
+
+        1. In Juo, go to **Subscriptions** and filter by **Status: Cancelled** and **Paused**.
+        2. Optionally, add more [filters](/managing-subscriptions#find-subscriptions) to target the campaign, such as **Cancelled on** or **Product**.
+        2. Select the subscriptions and choose **Run workflow**.
+
+        Klaviyo sends the emails within minutes. To track each campaign separately, change the event name in the Juo workflow before your next send (for example, `Black Friday Reactivation`) and create a Klaviyo flow triggered by it.
+
+        <Note>
+          Only one published workflow can use the **Admin initiated** trigger. To run other admin workflows, unpublish this one after the send.
+        </Note>
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Test the whole path">
+    1. Cancel a test subscription with your own email address, and pause another.
+    2. Preview the email in Klaviyo with your profile and check the products and the offer.
+    3. Send it to yourself and click the button, as a subscriber would. Check that the welcome-back message shows your offer, that accepting it reactivates the subscription, and that the discount or gift appears on the next order.
+
+    If the message doesn't appear, check that the link ends with `utm_content=juo_reactivate`. If you use Klaviyo's automatic UTM tracking, remove `utm_content` from your UTM settings, or turn UTM tracking off for this email, so Klaviyo doesn't add its own value.
+  </Step>
+</Steps>
+
+## Email template
+
+This template is ready to use in Klaviyo for canceled and paused subscribers alike. It greets the subscriber by name, presents your offer, lists the products they subscribed to with images, and opens their subscription with the offer waiting. It works in automated flows and one-time campaigns, on desktop and mobile.
+
+<Frame caption="The template with sample data. Select the image to see it full size.">
+  <img
+    src="https://cdn.juo.io/content-uploads/reactivation_email_full_2x_219fa087d1.png"
+    alt="Reactivation email: the store name, the headline We saved your spot, a welcome-back offer of 15% off the next 3 orders, a Reactivate my subscription button, the subscribed products with images and quantities, three reasons subscribers stay, and a footer with the store address and unsubscribe link"
+    style={{ width: "100%", maxWidth: "340px" }}
+  />
+</Frame>
+
+To use it, go to **Content → Templates → Create template → Code** in Klaviyo, paste the HTML and save. Then select the template in your flow email.
+
+```html reactivation-email.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<title>We saved your spot</title>
+<style>
+  @media only screen and (max-width: 620px) {
+    .container { width: 100% !important; }
+    .px { padding-left: 24px !important; padding-right: 24px !important; }
+    .h1 { font-size: 26px !important; }
+  }
+</style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4f3ef;">
+
+<!-- Preview text + whitespace padding to prevent body text bleed in inbox -->
+<div style="display: none; max-height: 0; overflow: hidden; mso-hide: all;">
+  Enjoy 15% off your next 3 orders when you reactivate your subscription.
+  &#847; &zwnj; &nbsp; &#8199; &shy; &#847; &zwnj; &nbsp; &#8199; &shy; &#847; &zwnj; &nbsp; &#8199; &shy; &#847; &zwnj; &nbsp; &#8199; &shy; &#847; &zwnj; &nbsp; &#8199; &shy; &#847; &zwnj; &nbsp; &#8199; &shy;
+</div>
+
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4f3ef;">
+  <tr>
+    <td align="center" style="padding: 32px 12px;">
+
+      <table role="presentation" class="container" width="600" cellspacing="0" cellpadding="0" border="0" style="width: 600px; max-width: 600px; background-color: #ffffff; border-radius: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color: #1a1a1a;">
+
+        <!-- 1. Brand Header -->
+        <tr>
+          <td class="px" align="center" style="padding: 36px 48px 0;">
+            <!-- Replace with your logo: <img src="https://..." alt="{{ organization.name }}" width="120" style="display: block; border: 0;"> -->
+            <p style="margin: 0; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">{{ organization.name }}</p>
+          </td>
+        </tr>
+
+        <!-- 2. Headline & Intro -->
+        <tr>
+          <td class="px" align="center" style="padding: 32px 48px 0;">
+            <h1 class="h1" style="margin: 0; font-size: 30px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em;">
+              {% if person.first_name %}We saved your spot, {{ person.first_name|title }}{% else %}We saved your spot{% endif %}
+            </h1>
+            <p style="margin: 16px 0 0; font-size: 16px; line-height: 1.6; color: #55534e;">
+              Your subscription is saved just the way you left it. Reactivate it in seconds and enjoy an exclusive welcome-back offer.
+            </p>
+          </td>
+        </tr>
+
+        <!-- 3. Offer Box -->
+        <tr>
+          <td class="px" style="padding: 28px 48px 0;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4f3ef; border-radius: 12px;">
+              <tr>
+                <td align="center" style="padding: 24px;">
+                  <p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #55534e;">Welcome-back offer</p>
+                  <p style="margin: 8px 0 0; font-size: 28px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em;">15% off your next 3 orders</p>
+                  <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #55534e;">Applied automatically when you reactivate. No code needed.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- 4. Primary CTA: opens the subscription in the Customer Portal. Keep utm_content=juo_reactivate, so the workflow shows the offer -->
+        <tr>
+          <td class="px" align="center" style="padding: 28px 48px 0;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td align="center" style="border-radius: 999px; background-color: #1a1a1a;">
+                  <a href="{{ event.QuickLinks.ViewSubscription }}&utm_source=klaviyo&utm_medium=email&utm_content=juo_reactivate" target="_blank" style="display: inline-block; padding: 16px 36px; font-size: 16px; font-weight: 600; color: #ffffff; text-decoration: none; border-radius: 999px;">Reactivate my subscription</a>
+                </td>
+              </tr>
+            </table>
+            <p style="margin: 12px 0 0; font-size: 13px; color: #8a877f;">No login required.</p>
+          </td>
+        </tr>
+
+        <!-- 5. Saved Subscription Items -->
+        {% if event.Items %}
+        <tr>
+          <td class="px" style="padding: 40px 48px 0;">
+            <p style="margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #55534e;">Your saved subscription</p>
+            {% for item in event.Items %}
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-top: 1px solid #ebe9e3;">
+              <tr>
+                {% if item.ImageURL %}
+                <td width="72" style="padding: 14px 12px 14px 0; vertical-align: middle;">
+                  <img src="{{ item.ImageURL }}" alt="{{ item.ProductName }}" width="64" height="64" style="display: block; width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 0;">
+                </td>
+                {% endif %}
+                <td style="padding: 14px 0; vertical-align: middle;">
+                  <p style="margin: 0; font-size: 15px; font-weight: 600;">
+                    {% if item.ProductURL %}<a href="{{ item.ProductURL }}" target="_blank" style="color: #1a1a1a; text-decoration: none;">{{ item.ProductName }}</a>{% else %}{{ item.ProductName }}{% endif %}
+                  </p>
+                  {% if item.VariantName %}<p style="margin: 2px 0 0; font-size: 14px; color: #55534e;">{{ item.VariantName }}</p>{% endif %}
+                </td>
+                <td align="right" style="padding: 14px 0 14px 12px; vertical-align: middle; font-size: 14px; color: #55534e; white-space: nowrap;">&times; {{ item.Quantity }}</td>
+              </tr>
+            </table>
+            {% endfor %}
+            <p style="margin: 0; padding-top: 14px; border-top: 1px solid #ebe9e3; font-size: 14px; color: #55534e;">
+              Delivered every {{ event.OrderIntervalFrequency }} {{ event.OrderIntervalUnit|lower }}{% if event.OrderIntervalFrequency > 1 %}s{% endif %}
+            </p>
+          </td>
+        </tr>
+        {% endif %}
+
+        <!-- 6. Value Props -->
+        <tr>
+          <td class="px" style="padding: 40px 48px 0;">
+            <p style="margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #55534e;">Why subscribers stay</p>
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td width="24" style="padding: 6px 0; vertical-align: top; font-size: 15px; font-weight: 700;">&#10003;</td>
+                <td style="padding: 6px 0; font-size: 15px; line-height: 1.5;"><strong>Never run out.</strong> <span style="color: #55534e;">Your essentials arrive right on schedule.</span></td>
+              </tr>
+              <tr>
+                <td width="24" style="padding: 6px 0; vertical-align: top; font-size: 15px; font-weight: 700;">&#10003;</td>
+                <td style="padding: 6px 0; font-size: 15px; line-height: 1.5;"><strong>Subscriber pricing.</strong> <span style="color: #55534e;">Every delivery costs less than a one-time order.</span></td>
+              </tr>
+              <tr>
+                <td width="24" style="padding: 6px 0; vertical-align: top; font-size: 15px; font-weight: 700;">&#10003;</td>
+                <td style="padding: 6px 0; font-size: 15px; line-height: 1.5;"><strong>Total flexibility.</strong> <span style="color: #55534e;">Skip, pause, or update your schedule anytime.</span></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- 7. Reassurance -->
+        <tr>
+          <td class="px" align="center" style="padding: 32px 48px 40px;">
+            <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #55534e;">
+              You can change your products and delivery dates anytime after you reactivate.
+            </p>
+          </td>
+        </tr>
+
+      </table>
+
+      <!-- 8. Footer -->
+      <table role="presentation" class="container" width="600" cellspacing="0" cellpadding="0" border="0" style="width: 600px; max-width: 600px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+        <tr>
+          <td class="px" align="center" style="padding: 24px 48px; font-size: 12px; line-height: 1.6; color: #8a877f;">
+            {{ organization.name }} &middot; {{ organization.full_address }}<br>
+            <a href="{% unsubscribe_link %}" style="color: #8a877f; text-decoration: underline;">Unsubscribe</a>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+```
+
+### What's in the template
+
+| Section | What it shows | What to change |
+| --- | --- | --- |
+| **Preview text** | The line shown next to the subject in the inbox | Match it to your offer |
+| **Brand** | Your store name from Klaviyo | Replace it with your logo |
+| **Headline and intro** | A greeting with the subscriber's first name | Your own words and tone |
+| **Offer** | The offer, in a highlighted box | Must match the offer in the workflow |
+| **Button** | The **View Subscription** link with `utm_content=juo_reactivate` appended | The button label. Keep the tag, so the offer appears |
+| **Your saved subscription** | Each product with its image, name, variant and quantity, and the delivery frequency, from the event's `Items` | Usually nothing. Remove the section if you show a single hero product instead |
+| **Why subscribers stay** | Three reasons to subscribe | Your real benefits, such as free shipping or member prices |
+| **Reassurance** | A line saying products and delivery dates can be changed after reactivating | Nothing. Avoid adding a second portal link: the offer is only claimed from the welcome-back message, so subscribers who edit first and then reactivate from the portal don't get it |
+| **Footer** | Your address and an unsubscribe link from Klaviyo | Nothing. Klaviyo requires both in marketing emails |
+
+The colors are in the inline styles: `#1a1a1a` for the button and text, `#f4f3ef` for the background and the offer box. Replace them with your brand colors.
+
+### Adapt the template
+
+| Purpose | Change |
+| --- | --- |
+| Paused subscribers, optionally | Speak to a break rather than a goodbye, for example "Ready for your next delivery?" |
+| Seasonal campaign, such as Black Friday | Name the occasion in the headline and preview text. If you give the offer an end date, unpublish the workflow or change its offer when the date passes |
+| Product launch | Replace **Why subscribers stay** with the new product: an image, two lines on what's new and a link to its page |
+| Product improvement | Use the intro to explain what changed, especially for subscribers whose _CancellationReason_ mentions the product |
+| Gift instead of a discount | Change the offer box, for example "A free travel bag with your next order" |
+| No offer | Remove the offer box and "enjoy an exclusive welcome-back offer" from the intro. Remove the discount and gift from the workflow too |
 
 ## Guardrails
 
-- **Gate the offer on the campaign.** Without the UTM check, every reactivation receives the discount, including customers who would have returned anyway.
-- **One win-back offer per customer.** Use a usage limit so a customer cannot cancel and reactivate repeatedly for the discount.
-- **Keep the sequence short.** Two or three messages. After that, move the customer to your regular marketing.
+- **Make the offer worth returning for, not worth leaving for.** If the reactivation offer beats what active subscribers get, some will cancel to collect it.
+- **One offer per subscriber.** The welcome-back message has a display limit, so a subscriber can't claim the offer more than once. Keep the limit if you edit the workflow.
+- **Keep sequences short.** One or two emails per cancellation. After that, move the subscriber to your regular marketing.
+- **Keep links valid.** When you change a flow's wait time, change the token expiry too.
 
-## Measure results
+## How to measure it
 
-- **Reactivation rate** of canceled subscriptions, compared with the period before launch.
-- **Repeat cancellation**: the share of reactivated subscriptions that cancel again within two cycles. A high rate means the offer brings customers back for one discounted order only.
-- **Revenue per reactivated subscription** against the offer cost.
+- **Reactivation rate.** In Klaviyo, set the flow's conversion metric to **Reactivated Subscription** to see how many recipients reactivated. For paused subscribers, compare the number of active subscriptions before and after the send.
+- **Offers claimed.** The workflow's runs show how many subscribers saw the welcome-back message and accepted the offer.
+- **Repeat cancellations.** The share of reactivated subscriptions that cancel again within two orders. A high rate means the offer brings subscribers back for one discounted order only.
+- **Return on the offer.** Revenue from reactivated subscriptions against the cost of the discounts and gifts. See [Analytics](/analytics).
 
 ## Related
 
-- [Cancellation flow](/cancellation-flow)
-- [Customer Portal link](/linking-customer-portal) · [Klaviyo integration](/klaviyo-integration)
+- [Designing a cancellation flow](/cancellation-flow)
+- [Sales and seasonal campaigns](/seasonal-campaigns)
+- [Quick actions](/quick-actions) · [Klaviyo integration](/klaviyo-integration)
+- [Workflow triggers](/workflows/triggers) · [Blueprints](/workflows/blueprints)

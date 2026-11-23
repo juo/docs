@@ -213,7 +213,8 @@
             "pages": [
               "upsells-for-subscriptions",
               "seasonal-campaigns",
-              "one-time-discount-codes"
+              "one-time-discount-codes",
+              "klaviyo-campaign-events"
             ]
           }
         ]

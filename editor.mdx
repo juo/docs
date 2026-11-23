@@ -89,6 +89,25 @@ A flexible renewal hub with status labels, next payment/delivery callouts, price
 
 Product recommendations carousel for add-ons, samples, and discounted items. Works with Upsells configured in Admin.
 
+### Instant product sale
+
+Sells one [buy-now upsell](/upsells#sell-an-upsell-as-a-separate-order) as a separate order, charged to the subscription's payment method. Juo adds this block under the **Header** on every subscription page. It stays hidden from customers until a buy-now upsell is live, so you don't need to add it yourself.
+
+| Setting | What it does |
+| --- | --- |
+| **Upsell campaign** | The buy-now upsell this block sells. **Default** sells your oldest buy-now upsell that is active and inside its schedule, and shows its name, for example **Default (Black Friday)**. Other campaigns are listed with their state when they aren't running: scheduled, ended or off. |
+| **Products quantity** | How many products the row shows, from 1 to 8. The rest open from **See more products**. |
+| **Theme** | **Light**, **Highlight** or **Inverted (dark)** |
+| **Product card style** | **Upsell (tick on the photo)** or **Shop (Add to order)** |
+| **Header layout** | Where the promo badge sits: **Stacked (badge above)**, **Split (badge beside)** or **Centered (badge as a sticker)** |
+| **Promo badge** | A color preset (Black, Red, Yellow or Coral), or your own background and text colors |
+
+The promo badge text comes from the campaign's discount, for example "20% off". During the campaign's last 7 days, the header also shows when it ends, for example "Ends tomorrow".
+
+The block has no text settings. To reword its header, use the **Translations** tab with the block selected. It shows only the text that fits the picked campaign: the badge for its kind of discount, and **Limited time** and **Ends in** only when the campaign has a schedule. To hide the badge, clear its text.
+
+In the Editor preview, if the preview customer can't buy from the campaign, the block shows sample products priced with the campaign's discount, and the block's settings say why. If there's no campaign at all, the Editor doesn't show the block.
+
 ### Upcoming order items
 
 Line items for the next scheduled order. Customers can change products and add a discount code.

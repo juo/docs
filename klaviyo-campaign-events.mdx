@@ -9,8 +9,7 @@ keywords:
   - "send event to klaviyo"
   - "admin initiated"
   - "run workflow"
-  - "bulk"
-  - "blueprint"
+  - "bulk actions"
   - "segment"
 ---
 
@@ -23,7 +22,7 @@ keywords:
 
 ## Why it matters
 
-Klaviyo knows your customers' profiles, but Juo knows their subscriptions: the status, the products, the purchase option, the cycle, the cancellation date. With the **Send campaign event to Klaviyo** blueprint, you choose the audience in Juo with those details, and Klaviyo sends the email.
+Klaviyo knows your customers' profiles, but Juo knows their subscriptions: the status, the products, the purchase option, the cycle, the cancellation date. With a simple workflow, one **Admin initiated** trigger and one **Send event to Klaviyo** action, you choose the audience in Juo with those details, and Klaviyo sends the email.
 
 Each email can show the subscriber's own products and delivery schedule, and its Customer Portal links are created at the moment you send, so they work for as long as your link expiry allows.
 
@@ -45,12 +44,14 @@ Use it for any one-off message to a group of subscribers:
 Before you start, check that the [Klaviyo integration](/klaviyo-integration) is enabled, and that you have a test subscription with your own email address.
 
 <Steps>
-  <Step title="Create the workflow from the blueprint">
-    1. Go to **Workflows → Blueprints** and open **Send campaign event to Klaviyo**.
-    2. Select **Use this blueprint**.
-    3. In the **Send event to Klaviyo** step, rename the event after your campaign, for example `Price Change 2027`. This becomes the metric name in Klaviyo.
+  <Step title="Create the workflow">
+    1. In **Workflows**, select **New workflow** and choose the **Admin initiated** trigger. It starts the workflow for the subscriptions you select. See [Triggers](/workflows/triggers#admin-initiated).
+    2. Add a **Send event to Klaviyo** action.
+    3. Name the event after your campaign, for example `Price Change 2027`. This becomes the metric name in Klaviyo.
     4. Optionally, add properties: text values you can use in the email, such as an `Offer` property shown with `{{ event.Offer }}`.
     5. **Publish** the workflow.
+
+    The event carries the subscription's products, details and Customer Portal links automatically, so the action needs nothing else.
   </Step>
   <Step title="Send a test event">
     Klaviyo lets you build a flow on a metric only after it has received at least one event with that name.
@@ -68,7 +69,8 @@ Before you start, check that the [Klaviyo integration](/klaviyo-integration) is 
   </Step>
   <Step title="Run the campaign">
     1. In Juo, go to **Subscriptions** and use the [filters](/managing-subscriptions#find-subscriptions) to find the subscribers the campaign is for.
-    2. Select the subscriptions and choose **Run workflow**.
+    2. Select the subscriptions, or use **Select all** to include every subscription that matches the filters.
+    3. Choose **Run workflow**. It's one of the [bulk actions](/bulk-actions) on the Subscriptions list.
 
     Klaviyo sends the emails within minutes.
   </Step>

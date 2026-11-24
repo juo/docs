@@ -47,6 +47,23 @@ Some text can also be edited **directly in the preview**. Click the text in the 
 - **Remove**: Delete a block from the composition panel.
 - **Undo / redo**: Revert recent layout and style changes.
 
+### Block conditions
+
+Add a condition to a block to show it only to some subscribers. For example, show a welcome banner only on a subscription's first order, or a loyalty offer from the third order on.
+
+1. Select a top-level block on the page. Blocks nested inside another block don't have conditions; add the condition to the block that contains them.
+2. In the **Controls** tab, find **Conditions** and click **Add**.
+3. Under **Show when the subscription cycle**, choose an operator (**is equal to**, **is not equal to**, **is at least**, **is at most**, **is higher than** or **is lower than**) and enter a cycle number. Cycle 1 is the subscription's first order.
+4. **Publish** to make the condition live.
+
+To show the block to everyone again, click the remove icon next to the condition. Blocks without a condition are always shown.
+
+The Customer Portal checks the condition against the subscription the customer is viewing. When there is no subscription to check (for example on the Login page or the subscriptions list), the block is shown. In the Editor, the preview applies the condition to the preview customer selected under **Live data**, so a block whose condition doesn't match that customer's subscription disappears from the preview.
+
+<Note>
+  Conditions only control what is displayed. They don't protect content: a hidden block is still sent to the customer's browser.
+</Note>
+
 ## Pages
 
 In the current version of the Editor, you can edit the Main Customer Portal view, the Login page view and the No subscriptions page. You can also edit views created by Workflows.

@@ -86,6 +86,7 @@ Depending on the event type, some additional properties may become available, su
 | Property name          | Description                                                                                   | Type   |
 | :--------------------- | :-------------------------------------------------------------------------------------------- | :----- |
 | **errorMessage**       | Provides more background on the reason for payment failure, e.g. "Payment method was revoked" | string |
+| **errorCode**          | Payment provider's code for the decline, e.g. `"INSUFFICIENT_FUNDS"` or `"EXPIRED_PAYMENT_METHOD"`. Empty when the decline has no code (Billing Failed Subscription) | string |
 | **NextActionUrl**      | Link to where subscribers can finish their payment validation when required                   | string |
 | **PaymentMethodType**  | Payment method type for upcoming renewal notifications (`recurring` or `intentional`)         | string |
 | **CancellationReason** | Reason for canceling the subscription provided by the customer                               | string |

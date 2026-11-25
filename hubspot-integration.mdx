@@ -87,6 +87,7 @@ Depending on the event type, some additional properties may become available:
 | Property name | Description | Type |
 | :-- | :-- | :-- |
 | **error\_message** | Provides more background on the reason for payment failure, e.g. "Payment method was revoked" | text |
+| **error\_code** | Payment provider's code for the decline, e.g. `INSUFFICIENT_FUNDS` or `EXPIRED_PAYMENT_METHOD` (Billing Failed Subscription). Not sent when the decline has no code | text |
 | **attempt** | Contains the number of the failed billing attempt | number |
 | **cancellation\_reason** | Reason for canceling the subscription provided by the customer | text |
 | **send\_email** | Whether a cancellation email was sent to the customer | boolean |

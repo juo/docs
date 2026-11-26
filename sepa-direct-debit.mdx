@@ -46,7 +46,7 @@ Choose what happens when a SEPA payment is charged back:
 
 - **Enable chargeback dunning flow** creates a new draft order and sends a payment link to Klaviyo, so you can ask the customer to pay.
 - **Chargeback reasons** decide which reasons start the flow. Only reasons that allow contacting the customer can be selected.
-- **Enable auto-retry via mandate** retries insufficient-funds chargebacks with the existing mandate before sending the payment link. Set **Maximum retries** between 1 and 10. The default is 3.
+- **Enable auto-retry via mandate** retries insufficient-funds chargebacks with the existing mandate before sending the payment link. Set **Maximum retries** between 1 and 10. The default is 3. Auto-retry doesn't apply to payments made through Stripe, so those customers get the payment link right away.
 - **Revoke payment method** after an insufficient-funds chargeback avoids repeated chargeback fees. With auto-retry on, the payment method is revoked after the last retry.
 - **Set a product for draft orders** adds a virtual product to recovery draft orders instead of the original products.
 

@@ -142,6 +142,7 @@
             "group": "Payments",
             "pages": [
               "local-payment-methods",
+              "klarna",
               "sepa-direct-debit",
               "sepa-chargebacks"
             ]

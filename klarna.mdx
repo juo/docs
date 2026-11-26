@@ -1,0 +1,51 @@
+---
+title: "Klarna"
+description: "How subscriptions paid with Klarna work in Juo: the first payment, automatic renewals, refunds and how to get Klarna turned on."
+keywords:
+  - "Klarna"
+  - "Klarna subscriptions"
+  - "Stripe"
+  - "pay later"
+  - "local payment methods"
+---
+
+Klarna lets customers start a subscription with a payment method many of them already use. Juo takes Klarna payments through your own Stripe account. The customer approves Klarna once on the first order, and Juo charges every renewal automatically.
+
+## How it works
+
+1. **Checkout.** The customer chooses **Klarna** at checkout. Shopify places the order as unpaid.
+2. **First payment.** The order status page links the customer to a Klarna payment page hosted by Stripe. When they approve the payment, Klarna saves a mandate for future payments on your Stripe account.
+3. **Subscription.** Juo marks the Shopify order as paid and creates the subscription with Klarna as its payment method.
+4. **Renewals.** On each renewal date, Juo charges the saved Klarna payment method. The customer doesn't need to do anything.
+
+If the customer doesn't pay the first order in time (2 hours by default), Juo cancels the order and restocks its items.
+
+## Set up Klarna
+
+Klarna isn't turned on by default. Juo sets it up for your store together with you. You need:
+
+| Requirement | Details |
+| --- | --- |
+| **Stripe** | A Stripe account connected to Juo, with Klarna turned on in Stripe |
+| **Shopify payment method** | A manual payment method named exactly `Klarna` |
+| **Juo** | Klarna turned on for your store by the Juo team |
+
+To request access, email [support@juo.io](mailto:support@juo.io) or message us through the chat in the Juo app.
+
+## Failed renewals and revoked mandates
+
+When Klarna declines a renewal, Juo retries it like any other failed payment and emails the customer that the payment failed. See [Recover failed payments](/failed-payments).
+
+A customer can remove the mandate in the Klarna app. Juo then marks the payment method as revoked and stops charging it. The next renewal fails without a charge attempt, and the customer gets the payment failed email.
+
+## Refunds
+
+Refund a Klarna order from the Shopify admin as usual. Juo refunds the payment through Stripe, and you don't need to do anything in Stripe.
+
+Each Klarna payment in Stripe shows the Shopify order number, so you can match payments to orders.
+
+## Related
+
+- [Local payment methods](/local-payment-methods)
+- [SEPA Direct Debit](/sepa-direct-debit)
+- [Recover failed payments](/failed-payments)

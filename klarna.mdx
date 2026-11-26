@@ -1,0 +1,79 @@
+---
+title: "Klarna"
+description: "How subscriptions paid with Klarna work in Juo: the first payment, automatic renewals, refunds and how to get Klarna turned on."
+keywords:
+  - "Klarna"
+  - "Klarna subscriptions"
+  - "Stripe"
+  - "Airwallex"
+  - "pay later"
+  - "local payment methods"
+---
+
+Klarna lets customers start a subscription with a payment method many of them already use. Juo takes Klarna payments through your own Stripe or Airwallex account. The customer approves Klarna once on the first order, and Juo charges every renewal automatically.
+
+## How it works
+
+1. **Checkout.** The customer chooses **Klarna** at checkout. Shopify places the order as unpaid.
+2. **First payment.** The order status page links the customer to a Klarna payment page hosted by your payment provider. When they approve the payment, Klarna saves a mandate for future payments on your provider account.
+3. **Subscription.** Juo marks the Shopify order as paid and creates the subscription with Klarna as its payment method.
+4. **Renewals.** On each renewal date, Juo charges the saved Klarna payment method. The customer doesn't need to do anything.
+
+If the customer doesn't pay the first order in time (2 hours by default), Juo cancels the order and restocks its items.
+
+## Set up Klarna
+
+Klarna isn't turned on by default. Juo sets it up for your store together with you. You need:
+
+| Requirement | Details |
+| --- | --- |
+| **Payment provider** | A Stripe or Airwallex account connected to Juo. With Stripe, Klarna must be turned on in Stripe |
+| **Shopify payment method** | A manual payment method named exactly `Klarna` |
+| **Juo** | Klarna turned on for your store by the Juo team |
+
+Each Klarna payment method stays with the provider that took its first payment. Renewals and refunds for it always go through that provider, even if new Klarna payments later move to the other one.
+
+To request access, email [support@juo.io](mailto:support@juo.io) or message us through the chat in the Juo app.
+
+### Connect an Airwallex account
+
+To take Klarna payments through Airwallex, connect your account once the Juo team has turned Airwallex on for your store.
+
+1. In Airwallex, create an API key with these permissions: Payment Acceptance (read and write), Webhooks (read and write) and Account details (read).
+2. In Juo, go to **Settings → Integrations → Airwallex**.
+3. Enter your **Client ID** and **API key**. Turn on **Sandbox account** only for a key from the Airwallex sandbox.
+4. Select **Connect**.
+
+Juo checks the key, reads your account and registers its webhook on it. The page then shows your Airwallex account ID. Juo never shows the API key again.
+
+Connecting doesn't start Klarna payments by itself. The Juo team turns on Klarna through Airwallex for your store.
+
+To replace the API key, enter the new one and select **Reconnect**. Renewals keep working while you reconnect. You can't switch to a different Airwallex account while subscriptions still pay with Klarna through the connected one.
+
+## Failed renewals and revoked mandates
+
+When Klarna declines a renewal, Juo retries it like any other failed payment and emails the customer that the payment failed. See [Recover failed payments](/failed-payments).
+
+A customer can remove the mandate in the Klarna app. Juo then marks the payment method as revoked and stops charging it. The next renewal fails without a charge attempt, and the customer gets the payment failed email. The customer can then switch the subscription to another saved payment method in the Customer Portal.
+
+## In the Customer Portal
+
+The Customer Portal and the Admin Portal show Klarna payment methods with the Klarna badge.
+
+- **Switching methods.** Customers can select **Change** and then **Use** to move a subscription onto a saved Klarna method, or from Klarna to another saved method, like with any other payment method.
+- **Unpaid methods.** A Klarna method whose first payment hasn't completed isn't listed, so customers can't add it to a subscription.
+- **No Edit.** Klarna methods have no **Edit** option, and customers can't request a card update email for them. To get a new Klarna mandate, the customer pays a new order with Klarna.
+
+Merchants can change a subscription's payment method in the Admin Portal without these limits.
+
+## Refunds
+
+Refund a Klarna order from the Shopify admin as usual. Juo refunds the payment through the provider that took it, and you don't need to do anything in your provider account.
+
+In Stripe, each Klarna payment shows the Shopify order number, so you can match payments to orders.
+
+## Related
+
+- [Local payment methods](/local-payment-methods)
+- [SEPA Direct Debit](/sepa-direct-debit)
+- [Recover failed payments](/failed-payments)

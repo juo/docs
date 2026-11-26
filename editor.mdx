@@ -47,6 +47,39 @@ Some text can also be edited **directly in the preview**. Click the text in the 
 - **Remove**: Delete a block from the composition panel.
 - **Undo / redo**: Revert recent layout and style changes.
 
+### Block conditions
+
+Add conditions to a block to show it only to some subscribers. For example, show a welcome banner only on a subscription's first order, or a loyalty offer to customers who have spent more than a set amount.
+
+1. Select a top-level block on the page. Blocks nested inside another block don't have conditions; add the condition to the block that contains them.
+2. In the **Controls** tab, find **Conditions** and click **Add**.
+3. Under **Show when the**, pick a field, an operator and a value.
+4. To combine conditions, click **Add condition**. Each extra row reads **and the**, and the block shows only when all conditions are met.
+5. **Publish** to make the conditions live.
+
+| Field                           | What it compares                                                                                                          |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **subscription cycle**          | The subscription's current cycle. Cycle 1 is the first order.                                                             |
+| **subscription status**         | **Active**, **Paused**, **Canceled**, **Expired** or **Failed**.                                                          |
+| **number of products**          | How many products the subscription contains.                                                                              |
+| **subscription age in days**    | Days since the subscription was created.                                                                                  |
+| **subscription value**          | The subscription's total after discounts, in the subscription's currency.                                                 |
+| **payment method**              | **Card**, **PayPal**, **Shop Pay**, **SEPA Direct Debit**, **BLIK**, **Recurring BLIK**, **MB WAY** or **Bacs Direct Debit**. |
+| **customer's number of orders** | Every order the customer placed, not only this subscription's.                                                            |
+| **customer's total spend**      | The sum of all the customer's order totals.                                                                               |
+
+Number fields use **is equal to**, **is not equal to**, **is higher than**, **is at least**, **is lower than** or **is at most**. Status and payment method use **is** or **is not**.
+
+To remove a condition, click the remove icon next to it. Blocks without conditions are always shown. If a block has a condition set outside the Editor, the section reads "Shown when a condition set outside the editor is met." Click **Remove** to clear it.
+
+The Customer Portal checks each condition against the subscription the customer is viewing and the signed-in customer. A condition that can't be answered on a page passes, while the other conditions still apply. For example, on the Login page or the subscriptions list there is no subscription to check, so subscription conditions don't hide the block there.
+
+In the Editor preview, a block hidden by a condition stays on the page, dimmed with a dashed outline and a **Hidden by condition** badge, so you can still select and edit it. Turn off **Show hidden blocks** under **Live data** to preview the page exactly as the selected preview customer sees it. The Editor remembers this choice in your browser.
+
+<Note>
+  Conditions only control what is displayed. They don't protect content: a hidden block is still sent to the customer's browser.
+</Note>
+
 ## Pages
 
 In the current version of the Editor, you can edit the Main Customer Portal view, the Login page view and the No subscriptions page. You can also edit views created by Workflows.

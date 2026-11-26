@@ -5,16 +5,17 @@ keywords:
   - "Klarna"
   - "Klarna subscriptions"
   - "Stripe"
+  - "Airwallex"
   - "pay later"
   - "local payment methods"
 ---
 
-Klarna lets customers start a subscription with a payment method many of them already use. Juo takes Klarna payments through your own Stripe account. The customer approves Klarna once on the first order, and Juo charges every renewal automatically.
+Klarna lets customers start a subscription with a payment method many of them already use. Juo takes Klarna payments through your own Stripe or Airwallex account. The customer approves Klarna once on the first order, and Juo charges every renewal automatically.
 
 ## How it works
 
 1. **Checkout.** The customer chooses **Klarna** at checkout. Shopify places the order as unpaid.
-2. **First payment.** The order status page links the customer to a Klarna payment page hosted by Stripe. When they approve the payment, Klarna saves a mandate for future payments on your Stripe account.
+2. **First payment.** The order status page links the customer to a Klarna payment page hosted by your payment provider. When they approve the payment, Klarna saves a mandate for future payments on your provider account.
 3. **Subscription.** Juo marks the Shopify order as paid and creates the subscription with Klarna as its payment method.
 4. **Renewals.** On each renewal date, Juo charges the saved Klarna payment method. The customer doesn't need to do anything.
 
@@ -26,9 +27,11 @@ Klarna isn't turned on by default. Juo sets it up for your store together with y
 
 | Requirement | Details |
 | --- | --- |
-| **Stripe** | A Stripe account connected to Juo, with Klarna turned on in Stripe |
+| **Payment provider** | A Stripe or Airwallex account connected to Juo. With Stripe, Klarna must be turned on in Stripe |
 | **Shopify payment method** | A manual payment method named exactly `Klarna` |
 | **Juo** | Klarna turned on for your store by the Juo team |
+
+Each Klarna payment method stays with the provider that took its first payment. Renewals and refunds for it always go through that provider, even if new Klarna payments later move to the other one.
 
 To request access, email [support@juo.io](mailto:support@juo.io) or message us through the chat in the Juo app.
 
@@ -50,9 +53,9 @@ Merchants can change a subscription's payment method in the Admin Portal without
 
 ## Refunds
 
-Refund a Klarna order from the Shopify admin as usual. Juo refunds the payment through Stripe, and you don't need to do anything in Stripe.
+Refund a Klarna order from the Shopify admin as usual. Juo refunds the payment through the provider that took it, and you don't need to do anything in your provider account.
 
-Each Klarna payment in Stripe shows the Shopify order number, so you can match payments to orders.
+In Stripe, each Klarna payment shows the Shopify order number, so you can match payments to orders.
 
 ## Related
 

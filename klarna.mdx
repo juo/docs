@@ -35,6 +35,21 @@ Each Klarna payment method stays with the provider that took its first payment. 
 
 To request access, email [support@juo.io](mailto:support@juo.io) or message us through the chat in the Juo app.
 
+### Connect an Airwallex account
+
+To take Klarna payments through Airwallex, connect your account once the Juo team has turned Airwallex on for your store.
+
+1. In Airwallex, create an API key with these permissions: Payment Acceptance (read and write), Webhooks (read and write) and Account details (read).
+2. In Juo, go to **Settings → Integrations → Airwallex**.
+3. Enter your **Client ID** and **API key**. Turn on **Sandbox account** only for a key from the Airwallex sandbox.
+4. Select **Connect**.
+
+Juo checks the key, reads your account and registers its webhook on it. The page then shows your Airwallex account ID. Juo never shows the API key again.
+
+Connecting doesn't start Klarna payments by itself. The Juo team turns on Klarna through Airwallex for your store.
+
+To replace the API key, enter the new one and select **Reconnect**. Renewals keep working while you reconnect. You can't switch to a different Airwallex account while subscriptions still pay with Klarna through the connected one.
+
 ## Failed renewals and revoked mandates
 
 When Klarna declines a renewal, Juo retries it like any other failed payment and emails the customer that the payment failed. See [Recover failed payments](/failed-payments).

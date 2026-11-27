@@ -1,7 +1,7 @@
 ---
-title: "Email the subscribers you select in Juo through Klaviyo"
+title: "Send a Klaviyo event to the subscriptions you select"
 sidebarTitle: "Klaviyo campaign events"
-description: "Pick subscribers with Juo's filters and send each a Klaviyo event with their products and fresh links, so a Klaviyo flow emails them within minutes."
+description: "Send a custom Klaviyo event to the subscriptions you select in Juo and use it to trigger a Klaviyo flow, for example a one-off email campaign."
 keywords:
   - "klaviyo"
   - "campaign"
@@ -9,89 +9,24 @@ keywords:
   - "send event to klaviyo"
   - "admin initiated"
   - "run workflow"
-  - "bulk"
-  - "blueprint"
-  - "segment"
+  - "bulk actions"
 ---
 
-|  |  |
-| --- | --- |
-| **Who it's for** | Brands that email subscribers through Klaviyo |
-| **Goal** | Send a one-off email to exactly the subscribers you choose, based on their subscription in Juo |
-| **Primary metric** | The conversion you set for the campaign's flow in Klaviyo |
-| **Supporting metrics** | Open and click rates, unsubscribes |
-
-## Why it matters
-
-Klaviyo knows your customers' profiles, but Juo knows their subscriptions: the status, the products, the purchase option, the cycle, the cancellation date. With the **Send campaign event to Klaviyo** blueprint, you choose the audience in Juo with those details, and Klaviyo sends the email.
-
-Each email can show the subscriber's own products and delivery schedule, and its Customer Portal links are created at the moment you send, so they work for as long as your link expiry allows.
-
-Use it for any one-off message to a group of subscribers:
-
-- A [reactivation campaign](/win-back) for subscribers who canceled or paused
-- A price change notice for subscribers on a specific product or purchase option
-- News about a reformulated or discontinued product, for the subscribers who receive it
-- A seasonal offer for subscribers past their third order
-
-## How it works
-
-1. **You choose the subscribers.** In Juo, filter the **Subscriptions** list and select the subscriptions the campaign is for.
-2. **Juo tells Klaviyo.** You run the workflow, and it sends your custom event to Klaviyo for each selected subscription, with the subscription's products, details and links.
-3. **Klaviyo sends the email.** A flow triggered by that event emails each subscriber within minutes.
+Send a custom event to Klaviyo for the subscriptions you select in Juo, and use it to trigger a Klaviyo flow. Each event includes the subscription's products, details and Customer Portal links, so your email can use them.
 
 ## Set it up
 
-Before you start, check that the [Klaviyo integration](/klaviyo-integration) is enabled, and that you have a test subscription with your own email address.
+1. In **Workflows**, create a new workflow with the **Admin initiated** trigger.
+2. Add a **Send event to Klaviyo** action, enter an event name, for example `Reactivation Campaign`, and publish the workflow.
+3. Send a test event: in **Subscriptions**, select a test subscription with your own email address and choose **Run workflow**. Klaviyo needs one event before you can use it as a flow trigger.
+4. In Klaviyo, create a flow triggered by your event, add the email and set the flow live.
 
-<Steps>
-  <Step title="Create the workflow from the blueprint">
-    1. Go to **Workflows → Blueprints** and open **Send campaign event to Klaviyo**.
-    2. Select **Use this blueprint**.
-    3. In the **Send event to Klaviyo** step, rename the event after your campaign, for example `Price Change 2027`. This becomes the metric name in Klaviyo.
-    4. Optionally, add properties: text values you can use in the email, such as an `Offer` property shown with `{{ event.Offer }}`.
-    5. **Publish** the workflow.
-  </Step>
-  <Step title="Send a test event">
-    Klaviyo lets you build a flow on a metric only after it has received at least one event with that name.
+## Send it
 
-    1. In Juo, go to **Subscriptions**, select your test subscription and choose **Run workflow**.
-    2. In Klaviyo, go to **Analytics → Metrics** and check that your event appears. It can take a few minutes.
-  </Step>
-  <Step title="Build the flow in Klaviyo">
-    1. Create a flow triggered by your event's metric.
-    2. Add an email. Use the event's properties to show the subscriber's products, delivery schedule and Customer Portal links. See the event properties in [Klaviyo integration](/klaviyo-integration).
-    3. Preview the email with your own profile, which now has the test event, and send yourself a test.
-    4. Set the flow live.
-
-    Klaviyo starts flows only for events that arrive after the flow is live, so your test event doesn't email you again.
-  </Step>
-  <Step title="Run the campaign">
-    1. In Juo, go to **Subscriptions** and use the [filters](/managing-subscriptions#find-subscriptions) to find the subscribers the campaign is for.
-    2. Select the subscriptions and choose **Run workflow**.
-
-    Klaviyo sends the emails within minutes.
-  </Step>
-</Steps>
-
-## Run the next campaign
-
-Give each campaign its own event name. Klaviyo then reports on each one separately, and an old flow can't fire for a new campaign. For every new name, send a test event first, then build the flow.
+In **Subscriptions**, filter and select the subscriptions you want, then choose **Run workflow**. Klaviyo sends the emails within minutes.
 
 <Note>
-  Only one published workflow can use the **Admin initiated** trigger. To run another admin workflow, unpublish this one after the send.
+  Only one published workflow can use the **Admin initiated** trigger.
 </Note>
 
-## Guardrails
-
-- **One event per subscription.** A customer with several selected subscriptions receives several emails. Narrow the selection, or turn on **Smart Sending** for the flow email in Klaviyo.
-- **Respect consent.** Marketing emails only reach profiles that agreed to receive them. Check Klaviyo's rules before sending service notices, such as a price change, as transactional emails.
-- **Send when subscribers can act.** Customer Portal links follow your link expiry, counted from the moment you send. See [Reactivation campaigns](/win-back#set-it-up).
-- **Test every new campaign** on your own subscription before you send it to subscribers.
-
-## Related
-
-- [Reactivation campaigns](/win-back)
-- [Sales and seasonal campaigns](/seasonal-campaigns)
-- [Klaviyo integration](/klaviyo-integration) · [Quick actions](/quick-actions)
-- [Workflow triggers](/workflows/triggers#admin-initiated) · [Bulk actions](/bulk-actions)
+For a full example, see [Reactivation campaigns](/win-back).

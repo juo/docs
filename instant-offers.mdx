@@ -1,0 +1,102 @@
+---
+title: "Instant offers for subscribers"
+sidebarTitle: "Instant offers"
+description: "Run a limited offer, such as Black Friday, that subscribers buy now as a separate order, without changing their subscription."
+keywords:
+  - "instant order"
+  - "buy now"
+  - "upsell"
+  - "black friday"
+  - "limited offer"
+  - "instant product sale"
+  - "customer portal"
+  - "separate order"
+---
+
+|  |  |
+| --- | --- |
+| **Who it's for** | Brands running a sale or limited offer that existing subscribers can use before their next renewal |
+| **Goal** | Earn extra revenue from subscribers during a campaign, without changing their subscription |
+| **Primary metric** | Share of eligible subscribers who place an instant order |
+| **Supporting metrics** | Revenue per campaign, average instant order value, cancellations during and after the campaign |
+
+## Why it matters
+
+A regular [upsell](/upsells-for-subscriptions) adds a product to the next renewal. That works when the next renewal is close, but a sale has an end date. A subscriber whose renewal is three weeks away would see the offer expire first.
+
+An instant offer removes that wait. The subscriber buys the products now, the order ships on its own, and the subscription keeps its schedule, products and price.
+
+## Plan the offer
+
+Decide four things before you set it up:
+
+- **Products.** Choose products subscribers already know, or a short list of bestsellers. A short row is easier to scan than a full catalog.
+- **Discount.** An instant offer takes one discount, set as a percentage, an amount or a fixed price. It applies once, to the separate order. Subscription discounts don't apply to it.
+- **Dates.** Set a start and end date for a campaign. Subscribers see when it ends during its last 7 days.
+- **Limits.** Decide whether a subscriber can buy repeatedly, once, or each product once.
+
+<Note>
+  An instant offer is charged to the subscription's saved payment method. Only subscribers with an active subscription and a payment method can buy it.
+</Note>
+
+## Set it up in Juo
+
+### Create the offer
+
+1. Go to **Experiences → Upsells → Add Upsell**.
+2. Enter a **Campaign name**.
+3. Under **Upsell type**, select **Buy now as a separate order**.
+4. Set the **Schedule**: always available, or between a start and end date.
+5. Optionally add a **Discount**. Choose **Percentage**, **Amount** or **Fixed price**.
+6. Choose a **Usage limit**:
+   - **No limits**: customers can buy as often as they like while the campaign is active.
+   - **Once per customer**: customers can buy one product from the campaign, once.
+   - **Each product once per customer**: customers can buy each offer product once.
+7. Optionally limit **Customer eligibility** to specific segments or to subscribers of a specific product.
+8. Select **Save**, then add the **Products**.
+9. Turn on **Active**.
+
+See [Upsells](/upsells) for how a buy-now upsell differs from one added to the subscription.
+
+### Check the Instant product sale block
+
+Subscribers buy from the **Instant product sale** block in the Customer Portal. Juo adds it to the main subscription page, below the header, and it stays hidden until a buy-now upsell is live.
+
+Each block sells one campaign. By default it sells your oldest buy-now upsell that is active and inside its schedule. If you run more than one campaign, select the one a block sells under **Upsell campaign** in the [Editor](/editor).
+
+In the Editor you can also change the block's theme, product card style and promo badge, and reword its header in the **Translations** tab. Use **Preview customer** to see the block as a real subscriber does.
+
+### Test the offer
+
+1. Open the Customer Portal as a test subscriber who matches the campaign's eligibility.
+2. Select **Buy now** on a product, or select several and choose **Review and pay**.
+3. Select **Place order**.
+4. In Shopify, check that the order is separate from the subscription, the product line reads **One-time purchase**, and the discount and shipping match what you set.
+5. Open the subscription in Juo and check that it didn't change.
+
+## What subscribers see
+
+The block shows the campaign's discount as a badge, for example "20% off", and the products with their offer prices. Subscribers review the order, confirm it, and Juo charges their payment method right away. The block then shows the order as placed.
+
+If an order can't be placed, the block explains why. A declined payment, an unpaid earlier order, an offer that has ended and too many orders in a short time each show their own message.
+
+## Guardrails
+
+- **Check stock** before the campaign starts. Products that are no longer available can't be ordered.
+- **Use usage limits** for scarce or heavily discounted products.
+- **Avoid overlapping campaigns** that share products. A block without a selected campaign sells your oldest live one.
+- **Check shipping** on a test order. The instant order ships separately from the subscription.
+- **End dates are final.** A subscriber who opens the block after the campaign ends sees no offer.
+
+## How to measure it
+
+- **Instant orders** placed during the campaign, and the share of eligible subscribers who placed one.
+- **Revenue and average order value** of instant orders compared with renewals in the same period.
+- **Cancellations** during and after the campaign, compared with the weeks before it.
+- **Repeat purchases.** Subscribers who buy an instant offer product more than once are good candidates for adding it to their subscription.
+
+## Related
+
+- [Upsells for subscriptions](/upsells-for-subscriptions)
+- [Sales and seasonal campaigns](/seasonal-campaigns)
+- [Upsells](/upsells) and [Editor](/editor)

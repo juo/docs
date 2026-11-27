@@ -86,7 +86,9 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
   </Accordion>
 
   <Accordion title="Can renewals fall on the same day every month?">
-    Yes, with a monthly frequency and a **Fixed fulfillment day** in [Subscribe and save](/subscribe-and-save). Frequencies in weeks, such as every 4 weeks, move the date each month, because most months are longer than four weeks.
+    Yes. A monthly frequency, such as every 1 month, keeps the same day of the month. To choose the day yourself, set a **Fixed fulfillment day** in [Subscribe and save](/subscribe-and-save). Avoid days after the 28th: in shorter months, the order moves into the next month. With SEPA Direct Debit, the payment is taken a few days before the fulfillment day.
+
+    Frequencies in weeks, such as every 4 weeks, move the date each month, because most months are longer than four weeks.
   </Accordion>
 
   <Accordion title="How do I ship a welcome kit first and refills after?">
@@ -134,8 +136,8 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
   </Accordion>
 
   <Accordion title="What can I check when a customer can't log in to the portal?">
-    - **The login email doesn't arrive:** ask the customer to check their spam and promotions folders and to use the email address on their subscription. In Shopify, check the customer's email for typos.
-    - **The login code doesn't work:** codes expire after 10 minutes. Ask the customer to request a new code and use it right away.
+    - **The login email doesn't arrive:** ask the customer to check their spam and promotions folders and to use the email address on their subscription. If the email doesn't match a Shopify customer, the portal still says a code was sent, but no email goes out. In Shopify, check the customer's email for typos.
+    - **The login code doesn't work:** codes expire after a few minutes. Ask the customer to request a new code and use the latest one right away.
     - **The customer logs in but sees no subscription:** they may have two Shopify customer records with different emails. Search Shopify for the customer's name and check which record has the subscription.
 
     To see the portal as the customer does, open the subscription in Juo and select **Generate customer portal link**.
@@ -182,11 +184,11 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
   </Accordion>
 
   <Accordion title='Why does a subscription still show "Last payment failed"?'>
-    The status shows the result of the last payment attempt. It changes once a new payment goes through. After the customer updates their payment method, select **Retry now** on the subscription. A card renewal can take a few minutes to complete, and a SEPA Direct Debit payment up to two working days.
+    The banner **Last payment failed. Next payment retry due** stays while a retry is scheduled. Updating the payment method doesn't clear it. A successful payment does. After the customer updates their payment method, select **Retry now** on the subscription. A card payment can take a few minutes to complete, and a SEPA Direct Debit payment can take several days.
   </Accordion>
 
   <Accordion title="Why is a payment method shown as Inactive?">
-    After repeated declines, the payment method is deactivated, so it isn't charged again. Ask the customer to add a new payment method in the Customer Portal, then select **Retry now** on the subscription.
+    A payment method shows as Inactive when it can no longer be charged, for example after the customer canceled the mandate or after a chargeback. Ask the customer to add a new payment method to the subscription in the Customer Portal, then select **Retry now** on the subscription.
   </Accordion>
 
   <Accordion title="Can customers pay for subscriptions with gift cards or store credit?">
@@ -226,7 +228,7 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
 
 <AccordionGroup>
   <Accordion title="Why can't I edit a subscription?">
-    Usually it's renewing and the payment is still processing. You can edit or cancel it again once the renewal completes. With SEPA Direct Debit, this can take up to two working days. Also check that:
+    Usually it's renewing and the payment is still processing. You can't edit or cancel it until the renewal completes. With SEPA Direct Debit, this can take several days. Also check that:
 
     - the subscription hasn't got a minimum number of renewals left (you can change its cycle manually),
     - the next renewal date is in the future.
@@ -245,13 +247,14 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
   </Accordion>
 
   <Accordion title="Why was no order created on the renewal date?">
-    Open the subscription first. When a renewal doesn't go through, a banner shows the reason. Common causes:
+    Open the subscription first. For most causes, a banner shows the reason:
 
-    - **SEPA Direct Debit:** the order is created once the payment completes. See [Payment timing](/sepa-direct-debit#payment-timing).
+    - **SEPA Direct Debit:** by default, the order is created once the payment completes. See [Payment timing](/sepa-direct-debit#payment-timing).
     - **Failed payment:** see [Failed renewals](/managing-subscriptions#failed-renewals).
     - **Out of stock:** see "Can subscriptions renew when a product is out of stock?" below.
+    - **Product removed:** a product on the subscription was deleted in Shopify. See "Does deleting a product in Shopify break subscriptions?" below.
     - **Blocked by a workflow:** a **Next order updated** workflow blocked the order. **Order approved** in a workflow log means the workflow approved the order, not that the order was created.
-    - **Customer data rejected by Shopify,** for example an email domain after a migration. The **Activity log** shows an alert.
+    - **Invalid customer email,** for example an email domain Shopify rejects after a migration. The banner doesn't show this one. Check the **Activity log**.
 
     To find all affected subscriptions, filter the **Subscriptions** list by **Renewal status**.
   </Accordion>
@@ -293,7 +296,7 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
   </Accordion>
 
   <Accordion title="How do I stop selling a product but keep its renewals?">
-    Unpublish the product from your online store and hide its buy button, or set the product to **Draft** in Shopify. Renewals continue either way. Don't delete the product: deleting it breaks its subscriptions.
+    Unpublish the product from your online store and hide its buy button.
   </Accordion>
 
   <Accordion title="Are in-store pickup and pickup points supported?">

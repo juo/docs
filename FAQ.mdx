@@ -85,6 +85,10 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
     Not in Juo itself. Use a pack-size variant per frequency, or a small storefront change that sets quantity and plan together. See [Build a custom subscription storefront](/custom-storefront#offers-that-depend-on-quantity).
   </Accordion>
 
+  <Accordion title="Can renewals fall on the same day every month?">
+    Yes, with a monthly frequency and a **Fixed fulfillment day** in [Subscribe and save](/subscribe-and-save). Frequencies in weeks, such as every 4 weeks, move the date each month, because most months are longer than four weeks.
+  </Accordion>
+
   <Accordion title="How do I ship a welcome kit first and refills after?">
     Use the **Starter kit → refill swap** [blueprint](/workflows/blueprints). It sends the kit with the first order and replaces it with the refill from the next order. In Juo, go to **Workflows**, open **Blueprints**, choose the blueprint and select **Use this blueprint**.
   </Accordion>
@@ -129,6 +133,14 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
     The language the customer used on your store. To change it for one customer, edit their language in Shopify.
   </Accordion>
 
+  <Accordion title="What can I check when a customer can't log in to the portal?">
+    - **The login email doesn't arrive:** ask the customer to check their spam and promotions folders and to use the email address on their subscription. In Shopify, check the customer's email for typos.
+    - **The login code doesn't work:** codes expire after 10 minutes. Ask the customer to request a new code and use it right away.
+    - **The customer logs in but sees no subscription:** they may have two Shopify customer records with different emails. Search Shopify for the customer's name and check which record has the subscription.
+
+    To see the portal as the customer does, open the subscription in Juo and select **Generate customer portal link**.
+  </Accordion>
+
   <Accordion title="Can I change a customer's email address in Juo?">
     No. Juo uses the email from Shopify. Change it in Shopify under **Customers** → the customer → **Edit contact information**.
   </Accordion>
@@ -168,13 +180,25 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
   <Accordion title="Can customers update PayPal with Shopify's payment update link?">
     Yes. The Shopify link works for PayPal too.
   </Accordion>
+
+  <Accordion title='Why does a subscription still show "Last payment failed"?'>
+    The status shows the result of the last payment attempt. It changes once a new payment goes through. After the customer updates their payment method, select **Retry now** on the subscription. A card renewal can take a few minutes to complete, and a SEPA Direct Debit payment up to two working days.
+  </Accordion>
+
+  <Accordion title="Why is a payment method shown as Inactive?">
+    After repeated declines, the payment method is deactivated, so it isn't charged again. Ask the customer to add a new payment method in the Customer Portal, then select **Retry now** on the subscription.
+  </Accordion>
+
+  <Accordion title="Can customers pay for subscriptions with gift cards or store credit?">
+    Only for the first order. Shopify applies gift cards and store credit at checkout, and renewals don't go through checkout. Store credit also requires new customer accounts. To give a subscriber credit on a renewal, add a one-time discount to the subscription. See [One-time discount codes](/one-time-discount-codes).
+  </Accordion>
 </AccordionGroup>
 
 ## Discounts and retention
 
 <AccordionGroup>
   <Accordion title="How do I give a discount on the first subscription order only?">
-    Use a [variable discount](/glossary/variable-discount) in Subscribe and save. A discount code can't be limited to the first order in Juo. That needs a third-party app or custom code.
+    Use a [variable discount](/glossary/variable-discount) in Subscribe and save. For a discount code, such as an affiliate code, create it in Shopify with **Purchase type** set to **Subscription** or **Both**, and select **Limit discount to the first payment**. With iDEAL or Bancontact, choose **Both**, because Shopify treats those orders as one-time purchases. See [Discounts](/discounts).
   </Accordion>
 
   <Accordion title="If a Shopify discount is limited to the first payment, does it affect active subscriptions?">
@@ -202,7 +226,7 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
 
 <AccordionGroup>
   <Accordion title="Why can't I edit a subscription?">
-    Usually it's renewing and the payment is still processing. You can edit it again once the renewal completes. Also check that:
+    Usually it's renewing and the payment is still processing. You can edit or cancel it again once the renewal completes. With SEPA Direct Debit, this can take up to two working days. Also check that:
 
     - the subscription hasn't got a minimum number of renewals left (you can change its cycle manually),
     - the next renewal date is in the future.
@@ -221,7 +245,15 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
   </Accordion>
 
   <Accordion title="Why was no order created on the renewal date?">
-    This can happen after a migration when Shopify rejects some customer data, such as an email domain. The **Activity log** shows an alert when it happens.
+    Open the subscription first. When a renewal doesn't go through, a banner shows the reason. Common causes:
+
+    - **SEPA Direct Debit:** the order is created once the payment completes. See [Payment timing](/sepa-direct-debit#payment-timing).
+    - **Failed payment:** see [Failed renewals](/managing-subscriptions#failed-renewals).
+    - **Out of stock:** see "Can subscriptions renew when a product is out of stock?" below.
+    - **Blocked by a workflow:** a **Next order updated** workflow blocked the order. **Order approved** in a workflow log means the workflow approved the order, not that the order was created.
+    - **Customer data rejected by Shopify,** for example an email domain after a migration. The **Activity log** shows an alert.
+
+    To find all affected subscriptions, filter the **Subscriptions** list by **Renewal status**.
   </Accordion>
 
   <Accordion title="Can I delete a subscription?">
@@ -238,6 +270,10 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
 
   <Accordion title="Can I export subscriptions to a spreadsheet automatically?">
     Yes, with the [Juo API](https://juo.dev/).
+  </Accordion>
+
+  <Accordion title="Do renewals use updated SKUs?">
+    Yes. Renewal orders use the variant's current SKU in Shopify. If you change SKUs but keep the same variants, upcoming renewals use the new SKUs, with no change needed in Juo.
   </Accordion>
 </AccordionGroup>
 
@@ -257,7 +293,7 @@ Pick a topic, then open a question. Can't find your answer? Ask in the box at th
   </Accordion>
 
   <Accordion title="How do I stop selling a product but keep its renewals?">
-    Unpublish the product from your online store and hide its buy button.
+    Unpublish the product from your online store and hide its buy button, or set the product to **Draft** in Shopify. Renewals continue either way. Don't delete the product: deleting it breaks its subscriptions.
   </Accordion>
 
   <Accordion title="Are in-store pickup and pickup points supported?">

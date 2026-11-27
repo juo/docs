@@ -25,6 +25,12 @@ The **Stock** filter checks current inventory. **Renewal status: Out of stock** 
 
 With the filters set, you can select subscriptions and run a [bulk action](/bulk-actions) on them.
 
+## Change the delivery frequency
+
+Open the subscription and select **Edit cycle**. Choose the new delivery frequency and save.
+
+The next renewal date stays the same. To move it too, change the date in the same window. If the new frequency uses a **Fixed fulfillment day**, the next renewal moves to that day.
+
 ## Skip an upcoming order or product
 
 You can skip a whole upcoming order, or only some products in it, without changing the subscription itself.
@@ -53,6 +59,20 @@ For carrier pickup points such as parcel lockers, see [Shipping setup](/shipping
 ## Failed renewals
 
 When a renewal does not go through, the subscription page shows a banner with the reason and, where Juo will retry, the time of the next attempt. For a failed payment, you can retry right away with **Retry now**.
+
+The banner shows why the payment failed. Common reasons:
+
+| Reason | What to do |
+| --- | --- |
+| **Card expired** | Ask the customer to update the payment method on the subscription in the Customer Portal. To open the portal as the customer sees it, select **Generate customer portal link**. |
+| **Insufficient funds** | Juo retries during the dunning period, and a later attempt often succeeds. |
+| **Payment method canceled by the customer**, for example a BLIK payment canceled in their banking app | Retries fail until the customer adds a new payment method. |
+| **Payment method inactive** | After repeated declines, the payment method is deactivated. The customer needs to add a new one. |
+| **Authentication required** | The customer confirms the payment from the email they receive. |
+
+A card the customer saves to their store account doesn't replace the card on the subscription. Ask them to update the payment method on the subscription itself, then select **Retry now**.
+
+When a payment fails because of the customer's card, for example an expired or declined card, the customer receives an email. To set how long Juo retries and which emails are sent, see [Recover failed payments](/failed-payments).
 
 ### Not placed after payment
 
